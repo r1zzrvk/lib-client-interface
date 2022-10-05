@@ -1,11 +1,9 @@
 import { FC } from 'react'
+import { Text } from '@components'
+import { NAVIGATION_TITLES, theme } from '@constants'
 
 export const Header: FC = () => (
   <header>
-  <span>
-    <h3>Main</h3>
-    <h3>Catalog</h3>
-    <h3>Service</h3>
-  </span>
+    {NAVIGATION_TITLES.map( title => <Text key={title} color={theme.colors.grey}>{title}</Text>)}
   </header>
 )

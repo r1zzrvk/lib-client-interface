@@ -17,6 +17,7 @@
   "devDependencies": {
     "@types/node": "18.8.0",
     "@types/react": "18.0.21",
+    "@types/styled-components": "^5.1.26",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1"
   }

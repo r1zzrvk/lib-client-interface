@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,6 +10,10 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "removeComments": true,
+    "sourceMap": true,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
@@ -17,12 +21,56 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "src",
+    "paths": {
+      "@api":[
+        "api"
+      ],
+      "@components":[
+        "components"
+      ],
+      // "components":[
+      //   "components/*"
+      // ],
+      "@constants":[
+        "constants"
+      ],
+      // "constants":[
+      //   "constants/*"
+      // ],
+      "@pages":[
+        "pages"
+      ],
+      // "pages":[
+      //   "pages/*"
+      // ],
+      "@templates":[
+        "templates"
+      ],
+      // "templates":[
+      //   "templates/*"
+      // ],
+      "@types":[
+        "types"
+      ],
+      // "types":[
+      //   "types/*"
+      // ],
+      "@utils":[
+        "utils"
+      ],
+      // "utils":[
+      //   "utils/*"
+      // ],
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
   ],
   "exclude": [
     "node_modules"
