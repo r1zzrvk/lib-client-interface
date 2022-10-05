@@ -11,6 +11,7 @@ type TStyledProps = {
   color: string,
   marginBottom: number,
   marginBottomMob: number,
+  paddingRight: number,
 }
 
 const TextWrapper = styled.p<TStyledProps>`
@@ -19,7 +20,8 @@ font-weight: ${props => props.fontWeightMob};
 line-height: ${props => props.fontHeightMob}px;
 color: ${props => props.color};
 margin-bottom: ${props => props.marginBottomMob}px;
-font-family: ${theme.fonts.family}, sans-serif;
+font-family: "${theme.fonts.family}", sans-serif;
+padding-right: ${props => props.paddingRight}px;
 
 @media (min-width: ${theme.breakpoints.tablet}px) {
 font-size: ${props => props.fontSize}px;

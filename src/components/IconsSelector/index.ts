@@ -1,0 +1,1 @@
+export { IconsSelector } from './IconsSelector'

@@ -13,6 +13,7 @@ type TTextProps = {
   marginBottom?: number,
   marginBottomMob?: number,
   color?: string,
+  paddingRight?: number,
 }
 
 export const Text: FC<TTextProps> = ({
@@ -26,6 +27,7 @@ export const Text: FC<TTextProps> = ({
   marginBottom = 0,
   marginBottomMob = 0,
   color = theme.colors.white,
+  paddingRight = 0,
 }) => (
   <Styled.TextWrapper
     fontSize={fontSize}
@@ -36,7 +38,8 @@ export const Text: FC<TTextProps> = ({
     fontHeightMob={fontHeightMob}
     marginBottom={marginBottom}
     marginBottomMob={marginBottomMob}
-    color={color}>
+    color={color}
+    paddingRight={paddingRight}>
     {children}
   </Styled.TextWrapper>
 )
