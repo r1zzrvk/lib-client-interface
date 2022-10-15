@@ -1,10 +1,15 @@
 import { FC } from 'react'
-import { Header } from '@components'
+import { Footer, Header } from '@components'
+import { Styled } from './styled'
 
-const Home: FC = () => (
+const MainPage: FC = () => (
   <>
-    <Header />
+    <Styled.Background>
+      <Header />
+    </Styled.Background>
+    <div style={{ height: '700px' }}></div>
+    <Footer />
   </>
 )
 
-export default Home
+export default MainPage
