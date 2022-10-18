@@ -1,6 +1,6 @@
 import { FOOTERMENU_CATALOG, theme } from "@constants";
 import { FC } from "react";
-import { Accordion } from "@components";
+import { Accordion, Spacer } from "@components";
 import { Menu } from "./Menu";
 import { Promo } from "./Promo";
 import { Styled } from "./styled";
@@ -29,6 +29,7 @@ export const Footer: FC = () => (
         key={menuItem.text}>{menuItem.text}</p>
       )}
     </Accordion>
+    <Spacer size={theme.space.xl} samespace/>
     <Promo />
     </Styled.TabletMenu>
   </Styled.Wrapper>

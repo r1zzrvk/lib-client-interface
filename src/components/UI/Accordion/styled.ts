@@ -19,30 +19,31 @@ type TAccordionIconProps = {
 
 const Wrapper = styled.div<TWrapperProps>`
   color: ${({color}) => color};
-  border-bottom: 1px solid ${theme.colors.secondary};
+  border-bottom: 1px solid ${({color}) => color === theme.colors.white ? theme.colors.secondary : theme.colors.main};
 `
 
 const AccordionButton = styled.button<TAccordionButtonProps>`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: 'Source Sans 3', sans-serif;
   color: ${({color}) => color};
   cursor: pointer;
-  padding: 18px 30px;
+  padding: ${theme.space.sm}px ${theme.space.lg}px;
   width: 100%;
   border: none;
-  text-align: left;
   outline: none;
+  text-align: left;
   font-size: ${theme.fonts.size.regular.md}px;
   transition: 0.4s;
   background-color: inherit;
 
   &:hover {
-    color: ${theme.colors.secondary};
+    color: ${({color}) => color === theme.colors.white ? theme.colors.secondary : theme.colors.main};
   }
 `
 const AccordionItem = styled.div<TAccordionItemProps>`
-  padding: 0 18px;
+  padding: 0 ${theme.space.sm}px;
   display: ${({active}) => active ? 'block' : 'none'};
   overflow: hidden;
 `
