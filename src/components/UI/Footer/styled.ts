@@ -7,7 +7,6 @@ const Wrapper = styled.div`
     display: block;
     text-align: left;
     background-color: ${theme.colors.main};
-    padding: ${theme.space.xl}px;
   }
 `
 
@@ -18,11 +17,13 @@ const DesktopMenu = styled.div`
     justify-content: space-evenly;
     align-items: stretch;
     gap: 120px;
+    padding: ${theme.space.xl2}px ${theme.space.lg}px ${theme.space.xl}px;
   }
 `
 const TabletMenu = styled.div`
   @media (min-width: ${theme.breakpoints.sm}px) {
     display: none;
+    padding: ${theme.space.lg}px;
   }
 `
 
