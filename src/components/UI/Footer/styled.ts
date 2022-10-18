@@ -21,9 +21,9 @@ const DesktopMenu = styled.div`
   }
 `
 const TabletMenu = styled.div`
+  padding: ${theme.space.lg}px;
   @media (min-width: ${theme.breakpoints.sm}px) {
     display: none;
-    padding: ${theme.space.lg}px;
   }
 `
 
