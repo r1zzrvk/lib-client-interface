@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install": "npm i --package-lock-only & npm i --no-optional & npm dedupe",
+    "type-check": "tsc"
   },
   "dependencies": {
     "next": "12.3.1",
