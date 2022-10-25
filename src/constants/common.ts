@@ -1,7 +1,16 @@
 export const NAVIGATION_TITLES = [
-  'Main',
-  'Catalog',
-  'Service',
+  {
+    title: 'Main',
+    href: '/'
+  },
+  {
+    title: 'Catalog',
+    href: '/catalog'
+  },
+  {
+    title: 'Service',
+    href: '/service'
+  },
 ]
 
 export const FOOTERMENU_CATALOG = {

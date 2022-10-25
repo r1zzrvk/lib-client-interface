@@ -1,2 +1,4 @@
 export * from './UI'
-export * from './IconsSelector'
+export * from './atoms'
+export * from './molecules'
+export * from './organism'

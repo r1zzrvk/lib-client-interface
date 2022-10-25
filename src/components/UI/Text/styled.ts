@@ -12,22 +12,28 @@ type TStyledProps = {
   marginBottom: number,
   marginBottomMob: number,
   paddingRight: number,
+  asLink: boolean
 }
 
 const TextWrapper = styled.p<TStyledProps>`
-font-size: ${props => props.fontSizeMob}px;
-font-weight: ${props => props.fontWeightMob};
-line-height: ${props => props.fontHeightMob}px;
-color: ${props => props.color};
-margin-bottom: ${props => props.marginBottomMob}px;
+font-size: ${({ fontSizeMob }) => fontSizeMob}px;
+font-weight: ${({ fontWeightMob }) => fontWeightMob};
+line-height: ${({ fontHeightMob }) => fontHeightMob}px;
+color: ${({ color }) => color};
+margin-bottom: ${({ marginBottomMob }) => marginBottomMob}px;
 font-family: "${theme.fonts.family}", sans-serif;
-padding-right: ${props => props.paddingRight}px;
+padding-right: ${({ paddingRight }) => paddingRight}px;
+cursor: ${({ asLink }) => asLink && 'pointer'};
 
 @media (min-width: ${theme.breakpoints.tablet}px) {
-font-size: ${props => props.fontSize}px;
-font-weight: ${props => props.fontWeight};
-line-height: ${props => props.fontHeight}px;
-margin-bottom: ${props => props.marginBottom}px;
+font-size: ${({ fontSize }) => fontSize}px;
+font-weight: ${({ fontWeight }) => fontWeight};
+line-height: ${({ fontHeight }) => fontHeight}px;
+margin-bottom: ${({ marginBottom }) => marginBottom}px;
+}
+
+&:hover {
+  color: ${({ color, asLink }) => asLink === true && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
 }
 `
 
