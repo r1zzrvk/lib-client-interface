@@ -1,4 +1,5 @@
 import { theme } from "@constants";
+import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 import { Styled } from "./styled";
 
@@ -14,6 +15,8 @@ type TTextProps = {
   marginBottomMob?: number,
   color?: string,
   paddingRight?: number,
+  asLink?: boolean,
+  href?: string
 }
 
 export const Text: FC<TTextProps> = ({
@@ -28,8 +31,17 @@ export const Text: FC<TTextProps> = ({
   marginBottomMob = 0,
   color = theme.colors.white,
   paddingRight = 0,
-}) => (
-  <Styled.TextWrapper
+  asLink = false,
+  href,
+}) => {
+  const router = useRouter()
+
+  const handleClick = () => {
+    asLink && router.push(String(href))
+  }
+
+  return (
+    <Styled.TextWrapper
     fontSize={fontSize}
     fontWeight={fontWeight}
     fontHeight={fontHeight}
@@ -39,7 +51,10 @@ export const Text: FC<TTextProps> = ({
     marginBottom={marginBottom}
     marginBottomMob={marginBottomMob}
     color={color}
-    paddingRight={paddingRight}>
+    paddingRight={paddingRight}
+    asLink={asLink}
+    onClick={handleClick}>
     {children}
   </Styled.TextWrapper>
-)
+  )
+}
