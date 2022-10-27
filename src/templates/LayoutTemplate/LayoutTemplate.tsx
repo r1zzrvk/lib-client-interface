@@ -1,7 +1,17 @@
-import React from 'react'
+import { ReactNode, FC } from 'react'
+import { Footer, Header, MobileMenu } from '@components'
 
-export const LayoutTemplate = () => {
+type TLayoutTemplateProps = {
+  children: ReactNode
+}
+
+export const LayoutTemplate:FC<TLayoutTemplateProps> = ({children}) => {
   return (
-    <div>LayoutTemplate</div>
+    <>
+    <Header />
+    {children}
+    <MobileMenu />
+    <Footer />
+    </>
   )
 }

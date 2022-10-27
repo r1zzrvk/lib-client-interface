@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { FC } from "react"
+import { LayoutTemplate } from "@templates"
 import '../styles/main.css'
 import '../styles/scroll.css'
 
@@ -16,7 +17,9 @@ const MyApp: FC = ({ Component, pageProps }: any) =>
 
       <title>Lib</title>
     </Head>
-    <Component {...pageProps} />
+    <LayoutTemplate>
+      <Component {...pageProps} />
+    </LayoutTemplate>
   </>
 
 export default MyApp
