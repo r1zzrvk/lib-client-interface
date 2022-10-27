@@ -23,7 +23,8 @@ color: ${({ color }) => color};
 margin-bottom: ${({ marginBottomMob }) => marginBottomMob}px;
 font-family: "${theme.fonts.family}", sans-serif;
 padding-right: ${({ paddingRight }) => paddingRight}px;
-cursor: ${({ asLink }) => asLink && 'pointer'};
+cursor: ${({ asLink }) => asLink ? 'pointer' : 'default' };
+transition: 0.4s;
 
 @media (min-width: ${theme.breakpoints.tablet}px) {
 font-size: ${({ fontSize }) => fontSize}px;
@@ -33,7 +34,7 @@ margin-bottom: ${({ marginBottom }) => marginBottom}px;
 }
 
 &:hover {
-  color: ${({ color, asLink }) => asLink === true && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
+  color: ${({ color, asLink }) => asLink && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
 }
 `
 

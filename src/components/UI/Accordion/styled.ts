@@ -35,6 +35,8 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   outline: none;
   text-align: left;
   font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
+  font-weight: ${theme.fonts.weight.regular};
   transition: 0.4s;
   background-color: inherit;
 
@@ -43,7 +45,7 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   }
 `
 const AccordionItem = styled.div<TAccordionItemProps>`
-  padding: 0 ${theme.space.sm}px;
+  padding: 0px ${theme.space.sm}px ${theme.space.sm}px;
   display: ${({active}) => active ? 'block' : 'none'};
   overflow: hidden;
 `
