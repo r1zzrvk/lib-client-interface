@@ -1,12 +1,13 @@
 import { FC } from 'react'
-import { BackgroundColor, Footer, Header } from '@components'
+import { BackgroundColor, Footer, Header, MobileMenu } from '@components'
 
 const MainPage: FC = () => (
   <>
     <BackgroundColor>
       <Header />
     </BackgroundColor>
-    <div style={{ height: '700px' }}></div>
+    {/* <div style={{ height: '700px' }}></div> */}
+    <MobileMenu />
     <Footer />
   </>
 )
