@@ -15,11 +15,14 @@ export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
       fontSize={theme.fonts.size.regular.md}
       fontHeight={theme.fonts.height.regular.md}
       fontWeight={theme.fonts.weight.medium}>{header}</Text>
-    {menuItems.map(menuItem => <Text
-      key={menuItem.text}
+    {menuItems.map(({ text, href }) => <Text
+      key={text}
       marginBottom={theme.space.xs2}
       fontSize={theme.fonts.size.regular.sm}
-      fontHeight={theme.fonts.height.regular.sm}>{menuItem.text}</Text>
+      fontHeight={theme.fonts.height.regular.sm}
+      asLink
+      href={href}
+    >{text}</Text>
     )}
   </section>
 )
