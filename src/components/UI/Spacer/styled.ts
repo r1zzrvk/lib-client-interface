@@ -1,5 +1,5 @@
-import { theme } from "@constants"
-import styled from "styled-components"
+import { theme } from '@constants'
+import styled from 'styled-components'
 
 type TSpacerProps = {
   size: number
@@ -7,9 +7,9 @@ type TSpacerProps = {
 }
 
 const Spacer = styled.div<TSpacerProps>`
-height: ${({sizeMob}) => sizeMob}px;
+  height: ${({ sizeMob }) => sizeMob}px;
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    height: ${({size}) => size}px;
+    height: ${({ size }) => size}px;
   }
 `
 

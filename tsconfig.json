@@ -15,55 +15,37 @@
     "removeComments": true,
     "sourceMap": true,
     "noEmit": true,
-    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "incremental": true,
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "@api":[
+      "@api": [
         "api"
       ],
-      "@components":[
+      "@components": [
         "components"
       ],
-      // "components":[
-      //   "components/*"
-      // ],
-      "@constants":[
+      "@constants": [
         "constants"
       ],
-      // "constants":[
-      //   "constants/*"
-      // ],
-      "@pages":[
+      "@pages": [
         "pages"
       ],
-      // "pages":[
-      //   "pages/*"
-      // ],
-      "@templates":[
+      "@templates": [
         "templates"
       ],
-      // "templates":[
-      //   "templates/*"
-      // ],
-      "@types":[
+      "@types": [
         "types"
       ],
-      // "types":[
-      //   "types/*"
-      // ],
-      "@utils":[
+      "@utils": [
         "utils"
-      ],
-      // "utils":[
-      //   "utils/*"
-      // ],
-    }
+      ]
+    },
   },
   "include": [
     "next-env.d.ts",

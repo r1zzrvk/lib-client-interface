@@ -1,5 +1,5 @@
-import { theme } from "@constants"
-import styled from "styled-components"
+import { theme } from '@constants'
+import styled from 'styled-components'
 
 const TabletMenu = styled.div`
   padding: ${theme.space.lg}px;
@@ -9,5 +9,5 @@ const TabletMenu = styled.div`
 `
 
 export const Styled = {
-  TabletMenu
+  TabletMenu,
 }

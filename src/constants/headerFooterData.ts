@@ -1,15 +1,15 @@
 export const NAVIGATION_TITLES = [
   {
     title: 'Main',
-    href: '/'
+    href: '/',
   },
   {
     title: 'Catalog',
-    href: '/catalog'
+    href: '/catalog',
   },
   {
     title: 'Service',
-    href: '/service'
+    href: '/service',
   },
 ]
 
@@ -18,23 +18,23 @@ export const FOOTERMENU_CATALOG = {
   menuItems: [
     {
       text: 'Living room',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Bedroom',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Wardrobe',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Hallway',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Playroom',
-      href: '/'
+      href: '/',
     },
   ],
 }
@@ -44,19 +44,19 @@ export const FOOTERMENU_INFORMATION = {
   menuItems: [
     {
       text: 'For investors',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Support',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Politics privacy',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Cookie settings',
-      href: '/'
+      href: '/',
     },
   ],
 }
@@ -66,19 +66,19 @@ export const FOOTERMENU_SERVICE = {
   menuItems: [
     {
       text: 'Profile',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Favorites',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Cart',
-      href: '/'
+      href: '/',
     },
     {
       text: 'Shipping and payment',
-      href: '/'
+      href: '/',
     },
   ],
 }
