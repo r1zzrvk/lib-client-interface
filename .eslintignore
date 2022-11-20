@@ -1,0 +1,9 @@
+build/
+node_modules/
+.next/
+.eslintrc.json
+.prettierrc.json
+commitlint.config.js
+next.config.js
+tsconfig.tsbuildinfo
+pages/

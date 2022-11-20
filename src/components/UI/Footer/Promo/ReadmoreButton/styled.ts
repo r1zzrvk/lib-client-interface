@@ -1,30 +1,30 @@
-import { theme } from "@constants"
-import styled from "styled-components"
+import { theme } from '@constants'
+import styled from 'styled-components'
 
 const Button = styled.button`
-display: flex;
-background-color: inherit;
-border: none;
-cursor: pointer;
-color: ${theme.colors.white};
-font-size: ${theme.fonts.size.regular.md}px;
-line-height: ${theme.fonts.height.regular.md}px;
-transition: 0.4s;
-align-items: center;
-&:hover {
-  color: ${theme.colors.secondary};
-}
-
-svg {
+  display: flex;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  color: ${theme.colors.white};
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   transition: 0.4s;
-  margin-left: 20px;
-}
+  align-items: center;
+  &:hover {
+    color: ${theme.colors.secondary};
+  }
 
-&:hover svg{
-  transform: translatex(+10px);
-}
+  svg {
+    transition: 0.4s;
+    margin-left: 20px;
+  }
+
+  &:hover svg {
+    transform: translatex(+10px);
+  }
 `
 
 export const Styled = {
-  Button
+  Button,
 }

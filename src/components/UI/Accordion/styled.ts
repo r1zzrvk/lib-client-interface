@@ -1,5 +1,5 @@
-import { theme } from "@constants"
-import styled from "styled-components"
+import { theme } from '@constants'
+import styled from 'styled-components'
 
 type TWrapperProps = {
   color: string
@@ -18,8 +18,8 @@ type TAccordionIconProps = {
 }
 
 const Wrapper = styled.div<TWrapperProps>`
-  color: ${({color}) => color};
-  border-bottom: 1px solid ${({color}) => color === theme.colors.white ? theme.colors.secondary : theme.colors.main};
+  color: ${({ color }) => color};
+  border-bottom: 1px solid ${({ color }) => (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
 `
 
 const AccordionButton = styled.button<TAccordionButtonProps>`
@@ -27,7 +27,7 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   justify-content: space-between;
   align-items: center;
   font-family: 'Source Sans 3', sans-serif;
-  color: ${({color}) => color};
+  color: ${({ color }) => color};
   cursor: pointer;
   padding: ${theme.space.sm}px ${theme.space.lg}px;
   width: 100%;
@@ -41,12 +41,12 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   background-color: inherit;
 
   &:hover {
-    color: ${({color}) => color === theme.colors.white ? theme.colors.secondary : theme.colors.main};
+    color: ${({ color }) => (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
   }
 `
 const AccordionItem = styled.div<TAccordionItemProps>`
   padding: 0px ${theme.space.sm}px ${theme.space.sm}px;
-  display: ${({active}) => active ? 'block' : 'none'};
+  display: ${({ active }) => (active ? 'block' : 'none')};
   overflow: hidden;
 `
 
@@ -54,7 +54,7 @@ const AccordionIcon = styled.span<TAccordionIconProps>`
   font-size: ${theme.fonts.size.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
   font-weight: ${theme.fonts.height.regular.md}px;
-  transform: ${({active}) => active ? 'rotate(0deg)' : 'rotate(45deg)'};
+  transform: ${({ active }) => (active ? 'rotate(0deg)' : 'rotate(45deg)')};
   transition: 0.4s;
 `
 

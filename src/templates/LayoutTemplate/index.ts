@@ -1,2 +1,1 @@
-export { LayoutTemplate } from "./LayoutTemplate";
-
+export { LayoutTemplate } from './LayoutTemplate'

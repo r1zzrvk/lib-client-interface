@@ -5,13 +5,11 @@ type TLayoutTemplateProps = {
   children: ReactNode
 }
 
-export const LayoutTemplate:FC<TLayoutTemplateProps> = ({children}) => {
-  return (
-    <>
+export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children }) => (
+  <>
     <Header />
     {children}
     <MobileMenu />
     <Footer />
-    </>
-  )
-}
+  </>
+)

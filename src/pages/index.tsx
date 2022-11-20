@@ -3,8 +3,7 @@ import { BackgroundColor } from '@components'
 
 const MainPage: FC = () => (
   <>
-    <BackgroundColor>
-    </BackgroundColor>
+    <BackgroundColor />
     {/* <div style={{ height: '700px' }}></div> */}
   </>
 )

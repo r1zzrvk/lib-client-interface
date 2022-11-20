@@ -1,5 +1,5 @@
-import { theme } from "@constants"
-import styled from "styled-components"
+import { theme } from '@constants'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
   display: none;

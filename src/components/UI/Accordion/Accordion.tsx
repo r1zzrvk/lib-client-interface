@@ -1,6 +1,6 @@
-import { FC, ReactNode, useState } from "react";
-import { Styled } from "./styled";
+import { FC, ReactNode, useState } from 'react'
 import { theme } from '@constants'
+import { Styled } from './styled'
 
 type TAccordionProps = {
   children: ReactNode
@@ -16,8 +16,7 @@ export const Accordion: FC<TAccordionProps> = ({ title, children, color = theme.
         {title}
         <Styled.AccordionIcon active={active}>{'\u2716'}</Styled.AccordionIcon>
       </Styled.AccordionButton>
-      <Styled.AccordionItem active={active}>
-        {children}
-      </Styled.AccordionItem>
-    </Styled.Wrapper>)
+      <Styled.AccordionItem active={active}>{children}</Styled.AccordionItem>
+    </Styled.Wrapper>
+  )
 }

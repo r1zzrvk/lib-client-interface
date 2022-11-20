@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { theme } from "@constants"
+import styled from 'styled-components'
+import { theme } from '@constants'
 
 const DesktopMenu = styled.div`
   display: none;
@@ -13,5 +13,5 @@ const DesktopMenu = styled.div`
 `
 
 export const Styled = {
-  DesktopMenu
+  DesktopMenu,
 }
