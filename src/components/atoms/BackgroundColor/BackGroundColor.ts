@@ -2,6 +2,27 @@ import { theme } from '@constants'
 import styled from 'styled-components'
 
 export const BackgroundColor = styled.div`
+  display: none;
   background-color: ${theme.colors.main};
-  height: 1000px;
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0px ${theme.space.xl2}px ${theme.space.xl2}px ${theme.space.xl2}px;
+  }
+
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding: 70px 50px 70px 50px;
+  }
+
+  @media (min-width: ${theme.breakpoints.md}px) {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding: 70px 120px 160px 120px;
+  }
 `
