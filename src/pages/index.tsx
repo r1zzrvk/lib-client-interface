@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { BackgroundColor } from '@components'
+import { MainBanner } from '@components'
 
 const MainPage: FC = () => (
   <>
-    <BackgroundColor />
-    {/* <div style={{ height: '700px' }}></div> */}
+    <MainBanner />
+    <div style={{ height: '700px' }}></div>
   </>
 )
 
