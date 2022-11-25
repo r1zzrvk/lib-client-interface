@@ -13,7 +13,6 @@ const Button = styled.button`
   align-items: center;
 
   &:hover {
-    background-color: black;
     color: ${theme.colors.secondary};
   }
 
@@ -30,5 +29,3 @@ const Button = styled.button`
 export const Styled = {
   Button,
 }
-
-// TODO: починить hover-effect
