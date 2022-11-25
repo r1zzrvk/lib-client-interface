@@ -1,0 +1,1 @@
+export { TipsBanner } from './TipsBanner'

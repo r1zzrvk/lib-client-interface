@@ -1,8 +1,7 @@
-import { FOOTERMENU_CATALOG, FOOTERMENU_INFORMATION, FOOTERMENU_SERVICE, theme } from '@constants'
-import { Text, Accordion, Spacer } from '@components'
 import { FC } from 'react'
+import { FOOTERMENU_CATALOG, FOOTERMENU_INFORMATION, FOOTERMENU_SERVICE, PROMO_FOOTER, theme } from '@constants'
+import { Text, Accordion, Spacer, Promo } from '@components'
 import { Styled } from './styled'
-import { Promo } from '../Promo'
 
 export const TabletMenu: FC = () => (
   <Styled.TabletMenu>
@@ -46,6 +45,13 @@ export const TabletMenu: FC = () => (
       ))}
     </Accordion>
     <Spacer size={theme.space.xl} samespace />
-    <Promo />
+    <Promo
+      header={PROMO_FOOTER.header}
+      content={PROMO_FOOTER.content}
+      headerFontSize={theme.fonts.size.regular.md}
+      headerFontHeight={theme.fonts.height.regular.md}
+      contentFontSize={theme.fonts.size.regular.sm}
+      contentFontHeight={theme.fonts.height.regular.sm}
+    />
   </Styled.TabletMenu>
 )
