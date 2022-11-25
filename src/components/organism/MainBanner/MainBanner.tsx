@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { BackgroundColor } from '@components'
 import { BannerContent, BannerImage } from './molecules'
+import { Wrapper } from './styled'
 
 export const MainBanner: FC = () => (
-  <BackgroundColor>
+  <Wrapper>
     <BannerImage />
     <BannerContent />
-  </BackgroundColor>
+  </Wrapper>
 )

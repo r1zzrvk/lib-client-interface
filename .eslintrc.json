@@ -28,7 +28,7 @@
     "indent": "off",
     "arrow-parens": "warn",
     "object-curly-newline": "off",
-    "max-len": ["warn", 150],
+    "max-len": ["off", 150],
     "no-duplicate-case": "warn",
     "no-param-reassign": "warn",
     "implicit-arrow-linebreak":"off",

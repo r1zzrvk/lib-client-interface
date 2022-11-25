@@ -1,1 +1,0 @@
-export { BackgroundColor } from './BackGroundColor'

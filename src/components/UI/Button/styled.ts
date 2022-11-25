@@ -23,9 +23,9 @@ const Button = styled.button<TButtonProps>`
   }
 
   &:focus {
-    animation: jello-horizontal 0.9s ease;
+    animation: click 0.9s ease;
 
-    @keyframes jello-horizontal {
+    @keyframes click {
       0% {
         opacity: 1;
       }
