@@ -1,7 +1,7 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-export const BackgroundColor = styled.div`
+export const Wrapper = styled.div`
   display: none;
   background-color: ${theme.colors.main};
 
@@ -13,14 +13,14 @@ export const BackgroundColor = styled.div`
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     padding: 70px 50px 70px 50px;
   }
 
   @media (min-width: ${theme.breakpoints.md}px) {
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     padding: 70px 120px 160px 120px;

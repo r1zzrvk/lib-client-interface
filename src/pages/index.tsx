@@ -1,10 +1,13 @@
 import { FC } from 'react'
-import { MainBanner } from '@components'
+import { MainBanner, MobileInput } from '@components'
+import { MobileTemplate } from '@templates'
 
 const MainPage: FC = () => (
   <>
     <MainBanner />
-    <div style={{ height: '700px' }}></div>
+    <MobileTemplate>
+      <MobileInput placeholder="Search" type="text" />
+    </MobileTemplate>
   </>
 )
 
