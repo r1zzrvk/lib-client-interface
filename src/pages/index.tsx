@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { MainBanner, MobileInput, TipsBanner } from '@components'
+import { MainBanner, MobileBanner, MobileInput, TipsBanner } from '@components'
 import { MobileTemplate } from '@templates'
 
 const MainPage: FC = () => (
@@ -8,6 +8,7 @@ const MainPage: FC = () => (
     <TipsBanner />
     <MobileTemplate>
       <MobileInput placeholder="Search" type="text" />
+      <MobileBanner content='Discounts up to 15% to all'/>
     </MobileTemplate>
   </>
 )
