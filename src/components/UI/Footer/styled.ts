@@ -1,7 +1,7 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.footer`
   display: none;
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: block;
