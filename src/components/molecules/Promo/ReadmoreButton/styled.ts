@@ -11,9 +11,10 @@ const Button = styled.button`
   line-height: ${theme.fonts.height.regular.md}px;
   transition: 0.4s;
   align-items: center;
+  padding: 0px;
+  margin: 0px;
 
   &:hover {
-    background-color: black;
     color: ${theme.colors.secondary};
   }
 
@@ -30,5 +31,3 @@ const Button = styled.button`
 export const Styled = {
   Button,
 }
-
-// TODO: починить hover-effect

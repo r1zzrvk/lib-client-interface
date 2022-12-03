@@ -17,6 +17,7 @@ type TTextProps = {
   paddingRight?: number
   asLink?: boolean
   href?: string
+  align?: 'center' | 'left'
 }
 
 export const Text: FC<TTextProps> = ({
@@ -33,6 +34,7 @@ export const Text: FC<TTextProps> = ({
   paddingRight = 0,
   asLink = false,
   href,
+  align,
 }) => {
   const router = useRouter()
 
@@ -52,6 +54,7 @@ export const Text: FC<TTextProps> = ({
       paddingRight={paddingRight}
       asLink={asLink}
       onClick={handleClick}
+      align={align}
     >
       {children}
     </Styled.TextWrapper>

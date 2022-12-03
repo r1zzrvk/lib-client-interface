@@ -8,7 +8,6 @@ type TIconsSelectorProps = {
   color?: string
 }
 
-// eslint-disable-next-line max-len
 export const IconsSelector: FC<TIconsSelectorProps> = ({ icon, size = 24, color = theme.colors.white }) => {
   switch (icon) {
     case 'search':

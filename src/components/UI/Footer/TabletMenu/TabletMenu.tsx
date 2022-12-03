@@ -12,6 +12,7 @@ export const TabletMenu: FC = () => (
           href={href}
           fontSize={theme.fonts.size.regular.sm}
           fontHeight={theme.fonts.height.regular.sm}
+          marginBottom={theme.space.xs2}
           asLink
         >
           {text}
@@ -25,6 +26,7 @@ export const TabletMenu: FC = () => (
           href={href}
           fontSize={theme.fonts.size.regular.sm}
           fontHeight={theme.fonts.height.regular.sm}
+          marginBottom={theme.space.xs2}
           asLink
         >
           {text}
@@ -38,6 +40,7 @@ export const TabletMenu: FC = () => (
           href={href}
           fontSize={theme.fonts.size.regular.sm}
           fontHeight={theme.fonts.height.regular.sm}
+          marginBottom={theme.space.xs2}
           asLink
         >
           {text}

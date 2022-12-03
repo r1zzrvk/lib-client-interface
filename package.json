@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "install": "npm i --package-lock-only & npm i --no-optional & npm dedupe",
     "type-check": "tsc"
   },
   "dependencies": {
