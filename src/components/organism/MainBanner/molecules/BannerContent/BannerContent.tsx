@@ -8,6 +8,7 @@ export const BannerContent: FC = () => (
     <Text
       fontSize={theme.fonts.size.header.md}
       fontHeight={theme.fonts.height.header.md}
+      fontWeight={theme.fonts.weight.medium}
       marginBottom={theme.space.md}
       fontSizeMob={theme.fonts.size.header.sm}
       fontHeightMob={theme.fonts.height.header.sm}

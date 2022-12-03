@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { theme, SIZES } from '@constants'
 
 type TButtonProps = {
-  size: string
+  size: 'sm' | 'md' | 'lg'
+  isGhost?: boolean
 }
 
 const Button = styled.button<TButtonProps>`
@@ -13,13 +14,15 @@ const Button = styled.button<TButtonProps>`
   font-size: ${theme.fonts.size.regular.sm}px;
   line-height: ${theme.fonts.height.regular.sm}px;
   font-family: '${theme.fonts.family}', sans-serif;
-  color: ${theme.colors.grey};
-  background-color: ${theme.colors.secondary};
+  color: ${({ isGhost }) => (isGhost ? theme.colors.main : theme.colors.grey)};
+  background-color: ${({ isGhost }) => (isGhost ? 'inherit' : theme.colors.secondary)};
   padding: ${theme.space.sm}px 0px ${theme.space.sm}px 0px;
+  text-decoration: ${({ isGhost }) => (isGhost ? 'underline' : 'none')};
 
   &:hover {
     transition: all 1s ease;
-    text-decoration: underline;
+    color: ${({ isGhost }) => (isGhost ? theme.colors.grey : theme.colors.main)};
+    text-decoration: ${({ isGhost }) => (isGhost ? 'none' : 'underline')};
   }
 
   &:focus {

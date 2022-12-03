@@ -4,11 +4,12 @@ import { Styled } from './styled'
 type TButton = {
   children: ReactNode
   onClick: () => void
-  size?: string
+  size?: 'sm' | 'md' | 'lg'
+  isGhost?: boolean
 }
 
-export const Button: FC<TButton> = ({ children, onClick, size = 'md' }) => (
-  <Styled.Button type="submit" onClick={onClick} size={size}>
+export const Button: FC<TButton> = ({ children, onClick, size = 'md', isGhost = false }) => (
+  <Styled.Button type="submit" onClick={onClick} size={size} isGhost={isGhost}>
     {children}
   </Styled.Button>
 )

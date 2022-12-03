@@ -1,0 +1,1 @@
+export { CategoriesBanner } from './CategoriesBanner'

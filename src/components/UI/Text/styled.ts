@@ -13,6 +13,7 @@ type TStyledProps = {
   marginBottomMob: number
   paddingRight: number
   asLink: boolean
+  align?: 'center' | 'left'
 }
 
 const TextWrapper = styled.p<TStyledProps>`
@@ -20,13 +21,14 @@ const TextWrapper = styled.p<TStyledProps>`
   font-weight: ${({ fontWeightMob }) => fontWeightMob};
   line-height: ${({ fontHeightMob }) => fontHeightMob}px;
   color: ${({ color }) => color};
+  margin-top: 0px;
   margin-bottom: ${({ marginBottomMob }) => marginBottomMob}px;
   font-family: '${theme.fonts.family}', sans-serif;
   padding-right: ${({ paddingRight }) => paddingRight}px;
   cursor: ${({ asLink }) => (asLink ? 'pointer' : 'default')};
   transition: 0.4s;
   white-space: pre-line;
-
+  text-align: ${({ align }) => align};
   @media (min-width: ${theme.breakpoints.tablet}px) {
     font-size: ${({ fontSize }) => fontSize}px;
     font-weight: ${({ fontWeight }) => fontWeight};

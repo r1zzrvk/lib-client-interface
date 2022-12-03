@@ -21,7 +21,12 @@ export const Promo: FC<TPromoProps> = ({
   contentFontHeight,
 }) => (
   <section>
-    <Text marginBottom={theme.space.md} fontSize={headerFontSize} fontHeight={headerFontHeight}>
+    <Text
+      marginBottom={theme.space.md}
+      fontSize={headerFontSize}
+      fontHeight={headerFontHeight}
+      fontWeight={theme.fonts.weight.medium}
+    >
       {header}
     </Text>
     <Text marginBottom={theme.space.md} fontSize={contentFontSize} fontHeight={contentFontHeight}>

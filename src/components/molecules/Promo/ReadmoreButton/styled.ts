@@ -11,6 +11,8 @@ const Button = styled.button`
   line-height: ${theme.fonts.height.regular.md}px;
   transition: 0.4s;
   align-items: center;
+  padding: 0px;
+  margin: 0px;
 
   &:hover {
     color: ${theme.colors.secondary};

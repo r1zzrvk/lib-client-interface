@@ -29,7 +29,7 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   font-family: 'Source Sans 3', sans-serif;
   color: ${({ color }) => color};
   cursor: pointer;
-  padding: ${theme.space.sm}px ${theme.space.lg}px;
+  padding: ${theme.space.sm}px ${theme.space.sm}px ${theme.space.sm}px 0px;
   width: 100%;
   border: none;
   outline: none;
@@ -45,7 +45,7 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   }
 `
 const AccordionItem = styled.div<TAccordionItemProps>`
-  padding: 0px ${theme.space.sm}px ${theme.space.sm}px;
+  padding: 0px ${theme.space.xs4}px 0px;
   display: ${({ active }) => (active ? 'block' : 'none')};
   overflow: hidden;
 `
