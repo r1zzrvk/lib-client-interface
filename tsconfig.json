@@ -44,6 +44,9 @@
       ],
       "@utils": [
         "utils"
+      ],
+      "@hooks": [
+        "hooks"
       ]
     },
   },
