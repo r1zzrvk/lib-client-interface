@@ -21,7 +21,7 @@ const Button = styled.button<TButtonProps>`
 
   &:hover {
     transition: all 1s ease;
-    color: ${({ isGhost }) => (isGhost ? theme.colors.grey : theme.colors.main)};
+    color: ${theme.colors.grey};
     text-decoration: ${({ isGhost }) => (isGhost ? 'none' : 'underline')};
   }
 
