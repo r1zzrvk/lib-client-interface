@@ -1,7 +1,7 @@
 import { Text, IconsSelector } from '@components'
 import { theme } from '@constants'
 import { FC } from 'react'
-import { TUser } from 'types/user'
+import { TUser } from '@types'
 import { Styled } from './styled'
 
 type TProfileBannerProps = {

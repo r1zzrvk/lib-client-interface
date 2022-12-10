@@ -14,3 +14,11 @@ export const CATEGORIES_BANNER = {
   subheader: 'This brand is also presented as kitchen sets.',
   text: 'The company`s rich history and excellent\u000Areputation have made it desirable in the\u000Afashion world.',
 }
+
+export const PROFILE_MENU = [
+  { id: '1', title: 'My purchases' },
+  { id: '2', title: 'Points piggy bank' },
+  { id: '3', title: 'Payment settings' },
+  { id: '4', title: 'Settings' },
+  { id: '5', title: 'Support' },
+]

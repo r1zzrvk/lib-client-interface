@@ -9,3 +9,8 @@ export type TDesktopCard = {
   description: string
   image: string
 }
+
+export type TTab = {
+  id: string
+  title: string
+}
