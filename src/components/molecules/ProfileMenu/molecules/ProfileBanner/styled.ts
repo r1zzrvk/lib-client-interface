@@ -8,9 +8,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
-    padding: 16px 24px 16px 24px;
+    padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
     border-radius: 24px;
   }
 `
@@ -22,7 +21,7 @@ const Avatar = styled.img`
 
 const TextWrapper = styled.div`
   flex-direction: column;
-  margin-left: 32px;
+  margin-left: ${theme.space.lg}px;
 `
 const UserInfo = styled.div`
   display: flex;

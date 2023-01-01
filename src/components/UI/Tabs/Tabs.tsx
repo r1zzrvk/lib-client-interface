@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { ItemList } from '@components'
 import { TTab } from '@types'
 import { useBreakpoint } from '@hooks'
@@ -7,21 +7,23 @@ import { Styled } from './styled'
 
 type TTabsProps = {
   items: TTab[]
+  activeTab: string
+  onSelect: (id: string) => void
+  marginTop?: number
 }
 
-export const Tabs: FC<TTabsProps> = ({ items }) => {
-  const [activeId, setActiveId] = useState('1')
-  const { isTablet } = useBreakpoint()
+export const Tabs: FC<TTabsProps> = ({ items, marginTop, activeTab, onSelect }) => {
+  const { isTablet, isSm } = useBreakpoint()
   const handleClick = (id: string) => {
-    setActiveId(id)
+    onSelect(id)
   }
 
   return (
-    <Styled.Wrapper isRow={isTablet}>
+    <Styled.Wrapper isRow={isTablet || isSm} marginTop={marginTop}>
       <ItemList
         items={items}
         renderItem={({ id, title }: TTab) => (
-          <Tab title={title} key={id} active={id === activeId} onClick={() => handleClick(id)} />
+          <Tab title={title} key={id} active={id === activeTab} onClick={() => handleClick(id)} />
         )}
       />
     </Styled.Wrapper>

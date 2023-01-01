@@ -25,6 +25,6 @@ export const PROFILE_MENU = [
 
 export const PROFILE_CUBE = [
   { id: '1', header: '-15%', content: 'for any chair', color: 'secondary' },
-  { id: '2', header: '1000 points', content: 'Hand over old furniture and get', color: 'main' },
-  { id: '3', header: '200 welcome points', content: 'for the first purchase', color: 'secondary' },
+  { id: '2', header: '1000 points', content: 'Hand over\u000Aold furniture\u000Aand get', color: 'main' },
+  { id: '3', header: '200\u000Awelcome\u000Apoints', content: 'for the first purchase', color: 'secondary' },
 ]

@@ -14,6 +14,7 @@ const Wrapper = styled.div<TWrapperProps>`
   justify-content: space-between;
   width: 100%;
   transition: 0.4s ease-in-out;
+  border-top: ${({ active }) => active && `3px solid ${theme.colors.main}`};
 `
 const ActiveDot = styled.div<TActiveDotProps>`
   background-color: ${theme.colors.main};
