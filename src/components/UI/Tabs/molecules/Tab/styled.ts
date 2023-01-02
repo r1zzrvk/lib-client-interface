@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 type TWrapperProps = {
   active: boolean
+  isColumn: boolean
 }
 
 type TActiveDotProps = {
@@ -13,8 +14,8 @@ const Wrapper = styled.div<TWrapperProps>`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  transition: 0.4s ease-in-out;
-  border-top: ${({ active }) => active && `3px solid ${theme.colors.main}`};
+  transition: ${({ isColumn }) => !isColumn && '0.4s ease-in-out'};
+  box-shadow: ${({ active, isColumn }) => active && isColumn && `0px 2px 0px 0px ${theme.colors.main} inset`};
 `
 const ActiveDot = styled.div<TActiveDotProps>`
   background-color: ${theme.colors.main};

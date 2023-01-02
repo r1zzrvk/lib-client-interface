@@ -20,7 +20,7 @@ export const Tab: FC<TTabProps> = ({ title, active, onClick }) => {
     setIsAnimate(true)
   }
   return (
-    <Styled.Wrapper active={active} onClick={() => handleClick()}>
+    <Styled.Wrapper active={active} isColumn={isColumn} onClick={() => handleClick()}>
       <Text color={active ? theme.colors.grey : theme.colors.main}>{title}</Text>
       {active && !isColumn && <Styled.ActiveDot isAnimate={isAnimate} onAnimationEnd={() => setIsAnimate(false)} />}
     </Styled.Wrapper>

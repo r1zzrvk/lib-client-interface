@@ -16,7 +16,7 @@ export const ProfileMenu: FC<TProfileMenuProps> = ({ activeTab, onSelect, isColu
     <ProfileBanner user={userData} />
     <Tabs
       items={PROFILE_MENU}
-      marginTop={isColumn ? theme.space.sm : theme.space.xl}
+      marginTop={isColumn ? theme.space.md : theme.space.xl}
       activeTab={activeTab}
       onSelect={onSelect}
     />
