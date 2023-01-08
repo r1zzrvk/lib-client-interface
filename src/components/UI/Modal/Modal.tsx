@@ -11,7 +11,7 @@ type TModalProps = {
 
 export const Modal: FC<TModalProps> = ({ children, isOpen, onClose }) => (
   <Styled.Wrapper isOpen={isOpen}>
-    <Styled.Icon onClick={onClose}>
+    <Styled.Icon onClick={() => onClose()}>
       <IconsSelector icon="mobile-plus" color={theme.colors.grey} />
     </Styled.Icon>
     {children}
