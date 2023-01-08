@@ -9,3 +9,15 @@ export type TDesktopCard = {
   description: string
   image: string
 }
+
+export type TTab = {
+  id: string
+  title: string
+}
+
+export type TInfoCube = {
+  id: string
+  header: string
+  content: string
+  color: 'main' | 'secondary'
+}

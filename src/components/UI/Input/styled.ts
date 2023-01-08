@@ -1,20 +1,26 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+type TWrapperProps = {
+  fluid: boolean
+}
+
+type TIconProps = {
+  isButton?: boolean
+}
+
+const Wrapper = styled.div<TWrapperProps>`
   display: flex;
   background-color: ${theme.colors.beige};
   color: ${theme.colors.grey};
-  width: 100%;
+  width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
   border-radius: 18px;
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    display: none;
-  }
 `
 
-const Icon = styled.div`
+const Icon = styled.div<TIconProps>`
+  cursor: ${({ isButton }) => isButton && 'pointer'};
+  border-left: ${({ isButton }) => isButton && `2px solid ${theme.colors.main}`};
   padding: ${theme.space.xs}px ${theme.space.sm}px ${theme.space.xs}px ${theme.space.sm}px;
 `
 
@@ -25,7 +31,7 @@ const Input = styled.input`
   line-height: ${theme.fonts.height.regular.sm}px;
   font-weight: ${theme.fonts.weight.medium};
   border-radius: 18px;
-  width: 100%;
+  width: 300px;
   border: none;
   outline: none;
 

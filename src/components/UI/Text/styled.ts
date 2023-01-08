@@ -29,6 +29,7 @@ const TextWrapper = styled.p<TStyledProps>`
   transition: 0.4s;
   white-space: pre-line;
   text-align: ${({ align }) => align};
+
   @media (min-width: ${theme.breakpoints.tablet}px) {
     font-size: ${({ fontSize }) => fontSize}px;
     font-weight: ${({ fontWeight }) => fontWeight};

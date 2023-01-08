@@ -42,3 +42,11 @@ export const shoppingItems = [
     image: 'https://i.ibb.co/0q1r8yC/1.png',
   },
 ]
+
+export const userData = {
+  id: '1',
+  firstName: 'Stanislav',
+  surName: 'Vyalkin',
+  avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa3AOkgyZFdaTbT4PiGfV2cojBVreO6DANjw&usqp=CAU',
+  email: 'r1zzrvk@gmail.com',
+}
