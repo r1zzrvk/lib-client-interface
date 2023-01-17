@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 type TUsePaginationProps = {
   contentPerPage: number
@@ -13,6 +13,8 @@ type TUsePaginationReturn = {
   firstIndex: number
   lastIndex: number
   page: number
+  packSize: number
+  showMore: () => void
 }
 
 export const usePagination = ({ contentPerPage, itemsCount }: TUsePaginationProps): TUsePaginationReturn => {
@@ -20,6 +22,7 @@ export const usePagination = ({ contentPerPage, itemsCount }: TUsePaginationProp
   const pageCount = Math.ceil(itemsCount / contentPerPage)
   const lastIndex = page * contentPerPage
   const firstIndex = lastIndex - contentPerPage
+  const [packSize, setPackSize] = useState(contentPerPage)
 
   const changePage = (direction: boolean) => {
     setPage(state => {
@@ -46,6 +49,10 @@ export const usePagination = ({ contentPerPage, itemsCount }: TUsePaginationProp
     }
   }
 
+  const getMoreItems = useCallback(() => {
+    setPackSize(prevValue => prevValue + contentPerPage)
+  }, [contentPerPage])
+
   return {
     totalPages: pageCount,
     nextPage: () => changePage(true),
@@ -54,5 +61,7 @@ export const usePagination = ({ contentPerPage, itemsCount }: TUsePaginationProp
     firstIndex,
     lastIndex,
     page,
+    packSize,
+    showMore: () => getMoreItems(),
   }
 }
