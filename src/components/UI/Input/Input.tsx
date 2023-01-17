@@ -1,4 +1,5 @@
 import { theme } from '@constants'
+import { TIcon } from '@types'
 import { IconsSelector } from 'components/molecules'
 import { FC } from 'react'
 import { Styled } from './styled'
@@ -7,26 +8,7 @@ type TInputProps = {
   type: string
   placeholder: string
   fluid?: boolean
-  icon?:
-    | 'search'
-    | 'shoppingCart'
-    | 'user'
-    | 'settings'
-    | 'minus'
-    | 'plus'
-    | 'exit'
-    | 'arrow'
-    | 'heart'
-    | 'trash'
-    | 'mobile-search'
-    | 'mobile-home'
-    | 'mobile-categories'
-    | 'mobile-cart'
-    | 'mobile-user'
-    | 'mobile-heart'
-    | 'mobile-back'
-    | 'mobile-plus'
-    | 'mobile-minus'
+  icon?: TIcon
   isButton?: boolean
   onClick?: () => void
 }

@@ -1,28 +1,10 @@
 /* eslint-disable max-lines-per-function */
 import { theme } from '@constants'
+import { TIcon } from '@types'
 import { FC } from 'react'
 
 type TIconsSelectorProps = {
-  icon:
-    | 'search'
-    | 'shoppingCart'
-    | 'user'
-    | 'settings'
-    | 'minus'
-    | 'plus'
-    | 'exit'
-    | 'arrow'
-    | 'heart'
-    | 'trash'
-    | 'mobile-search'
-    | 'mobile-home'
-    | 'mobile-categories'
-    | 'mobile-cart'
-    | 'mobile-user'
-    | 'mobile-heart'
-    | 'mobile-back'
-    | 'mobile-plus'
-    | 'mobile-minus'
+  icon: TIcon
   size?: number
   color?: string
   isMirrored?: boolean

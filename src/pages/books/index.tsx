@@ -1,4 +1,4 @@
-import { Button, Card, Flexbox, ItemList, ItemListWrapper, SearchField, Spacer, Text } from '@components'
+import { Button, Card, Flexbox, ItemList, ItemListWrapper, SearchField, Spacer } from '@components'
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { FC, useState } from 'react'

@@ -21,3 +21,24 @@ export type TInfoCube = {
   content: string
   color: 'main' | 'secondary'
 }
+
+export type TIcon =
+  | 'search'
+  | 'shoppingCart'
+  | 'user'
+  | 'settings'
+  | 'minus'
+  | 'plus'
+  | 'exit'
+  | 'arrow'
+  | 'heart'
+  | 'trash'
+  | 'mobile-search'
+  | 'mobile-home'
+  | 'mobile-categories'
+  | 'mobile-cart'
+  | 'mobile-user'
+  | 'mobile-heart'
+  | 'mobile-back'
+  | 'mobile-plus'
+  | 'mobile-minus'
