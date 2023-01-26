@@ -4,13 +4,14 @@ import { theme, SIZES } from '@constants'
 type TButtonProps = {
   size: 'sm' | 'md' | 'lg'
   isGhost?: boolean
+  isFluid?: boolean
 }
 
 const Button = styled.button<TButtonProps>`
   border-radius: 40px;
   border: none;
   cursor: pointer;
-  width: ${({ size }) => SIZES[size]}px;
+  width: ${({ size, isFluid }) => (!isFluid && size ? `${SIZES[size]}px` : '100%')};
   font-size: ${theme.fonts.size.regular.sm}px;
   line-height: ${theme.fonts.height.regular.sm}px;
   font-family: '${theme.fonts.family}', sans-serif;
