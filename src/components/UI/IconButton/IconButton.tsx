@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { IconsSelector } from '@components'
 import { theme } from '@constants'
+import { TIcon } from '@types'
 import { Styled } from './styled'
 
 type TIconButtonProps = {
-  icon: string
+  icon: TIcon
   onClick: () => void
   color?: string
   size?: number

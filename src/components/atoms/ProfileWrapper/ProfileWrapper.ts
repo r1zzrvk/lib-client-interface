@@ -9,14 +9,15 @@ export const ProfileWrapper = styled.div`
 
   @media (min-width: ${theme.breakpoints.md}px) {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: stretch;
     padding: ${theme.space.xl3}px ${theme.space.xl4}px ${theme.space.xl3}px ${theme.space.xl4}px;
   }
 
   @media (min-width: ${theme.breakpoints.lg}px) {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 100px;
     align-items: stretch;
     padding: ${theme.space.xl3}px 156px ${theme.space.xl3}px 156px;
   }

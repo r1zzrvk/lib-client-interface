@@ -6,10 +6,11 @@ type TButton = {
   onClick: () => void
   size?: 'sm' | 'md' | 'lg'
   isGhost?: boolean
+  isFluid?: boolean
 }
 
-export const Button: FC<TButton> = ({ children, onClick, size = 'md', isGhost = false }) => (
-  <Styled.Button type="submit" onClick={onClick} size={size} isGhost={isGhost}>
+export const Button: FC<TButton> = ({ children, onClick, size = 'md', isGhost = false, isFluid = false }) => (
+  <Styled.Button type="submit" onClick={onClick} size={size} isGhost={isGhost} isFluid={isFluid}>
     {children}
   </Styled.Button>
 )

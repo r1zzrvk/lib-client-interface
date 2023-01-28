@@ -10,10 +10,12 @@ type TModalProps = {
 }
 
 export const Modal: FC<TModalProps> = ({ children, isOpen, onClose }) => (
-  <Styled.Wrapper isOpen={isOpen}>
-    <Styled.Icon onClick={() => onClose()}>
-      <IconsSelector icon="mobile-plus" color={theme.colors.grey} />
-    </Styled.Icon>
-    {children}
+  <Styled.Wrapper isOpen={isOpen} onClick={() => onClose()}>
+    <Styled.Modal onClick={e => e.stopPropagation()}>
+      <Styled.Icon onClick={() => onClose()}>
+        <IconsSelector icon="mobile-plus" color={theme.colors.grey} />
+      </Styled.Icon>
+      {children}
+    </Styled.Modal>
   </Styled.Wrapper>
 )

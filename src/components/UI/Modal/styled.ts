@@ -8,20 +8,28 @@ type TWrapperProps = {
 const Wrapper = styled.div<TWrapperProps>`
   position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  justify-content: ${({ isOpen }) => (isOpen ? 'center' : 'none')};
+  align-items: ${({ isOpen }) => (isOpen ? 'center' : 'none')};
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+`
+const Modal = styled.div`
+  display: flex;
   width: 100%;
-  top: 0px;
-  left: 0px;
-  flex-direction: column;
+  height: 100%;
   background-color: white;
+  flex-direction: column;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    top: 30%;
-    left: 30%;
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
     border-radius: 24px;
   }
 `
+
 const Icon = styled.div`
   cursor: pointer;
   align-self: flex-end;
@@ -33,4 +41,5 @@ const Icon = styled.div`
 export const Styled = {
   Wrapper,
   Icon,
+  Modal,
 }
