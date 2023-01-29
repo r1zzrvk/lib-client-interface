@@ -1,5 +1,5 @@
 import { Input, Modal } from '@components'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Styled } from './styled'
 
 type TSearchFieldProps = {
@@ -7,11 +7,20 @@ type TSearchFieldProps = {
   isOpen: boolean
 }
 
-export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen }) => (
-  <Styled.Wrapper>
-    <Input placeholder="Type something..." type="text" isButton onClick={() => onClick(true)} />
-    <Modal isOpen={isOpen} onClose={() => onClick(false)}>
-      askjdhfaksjdhbf
-    </Modal>
-  </Styled.Wrapper>
-)
+export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen }) => {
+  const [searchField, setSearchField] = useState('')
+  return (
+    <Styled.Wrapper>
+      <Input
+        placeholder="Type something..."
+        type="text"
+        isButton
+        onClick={() => onClick(true)}
+        onChange={e => setSearchField(e.target.value)}
+      />
+      <Modal isOpen={isOpen} onClose={() => onClick(false)}>
+        {searchField || 'nothing'}
+      </Modal>
+    </Styled.Wrapper>
+  )
+}
