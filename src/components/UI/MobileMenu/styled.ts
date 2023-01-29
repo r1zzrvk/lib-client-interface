@@ -7,7 +7,7 @@ const Wrapper = styled.footer`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  border-radius: 25px 25px 0px 0px;
+  border-radius: ${theme.radiuses.md}px ${theme.radiuses.md}px 0px 0px;
   background-color: ${theme.colors.white};
   padding: ${theme.space.md}px 0px;
 

@@ -15,7 +15,7 @@ const Wrapper = styled.div<TWrapperProps>`
   color: ${theme.colors.grey};
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
-  border-radius: 18px;
+  border-radius: ${theme.radiuses.sm}px;
 `
 
 const Icon = styled.div<TIconProps>`
@@ -30,7 +30,7 @@ const Input = styled.input`
   font-size: ${theme.fonts.size.regular.sm}px;
   line-height: ${theme.fonts.height.regular.sm}px;
   font-weight: ${theme.fonts.weight.medium};
-  border-radius: 18px;
+  border-radius: ${theme.radiuses.sm}px;
   width: 300px;
   border: none;
   outline: none;

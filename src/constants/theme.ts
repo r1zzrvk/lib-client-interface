@@ -64,11 +64,10 @@ export const theme = {
     lg: 1440,
   },
   radiuses: {
-    xs: 2,
-    sm: 4,
-    md: 6,
-    lg: 8,
-    xl: 10,
+    xs: 12,
+    sm: 18,
+    md: 24,
+    lg: 32,
     round: 1000,
   },
 } as const

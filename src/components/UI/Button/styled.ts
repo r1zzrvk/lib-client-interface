@@ -8,7 +8,7 @@ type TButtonProps = {
 }
 
 const Button = styled.button<TButtonProps>`
-  border-radius: 40px;
+  border-radius: ${theme.radiuses.lg}px;
   border: none;
   cursor: pointer;
   width: ${({ size, isFluid }) => (!isFluid && size ? `${SIZES[size]}px` : '100%')};

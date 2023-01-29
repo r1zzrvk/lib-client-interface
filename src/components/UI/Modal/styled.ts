@@ -25,8 +25,14 @@ const Modal = styled.div`
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     width: 700px;
-    height: 700px;
-    border-radius: 24px;
+    height: 80%;
+    border-radius: ${theme.radiuses.md}px;
+  }
+
+  @media (min-width: ${theme.breakpoints.md}px) {
+    width: 700px;
+    height: 90%;
+    border-radius: ${theme.radiuses.md}px;
   }
 `
 

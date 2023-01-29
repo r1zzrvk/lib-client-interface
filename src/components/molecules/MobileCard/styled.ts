@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   width: 128px;
   height: 160px;
   background-color: #f1eeee;
-  border-radius: 24px;
+  border-radius: ${theme.radiuses.md}px;
   background-image: url('https://i.ibb.co/jw89YFm/Group-14.png');
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
