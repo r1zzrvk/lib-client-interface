@@ -13,7 +13,7 @@ const MainPage: FC = () =>  (
         text={CATEGORIES_BANNER.text}
       />
       <MobileTemplate>
-        <Input placeholder="Search" type="text" fluid />
+        <Input placeholder="Search" type="text" fluid onChange={() => ''} />
         <MobileBanner content="Discounts up to 15% to all" />
         <CategoriesSlider />
       </MobileTemplate>
