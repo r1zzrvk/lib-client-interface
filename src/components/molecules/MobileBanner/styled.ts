@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
-  border-radius: 24px;
+  border-radius: ${theme.radiuses.md}px;
   width: 100%;
   height: 128px;
   margin-top: ${theme.space.lg}px;
@@ -21,7 +21,7 @@ const Image = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 24px;
+  border-radius: ${theme.radiuses.md}px;
   z-index: 0;
 `
 export const Styled = {

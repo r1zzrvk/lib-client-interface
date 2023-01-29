@@ -1,26 +1,11 @@
 import { FC } from 'react'
-import { CategoriesBanner, CategoriesSlider, MainBanner, MobileBanner, Input, TipsBanner, Button } from '@components'
+import { CategoriesBanner, CategoriesSlider, MainBanner, MobileBanner, Input, TipsBanner } from '@components'
 import { MobileTemplate } from '@templates'
 import { CATEGORIES_BANNER } from '@constants'
-import { useGoogleLogin } from '@react-oauth/google'
-import axios from 'axios'
 
-const MainPage: FC = () => {
-  const login = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      const data = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
-        headers: {
-          "Authorization": `Bearer ${codeResponse.access_token}`
-        }
-      })
-    return console.log(data)
-    }
-  })
-
-  return (
+const MainPage: FC = () =>  (
     <>
       <MainBanner />
-      <Button onClick={() => login()}>Sign in with Google 🚀 </Button>
       <TipsBanner />
       <CategoriesBanner
         header={CATEGORIES_BANNER.header}
@@ -34,5 +19,5 @@ const MainPage: FC = () => {
       </MobileTemplate>
     </>
   )
-}
+
 export default MainPage

@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
     padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
-    border-radius: 24px;
+    border-radius: ${theme.radiuses.md}px;
   }
 `
 const Avatar = styled.img`
