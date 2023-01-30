@@ -23,7 +23,7 @@ export const GuestStep: FC<TGuestStepProps> = ({ prevStep }) => {
         avatar: GUEST_AVATAR,
         isGuest: true,
       })
-      router.push('/')
+      router.back()
     },
   })
 
