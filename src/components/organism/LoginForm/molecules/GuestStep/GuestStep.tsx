@@ -1,8 +1,9 @@
-import { Button, Input, Spacer, Text } from '@components'
-import { theme } from '@constants'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { FC } from 'react'
+import { Button, Input, Spacer, Text } from '@components'
+import { GUEST_AVATAR, theme } from '@constants'
+import { setGuestUser } from '@api'
 import { LoginForm } from './initialValues'
 import { Styled } from './styled'
 
@@ -15,8 +16,13 @@ export const GuestStep: FC<TGuestStepProps> = ({ prevStep }) => {
 
   const formik = useFormik({
     initialValues: LoginForm,
-    onSubmit: values => {
-      console.log(values)
+    onSubmit: async ({ firstName, lastName }) => {
+      await setGuestUser({
+        firstName,
+        lastName,
+        avatar: GUEST_AVATAR,
+        isGuest: true,
+      })
       router.push('/')
     },
   })
