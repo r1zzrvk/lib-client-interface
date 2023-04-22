@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Styled } from './styled'
 
 type TSpacerProps = {
-  size: number
+  size?: number
   sizeMob?: number
   samespace?: boolean
 }

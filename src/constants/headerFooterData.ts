@@ -5,7 +5,7 @@ export const NAVIGATION_TITLES = [
   },
   {
     title: 'Catalog',
-    href: '/catalog',
+    href: '/books',
   },
   {
     title: 'Service',
