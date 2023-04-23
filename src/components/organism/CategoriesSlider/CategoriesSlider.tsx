@@ -8,7 +8,7 @@ export const CategoriesSlider: FC = () => (
   <Styled.OutOfContainerWrap>
     <Styled.Wrapper>
       {arr.map(item => (
-        <MobileCard key={item} size="sm" imgUrl="https://i.ibb.co/jw89YFm/Group-14.png" />
+        <MobileCard key={item} size="sm" imgUrl="https://i.ibb.co/jw89YFm/Group-14.png" title="Dressers" />
       ))}
     </Styled.Wrapper>
   </Styled.OutOfContainerWrap>
