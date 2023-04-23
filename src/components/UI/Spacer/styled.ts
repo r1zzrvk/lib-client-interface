@@ -2,8 +2,8 @@ import { theme } from '@constants'
 import styled from 'styled-components'
 
 type TSpacerProps = {
-  size: number
-  sizeMob: number
+  size?: number
+  sizeMob?: number
 }
 
 const Spacer = styled.div<TSpacerProps>`

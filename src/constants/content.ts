@@ -28,3 +28,5 @@ export const PROFILE_CUBE = [
   { id: '2', header: '1000 points', content: 'Hand over\u000Aold furniture\u000Aand get', color: 'main' },
   { id: '3', header: '200\u000Awelcome\u000Apoints', content: 'for the first purchase', color: 'secondary' },
 ]
+
+export const GUEST_AVATAR = 'https://ibb.co/bzrYJ5w'

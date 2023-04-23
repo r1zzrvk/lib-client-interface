@@ -3,6 +3,9 @@ import { Styled } from './styled'
 
 type TMobileTemplateProps = {
   children: ReactNode
+  withoutPadding?: boolean
 }
 
-export const MobileTemplate: FC<TMobileTemplateProps> = ({ children }) => <Styled.Wrapper>{children}</Styled.Wrapper>
+export const MobileTemplate: FC<TMobileTemplateProps> = ({ children, withoutPadding = false }) => (
+  <Styled.Wrapper withoutPadding={withoutPadding}>{children}</Styled.Wrapper>
+)

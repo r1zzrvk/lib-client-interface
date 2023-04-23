@@ -5,3 +5,10 @@ export type TUser = {
   avatar: string
   email: string
 }
+
+export type TGuestUser = {
+  firstName: string
+  lastName: string
+  avatar: string
+  isGuest: boolean
+}

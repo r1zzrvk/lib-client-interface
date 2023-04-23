@@ -47,6 +47,12 @@
       ],
       "@hooks": [
         "hooks"
+      ],
+      "@store":[
+        "redux/store"
+      ],
+      "@reducers": [
+        "redux/reducers"
       ]
     },
   },

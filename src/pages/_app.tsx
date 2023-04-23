@@ -4,8 +4,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { LayoutTemplate } from '@templates'
 import { CLIENT_ID } from '@constants'
 import '../styles/main.css'
-import '../styles/scroll.css'
-
+// import { store } from '../redux/store/store'
 
 const MyApp: FC = ({ Component, pageProps }: any) => (
   <GoogleOAuthProvider clientId={CLIENT_ID}>
@@ -17,9 +16,9 @@ const MyApp: FC = ({ Component, pageProps }: any) => (
 
       <title>Library | Book searching app</title>
     </Head>
-    <LayoutTemplate>
-      <Component {...pageProps} />
-    </LayoutTemplate>
+      <LayoutTemplate>
+        <Component {...pageProps} />
+      </LayoutTemplate>
   </GoogleOAuthProvider>
 )
 

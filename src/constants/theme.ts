@@ -3,7 +3,7 @@ export const theme = {
     main: '#B3A3A1',
     secondary: '#FFE0DB',
     grey: '#494A4A',
-    white: '#FCFFF5',
+    white: '#FFFFFF',
     beige: '#DBD3D2',
   },
   fonts: {
@@ -11,7 +11,7 @@ export const theme = {
       regular: {
         xs: 12,
         sm: 14,
-        md: 17,
+        md: 16,
         lg: 20,
       },
       header: {
@@ -38,6 +38,7 @@ export const theme = {
     weight: {
       regular: 400,
       medium: 500,
+      semibold: 600,
       bold: 700,
     },
     family: 'Source Sans 3',

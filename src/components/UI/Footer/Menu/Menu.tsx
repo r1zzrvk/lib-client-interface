@@ -14,7 +14,7 @@ export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
       marginBottom={theme.space.sm}
       fontSize={theme.fonts.size.regular.md}
       fontHeight={theme.fonts.height.regular.md}
-      fontWeight={theme.fonts.weight.medium}
+      fontWeight={theme.fonts.weight.semibold}
     >
       {header}
     </Text>

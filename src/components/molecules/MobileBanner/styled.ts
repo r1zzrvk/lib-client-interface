@@ -6,7 +6,8 @@ const Wrapper = styled.div`
   border-radius: ${theme.radiuses.md}px;
   width: 100%;
   height: 128px;
-  margin-top: ${theme.space.lg}px;
+  margin-top: ${theme.space.sm}px;
+
   p {
     position: absolute;
     margin-top: 50px;
