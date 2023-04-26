@@ -35,7 +35,7 @@ export const Input: FC<TInputProps> = ({
       <Styled.Icon>
         <IconsSelector icon={icon} color={theme.colors.grey} />
       </Styled.Icon>
-      <Styled.Input type={type} placeholder={placeholder} name={name} onChange={e => onChange(e)} />
+      <Styled.Input type={type} placeholder={placeholder} name={name} fluid={fluid} onChange={e => onChange(e)} />
       {isButton && (
         <Styled.Icon isButton={isButton} onClick={handleClick}>
           <IconsSelector icon="mobile-categories" color={theme.colors.grey} size={24} />

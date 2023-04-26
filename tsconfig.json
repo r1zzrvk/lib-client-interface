@@ -49,10 +49,10 @@
         "hooks"
       ],
       "@store":[
-        "redux/store"
+        "store"
       ],
       "@reducers": [
-        "redux/reducers"
+        "reducers"
       ]
     },
   },

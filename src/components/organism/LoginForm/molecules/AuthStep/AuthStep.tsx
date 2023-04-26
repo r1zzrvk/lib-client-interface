@@ -23,7 +23,7 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
         })
         .then(data => console.log(data))
         .then(() => router.push('/'))
-        .catch(() => onError)
+        .catch(() => onError())
     },
   })
 
@@ -40,7 +40,7 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
         Log in
       </Text>
       <Spacer size={theme.space.xl2} />
-      <Button size="md" onClick={() => loginWithGoogle()}>
+      <Button size="md" onClick={loginWithGoogle}>
         Sign in with Google
       </Button>
       <Button size="md" onClick={loginAsGuest} isGhost>

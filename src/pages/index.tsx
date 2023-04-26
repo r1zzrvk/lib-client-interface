@@ -10,7 +10,7 @@ import {
   Spacer,
   PaddingContainer,
 } from '@components'
-import { MobileTemplate } from '@templates'
+import { PaddingTemplate } from '@templates'
 import { CATEGORIES_BANNER, theme } from '@constants'
 
 const arr = [1, 2, 3]
@@ -24,7 +24,7 @@ const MainPage: FC = () => (
       subheader={CATEGORIES_BANNER.subheader}
       text={CATEGORIES_BANNER.text}
     />
-    <MobileTemplate withoutPadding>
+    <PaddingTemplate withoutPadding>
       <PaddingContainer padding={theme.space.sm}>
         <Input placeholder="Search" type="text" fluid onChange={() => ''} />
         <MobileBanner content="Discounts up to 15% to all" />
@@ -40,7 +40,7 @@ const MainPage: FC = () => (
           ))}
         </div>
       </PaddingContainer>
-    </MobileTemplate>
+    </PaddingTemplate>
   </>
 )
 

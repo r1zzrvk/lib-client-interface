@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ENames } from 'redux/constants'
-import { TAuthState } from './types'
+import { ENames, TAuthState } from './types'
 
 const initialState: TAuthState = {
   authorizationStatus: '',
