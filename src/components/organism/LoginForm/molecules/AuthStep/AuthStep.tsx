@@ -21,7 +21,7 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
             Authorization: `Bearer ${codeResponse.access_token}`,
           },
         })
-        .then(data => console.log(data))
+        .then(data => data)
         .then(() => router.push('/'))
         .catch(() => onError())
     },
