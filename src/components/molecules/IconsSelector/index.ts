@@ -1,1 +1,1 @@
-export { IconsSelector } from './IconsSelector'
+// export { IconsSelector } from './IconsSelector'
