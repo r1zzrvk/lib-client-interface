@@ -24,6 +24,6 @@ export const ProfileBanner: FC<TProfileBannerProps> = ({ user: { avatar, email, 
         <Text color={theme.colors.grey}>{email}</Text>
       </Styled.TextWrapper>
     </Styled.UserInfo>
-    <IconsSelector icon="exit" color={theme.colors.grey} />
+    <IconsSelector icon="exit_solid" color={theme.colors.grey} />
   </Styled.Wrapper>
 )

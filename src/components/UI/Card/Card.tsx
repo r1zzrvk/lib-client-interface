@@ -69,7 +69,7 @@ export const Card: FC<TBook> = ({ volumeInfo }) => {
         </div>
         <Styled.ButtonBlock>
           <Styled.Icon>
-            <IconsSelector icon="heart" color={theme.colors.grey} size={24} />
+            <IconsSelector icon="bookmark_regular" color={theme.colors.grey} />
           </Styled.Icon>
           {!isMob && <Button size="lg">More</Button>}
         </Styled.ButtonBlock>

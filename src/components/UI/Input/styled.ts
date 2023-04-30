@@ -5,10 +5,6 @@ type TWrapperProps = {
   fluid: boolean
 }
 
-type TIconProps = {
-  isButton?: boolean
-}
-
 const Wrapper = styled.div<TWrapperProps>`
   display: flex;
   background-color: ${theme.colors.beige};
@@ -16,12 +12,6 @@ const Wrapper = styled.div<TWrapperProps>`
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
   border-radius: ${theme.radiuses.sm}px;
-`
-
-const Icon = styled.div<TIconProps>`
-  cursor: ${({ isButton }) => isButton && 'pointer'};
-  border-left: ${({ isButton }) => isButton && `2px solid ${theme.colors.main}`};
-  padding: ${theme.space.xs}px ${theme.space.sm}px ${theme.space.xs}px ${theme.space.sm}px;
 `
 
 const Input = styled.input<TWrapperProps>`
@@ -46,5 +36,4 @@ const Input = styled.input<TWrapperProps>`
 export const Styled = {
   Input,
   Wrapper,
-  Icon,
 }

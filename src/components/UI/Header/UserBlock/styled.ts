@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.section`
   display: flex;
+  gap: ${theme.space.lg}px;
   margin-right: 40px;
   margin-left: 40px;
 
