@@ -18,7 +18,7 @@ type TInputProps = {
 export const Input: FC<TInputProps> = ({
   type,
   placeholder,
-  icon = 'mobile-search',
+  icon = 'search_solid',
   fluid = false,
   isButton = false,
   onClick,
@@ -32,14 +32,24 @@ export const Input: FC<TInputProps> = ({
   }
   return (
     <Styled.Wrapper fluid={fluid}>
-      <Styled.Icon>
-        <IconsSelector icon={icon} color={theme.colors.grey} />
-      </Styled.Icon>
+      <IconsSelector
+        icon={icon}
+        color={theme.colors.grey}
+        sidePadding={theme.space.sm}
+        upDownPadding={theme.space.xs}
+      />
       <Styled.Input type={type} placeholder={placeholder} name={name} fluid={fluid} onChange={e => onChange(e)} />
       {isButton && (
-        <Styled.Icon isButton={isButton} onClick={handleClick}>
-          <IconsSelector icon="mobile-categories" color={theme.colors.grey} size={24} />
-        </Styled.Icon>
+        <IconsSelector
+          icon="sliders_solid"
+          color={theme.colors.grey}
+          size={theme.icon_sizes.xs}
+          sidePadding={theme.space.sm}
+          upDownPadding={14}
+          isButton={isButton}
+          onClick={handleClick}
+          withBorder
+        />
       )}
     </Styled.Wrapper>
   )

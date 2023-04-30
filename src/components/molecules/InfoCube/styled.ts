@@ -1,5 +1,5 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+import { theme } from '@constants'
 
 type TWrapperProps = {
   color: string
@@ -18,6 +18,7 @@ const Wrapper = styled.div<TWrapperProps>`
   max-height: 168px;
   background-color: ${({ color }) => color};
   border-radius: ${theme.radiuses.md}px;
+  flex-shrink: 0;
 `
 
 export const Styled = {

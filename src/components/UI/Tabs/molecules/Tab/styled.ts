@@ -13,9 +13,9 @@ const Wrapper = styled.div<TWrapperProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   transition: ${({ isColumn }) => !isColumn && '0.4s ease-in-out'};
   box-shadow: ${({ active, isColumn }) => active && isColumn && `0px 2px 0px 0px ${theme.colors.main} inset`};
+  flex-shrink: 0;
 `
 const ActiveDot = styled.div<TActiveDotProps>`
   background-color: ${theme.colors.main};

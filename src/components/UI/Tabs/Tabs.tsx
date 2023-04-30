@@ -13,13 +13,13 @@ type TTabsProps = {
 }
 
 export const Tabs: FC<TTabsProps> = ({ items, marginTop, activeTab, onSelect }) => {
-  const { isTablet, isSm } = useBreakpoint()
+  const { isTablet, isSm, isMob } = useBreakpoint()
   const handleClick = (id: string) => {
     onSelect(id)
   }
 
   return (
-    <Styled.Wrapper isRow={isTablet || isSm} marginTop={marginTop}>
+    <Styled.Wrapper isRow={isTablet || isSm || isMob} marginTop={marginTop}>
       <ItemList
         items={items}
         renderItem={({ id, title }: TTab) => (
