@@ -11,9 +11,9 @@ type TTabProps = {
 }
 
 export const Tab: FC<TTabProps> = ({ title, active, onClick }) => {
-  const { isTablet, isSm } = useBreakpoint()
+  const { isTablet, isSm, isMob } = useBreakpoint()
   const [isAnimate, setIsAnimate] = useState(false)
-  const isColumn = isTablet || isSm
+  const isColumn = isTablet || isSm || isMob
 
   const handleClick = () => {
     onClick()
@@ -21,7 +21,13 @@ export const Tab: FC<TTabProps> = ({ title, active, onClick }) => {
   }
   return (
     <Styled.Wrapper active={active} isColumn={isColumn} onClick={() => handleClick()}>
-      <Text color={active ? theme.colors.grey : theme.colors.main}>{title}</Text>
+      <Text
+        color={active ? theme.colors.grey : theme.colors.main}
+        fontSizeMob={theme.fonts.size.regular.sm}
+        fontHeightMob={theme.fonts.height.regular.sm}
+      >
+        {title}
+      </Text>
       {active && !isColumn && <Styled.ActiveDot isAnimate={isAnimate} onAnimationEnd={() => setIsAnimate(false)} />}
     </Styled.Wrapper>
   )

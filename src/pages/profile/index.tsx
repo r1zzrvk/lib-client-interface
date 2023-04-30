@@ -7,11 +7,11 @@ import { TTab } from '@types'
 const ProfilePage: FC = () => {
   const [selectedTabId, setSelectedTabId] = useState('1')
   const currentTab: TTab | undefined = PROFILE_MENU.find(({ id }) => id === selectedTabId)
-  const { isTablet, isSm } = useBreakpoint()
+  const { isTablet, isSm, isMob } = useBreakpoint()
   return (
   <ProfileWrapper>
     <ProfileMenu activeTab={selectedTabId} onSelect={setSelectedTabId} isColumn={isTablet || isSm}/>
-    {(isTablet || isSm) || <ProfileTab activeTab={currentTab}/>}
+    {(isTablet || isSm || isMob) || <ProfileTab activeTab={currentTab}/>}
   </ProfileWrapper>
 )}
 

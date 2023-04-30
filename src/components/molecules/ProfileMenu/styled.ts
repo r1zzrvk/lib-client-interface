@@ -15,11 +15,25 @@ const Wrapper = styled.div`
 `
 const ListWrapper = styled.div<TListWrapperProps>`
   display: flex;
-  margin-top: ${({ isColumn }) => (isColumn ? theme.space.sm : theme.space.lg)}px;
-  gap: ${theme.space.md}px;
+  overflow-x: auto;
+  gap: ${theme.space.sm}px;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    gap: ${theme.space.md}px;
+    margin-top: ${({ isColumn }) => (isColumn ? theme.space.sm : theme.space.lg)}px;
+  }
 `
 const CustomText = styled.div<TCustomTextProps>`
-  margin-top: ${({ isColumn }) => (isColumn ? theme.space.lg : theme.space.xl3)}px;
+  margin-left: ${theme.space.sm}px;
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    margin-left: 0px;
+    margin-top: ${({ isColumn }) => (isColumn ? theme.space.lg : theme.space.xl3)}px;
+  }
 `
 export const Styled = {
   Wrapper,
