@@ -2,7 +2,7 @@
 Web application that implements https://nextjs-library-app.vercel.app/
 
 # Development :computer:
-`npm run dev` - for start application in development mode. App will be available at http://localhost:3000. 
+`npm run dev` - to start application in development mode. App will be available at http://localhost:3000. 
 - Atomic file system is mandatory. Each component is in its own folder along with its styles, tests and other files intended for it.
 
 `npm run lint` - to start linting and simple fixing.
