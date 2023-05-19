@@ -12,6 +12,12 @@ const Wrapper = styled.div<TWrapperProps>`
   flex-direction: ${({ isRow }) => (isRow ? 'row' : 'column')};
   margin-top: ${({ marginTop }) => marginTop}px;
   gap: ${theme.space.xs}px;
+  overflow-x: auto;
+  padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `
 
 export const Styled = {

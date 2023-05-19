@@ -7,9 +7,6 @@ type TSpacerProps = {
   samespace?: boolean
 }
 
-export const Spacer: FC<TSpacerProps> = ({ size, sizeMob, samespace = false }) => {
-  if (samespace) {
-    sizeMob = size
-  }
-  return <Styled.Spacer size={size} sizeMob={Number(sizeMob)} />
-}
+export const Spacer: FC<TSpacerProps> = ({ size, sizeMob, samespace = false }) => (
+  <Styled.Spacer size={size} sizeMob={samespace ? size : Number(sizeMob)} />
+)

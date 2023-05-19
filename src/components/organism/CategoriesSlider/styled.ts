@@ -2,8 +2,7 @@ import { theme } from '@constants'
 import styled from 'styled-components'
 
 const OutOfContainerWrap = styled.div`
-  margin-top: ${theme.space.sm}px;
-  padding: 0px;
+  margin: 0px -${theme.space.sm}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: none;
@@ -15,6 +14,7 @@ const Wrapper = styled.div`
   gap: ${theme.space.xs}px;
   overflow-x: scroll;
   padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
     width: 0;

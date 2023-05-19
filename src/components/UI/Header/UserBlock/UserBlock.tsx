@@ -1,6 +1,7 @@
 import { FC } from 'react'
-import { IconButton } from '@components'
 import { useRouter } from 'next/router'
+import { IconsSelector } from '@components'
+import { theme } from '@constants'
 import { Styled } from './styled'
 
 export const UserBlock: FC = () => {
@@ -12,9 +13,9 @@ export const UserBlock: FC = () => {
 
   return (
     <Styled.Wrapper>
-      <IconButton icon="search" onClick={() => handleClick('/books')} />
-      <IconButton icon="shoppingCart" onClick={() => handleClick('/404')} />
-      <IconButton icon="user" onClick={() => handleClick('/profile')} />
+      <IconsSelector icon="search_solid" color={theme.colors.white} onClick={() => handleClick('/books')} />
+      <IconsSelector icon="bookmark_solid" color={theme.colors.white} onClick={() => handleClick('/404')} />
+      <IconsSelector icon="user_solid" color={theme.colors.white} onClick={() => handleClick('/profile')} />
     </Styled.Wrapper>
   )
 }

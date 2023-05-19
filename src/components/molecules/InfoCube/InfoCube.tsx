@@ -19,6 +19,9 @@ export const InfoCube: FC<TInfoCubeProps> = ({ header, content, color }) => {
         fontSize={theme.fonts.size.header.sm}
         fontHeight={theme.fonts.height.header.sm}
         fontWeight={theme.fonts.weight.semibold}
+        fontSizeMob={theme.fonts.size.header.xs}
+        fontWeightMob={theme.fonts.weight.medium}
+        fontHeightMob={theme.fonts.height.header.xs}
       >
         {header}
       </Text>

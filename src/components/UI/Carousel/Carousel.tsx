@@ -52,7 +52,7 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
           disabled={page === 1}
           isLeft
         >
-          <IconsSelector icon="arrow" color={theme.colors.grey} />
+          <IconsSelector icon="caretLeft_solid" color={theme.colors.grey} />
         </Styled.Button>
         <Styled.List isAnimate={animation.isAnimate} animationType={animation.animationType}>
           <ItemList items={items.slice(firstIndex, lastIndex)} renderItem={component} />
@@ -62,7 +62,7 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
           isInvisible={page === pages.length}
           disabled={page === pages.length}
         >
-          <IconsSelector icon="arrow" color={theme.colors.grey} isMirrored />
+          <IconsSelector icon="caretRight_solid" color={theme.colors.grey} />
         </Styled.Button>
       </Styled.Wrapper>
       <Styled.Paginator>

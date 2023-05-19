@@ -3,6 +3,7 @@ export const theme = {
     main: '#B3A3A1',
     secondary: '#FFE0DB',
     grey: '#494A4A',
+    grey_light: '#777878',
     white: '#FFFFFF',
     beige: '#DBD3D2',
   },
@@ -70,5 +71,11 @@ export const theme = {
     md: 24,
     lg: 32,
     round: 1000,
+  },
+  icon_sizes: {
+    lg: 40,
+    md: 32,
+    sm: 24,
+    xs: 20,
   },
 } as const

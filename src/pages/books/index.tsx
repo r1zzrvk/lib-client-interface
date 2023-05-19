@@ -1,31 +1,43 @@
 import { Button, Card, Flexbox, ItemList, ItemListWrapper, SearchField, Spacer } from '@components'
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
-import { FC, useState } from 'react'
+import { PaddingTemplate } from '@templates'
+import { TBook } from '@types'
+import { booksApi } from 'api/googleBooks'
+import { FC, useEffect, useState } from 'react'
+
+
 
 const BooksPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-  const { packSize, showMore } = usePagination({ contentPerPage: 10, itemsCount: array.length })
+  const [searchField, setSearchField] = useState('')
+  const [books, setBooks] = useState<TBook[] | null>(null)
+  const { packSize, showMore } = usePagination({ contentPerPage: 8, itemsCount: books ? books.length : 0 })
+
+  useEffect(() => {
+    if (searchField) {
+      booksApi.search(searchField).then(({ data }) => setBooks(data.items))
+    }
+  }, [searchField])
 
   return (
-    <>
+    <PaddingTemplate>
       <Spacer size={theme.space.xl} />
-      <SearchField onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />
+      <SearchField onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} onChange={setSearchField} />
       <ItemListWrapper>
-      {/* To do: сделать быстрый поиск по критериям кубами разных размеров */}
-        <ItemList renderItem={() => <Card />} items={array.slice(0, packSize)} />
+        {/* To do: сделать быстрый поиск по критериям кубами разных размеров */}
+       {books && <ItemList renderItem={book => <Card {...book} />} items={books.slice(0, packSize)} />} 
       </ItemListWrapper>
       <Spacer size={theme.space.xl} />
-      {array.length > packSize && (
-        <Flexbox align='center' direction='column'>
+      {books && books.length > packSize && (
+        <Flexbox align="center" direction="column">
           <Button size="lg" onClick={showMore}>
             Show more
           </Button>
           <Spacer size={theme.space.xl} />
         </Flexbox>
       )}
-    </>
+    </PaddingTemplate>
   )
 }
 

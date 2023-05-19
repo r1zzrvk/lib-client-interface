@@ -40,7 +40,6 @@ const TextWrapper = styled.p<TStyledProps>`
   &:hover {
     color: ${({ color, asLink }) =>
       asLink && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
-    font-weight: ${theme.fonts.weight.semibold};
   }
 `
 

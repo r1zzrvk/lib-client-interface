@@ -5,3 +5,7 @@ export type TAuthState = {
   isAuth: boolean
   user: TGuestUser | null
 }
+
+export enum ENames {
+  auth = 'auth',
+}

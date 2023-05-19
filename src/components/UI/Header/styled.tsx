@@ -17,6 +17,12 @@ const Wrapper = styled.header`
   }
 `
 
+const TextBlock = styled.div`
+  display: flex;
+  gap: ${theme.space.lg}px;
+`
+
 export const Styled = {
   Wrapper,
+  TextBlock,
 }

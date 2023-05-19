@@ -1,25 +1,29 @@
+import { FC } from 'react'
 import { Input, Modal } from '@components'
-import { FC, useState } from 'react'
+import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 
 type TSearchFieldProps = {
   onClick: (state: boolean) => void
   isOpen: boolean
+  onChange: (search: string) => void
 }
 
-export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen }) => {
-  const [searchField, setSearchField] = useState('')
+export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen, onChange }) => {
+  const { isMob } = useBreakpoint()
+
   return (
     <Styled.Wrapper>
       <Input
         placeholder="Type something..."
         type="text"
         isButton
+        fluid={isMob}
         onClick={() => onClick(true)}
-        onChange={e => setSearchField(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
       <Modal isOpen={isOpen} onClose={() => onClick(false)}>
-        {searchField || 'nothing'}
+        nothing
       </Modal>
     </Styled.Wrapper>
   )
