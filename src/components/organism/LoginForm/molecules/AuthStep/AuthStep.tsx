@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import axios from 'axios'
-import { AlertBanner, Button, Spacer, Text } from '@components'
+import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { theme } from '@constants'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useRouter } from 'next/router'

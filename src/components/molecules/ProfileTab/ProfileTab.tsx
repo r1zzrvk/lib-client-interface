@@ -1,7 +1,7 @@
-import { Text } from '@components'
+import { FC } from 'react'
+import { Text } from '@ui-kit'
 import { theme } from '@constants'
 import { TTab } from '@types'
-import { FC } from 'react'
 import { Styled } from './styled'
 
 type TProfileTabProps = {

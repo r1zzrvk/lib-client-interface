@@ -1,6 +1,9 @@
-import { Flexbox, LoginForm, Spacer } from '@components'
-import { theme } from '@constants'
 import { FC } from 'react'
+import { Flexbox } from '@components/atoms'
+import { LoginForm } from '@components/organism'
+import { Spacer } from '@ui-kit'
+import { theme } from '@constants'
+
 
 const LoginPage: FC = () => {
   return (

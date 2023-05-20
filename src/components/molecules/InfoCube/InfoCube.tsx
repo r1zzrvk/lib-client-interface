@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { theme } from '@constants'
-import { Text } from '@components'
+import { Text } from '@ui-kit'
 import { Styled } from './styled'
 
 type TInfoCubeProps = {

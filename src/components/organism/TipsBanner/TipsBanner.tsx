@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { PROMO_BANNER, theme } from '@constants'
-import { Promo } from '@components'
+import { Promo } from '@components/molecules'
 import { BackgroundImage, PromoBackground } from './atoms'
 
 export const TipsBanner: FC = () => (

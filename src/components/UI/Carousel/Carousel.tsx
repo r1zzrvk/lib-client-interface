@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IconsSelector, ItemList } from '@components'
+import { IconsSelector, ItemList } from '@components/molecules'
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { getPagesArray } from '@utils'
@@ -68,7 +68,9 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
       <Styled.Paginator>
         <ItemList
           items={pages}
-          renderItem={item => <Styled.Dot key={item} active={active === item} onClick={() => handleClick(item)} />}
+          renderItem={(item: number) => (
+            <Styled.Dot key={item} active={active === item} onClick={() => handleClick(item)} />
+          )}
         />
       </Styled.Paginator>
     </>

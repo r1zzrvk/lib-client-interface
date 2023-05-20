@@ -1,6 +1,9 @@
 import { theme } from '@constants'
 import { PaddingTemplate } from '@templates'
-import { CategoriesSlider, Flexbox, Input, MobileBanner, MobileCard, Spacer } from '@components'
+import { Input, Spacer } from '@ui-kit'
+import { CategoriesSlider } from '@components/organism'
+import { MobileBanner, MobileCard } from '@components/molecules'
+import { Flexbox } from '@components/atoms'
 import { FC, Fragment } from 'react'
 
 export const MobileMain: FC = () => {

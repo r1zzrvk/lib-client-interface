@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Input, Modal } from '@components'
+import { Input, Modal } from '@ui-kit'
 import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 

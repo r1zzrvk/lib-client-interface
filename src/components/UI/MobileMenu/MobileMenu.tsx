@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IconsSelector } from '@components'
+import { IconsSelector } from '@components/molecules'
 import { theme } from '@constants'
 import { Styled } from './styled'
 

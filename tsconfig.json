@@ -21,7 +21,10 @@
     "baseUrl": "src",
     "paths": {
       "@api": ["api"],
-      "@components": ["components"],
+      "@ui-kit": ["components/UI"],
+      "@components/atoms": ["components/atoms"],
+      "@components/molecules": ["components/molecules"],
+      "@components/organism": ["components/organism"],
       "@constants": ["constants"],
       "@pages": ["pages"],
       "@templates": ["templates"],
