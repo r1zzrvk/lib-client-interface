@@ -1,13 +1,16 @@
 import { theme } from '@constants'
-import { PaddingTemplate } from '@templates'
-import { CategoriesSlider, Flexbox, Input, MobileBanner, MobileCard, Spacer } from '@components'
+import { Input, Spacer } from '@ui-kit'
+import { CategoriesSlider } from '@components/organism'
+import { MobileBanner, MobileCard } from '@components/molecules'
+import { Flexbox } from '@components/atoms'
 import { FC, Fragment } from 'react'
 
 export const MobileMain: FC = () => {
   const arr = [1, 2, 3]
 
   return (
-    <PaddingTemplate>
+    <>
+      <Spacer sizeMob={theme.space.sm} />
       <Input placeholder="Search" type="text" fluid onChange={() => ''} />
       <MobileBanner content="Discounts up to 15% to all" />
       <Spacer size={theme.space.sm} samespace />
@@ -21,6 +24,6 @@ export const MobileMain: FC = () => {
           </Fragment>
         ))}
       </Flexbox>
-    </PaddingTemplate>
+    </>
   )
 }

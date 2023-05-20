@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { FC } from 'react'
-import { Button, Input, Spacer, Text } from '@components'
+import { Button, Input, Spacer, Text } from '@ui-kit'
 import { GUEST_AVATAR, theme } from '@constants'
 import { setGuestUser } from '@api'
 import { LoginForm } from './initialValues'

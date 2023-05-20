@@ -1,6 +1,6 @@
-import { Text, Button } from '@components'
-import { theme } from '@constants'
 import { FC } from 'react'
+import { Text, Button } from '@ui-kit'
+import { theme } from '@constants'
 import { Styled } from './styled'
 
 export const BannerContent: FC = () => (
