@@ -1,7 +1,8 @@
-import { Text, IconsSelector } from '@components'
+import { FC } from 'react'
+import { Text } from '@ui-kit'
+import { IconsSelector } from '@components/molecules'
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
-import { FC } from 'react'
 import { TUser } from '@types'
 import { Styled } from './styled'
 

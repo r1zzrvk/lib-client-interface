@@ -8,6 +8,8 @@ Web application that implements https://nextjs-library-app.vercel.app/
 `npm run lint` - to start linting and simple fixing.
 
 `npm run type-check` - to start looking for type errors
+ 
+`npm run install:hooks` - if you have problem with husky (Mac/Linux only)
 
 ###  Git
 When creating a commit, pay attention to its structure. For linting use [commitlint](https://github.com/conventional-changelog/commitlint). But for convenience I have placed rules here.

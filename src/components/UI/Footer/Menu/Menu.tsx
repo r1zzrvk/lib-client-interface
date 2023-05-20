@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Text } from '@components'
+import { Text } from '@ui-kit'
 import { theme } from '@constants'
 import { TMenuItem } from '@types'
 

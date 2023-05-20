@@ -1,12 +1,12 @@
-import { Button, Card, Flexbox, ItemList, ItemListWrapper, SearchField, Spacer } from '@components'
+import { FC, useEffect, useState } from 'react'
+import { Button, Card, Spacer } from '@ui-kit'
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { PaddingTemplate } from '@templates'
 import { TBook } from '@types'
-import { booksApi } from 'api/googleBooks'
-import { FC, useEffect, useState } from 'react'
-
-
+import { booksApi } from '@api'
+import { ItemList, SearchField } from '@components/molecules'
+import { Flexbox, ItemListWrapper } from '@components/atoms'
 
 const BooksPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
