@@ -7,10 +7,6 @@ const Wrapper = styled.div`
   height: 170px;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
   border-radius: ${theme.radiuses.sm}px;
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    height: 200px;
-  }
 `
 
 const Image = styled.img`
@@ -19,14 +15,6 @@ const Image = styled.img`
   max-width: 110px;
   border-radius: ${theme.radiuses.sm}px 0px 0px ${theme.radiuses.sm}px;
   object-fit: cover;
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    &&& {
-      height: 200px;
-      min-width: 170px;
-      max-width: 170px;
-    }
-  }
 `
 
 const ButtonBlock = styled.div`
