@@ -14,7 +14,7 @@ const MyApp: FC = ({ Component, pageProps }: any) => (
   <GoogleOAuthProvider clientId={CLIENT_ID}>
     <Head>
       <meta charSet="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
       <meta name="description" content="Library app" />
       <link rel="icon" href="/favicon.ico" />
 

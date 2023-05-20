@@ -7,4 +7,4 @@ export const getImage = (imageLinks: TImageLinks): string =>
   imageLinks?.small ||
   imageLinks?.smallThumbnail ||
   imageLinks?.thumbnail ||
-  'https://cdn-icons-png.flaticon.com/512/5606/5606108.png'
+  'https://isaloni.su/800/600/https/p.calameoassets.com/200405011505-1944eb76e38074b0e1ecdd9ffef41046/p1.jpg'

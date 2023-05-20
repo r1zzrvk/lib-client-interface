@@ -6,8 +6,6 @@ import { TBook } from '@types'
 import { booksApi } from 'api/googleBooks'
 import { FC, useEffect, useState } from 'react'
 
-
-
 const BooksPage: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [searchField, setSearchField] = useState('')
