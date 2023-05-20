@@ -1,5 +1,5 @@
 import { ReactNode, FC } from 'react'
-import { Footer, Header, MobileMenu } from '@ui-kit'
+import { Footer, Header, MobileMenu, Spacer } from '@ui-kit'
 import { PaddingContainer } from '@components/atoms'
 import { theme } from '@constants'
 
@@ -13,6 +13,7 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children }) => (
     <PaddingContainer padding={theme.space.sm} mobOnly>
       {children}
     </PaddingContainer>
+    <Spacer sizeMob={theme.space.xl4} size={0} />
     <MobileMenu />
     <Footer />
   </>
