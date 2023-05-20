@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ItemList } from '@components'
+import { ItemList } from '@components/molecules'
 import { TTab } from '@types'
 import { useBreakpoint } from '@hooks'
 import { Tab } from './molecules'

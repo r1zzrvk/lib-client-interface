@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { FOOTERMENU_CATALOG, FOOTERMENU_INFORMATION, FOOTERMENU_SERVICE, PROMO_FOOTER, theme } from '@constants'
-import { Text, Accordion, Spacer, Promo } from '@components'
+import { Text, Accordion, Spacer } from '@ui-kit'
+import { Promo } from '@components/molecules'
 import { Styled } from './styled'
 
 export const TabletMenu: FC = () => (

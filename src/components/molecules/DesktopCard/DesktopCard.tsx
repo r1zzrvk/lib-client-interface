@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Text, Spacer, Button } from '@components'
+import { Text, Spacer, Button } from '@ui-kit'
 import { theme } from '@constants'
 import { Styled } from './styled'
 

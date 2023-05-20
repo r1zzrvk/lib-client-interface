@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { CategoriesBanner, MainBanner, MobileMain, TipsBanner } from '@components'
+import { CategoriesBanner, MainBanner, MobileMain, TipsBanner } from '@components/organism'
 import { CATEGORIES_BANNER } from '@constants'
 import { useBreakpoint } from '@hooks'
 

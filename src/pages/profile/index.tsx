@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
-import { ProfileMenu, ProfileTab, ProfileWrapper } from '@components'
+import { ProfileTab, ProfileMenu } from '@components/molecules'
+import { ProfileWrapper } from '@components/atoms'
 import { PROFILE_MENU } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { TTab } from '@types'

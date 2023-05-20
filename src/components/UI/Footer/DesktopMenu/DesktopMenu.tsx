@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { FOOTERMENU_CATALOG, FOOTERMENU_INFORMATION, FOOTERMENU_SERVICE, PROMO_FOOTER, theme } from '@constants'
-import { Promo } from '@components'
+import { Promo } from '@components/molecules'
 import { Menu } from '../Menu'
 import { Styled } from './styled'
 

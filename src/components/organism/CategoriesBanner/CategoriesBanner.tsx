@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { Text, DesktopCard, Carousel, Spacer } from '@components'
+import { Text, Carousel, Spacer } from '@ui-kit'
+import { DesktopCard } from '@components/molecules'
 import { shoppingItems, theme } from '@constants'
 import { TDesktopCard } from '@types'
 import { useBreakpoint } from '@hooks'

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { NAVIGATION_TITLES, theme } from '@constants'
-import { Text } from '@components'
+import { Text } from '@ui-kit'
 import { Styled } from './styled'
 import { UserBlock } from './UserBlock'
 
