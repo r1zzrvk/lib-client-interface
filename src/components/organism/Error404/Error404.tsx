@@ -1,10 +1,10 @@
 import { FC } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Button, Spacer, Text } from '@ui-kit'
 import { Flexbox } from '@components/atoms'
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
-import { Styled } from './styled'
 
 export const Error404: FC = () => {
   const { isMob } = useBreakpoint()
@@ -16,7 +16,7 @@ export const Error404: FC = () => {
 
   return (
     <Flexbox direction="column" align="center" justify="center">
-      <Styled.Illustration src="/page404.png" alt="404" />
+      <Image src="/page404.png" alt="404" width={800} height={620} />
       <Text
         color={theme.colors.grey}
         fontSize={theme.fonts.size.header.lg}
