@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import { FC } from 'react'
 import { Button, Input, Spacer, Text } from '@ui-kit'
 import { GUEST_AVATAR, theme } from '@constants'
-import { setGuestUser } from '@api'
+import { setGuestUser } from 'serviceApi'
 import { LoginForm } from './initialValues'
 import { Styled } from './styled'
 
