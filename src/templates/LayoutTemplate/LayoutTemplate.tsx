@@ -10,7 +10,7 @@ type TLayoutTemplateProps = {
 }
 
 export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFooterData }) => {
-  const { header, footer } = headerFooterData
+  const { header, footer } = headerFooterData || {}
 
   return (
     <>

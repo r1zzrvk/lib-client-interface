@@ -12,7 +12,7 @@ type THeaderProps = {
 export const Header: FC<THeaderProps> = ({ headerData }) => (
   <Styled.Wrapper>
     <Styled.TextBlock>
-      {headerData.map(({ title, href }) => (
+      {headerData?.map(({ title, href }) => (
         <Text key={title} fontWeight={theme.fonts.weight.medium} asLink href={href}>
           {title}
         </Text>

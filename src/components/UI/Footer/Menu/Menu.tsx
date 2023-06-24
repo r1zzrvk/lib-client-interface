@@ -18,7 +18,7 @@ export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
     >
       {header}
     </Text>
-    {menuItems.map(({ text, href }) => (
+    {menuItems?.map(({ text, href }) => (
       <Text
         key={text}
         marginBottom={theme.space.xs2}

@@ -10,13 +10,13 @@ type TDesktopMenuProps = {
 }
 
 export const DesktopMenu: FC<TDesktopMenuProps> = ({ footerData }) => {
-  const { catalog, information, service } = footerData
+  const { catalog, information, service } = footerData || {}
 
   return (
     <Styled.DesktopMenu>
-      <Menu header={catalog.header} menuItems={catalog.menuItems} />
-      <Menu header={information.header} menuItems={information.menuItems} />
-      <Menu header={service.header} menuItems={service.menuItems} />
+      <Menu header={catalog?.header} menuItems={catalog?.menuItems} />
+      <Menu header={information?.header} menuItems={information?.menuItems} />
+      <Menu header={service?.header} menuItems={service?.menuItems} />
       <Promo
         header={PROMO_FOOTER.header}
         content={PROMO_FOOTER.content}
