@@ -4,7 +4,7 @@ import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { PaddingTemplate } from '@templates'
 import { TBook } from '@types'
-import { booksApi } from 'serviceApi'
+import { booksApi } from 'api'
 import { ItemList, SearchField } from '@components/molecules'
 import { Flexbox, ItemListWrapper } from '@components/atoms'
 
