@@ -10,12 +10,12 @@ type TTabletMenuProps = {
 }
 
 export const TabletMenu: FC<TTabletMenuProps> = ({ footerData }) => {
-  const { catalog, information, service } = footerData
+  const { catalog, information, service } = footerData || {}
 
   return (
     <Styled.TabletMenu>
-      <Accordion title={catalog.header}>
-        {catalog.menuItems.map(({ text, href }) => (
+      <Accordion title={catalog?.header}>
+        {catalog?.menuItems.map(({ text, href }) => (
           <Text
             key={text}
             href={href}
@@ -28,8 +28,8 @@ export const TabletMenu: FC<TTabletMenuProps> = ({ footerData }) => {
           </Text>
         ))}
       </Accordion>
-      <Accordion title={information.header}>
-        {information.menuItems.map(({ text, href }) => (
+      <Accordion title={information?.header}>
+        {information?.menuItems.map(({ text, href }) => (
           <Text
             key={text}
             href={href}
@@ -42,8 +42,8 @@ export const TabletMenu: FC<TTabletMenuProps> = ({ footerData }) => {
           </Text>
         ))}
       </Accordion>
-      <Accordion title={service.header}>
-        {service.menuItems.map(({ text, href }) => (
+      <Accordion title={service?.header}>
+        {service?.menuItems.map(({ text, href }) => (
           <Text
             key={text}
             href={href}
