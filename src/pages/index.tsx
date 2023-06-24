@@ -4,7 +4,7 @@ import { CATEGORIES_BANNER } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { LayoutTemplate } from '@templates'
 import { THeaderFooter } from '@types'
-import { getStaticPageProps } from 'api'
+import { getStaticPageProps } from '@api'
 
 
 export const getStaticProps = getStaticPageProps

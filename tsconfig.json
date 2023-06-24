@@ -20,7 +20,7 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "@api": ["serviceApi"],
+      "@api": ["api"],
       "@ui-kit": ["components/UI"],
       "@components/atoms": ["components/atoms"],
       "@components/molecules": ["components/molecules"],
