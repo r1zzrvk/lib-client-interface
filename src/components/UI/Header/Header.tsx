@@ -1,13 +1,18 @@
 import { FC } from 'react'
-import { NAVIGATION_TITLES, theme } from '@constants'
+import { theme } from '@constants'
+import { THeaderData } from '@types'
 import { Text } from '@ui-kit'
 import { Styled } from './styled'
 import { UserBlock } from './UserBlock'
 
-export const Header: FC = () => (
+type THeaderProps = {
+  headerData: THeaderData[]
+}
+
+export const Header: FC<THeaderProps> = ({ headerData }) => (
   <Styled.Wrapper>
     <Styled.TextBlock>
-      {NAVIGATION_TITLES.map(({ title, href }) => (
+      {headerData?.map(({ title, href }) => (
         <Text key={title} fontWeight={theme.fonts.weight.medium} asLink href={href}>
           {title}
         </Text>
