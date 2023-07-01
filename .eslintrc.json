@@ -44,6 +44,7 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-key": ["warn", { "checkFragmentShorthand": true }],
     "react/jsx-no-duplicate-props": "warn",
+    "react/jsx-props-no-spreading": "off",
     "react/no-unescaped-entities": "warn",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
