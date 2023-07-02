@@ -19,8 +19,8 @@ const Wrapper = styled.section`
 
 const Content = styled.div`
   display: flex;
-  gap: ${theme.space.lg}px;
-  padding: 0px ${theme.space.lg}px;
+  gap: ${theme.space.sm}px;
+  padding: 0px ${theme.space.md}px;
 `
 export const Styled = {
   Wrapper,

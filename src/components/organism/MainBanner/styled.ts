@@ -13,14 +13,16 @@ export const Wrapper = styled.div`
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    justify-content: space-between;
+    gap: 32px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     padding: 70px 50px 70px 50px;
   }
 
   @media (min-width: ${theme.breakpoints.md}px) {
-    justify-content: space-between;
+    gap: 120px;
     align-items: center;
     flex-direction: row;
     padding: 70px 120px 160px 120px;

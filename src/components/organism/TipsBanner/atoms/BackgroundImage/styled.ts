@@ -13,10 +13,10 @@ export const BackgroundImage = styled.div<TBackgroundImageProps>`
     align-items: center;
     justify-content: end;
     background-image: url(${({ src }) => src});
-    background-position: center;
+    background-position: bottom;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 700px;
+    height: 800px;
   }
 `

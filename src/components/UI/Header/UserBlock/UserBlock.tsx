@@ -14,8 +14,6 @@ export const UserBlock: FC = () => {
   return (
     <Styled.Wrapper>
       <IconsSelector icon="search_solid" color={theme.colors.white} onClick={() => handleClick('/books')} />
-      <IconsSelector icon="bookmark_solid" color={theme.colors.white} onClick={() => handleClick('/404')} />
-      <IconsSelector icon="user_solid" color={theme.colors.white} onClick={() => handleClick('/profile')} />
     </Styled.Wrapper>
   )
 }
