@@ -14,9 +14,9 @@ export const BannerContent: FC = () => (
       fontHeightMob={theme.fonts.height.header.sm}
       marginBottomMob={theme.space.xs3}
     >
-      Everything that surrounds
+      Discover new releases, bestsellers
       <br />
-      us makes us stronger
+      and hidden gems
     </Text>
     <Text
       marginBottom={theme.space.xl}
@@ -24,11 +24,11 @@ export const BannerContent: FC = () => (
       fontHeightMob={theme.fonts.height.regular.sm}
       marginBottomMob={theme.space.xl}
     >
-      Exclusive designer furniture and fittings.
+      Find your next read with ease.
       <br />
-      Natural materials and individual approach
+      Search for books by title, author, genre, or keyword.
       <br />
-      when created, they will give an incomparably high level of quality and comfort
+      Start your journey today and dive into a world of literature.
     </Text>
     {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
     <Button onClick={() => {}} size="md">

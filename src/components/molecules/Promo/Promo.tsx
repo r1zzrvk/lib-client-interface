@@ -10,11 +10,13 @@ type TPromoProps = {
   headerFontHeight: number
   contentFontSize: number
   contentFontHeight: number
+  buttonText?: string
 }
 
 export const Promo: FC<TPromoProps> = ({
   header,
   content,
+  buttonText = 'Read more',
   headerFontSize,
   contentFontSize,
   headerFontHeight,
@@ -32,6 +34,6 @@ export const Promo: FC<TPromoProps> = ({
     <Text marginBottom={theme.space.md} fontSize={contentFontSize} fontHeight={contentFontHeight}>
       {content}
     </Text>
-    <ReadmoreButton />
+    <ReadmoreButton buttonText={buttonText} />
   </section>
 )

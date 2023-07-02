@@ -1,8 +1,9 @@
 import { FC } from 'react'
+import { ResponsiveImage } from '@ui-kit'
 import { Styled } from './styled'
 
 export const BannerImage: FC = () => (
   <Styled.Wrapper>
-    <Styled.Image src="https://i.ibb.co/LZBJzY1/cheirs.png" alt="cheirs" />
+    <img src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={552} height={550} />
   </Styled.Wrapper>
 )
