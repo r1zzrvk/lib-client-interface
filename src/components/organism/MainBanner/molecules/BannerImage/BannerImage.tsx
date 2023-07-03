@@ -4,6 +4,6 @@ import { Styled } from './styled'
 
 export const BannerImage: FC = () => (
   <Styled.Wrapper>
-    <img src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={552} height={550} />
+    <ResponsiveImage src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={552} height={550} isEverywhere />
   </Styled.Wrapper>
 )

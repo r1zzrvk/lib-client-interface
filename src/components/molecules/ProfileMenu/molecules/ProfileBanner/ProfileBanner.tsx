@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Text } from '@ui-kit'
+import { Avatar, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
@@ -16,7 +16,7 @@ export const ProfileBanner: FC<TProfileBannerProps> = ({ user: { avatar, email, 
   return (
     <Styled.Wrapper>
       <Styled.UserInfo>
-        <Styled.Avatar src={avatar} alt="avatar" />
+        <Avatar src={avatar} />
         <Styled.TextWrapper>
           <Text
             color={theme.colors.grey}
