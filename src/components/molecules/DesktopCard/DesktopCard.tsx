@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Text, Spacer, Button } from '@ui-kit'
+import { Text, Spacer, Button, ResponsiveImage } from '@ui-kit'
 import { theme } from '@constants'
 import { Styled } from './styled'
 
@@ -16,10 +16,16 @@ export const DesktopCard: FC<TDesktopCardProps> = ({ title, description, image }
       {title}
     </Text>
     <Styled.Content>
-      <img src={image} alt="card_image" height={150} width={105} />
-      <Text fontSize={theme.fonts.size.regular.sm} fontHeight={theme.fonts.height.regular.sm} color={theme.colors.grey}>
-        {description}
-      </Text>
+      <ResponsiveImage src={image} alt="card_image" width={100} height={150} isEverywhere />
+      <Styled.TextContainer>
+        <Text
+          fontSize={theme.fonts.size.regular.sm}
+          fontHeight={theme.fonts.height.regular.sm}
+          color={theme.colors.grey}
+        >
+          {description}
+        </Text>
+      </Styled.TextContainer>
     </Styled.Content>
     {/*  eslint-disable-next-line @typescript-eslint/no-empty-function */}
     <Button onClick={() => {}} size="sm" isGhost>

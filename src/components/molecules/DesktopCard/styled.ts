@@ -18,11 +18,19 @@ const Wrapper = styled.section`
 `
 
 const Content = styled.div`
-  display: flex;
   gap: ${theme.space.sm}px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: start;
   padding: 0px ${theme.space.md}px;
+`
+
+const TextContainer = styled.div`
+  width: 100px;
 `
 export const Styled = {
   Wrapper,
   Content,
+  TextContainer,
 }
