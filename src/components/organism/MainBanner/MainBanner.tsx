@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { BannerContent, BannerImage } from './molecules'
+import { ResponsiveImage } from '@ui-kit'
+import { BannerContent } from './molecules'
 import { Wrapper } from './styled'
 
 export const MainBanner: FC = () => (
   <Wrapper>
-    <BannerImage />
+    <ResponsiveImage src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={552} height={550} isEverywhere />
     <BannerContent />
   </Wrapper>
 )
