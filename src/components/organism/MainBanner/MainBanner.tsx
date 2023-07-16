@@ -5,7 +5,16 @@ import { Wrapper } from './styled'
 
 export const MainBanner: FC = () => (
   <Wrapper>
-    <ResponsiveImage src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={552} height={550} isEverywhere />
+    <ResponsiveImage
+      src="https://i.postimg.cc/mrzcmKHX/photos.png"
+      alt="books"
+      width={552}
+      height={550}
+      isLg
+      isMd
+      isSm
+    />
+    <ResponsiveImage src="https://i.postimg.cc/mrzcmKHX/photos.png" alt="books" width={532} height={530} isTablet />
     <BannerContent />
   </Wrapper>
 )

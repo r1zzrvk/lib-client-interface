@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   display: flex;
   gap: ${theme.space.lg}px;
-  margin-right: ${theme.space.lg}px;
   margin-left: ${theme.space.xl}px;
 
   @media (min-width: ${theme.breakpoints.sm}px) {

@@ -1,6 +1,8 @@
 export const PROMO_FOOTER = {
-  header: 'Become a member',
-  content: 'Join our loyalty program now and get 10% off your\u000Anext online purchase!',
+  header: 'Google authorization',
+  content:
+    'Sign in quickly and effortlessly with Google Sign In.\nNo need to remember multiple usernames and passwords',
+  buttonText: 'Sign in',
 }
 
 export const PROMO_BANNER = {

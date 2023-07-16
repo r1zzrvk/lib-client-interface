@@ -9,7 +9,7 @@ const Wrapper = styled.header`
     display: flex;
     justify-content: end;
     align-items: center;
-    padding: ${theme.space.lg}px 0px;
+    padding: ${theme.space.lg}px 32px;
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {

@@ -3,14 +3,18 @@ import styled from 'styled-components'
 
 type TWrapperProps = {
   color: string
+  active: boolean
 }
 
 type TAccordionButtonProps = {
   color: string
+  active: boolean
 }
 
 type TAccordionItemProps = {
   active: boolean
+  animation?: string
+  color?: string
 }
 
 type TAccordionIconProps = {
@@ -19,7 +23,6 @@ type TAccordionIconProps = {
 
 const Wrapper = styled.div<TWrapperProps>`
   color: ${({ color }) => color};
-  border-bottom: 1px solid ${({ color }) => (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
 `
 
 const AccordionButton = styled.button<TAccordionButtonProps>`
@@ -39,15 +42,54 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   font-weight: ${theme.fonts.weight.regular};
   transition: 0.4s;
   background-color: inherit;
+  border-bottom: ${({ active, color }) =>
+    !active && `1px solid ${color === theme.colors.white ? theme.colors.secondary : theme.colors.main}`};
 
   &:hover {
     color: ${({ color }) => (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
   }
 `
+
 const AccordionItem = styled.div<TAccordionItemProps>`
   padding: 0px ${theme.space.xs4}px 0px;
-  display: ${({ active }) => (active ? 'block' : 'none')};
   overflow: hidden;
+  display: ${({ active }) => (active ? 'block' : 'none')};
+  animation: ${({ animation }) => `${animation} 0.5s both`};
+  border-bottom: ${({ color }) =>
+    `1px solid ${color === theme.colors.white ? theme.colors.secondary : theme.colors.main}`};
+  z-index: 0;
+
+  @keyframes Opening {
+    0% {
+      transform: translateY(-300px);
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes Closing {
+    0% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    25% {
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(-300px);
+      opacity: 0;
+    }
+  }
 `
 
 const AccordionIcon = styled.span<TAccordionIconProps>`

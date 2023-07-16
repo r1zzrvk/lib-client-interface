@@ -13,7 +13,7 @@ export const UserBlock: FC = () => {
 
   return (
     <Styled.Wrapper>
-      <IconsSelector icon="search_solid" color={theme.colors.white} onClick={() => handleClick('/books')} />
+      <IconsSelector icon="search_solid" color={theme.colors.white} onClick={() => handleClick('/books')} isButton />
     </Styled.Wrapper>
   )
 }
