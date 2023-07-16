@@ -8,8 +8,9 @@ export const Wrapper = styled.div`
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 0px ${theme.space.xl2}px ${theme.space.xl2}px ${theme.space.xl2}px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px ${theme.space.lg}px ${theme.space.xl2}px ${theme.space.lg}px;
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {

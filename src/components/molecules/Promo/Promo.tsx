@@ -10,6 +10,7 @@ type TPromoProps = {
   headerFontHeight: number
   contentFontSize: number
   contentFontHeight: number
+  onButtonClick: () => void
   buttonText?: string
 }
 
@@ -21,6 +22,7 @@ export const Promo: FC<TPromoProps> = ({
   contentFontSize,
   headerFontHeight,
   contentFontHeight,
+  onButtonClick,
 }) => (
   <section>
     <Text
@@ -34,6 +36,6 @@ export const Promo: FC<TPromoProps> = ({
     <Text marginBottom={theme.space.md} fontSize={contentFontSize} fontHeight={contentFontHeight}>
       {content}
     </Text>
-    <ReadmoreButton buttonText={buttonText} />
+    <ReadmoreButton buttonText={buttonText} onClick={onButtonClick} />
   </section>
 )

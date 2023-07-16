@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { CategoriesBanner, MainBanner, MobileMain, TipsBanner } from '@components/organism'
+import { CategoriesBanner, MainBanner, MobileMain, PromoBanner } from '@components/organism'
 import { CATEGORIES_BANNER } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { LayoutTemplate } from '@templates'
@@ -15,7 +15,7 @@ const MainPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData })
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
       <MainBanner />
-      <TipsBanner />
+      <PromoBanner />
       <CategoriesBanner
         header={CATEGORIES_BANNER.header}
         subheader={CATEGORIES_BANNER.subheader}

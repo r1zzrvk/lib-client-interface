@@ -2,11 +2,12 @@ import { FC } from 'react'
 import { Styled } from './styled'
 
 type TReadmoreButtonProps = {
+  onClick: () => void
   buttonText?: string
 }
 
-export const ReadmoreButton: FC<TReadmoreButtonProps> = ({ buttonText = 'Read more' }) => (
-  <Styled.Button>
+export const ReadmoreButton: FC<TReadmoreButtonProps> = ({ buttonText = 'Read more', onClick }) => (
+  <Styled.Button onClick={onClick}>
     {buttonText}
     <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
