@@ -2,12 +2,13 @@ import { theme } from '@constants'
 import styled from 'styled-components'
 
 type TWrapperProps = {
+  color: string
   fluid: boolean
 }
 
 const Wrapper = styled.div<TWrapperProps>`
   display: flex;
-  background-color: ${theme.colors.beige};
+  background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
@@ -15,7 +16,7 @@ const Wrapper = styled.div<TWrapperProps>`
 `
 
 const Input = styled.input<TWrapperProps>`
-  background-color: ${theme.colors.beige};
+  background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
   font-size: ${theme.fonts.size.regular.sm}px;
   line-height: ${theme.fonts.height.regular.sm}px;

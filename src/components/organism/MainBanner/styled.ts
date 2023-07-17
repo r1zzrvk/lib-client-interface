@@ -1,20 +1,26 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  display: none;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0px -${theme.space.sm}px 0px -${theme.space.sm}px;
   background-color: ${theme.colors.main};
+  padding: ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px;
+
+  @media (min-width: 410px) {
+    padding: ${theme.space.lg}px calc((100vw - 378px) / 2) ${theme.space.lg}px calc((100vw - 378px) / 2);
+  }
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px ${theme.space.lg}px ${theme.space.xl2}px ${theme.space.lg}px;
+    margin: 0px;
+    padding: 0px calc((100vw - 536px) / 2) ${theme.space.xl2}px calc((100vw - 536px) / 2);
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    gap: 32px;
+    gap: ${theme.space.lg}px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,3 +35,7 @@ export const Wrapper = styled.div`
     padding: 70px 120px 160px 120px;
   }
 `
+
+export const Styled = {
+  Wrapper,
+}

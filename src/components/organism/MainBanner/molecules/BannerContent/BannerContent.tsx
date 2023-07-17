@@ -3,14 +3,17 @@ import { useRouter } from 'next/router'
 import { Text, Button, Spacer } from '@ui-kit'
 import { theme } from '@constants'
 import { EPagePaths } from '@types'
+import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 
 export const BannerContent: FC = () => {
   const router = useRouter()
+  const { isMob, isTablet } = useBreakpoint()
 
   const handleClick = () => {
     router.push(EPagePaths.CATALOG)
   }
+
   return (
     <Styled.Wrapper>
       <Text
@@ -19,23 +22,27 @@ export const BannerContent: FC = () => {
         fontWeight={theme.fonts.weight.medium}
         fontSizeMob={theme.fonts.size.header.sm}
         fontHeightMob={theme.fonts.height.header.sm}
-        marginBottomMob={theme.space.xs3}
+        fontSizeTablet={theme.fonts.size.header.sm}
+        fontHeightTablet={theme.fonts.height.header.sm}
       >
-        Discover new releases, bestsellers
-        <br />
-        and hidden gems
+        Discover new releases, bestsellers and&nbsp;hidden&nbsp;gems
       </Text>
-      <Spacer size={theme.space.md} sizeTablet={theme.space.sm} />
-      <Text fontSizeMob={theme.fonts.size.regular.sm} fontHeightMob={theme.fonts.height.regular.sm}>
+      <Spacer size={theme.space.md} sizeTablet={theme.space.sm} sizeMob={theme.space.xs2} />
+      <Text
+        fontSizeTablet={theme.fonts.size.regular.sm}
+        fontHeightTablet={theme.fonts.height.regular.sm}
+        fontSizeMob={theme.fonts.size.regular.sm}
+        fontHeightMob={theme.fonts.height.regular.sm}
+      >
         Find your next read with ease.
         <br />
-        Search for books by title, author, genre, or keyword.
+        Search for books by title, author, genre or&nbsp;keyword.
         <br />
-        Start your journey today and dive into a world of literature.
+        Start your journey today and dive into a&nbsp;world&nbsp;of&nbsp;literature.
       </Text>
-      <Spacer size={theme.space.xl} sizeTablet={theme.space.sm} />
+      <Spacer size={theme.space.xl} sizeTablet={theme.space.sm} sizeMob={theme.space.xs} />
       {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-      <Button onClick={handleClick} size="md">
+      <Button onClick={handleClick} isFluid={isMob || isTablet} size="md">
         Go to catalog
       </Button>
     </Styled.Wrapper>

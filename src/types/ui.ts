@@ -3,7 +3,7 @@ export type TMenuItem = {
   href?: string
 }
 
-export type TDesktopCard = {
+export type TSmallCard = {
   id: string
   title: string
   description: string

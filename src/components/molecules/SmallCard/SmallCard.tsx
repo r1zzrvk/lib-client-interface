@@ -3,16 +3,24 @@ import { Text, Spacer, Button, ResponsiveImage } from '@ui-kit'
 import { theme } from '@constants'
 import { Styled } from './styled'
 
-type TDesktopCardProps = {
+type TSmallCardProps = {
   title: string
   description: string
   image: string
 }
 
-export const DesktopCard: FC<TDesktopCardProps> = ({ title, description, image }) => (
+export const SmallCard: FC<TSmallCardProps> = ({ title, description, image }) => (
   <Styled.Wrapper>
-    <Spacer size={theme.space.lg} />
-    <Text fontWeight={theme.fonts.weight.medium} color={theme.colors.grey} align="center" marginBottom={theme.space.sm}>
+    <Spacer size={theme.space.lg} samespace />
+    <Text
+      fontWeight={theme.fonts.weight.medium}
+      color={theme.colors.grey}
+      fontSizeMob={theme.fonts.size.regular.md}
+      fontHeightMob={theme.fonts.height.regular.md}
+      align="center"
+      marginBottom={theme.space.sm}
+      marginBottomMob={theme.space.sm}
+    >
       {title}
     </Text>
     <Styled.Content>
@@ -22,6 +30,8 @@ export const DesktopCard: FC<TDesktopCardProps> = ({ title, description, image }
           fontSize={theme.fonts.size.regular.sm}
           fontHeight={theme.fonts.height.regular.sm}
           color={theme.colors.grey}
+          fontSizeMob={theme.fonts.size.regular.sm}
+          fontHeightMob={theme.fonts.height.regular.sm}
         >
           {description}
         </Text>
