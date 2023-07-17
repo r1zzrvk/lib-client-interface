@@ -1,14 +1,17 @@
-import { MobileCard } from 'components/molecules'
 import { FC } from 'react'
+import { TSmallCard } from '@types'
+import { SmallCard } from '@components/molecules'
 import { Styled } from './styled'
 
-const arr = [1, 2, 3, 4, 5, 6, 7]
+type TCategoriesSliderProps = {
+  items: TSmallCard[]
+}
 
-export const CategoriesSlider: FC = () => (
+export const CategoriesSlider: FC<TCategoriesSliderProps> = ({ items }) => (
   <Styled.OutOfContainerWrap>
     <Styled.Wrapper>
-      {arr.map(item => (
-        <MobileCard key={item} size="sm" imgUrl="https://i.ibb.co/jw89YFm/Group-14.png" title="Dressers" />
+      {items.map(({ description, id, image, title }) => (
+        <SmallCard title={title} description={description} image={image} key={id} />
       ))}
     </Styled.Wrapper>
   </Styled.OutOfContainerWrap>

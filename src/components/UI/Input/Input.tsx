@@ -13,6 +13,7 @@ type TInputProps = {
   isButton?: boolean
   onClick?: () => void
   name?: string
+  color?: string
 }
 
 export const Input: FC<TInputProps> = ({
@@ -24,6 +25,7 @@ export const Input: FC<TInputProps> = ({
   onClick,
   name,
   onChange,
+  color = theme.colors.beige,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -31,14 +33,21 @@ export const Input: FC<TInputProps> = ({
     }
   }
   return (
-    <Styled.Wrapper fluid={fluid}>
+    <Styled.Wrapper fluid={fluid} color={color}>
       <IconsSelector
         icon={icon}
         color={theme.colors.grey}
         sidePadding={theme.space.sm}
         upDownPadding={theme.space.xs}
       />
-      <Styled.Input type={type} placeholder={placeholder} name={name} fluid={fluid} onChange={e => onChange(e)} />
+      <Styled.Input
+        type={type}
+        color={color}
+        placeholder={placeholder}
+        name={name}
+        fluid={fluid}
+        onChange={e => onChange(e)}
+      />
       {isButton && (
         <IconsSelector
           icon="sliders_solid"

@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { Text, Carousel, Spacer } from '@ui-kit'
-import { DesktopCard } from '@components/molecules'
-import { shoppingItems, theme } from '@constants'
-import { TDesktopCard } from '@types'
+import { SmallCard } from '@components/molecules'
+import { categoriesCardData, theme } from '@constants'
+import { TSmallCard } from '@types'
 import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
+import { CategoriesSlider } from '../CategoriesSlider'
 
 type TCategoriesBannerProps = {
   header: string
@@ -12,13 +13,14 @@ type TCategoriesBannerProps = {
   text: string
 }
 
-const CarouselComponent: FC<TDesktopCard> = ({ title, description, image, id }) => (
-  <DesktopCard title={title} description={description} image={image} key={id} />
+const CarouselComponent: FC<TSmallCard> = ({ title, description, image, id }) => (
+  <SmallCard title={title} description={description} image={image} key={id} />
 )
 
 export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, subheader }) => {
-  const { isSm, isTablet } = useBreakpoint()
-  const contentPerPage = (isSm && 2) || (isTablet && 1) || 3
+  const { isSm, isTablet, isMob } = useBreakpoint()
+  const contentPerPage = (isSm && 2) || ((isTablet || isMob) && 1) || 3
+
   return (
     <Styled.Wrapper>
       <Text
@@ -27,6 +29,9 @@ export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, sub
         fontWeight={theme.fonts.weight.medium}
         color={theme.colors.main}
         marginBottom={theme.space.xl}
+        fontSizeMob={theme.fonts.size.header.sm}
+        fontHeightMob={theme.fonts.height.header.sm}
+        marginBottomMob={theme.space.sm}
       >
         {header}
       </Text>
@@ -35,14 +40,24 @@ export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, sub
         fontHeight={theme.fonts.height.regular.md}
         color={theme.colors.grey}
         marginBottom={theme.space.xs}
+        fontSizeMob={theme.fonts.size.regular.sm}
+        fontHeightMob={theme.fonts.height.regular.sm}
+        marginBottomMob={theme.space.xs2}
       >
         {subheader}
       </Text>
-      <Text fontSize={theme.fonts.size.regular.md} fontHeight={theme.fonts.height.regular.md} color={theme.colors.grey}>
+      <Text
+        fontSize={theme.fonts.size.regular.md}
+        fontHeight={theme.fonts.height.regular.md}
+        color={theme.colors.grey}
+        fontSizeMob={theme.fonts.size.regular.sm}
+        fontHeightMob={theme.fonts.height.regular.sm}
+      >
         {text}
       </Text>
       <Spacer size={theme.space.xl2} />
-      <Carousel items={shoppingItems} component={CarouselComponent} contentPerPage={contentPerPage} />
+      {isMob || <Carousel items={categoriesCardData} component={CarouselComponent} contentPerPage={contentPerPage} />}
+      {isMob && <CategoriesSlider items={categoriesCardData} />}
     </Styled.Wrapper>
   )
 }

@@ -11,6 +11,9 @@ type TTextProps = {
   fontSizeMob?: number
   fontWeightMob?: number
   fontHeightMob?: number
+  fontSizeTablet?: number
+  fontWeightTablet?: number
+  fontHeightTablet?: number
   marginBottom?: number
   marginBottomMob?: number
   color?: string
@@ -28,6 +31,9 @@ export const Text: FC<TTextProps> = ({
   fontSizeMob = theme.fonts.size.regular.xs,
   fontWeightMob = theme.fonts.weight.regular,
   fontHeightMob = theme.fonts.height.regular.xs,
+  fontSizeTablet = fontSize,
+  fontWeightTablet = fontWeight,
+  fontHeightTablet = fontHeight,
   marginBottom = 0,
   marginBottomMob = 0,
   color = theme.colors.white,
@@ -48,6 +54,9 @@ export const Text: FC<TTextProps> = ({
       fontSizeMob={fontSizeMob}
       fontWeightMob={fontWeightMob}
       fontHeightMob={fontHeightMob}
+      fontSizeTablet={fontSizeTablet}
+      fontWeightTablet={fontWeightTablet}
+      fontHeightTablet={fontHeightTablet}
       marginBottom={marginBottom}
       marginBottomMob={marginBottomMob}
       color={color}

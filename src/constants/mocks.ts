@@ -1,4 +1,4 @@
-export const shoppingItems = [
+export const categoriesCardData = [
   {
     id: '1',
     title: 'Horror',
