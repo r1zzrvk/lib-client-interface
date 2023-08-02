@@ -2,7 +2,7 @@ import { theme } from '@constants'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-// перенести в компоненты, заготовка для Stories
+// todo: перенести в компоненты, заготовка для Stories
 
 const MyLists = () => {
   const arr = [1, 2, 3, 4, 5, 6]
@@ -12,17 +12,25 @@ const MyLists = () => {
     setActiveSlide(activeSlide + 1)
   }
   return (
-    <ProgressContainer>
-      {arr.map((item, i) => (
-        <Container key={item} onClick={() => setActiveSlide(item)}>
-          <ProgressBar />
-          <ProgressBarActive isPrev={i < activeSlide} active={activeSlide === item} onAnimationEnd={handleNextSlide}/>
-        </Container>
-      ))}
-    </ProgressContainer>
+    <>
+      <ProgressContainer>
+        {arr.map((item, i) => (
+          <Container key={item} onClick={() => setActiveSlide(item)}>
+            <ProgressBar />
+            <ProgressBarActive
+              isPrev={i < activeSlide}
+              active={activeSlide === item}
+              onAnimationEnd={handleNextSlide}
+            />
+          </Container>
+        ))}
+      </ProgressContainer>
+
+    </>
   )
 }
 
+// progress bar
 const ProgressContainer = styled.div`
   height: 50px;
   margin: 16px;
@@ -39,12 +47,12 @@ const ProgressBar = styled.div`
   background-color: ${theme.colors.beige};
 `
 
-const ProgressBarActive = styled.div<{active: boolean, isPrev: boolean}>`
+const ProgressBarActive = styled.div<{ active: boolean; isPrev: boolean }>`
   margin-top: -4px;
   border-radius: 2px;
   height: 4px;
   animation: ${({ active }) => active && 'progressBar 10s linear'};
-  background-color: ${({ active, isPrev }) => active || isPrev ? theme.colors.grey : theme.colors.beige};
+  background-color: ${({ active, isPrev }) => (active || isPrev ? theme.colors.grey : theme.colors.beige)};
 
   @keyframes progressBar {
     0% {

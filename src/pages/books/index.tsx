@@ -1,43 +1,46 @@
 import { FC, useEffect, useState } from 'react'
-import { Button, Card, Spacer } from '@ui-kit'
+import { Card, Paginator, Spacer } from '@ui-kit'
 import { theme } from '@constants'
-import { usePagination } from '@hooks'
-import { PaddingTemplate } from '@templates'
-import { TBook } from '@types'
-import { booksApi } from 'api'
+import { useDebouncedCallback, usePagination } from '@hooks'
+import { THeaderFooter, TResponse } from '@types'
+import { getStaticPageProps, searchBook } from 'api'
 import { ItemList, SearchField } from '@components/molecules'
-import { Flexbox, ItemListWrapper } from '@components/atoms'
+import { ItemListWrapper } from '@components/atoms'
+import { LayoutTemplate } from '@templates'
 
-const BooksPage: FC = () => {
+export const getStaticProps = getStaticPageProps
+
+const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [searchField, setSearchField] = useState('')
-  const [books, setBooks] = useState<TBook[] | null>(null)
-  const { packSize, showMore } = usePagination({ contentPerPage: 8, itemsCount: books ? books.length : 0 })
+  const [searchData, setSearchData] = useState<TResponse | null>(null)
+  const { items, totalItems } = searchData || {}
+  const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({ contentPerPage: 10, itemsCount: totalItems || 0 })
 
   useEffect(() => {
     if (searchField) {
-      booksApi.search(searchField).then(({ data }) => setBooks(data.items))
+      searchBook({ searchTerm: searchField, page: page }).then((data) => setSearchData(data))
     }
-  }, [searchField])
+  }, [searchField, page])
+
+  const handleSearchChange = useDebouncedCallback((term: string) => {
+    setSearchField(term)
+  }, 300)
 
   return (
-    <PaddingTemplate>
-      <Spacer size={theme.space.xl} />
-      <SearchField onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} onChange={setSearchField} />
+    <LayoutTemplate headerFooterData={headerFooterData} >
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm}/>
+      <SearchField onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} onChange={handleSearchChange}/>
       <ItemListWrapper>
-        {/* To do: сделать быстрый поиск по критериям кубами разных размеров */}
-       {books && <ItemList renderItem={book => <Card {...book} />} items={books.slice(0, packSize)} />} 
+        {/* To do: сделать быстрый поиск по критериям кубами разных размеров
+            обработать кейс, когда ничего не найдено + обработать ошибку запроса
+        */}
+        {items && <ItemList renderItem={book => <Card {...book} />} items={items.slice(0, packSize)} />}
       </ItemListWrapper>
       <Spacer size={theme.space.xl} />
-      {books && books.length > packSize && (
-        <Flexbox align="center" direction="column">
-          <Button size="lg" onClick={showMore}>
-            Show more
-          </Button>
-          <Spacer size={theme.space.xl} />
-        </Flexbox>
-      )}
-    </PaddingTemplate>
+      {totalPages > 1 && <Paginator totalPages={totalPages} currentPage={page} nextPage={nextPage} prevPage={prevPage} setPage={setPage} />}
+      <Spacer size={theme.space.xs} samespace/>
+    </LayoutTemplate>
   )
 }
 

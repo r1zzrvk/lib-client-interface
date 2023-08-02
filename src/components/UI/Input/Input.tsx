@@ -16,6 +16,7 @@ type TInputProps = {
   color?: string
 }
 
+// todo: сделать проп isClearable
 export const Input: FC<TInputProps> = ({
   type,
   placeholder,
