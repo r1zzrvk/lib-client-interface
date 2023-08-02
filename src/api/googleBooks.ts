@@ -1,7 +1,50 @@
 import { GOOGLE_API } from '@constants'
+import { EFilterOptions, ESortingOptions } from '@types'
+import { concatenateParams } from '@utils'
 import axios from 'axios'
 import { TResponse } from 'types/books'
 
-export const booksApi = {
-  search: (param: string) => axios.get<TResponse>(`${GOOGLE_API}books/v1/volumes?q=${param}`),
+type TSearchBookProps = {
+  searchTerm: string
+  page: number
+  maxResults?: number
+  sortingBy?: ESortingOptions
+  filterByCategory?: EFilterOptions
+  filterByAuthor?: string
+  searchByTitle?: string
+  searchByPublisher?: string
+}
+
+export const searchBook = async ({
+  searchTerm,
+  page = 1,
+  maxResults = 10,
+  sortingBy = ESortingOptions.RELEVANCE,
+  filterByCategory,
+  filterByAuthor,
+  searchByTitle = searchTerm,
+  searchByPublisher,
+}: TSearchBookProps) => {
+  const startIndexOfPage = page === 1 ? 1 : 1 + page * maxResults
+
+  const terms: Record<string, string | EFilterOptions | undefined> = {
+    '': searchTerm,
+    '+subject:': filterByCategory,
+    '+intitle:': searchByTitle,
+    '+inauthor:': filterByAuthor,
+    '+inpublisher:': searchByPublisher,
+  }
+
+  // startIndex — The position in the collection at which to start. The index of the first item is 1. But in docs it start from 0
+  // maxResults — max is 40
+  const { data } = await axios.get<TResponse>(`${GOOGLE_API}books/v1/volumes`, {
+    params: {
+      q: concatenateParams(terms),
+      startIndex: startIndexOfPage,
+      maxResults,
+      orderBy: sortingBy,
+    },
+  })
+
+  return data
 }

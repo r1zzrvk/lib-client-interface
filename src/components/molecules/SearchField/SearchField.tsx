@@ -10,17 +10,17 @@ type TSearchFieldProps = {
 }
 
 export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen, onChange }) => {
-  const { isMob } = useBreakpoint()
+  const { isMob, isTablet } = useBreakpoint()
 
   return (
     <Styled.Wrapper>
       <Input
         placeholder="Type something..."
         type="text"
-        isButton
         fluid={isMob}
-        onClick={() => onClick(true)}
         onChange={e => onChange(e.target.value)}
+        onClick={() => onClick(true)}
+        isButton={isMob || isTablet}
       />
       <Modal isOpen={isOpen} onClose={() => onClick(false)}>
         nothing
