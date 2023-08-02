@@ -27,12 +27,12 @@ const List = styled.div<TListProps>`
   justify-content: center;
   align-items: center;
   gap: 50px;
-  transition: transform 0.5s ease-in-out;
-  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} 1s ease-in`};
+  transition: transform 0.8s ease-in-out;
+  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} .8s ease-in`};
 
   @keyframes ParallaxIn {
     0% {
-      opacity: 1;
+      opacity: 0.1;
       transform: translateX(0);
     }
 
@@ -54,7 +54,7 @@ const List = styled.div<TListProps>`
 
   @keyframes ParallaxOut {
     0% {
-      opacity: 1;
+      opacity: 0.3;
       transform: translateX(0);
     }
 

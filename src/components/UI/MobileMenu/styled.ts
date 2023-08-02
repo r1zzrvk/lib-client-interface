@@ -12,6 +12,7 @@ const Wrapper = styled.footer`
   background-color: ${theme.colors.white};
   height: 80px;
   box-shadow: 0px 2px 16px 8px rgba(0, 0, 0, 0.08);
+  z-index: 10000;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: none;

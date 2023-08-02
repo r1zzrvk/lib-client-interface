@@ -12,7 +12,14 @@ export const Card: FC<TBook> = ({ volumeInfo }) => {
 
   return (
     <Styled.Wrapper>
-      <Styled.Image src={getImage(imageLinks)} alt="asd" />
+      <Styled.Image
+        src={getImage(imageLinks)}
+        alt="book cover"
+        width={110}
+        height={170}
+        objectFit="cover"
+        isEverywhere
+      />
       <Styled.Content>
         <div>
           <Text

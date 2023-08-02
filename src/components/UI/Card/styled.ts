@@ -1,5 +1,6 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
+import { ResponsiveImage } from '../ResponsiveImage'
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,12 +10,8 @@ const Wrapper = styled.div`
   border-radius: ${theme.radiuses.sm}px;
 `
 
-const Image = styled.img`
-  height: 170px;
-  min-width: 110px;
-  max-width: 110px;
+const Image = styled(ResponsiveImage)`
   border-radius: ${theme.radiuses.sm}px 0px 0px ${theme.radiuses.sm}px;
-  object-fit: cover;
 `
 
 const ButtonBlock = styled.div`

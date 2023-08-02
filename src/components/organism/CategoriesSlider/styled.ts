@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   gap: ${theme.space.xs}px;
   overflow-x: scroll;
-  padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
+  padding: ${theme.space.md}px ${theme.space.sm}px ${theme.space.lg}px ${theme.space.sm}px;
   scrollbar-width: none;
 
   ::-webkit-scrollbar {

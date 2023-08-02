@@ -10,16 +10,6 @@ const Wrapper = styled.div`
   padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
   margin: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
 `
-const Avatar = styled.img`
-  width: 52px;
-  height: 52px;
-  border-radius: ${theme.radiuses.round}px;
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    width: 72px;
-    height: 72px;
-  }
-`
 
 const TextWrapper = styled.div`
   flex-direction: column;
@@ -37,5 +27,4 @@ export const Styled = {
   Wrapper,
   TextWrapper,
   UserInfo,
-  Avatar,
 }
