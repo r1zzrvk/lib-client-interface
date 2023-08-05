@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useBreakpoint } from '@hooks'
 import { fastSearchBadges, theme } from '@constants'
 import { Badge, Input, Paginator, Spacer } from '@ui-kit'
-import { ESearchTypes, TBadge, TBook, TSearchBookProps, TSearchFormValues } from '@types'
+import { ESearchTypes, TBadge, TResponse, TSearchBookProps, TSearchFormValues } from '@types'
 import { scrollToTop } from '@utils'
 import { Styled } from './styled'
 import { Results, SkeletonPreloader } from './molecules'
@@ -12,7 +12,6 @@ import { getDotNeed } from './utils'
 
 type TSearchWithResultsProps = {
   onModalOpen: () => void
-  cards: TBook[] | undefined
   debounedSearch: (props: TSearchBookProps) => void
   page: number
   setPage: (page: number) => void
@@ -20,13 +19,12 @@ type TSearchWithResultsProps = {
   prevPage: () => void
   totalPages: number
   packSize: number
-  totalItems: number | undefined
   isRequestError: boolean
   isLoading: boolean
+  searchData: TResponse | null
 }
 
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
-  cards,
   onModalOpen,
   debounedSearch,
   nextPage,
@@ -35,9 +33,9 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   prevPage,
   setPage,
   totalPages,
-  totalItems,
   isRequestError,
   isLoading,
+  searchData,
 }) => {
   const { setFieldValue, values, submitForm } = useFormikContext<TSearchFormValues>()
   const { searchField, selectedBadge, authorField, categoryField, publisherField, titleField, sorting } = values
@@ -137,7 +135,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
       {isLoading ? (
         <SkeletonPreloader />
       ) : (
-        <Results cards={cards} isRequestError={isRequestError} packSize={packSize} totalItems={totalItems} />
+        <Results searchData={searchData} isRequestError={isRequestError} packSize={packSize} />
       )}
       <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
       {totalPages > 1 && !isRequestError && !isLoading && (

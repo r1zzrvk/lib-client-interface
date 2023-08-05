@@ -17,7 +17,7 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
   const [isLoading, setIsLoading] = useState(false)
   const { isMob, isTablet } = useBreakpoint()
   const [searchData, setSearchData] = useState<TResponse | null>(null)
-  const { items, totalItems } = searchData || {}
+  const { totalItems } = searchData || {}
   const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({
     contentPerPage: isMob ? 5 : 10,
     itemsCount: totalItems || 0,
@@ -75,7 +75,7 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
         <Form>
           <SearchFormContainer direction="row" justify="start" gap={40}>
             <SearchWithResults
-              cards={items}
+              searchData={searchData}
               debounedSearch={debounedSearch}
               onModalOpen={() => setIsOpened(true)}
               nextPage={nextPage}
@@ -84,7 +84,6 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
               prevPage={prevPage}
               setPage={setPage}
               totalPages={totalPages}
-              totalItems={totalItems}
               isRequestError={isError}
               isLoading={isLoading}
             />

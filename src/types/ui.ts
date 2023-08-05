@@ -1,3 +1,5 @@
+import { EPagePaths } from './common'
+
 export type TMenuItem = {
   text: string
   href?: string
@@ -58,4 +60,11 @@ export type TBadge = {
   label: string
   id: string
   type?: ESearchTypes
+}
+
+export type TMobileMenuItem = {
+  id: number
+  icon: TIcon
+  path: EPagePaths
+  title: string
 }

@@ -26,7 +26,7 @@ const OptionsWrapper = styled.div`
   box-shadow: 4px 4px 8px 0px rgba(144, 134, 133, 0.25), -4px -4px 8px 0px rgba(153, 139, 138, 0.25);
 
   ::-webkit-scrollbar {
-    width: 0px;
+    display: none;
   }
 `
 

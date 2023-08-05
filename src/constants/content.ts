@@ -43,7 +43,7 @@ export const SERVER_ERROR = {
 }
 
 export const NOTHING_FOUND = {
-  title: 'Your search did not match any results',
+  title: 'Your search did not match\nany results',
   altText: 'nothing found',
   imgUrl: '/nothingfound.png',
 }
