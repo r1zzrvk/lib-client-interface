@@ -5,3 +5,11 @@ export const sliceItems = (arr: string[], slice = 2): string =>
     ?.slice(0, slice)
     .map(item => textLimiter(item, 35))
     .join(', ')
+
+export const scrollToTop = () =>
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+
+export const getArrayFromNumber = (num: number): number[] => [...Array(num).keys()]

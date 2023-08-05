@@ -4,7 +4,7 @@ type TFlexboxProps = {
   justify?: 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'end' | 'start' | 'stretch' | 'baseline'
   align?: 'center' | 'baseline' | 'flex-end' | 'flex-start' | 'stretch'
   gap?: number
-  direction?: 'column' | 'row'
+  direction?: 'column' | 'row' | 'row-reverse' | 'column-reverse'
 }
 
 export const Flexbox = styled.div<TFlexboxProps>`

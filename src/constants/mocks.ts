@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+import { ESearchTypes } from '@types'
+
 export const categoriesCardData = [
   {
     id: '1',
@@ -15,7 +18,6 @@ export const categoriesCardData = [
   {
     id: '3',
     title: 'Autobiography',
-    // eslint-disable-next-line quotes
     description: "Experience the depth of a person's life",
     image: 'https://books.google.com/books/content?id=IVbtlwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
   },
@@ -55,7 +57,6 @@ export const categoriesCardData = [
   {
     id: '9',
     title: 'Children',
-    // eslint-disable-next-line quotes
     description: "Inspire your child's love for reading",
     image:
       'https://books.google.com/books/content?id=ImlfPrztbgoC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
@@ -69,3 +70,42 @@ export const userData = {
   avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa3AOkgyZFdaTbT4PiGfV2cojBVreO6DANjw&usqp=CAU',
   email: 'r1zzrvk@gmail.com',
 }
+
+export const fastSearchBadges = [
+  {
+    id: '1',
+    value: 'king',
+    label: 'Stephen King',
+    type: ESearchTypes.AUTHOR,
+  },
+  {
+    id: '2',
+    value: 'tolkien',
+    label: 'Tolkien',
+    type: ESearchTypes.AUTHOR,
+  },
+  {
+    id: '3',
+    value: 'computers',
+    label: 'Computers',
+    type: ESearchTypes.CATEGORY,
+  },
+  {
+    id: '4',
+    value: 'cooking',
+    label: 'Cooking',
+    type: ESearchTypes.CATEGORY,
+  },
+  {
+    id: '5',
+    value: 'bloomsbury',
+    label: 'Bloomsbury',
+    type: ESearchTypes.PUBLISHER,
+  },
+  {
+    id: '6',
+    value: "o'reilly",
+    label: "O'Reilly",
+    type: ESearchTypes.PUBLISHER,
+  },
+]

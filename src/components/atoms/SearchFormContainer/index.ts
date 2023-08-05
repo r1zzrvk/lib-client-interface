@@ -1,0 +1,1 @@
+export { SearchFormContainer } from './SearchFormContainer'

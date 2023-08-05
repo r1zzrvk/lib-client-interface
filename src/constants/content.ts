@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 export const PROMO_FOOTER = {
   header: 'Google authorization',
   content:
@@ -12,7 +13,6 @@ export const PROMO_BANNER = {
 }
 
 export const CATEGORIES_BANNER = {
-  // eslint-disable-next-line quotes
   header: "Genres to cater to every reader's preference",
   subheader:
     'From romance to horror, self-help to autobiography,\nand travel to science fiction, we aim to provide something for everyone.',
@@ -34,3 +34,23 @@ export const PROFILE_CUBE = [
 ]
 
 export const GUEST_AVATAR = 'https://ibb.co/bzrYJ5w'
+
+export const SERVER_ERROR = {
+  title: 'Sorry, something went wrong!',
+  altText: 'server error',
+  imgUrl: '/503error.png',
+  subtitle: 'Please try again later or contact us.\nThank you for your patience.',
+}
+
+export const NOTHING_FOUND = {
+  title: 'Your search did not match any results',
+  altText: 'nothing found',
+  imgUrl: '/nothingfound.png',
+}
+
+export const STARTING_SEARCH = {
+  title: 'Your search results will be here',
+  altText: 'starting a search',
+  imgUrl: '/emptylist.png',
+  subtitle: "Find what you're looking for with ease!",
+}

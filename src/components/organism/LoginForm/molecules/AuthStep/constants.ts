@@ -5,7 +5,7 @@ type TNoticeMessage = {
   icon: TIcon
   message: string
 }
-// icon!
+// todo: icon!
 export const NoticeMessage: TNoticeMessage = {
   heading: 'Notice',
   icon: 'trash_regular',

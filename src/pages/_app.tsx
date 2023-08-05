@@ -7,7 +7,6 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
-// import { store } from '../redux/store/store'
 
 const MyApp: FC = ({ Component, pageProps }: any) => (
   <GoogleOAuthProvider clientId={CLIENT_ID}>

@@ -1,0 +1,1 @@
+export { SearchWithResults } from './SearchWithResults'
