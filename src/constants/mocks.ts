@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import { ESearchTypes } from '@types'
+import { EPagePaths, ESearchTypes, TMobileMenuItem } from '@types'
 
 export const categoriesCardData = [
   {
@@ -107,5 +107,32 @@ export const fastSearchBadges = [
     value: "o'reilly",
     label: "O'Reilly",
     type: ESearchTypes.PUBLISHER,
+  },
+]
+
+export const mobileMenuItems: TMobileMenuItem[] = [
+  {
+    id: 1,
+    title: 'Home',
+    icon: 'home_solid',
+    path: EPagePaths.MAIN,
+  },
+  {
+    id: 2,
+    title: 'Catalog',
+    icon: 'catalog_solid',
+    path: EPagePaths.CATALOG,
+  },
+  {
+    id: 3,
+    title: 'Lists',
+    icon: 'bookmark_solid',
+    path: EPagePaths.MY_LISTS,
+  },
+  {
+    id: 4,
+    title: 'Profile',
+    icon: 'user_solid',
+    path: EPagePaths.PROFILE,
   },
 ]

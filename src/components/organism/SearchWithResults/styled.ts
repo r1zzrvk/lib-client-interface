@@ -23,21 +23,21 @@ const BadgesContainer = styled.div`
   align-items: center;
   gap: ${theme.space.xs2}px;
   margin: 0px -${theme.space.sm}px;
-  padding: ${theme.space.xs2}px ${theme.space.sm}px ${theme.space.xs3}px ${theme.space.sm}px;
+  padding: ${theme.space.xs}px ${theme.space.sm}px ${theme.space.sm}px ${theme.space.sm}px;
   overflow: scroll;
   scrollbar-width: none;
 
   ::-webkit-scrollbar {
-    width: 0;
+    display: none;
   }
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     margin: 0px -${theme.space.lg}px;
-    padding: ${theme.space.xs2}px ${theme.space.lg}px ${theme.space.xs3}px ${theme.space.lg}px;
+    padding: ${theme.space.sm}px ${theme.space.lg}px ${theme.space.sm}px ${theme.space.lg}px;
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    padding: ${theme.space.xs2}px ${theme.space.xs3}px;
+    padding: ${theme.space.sm}px ${theme.space.xs3}px;
     margin: 0px;
   }
 `

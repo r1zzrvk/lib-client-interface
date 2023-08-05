@@ -19,7 +19,7 @@ const ListWrapper = styled.div<TListWrapperProps>`
   gap: ${theme.space.sm}px;
 
   ::-webkit-scrollbar {
-    width: 0;
+    display: none;
   }
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
