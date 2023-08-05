@@ -8,8 +8,8 @@ export enum EPagePaths {
 }
 
 export enum ESortingOptions {
-  NEWEST = 'newest',
-  RELEVANCE = 'relevance',
+  NEWEST = 'Newest',
+  RELEVANCE = 'Relevance',
 }
 
 export enum EFilterOptions {
@@ -30,4 +30,5 @@ export enum EFilterOptions {
   ROMANCE = 'Romance',
   THRILLER = 'Thriller',
   TRUE_CRIME = 'True Crime',
+  COMPUTERS = 'Computers',
 }

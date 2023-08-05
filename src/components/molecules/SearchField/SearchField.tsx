@@ -1,30 +1,35 @@
-import { FC } from 'react'
-import { Input, Modal } from '@ui-kit'
-import { useBreakpoint } from '@hooks'
-import { Styled } from './styled'
+import React, { FC, useState } from 'react'
+import { Input, Spacer } from '@ui-kit'
+import { theme } from '@constants'
+import { Background } from '@components/atoms'
+import { EPagePaths } from '@types'
+import { useRouter } from 'next/router'
 
-type TSearchFieldProps = {
-  onClick: (state: boolean) => void
-  isOpen: boolean
-  onChange: (search: string) => void
-}
+export const SearchField: FC = () => {
+  const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState('')
 
-export const SearchField: FC<TSearchFieldProps> = ({ onClick, isOpen, onChange }) => {
-  const { isMob, isTablet } = useBreakpoint()
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !!searchTerm) {
+      router.push(`${EPagePaths.CATALOG}?searchTerm=${searchTerm}`)
+    }
+  }
 
   return (
-    <Styled.Wrapper>
+    <Background color={theme.colors.main}>
+      <Spacer sizeMob={theme.space.sm} />
       <Input
-        placeholder="Type something..."
+        value={searchTerm}
+        placeholder="Search for books"
         type="text"
-        fluid={isMob}
-        onChange={e => onChange(e.target.value)}
-        onClick={() => onClick(true)}
-        isButton={isMob || isTablet}
+        color={theme.colors.beige}
+        fluid
+        onChange={e => setSearchTerm(e.target.value)}
+        hasIcon
+        isClearable
+        onClear={() => setSearchTerm('')}
+        onKeyDown={e => handleKeyDown(e)}
       />
-      <Modal isOpen={isOpen} onClose={() => onClick(false)}>
-        nothing
-      </Modal>
-    </Styled.Wrapper>
+    </Background>
   )
 }

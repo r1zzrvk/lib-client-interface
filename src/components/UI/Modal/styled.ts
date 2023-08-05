@@ -5,6 +5,10 @@ type TWrapperProps = {
   isOpen: boolean
 }
 
+type TModalProps = {
+  sidePadding: number
+}
+
 const Wrapper = styled.div<TWrapperProps>`
   position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
@@ -15,9 +19,11 @@ const Wrapper = styled.div<TWrapperProps>`
   right: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
 `
-const Modal = styled.div`
+const Modal = styled.div<TModalProps>`
   display: flex;
+  padding: ${({ sidePadding }) => `0px ${sidePadding}px`};
   width: 100%;
   height: 100%;
   background-color: white;
@@ -39,7 +45,6 @@ const Modal = styled.div`
 const Icon = styled.div`
   cursor: pointer;
   align-self: flex-end;
-  transform: rotate(45deg);
   padding-right: ${theme.space.sm}px;
   padding-top: ${theme.space.md}px;
 `

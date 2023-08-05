@@ -6,7 +6,7 @@ import { getPagesArray } from '@utils'
 import { Styled } from './styled'
 
 type TCarouselProps<T> = {
-  component: (item: T) => React.ReactNode
+  component: (item: T) => React.ReactNode | Element
   items: T[]
   contentPerPage?: number
 }

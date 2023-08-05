@@ -1,8 +1,9 @@
 import { FC } from 'react'
+import { useRouter } from 'next/router'
 import { Text, Carousel, Spacer } from '@ui-kit'
 import { SmallCard } from '@components/molecules'
 import { categoriesCardData, theme } from '@constants'
-import { TSmallCard } from '@types'
+import { EPagePaths, TSmallCard } from '@types'
 import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 import { CategoriesSlider } from '../CategoriesSlider'
@@ -13,9 +14,15 @@ type TCategoriesBannerProps = {
   text: string
 }
 
-const CarouselComponent: FC<TSmallCard> = ({ title, description, image, id }) => (
-  <SmallCard title={title} description={description} image={image} key={id} />
-)
+const CarouselComponent: FC<TSmallCard> = ({ title, description, image, id }) => {
+  const router = useRouter()
+
+  const handleCardClick = (title: string) => {
+    router.push(`${EPagePaths.CATALOG}?category=${title}`)
+  }
+
+  return <SmallCard title={title} description={description} image={image} key={id} onClick={handleCardClick} />
+}
 
 export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, subheader }) => {
   const { isSm, isTablet, isMob } = useBreakpoint()

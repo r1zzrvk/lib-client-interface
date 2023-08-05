@@ -7,10 +7,11 @@ type TSmallCardProps = {
   title: string
   description: string
   image: string
+  onClick: (title: string) => void
 }
 
-export const SmallCard: FC<TSmallCardProps> = ({ title, description, image }) => (
-  <Styled.Wrapper>
+export const SmallCard: FC<TSmallCardProps> = ({ title, description, image, onClick }) => (
+  <Styled.Wrapper onClick={() => onClick(title)}>
     <Spacer size={theme.space.lg} samespace />
     <Text
       fontWeight={theme.fonts.weight.medium}
@@ -37,8 +38,7 @@ export const SmallCard: FC<TSmallCardProps> = ({ title, description, image }) =>
         </Text>
       </Styled.TextContainer>
     </Styled.Content>
-    {/*  eslint-disable-next-line @typescript-eslint/no-empty-function */}
-    <Button onClick={() => {}} size="sm" isGhost>
+    <Button onClick={() => onClick(title)} size="sm" isGhost>
       View all
     </Button>
   </Styled.Wrapper>

@@ -15,7 +15,7 @@ export const Error404: FC = () => {
 
   return (
     <Flexbox direction="column" align="center" justify="center">
-      <ResponsiveImage src="/page404.png" alt="404" width={800} height={620} isEverywhere />
+      <ResponsiveImage src="/page404.png" alt="404" width={600} height={420} isEverywhere />
       <Text
         color={theme.colors.grey}
         fontSize={theme.fonts.size.header.lg}

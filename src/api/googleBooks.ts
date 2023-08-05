@@ -1,19 +1,7 @@
-import { GOOGLE_API } from '@constants'
-import { EFilterOptions, ESortingOptions } from '@types'
-import { concatenateParams } from '@utils'
 import axios from 'axios'
-import { TResponse } from 'types/books'
-
-type TSearchBookProps = {
-  searchTerm: string
-  page: number
-  maxResults?: number
-  sortingBy?: ESortingOptions
-  filterByCategory?: EFilterOptions
-  filterByAuthor?: string
-  searchByTitle?: string
-  searchByPublisher?: string
-}
+import { GOOGLE_API } from '@constants'
+import { EFilterOptions, ESortingOptions, TResponse, TSearchBookProps } from '@types'
+import { concatenateParams } from '@utils'
 
 export const searchBook = async ({
   searchTerm,
@@ -22,7 +10,7 @@ export const searchBook = async ({
   sortingBy = ESortingOptions.RELEVANCE,
   filterByCategory,
   filterByAuthor,
-  searchByTitle = searchTerm,
+  searchByTitle,
   searchByPublisher,
 }: TSearchBookProps) => {
   const startIndexOfPage = page === 1 ? 1 : 1 + page * maxResults
@@ -42,7 +30,7 @@ export const searchBook = async ({
       q: concatenateParams(terms),
       startIndex: startIndexOfPage,
       maxResults,
-      orderBy: sortingBy,
+      orderBy: sortingBy || undefined,
     },
   })
 

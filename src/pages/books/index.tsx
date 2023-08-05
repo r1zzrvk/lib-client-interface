@@ -1,45 +1,103 @@
-import { FC, useEffect, useState } from 'react'
-import { Card, Paginator, Spacer } from '@ui-kit'
-import { theme } from '@constants'
-import { useDebouncedCallback, usePagination } from '@hooks'
-import { THeaderFooter, TResponse } from '@types'
-import { getStaticPageProps, searchBook } from 'api'
-import { ItemList, SearchField } from '@components/molecules'
-import { ItemListWrapper } from '@components/atoms'
+import { FC, useState } from 'react'
+import { Form, Formik } from 'formik'
+import { Modal, Spacer } from '@ui-kit'
+import { searchFormValues, theme } from '@constants'
+import { useBreakpoint, useDebouncedCallback, usePagination } from '@hooks'
+import { THeaderFooter, TResponse, TSearchBookProps } from '@types'
+import { getStaticPageProps, searchBook } from '@api'
+import { FiltersForm, SearchWithResults } from '@components/organism'
+import { SearchFormContainer } from '@components/atoms'
 import { LayoutTemplate } from '@templates'
 
 export const getStaticProps = getStaticPageProps
 
 const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [searchField, setSearchField] = useState('')
+  const [isOpened, setIsOpened] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const { isMob, isTablet } = useBreakpoint()
   const [searchData, setSearchData] = useState<TResponse | null>(null)
   const { items, totalItems } = searchData || {}
-  const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({ contentPerPage: 10, itemsCount: totalItems || 0 })
+  const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({
+    contentPerPage: isMob ? 5 : 10,
+    itemsCount: totalItems || 0,
+  })
 
-  useEffect(() => {
-    if (searchField) {
-      searchBook({ searchTerm: searchField, page: page }).then((data) => setSearchData(data))
-    }
-  }, [searchField, page])
+  const debounedSearch = useDebouncedCallback(
+    ({
+      searchTerm,
+      page,
+      sortingBy,
+      filterByCategory,
+      filterByAuthor,
+      searchByTitle,
+      searchByPublisher,
+    }: TSearchBookProps) => {
+      setIsLoading(true)
 
-  const handleSearchChange = useDebouncedCallback((term: string) => {
-    setSearchField(term)
-  }, 300)
+      searchBook({
+        searchTerm,
+        page,
+        filterByCategory,
+        sortingBy,
+        filterByAuthor,
+        searchByPublisher,
+        searchByTitle,
+      })
+        .then(data => setSearchData(data))
+        .catch(e => {
+          if (e) {
+            setIsError(true)
+          }
+        })
+        .finally(() => setIsLoading(false))
+    },
+    300,
+  )
 
   return (
-    <LayoutTemplate headerFooterData={headerFooterData} >
-      <Spacer size={theme.space.xl} sizeMob={theme.space.sm}/>
-      <SearchField onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} onChange={handleSearchChange}/>
-      <ItemListWrapper>
-        {/* To do: сделать быстрый поиск по критериям кубами разных размеров
-            обработать кейс, когда ничего не найдено + обработать ошибку запроса
-        */}
-        {items && <ItemList renderItem={book => <Card {...book} />} items={items.slice(0, packSize)} />}
-      </ItemListWrapper>
-      <Spacer size={theme.space.xl} />
-      {totalPages > 1 && <Paginator totalPages={totalPages} currentPage={page} nextPage={nextPage} prevPage={prevPage} setPage={setPage} />}
-      <Spacer size={theme.space.xs} samespace/>
+    <LayoutTemplate headerFooterData={headerFooterData}>
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+      <Formik
+        initialValues={searchFormValues}
+        onSubmit={({ authorField, categoryField, publisherField, searchField, sorting, titleField }) =>
+          debounedSearch({
+            searchTerm: searchField,
+            page: page,
+            filterByCategory: categoryField,
+            sortingBy: sorting,
+            filterByAuthor: authorField,
+            searchByPublisher: publisherField,
+            searchByTitle: titleField,
+          })
+        }
+      >
+        <Form>
+          <SearchFormContainer direction="row" justify="start" gap={40}>
+            <SearchWithResults
+              cards={items}
+              debounedSearch={debounedSearch}
+              onModalOpen={() => setIsOpened(true)}
+              nextPage={nextPage}
+              packSize={packSize}
+              page={page}
+              prevPage={prevPage}
+              setPage={setPage}
+              totalPages={totalPages}
+              totalItems={totalItems}
+              isRequestError={isError}
+              isLoading={isLoading}
+            />
+            {isMob || isTablet || <FiltersForm />}
+            {(isMob || isTablet) && (
+              <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} sidePadding={theme.space.sm}>
+                <FiltersForm />
+              </Modal>
+            )}
+          </SearchFormContainer>
+        </Form>
+      </Formik>
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
     </LayoutTemplate>
   )
 }

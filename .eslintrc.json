@@ -48,6 +48,7 @@
     "react/no-unescaped-entities": "warn",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
+    "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "max-lines-per-function": ["warn", 200],
     "import/no-default-export": "warn",

@@ -1,9 +1,14 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+import { theme } from '@constants'
 
 type TWrapperProps = {
   color: string
   fluid: boolean
+  isIcon?: boolean
+}
+
+type TIconProps = {
+  isActive: boolean
 }
 
 const Wrapper = styled.div<TWrapperProps>`
@@ -13,6 +18,10 @@ const Wrapper = styled.div<TWrapperProps>`
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
   border-radius: ${theme.radiuses.sm}px;
+
+  :active {
+    outline: black;
+  }
 `
 
 const Input = styled.input<TWrapperProps>`
@@ -21,10 +30,13 @@ const Input = styled.input<TWrapperProps>`
   font-size: ${theme.fonts.size.regular.sm}px;
   line-height: ${theme.fonts.height.regular.sm}px;
   font-weight: ${theme.fonts.weight.medium};
+  font-family: '${theme.fonts.family}', sans-serif;
   border-radius: ${theme.radiuses.sm}px;
   width: ${({ fluid }) => (fluid ? '100%' : '300px')};
   border: none;
   outline: none;
+  padding: ${({ isIcon }) => (isIcon ? '0px' : `0px 0px 0px ${theme.space.sm}px`)};
+  text-align: left;
 
   &::placeholder {
     opacity: 1;
@@ -34,7 +46,24 @@ const Input = styled.input<TWrapperProps>`
   }
 `
 
+const CustomIcon = styled.div<TIconProps>`
+  position: relative;
+  transition: 0.3s all;
+  transform: ${({ isActive }) => (isActive ? 'rotate(180deg)' : 'none')};
+`
+
+const Dot = styled.div`
+  position: absolute;
+  background-color: ${theme.colors.red};
+  width: 8px;
+  height: 8px;
+  top: 12px;
+  left: 32px;
+  border-radius: ${theme.radiuses.round}px;
+`
 export const Styled = {
   Input,
   Wrapper,
+  CustomIcon,
+  Dot,
 }
