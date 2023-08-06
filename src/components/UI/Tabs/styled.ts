@@ -16,7 +16,7 @@ const Wrapper = styled.div<TWrapperProps>`
   padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
 
   ::-webkit-scrollbar {
-    width: 0;
+    display: none;
   }
 `
 

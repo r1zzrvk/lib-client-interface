@@ -1,3 +1,5 @@
+import { EFilterOptions, ESortingOptions } from './common'
+
 type TDimemsions = {
   height: string
 }
@@ -100,4 +102,15 @@ export type TResponse = {
   items: TBook[]
   kind: string
   totalItems: number
+}
+
+export type TSearchBookProps = {
+  searchTerm: string
+  page: number
+  maxResults?: number
+  sortingBy?: ESortingOptions | string
+  filterByCategory?: EFilterOptions | string
+  filterByAuthor?: string
+  searchByTitle?: string
+  searchByPublisher?: string
 }

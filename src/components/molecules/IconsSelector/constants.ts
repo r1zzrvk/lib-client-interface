@@ -11,6 +11,10 @@ import {
   faAngleLeft,
   faAngleRight,
   faLayerGroup,
+  faXmark,
+  faCaretDown,
+  faCaretUp,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faTrashAlt, faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { TIcon } from '@types'
@@ -26,7 +30,11 @@ export const icons: Record<TIcon, IconDefinition> = {
   bookmark_solid: faBookmarkSolid,
   caretLeft_solid: faAngleLeft,
   caretRight_solid: faAngleRight,
+  caretDown_solid: faCaretDown,
+  caretUp_solid: faCaretUp,
   catalog_solid: faLayerGroup,
+  cross_solid: faXmark,
+  check_solid: faCheck,
   user_regular: faUser,
   trash_regular: faTrashAlt,
   bookmark_regular: faBookmark,

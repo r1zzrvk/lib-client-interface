@@ -1,15 +1,33 @@
-import { MobileCard } from 'components/molecules'
 import { FC } from 'react'
+import { useRouter } from 'next/router'
+import { EPagePaths, TSmallCard } from '@types'
+import { SmallCard } from '@components/molecules'
 import { Styled } from './styled'
 
-const arr = [1, 2, 3, 4, 5, 6, 7]
+type TCategoriesSliderProps = {
+  items: TSmallCard[]
+}
 
-export const CategoriesSlider: FC = () => (
-  <Styled.OutOfContainerWrap>
-    <Styled.Wrapper>
-      {arr.map(item => (
-        <MobileCard key={item} size="sm" imgUrl="https://i.ibb.co/jw89YFm/Group-14.png" title="Dressers" />
-      ))}
-    </Styled.Wrapper>
-  </Styled.OutOfContainerWrap>
-)
+export const CategoriesSlider: FC<TCategoriesSliderProps> = ({ items }) => {
+  const router = useRouter()
+
+  const handleCardClick = (title: string) => {
+    router.push(`${EPagePaths.CATALOG}?category=${title}`)
+  }
+
+  return (
+    <Styled.OutOfContainerWrap>
+      <Styled.Wrapper>
+        {items.map(({ description, id, image, title }) => (
+          <SmallCard
+            title={title}
+            description={description}
+            image={image}
+            key={id}
+            onClick={() => handleCardClick(title)}
+          />
+        ))}
+      </Styled.Wrapper>
+    </Styled.OutOfContainerWrap>
+  )
+}

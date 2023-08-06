@@ -1,1 +1,0 @@
-export { DesktopCard } from './DesktopCard'

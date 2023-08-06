@@ -8,6 +8,9 @@ type TStyledProps = {
   fontSizeMob: number
   fontWeightMob: number
   fontHeightMob: number
+  fontSizeTablet: number
+  fontWeightTablet: number
+  fontHeightTablet: number
   color: string
   marginBottom: number
   marginBottomMob: number
@@ -31,12 +34,17 @@ const TextWrapper = styled.p<TStyledProps>`
   text-align: ${({ align }) => align};
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    font-size: ${({ fontSize }) => fontSize}px;
-    font-weight: ${({ fontWeight }) => fontWeight};
-    line-height: ${({ fontHeight }) => fontHeight}px;
+    font-size: ${({ fontSizeTablet }) => fontSizeTablet}px;
+    font-weight: ${({ fontWeightTablet }) => fontWeightTablet};
+    line-height: ${({ fontHeightTablet }) => fontHeightTablet}px;
     margin-bottom: ${({ marginBottom }) => marginBottom}px;
   }
 
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    font-size: ${({ fontSize }) => fontSize}px;
+    font-weight: ${({ fontWeight }) => fontWeight};
+    line-height: ${({ fontHeight }) => fontHeight}px;
+  }
   &:hover {
     color: ${({ color, asLink }) =>
       asLink && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};

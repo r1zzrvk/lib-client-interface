@@ -1,14 +1,12 @@
 import Head from 'next/head'
 import { FC } from 'react'
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import { LayoutTemplate } from '@templates'
 import { CLIENT_ID } from '@constants'
 import '../styles/main.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
-// import { store } from '../redux/store/store'
 
 const MyApp: FC = ({ Component, pageProps }: any) => (
   <GoogleOAuthProvider clientId={CLIENT_ID}>
@@ -20,9 +18,7 @@ const MyApp: FC = ({ Component, pageProps }: any) => (
 
       <title>Library | Book searching app</title>
     </Head>
-      <LayoutTemplate>
         <Component {...pageProps} />
-      </LayoutTemplate>
   </GoogleOAuthProvider>
 )
 

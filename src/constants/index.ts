@@ -1,6 +1,6 @@
 export * from './theme'
-export * from './headerFooterData'
 export * from './ui'
 export * from './content'
 export * from './mocks'
 export * from './api'
+export * from './searchForm'

@@ -1,1 +1,0 @@
-export { TipsBanner } from './TipsBanner'
