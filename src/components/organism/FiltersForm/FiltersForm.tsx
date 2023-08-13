@@ -6,7 +6,11 @@ import { getOptionsFromObject } from '@utils'
 import { EFilterOptions, ESortingOptions, TSearchFormValues } from '@types'
 import { Styled } from './styled'
 
-export const FiltersForm: FC = () => {
+type TFilterFormProps = {
+  onClick: () => void
+}
+
+export const FiltersForm: FC<TFilterFormProps> = ({ onClick }) => {
   const { setFieldValue, values, setValues } = useFormikContext<TSearchFormValues>()
   const { authorField, categoryField, publisherField, titleField, sorting } = values
 
@@ -85,9 +89,14 @@ export const FiltersForm: FC = () => {
         onClear={() => setFieldValue('publisherField', '')}
         value={publisherField}
       />
-      <Button onClick={handleResetValues} isFluid type="button">
-        Reset
-      </Button>
+      <Styled.ButtonBlock>
+        <Button onClick={onClick} isFluid type="button">
+          View
+        </Button>
+        <Button onClick={handleResetValues} isFluid type="button" isGhost>
+          Reset filters
+        </Button>
+      </Styled.ButtonBlock>
     </Styled.Filters>
   )
 }

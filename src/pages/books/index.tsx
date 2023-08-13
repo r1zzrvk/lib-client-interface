@@ -87,10 +87,10 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
               isRequestError={isError}
               isLoading={isLoading}
             />
-            {isMob || isTablet || <FiltersForm />}
+            {isMob || isTablet || <FiltersForm onClick={() => setIsOpened(false)} />}
             {(isMob || isTablet) && (
               <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} sidePadding={theme.space.sm}>
-                <FiltersForm />
+                <FiltersForm onClick={() => setIsOpened(false)} />
               </Modal>
             )}
           </SearchFormContainer>

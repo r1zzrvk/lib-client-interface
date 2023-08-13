@@ -24,6 +24,12 @@ export const Filters = styled.div`
   }
 `
 
+const ButtonBlock = styled.div`
+  margin-top: ${theme.space.xs2}px;
+  width: 100%;
+`
+
 export const Styled = {
   Filters,
+  ButtonBlock,
 }

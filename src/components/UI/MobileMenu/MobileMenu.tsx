@@ -10,7 +10,7 @@ import { Text } from '../Text'
 export const MobileMenu: FC = () => {
   const router = useRouter()
 
-  const getActivePage = (path: EPagePaths) => (path === router.route ? theme.colors.main : theme.colors.grey)
+  const getActivePage = (path: EPagePaths) => (path === router.route ? theme.colors.grey : theme.colors.main)
 
   const handleNavigateTo = (path: EPagePaths) => {
     router.push(path)
