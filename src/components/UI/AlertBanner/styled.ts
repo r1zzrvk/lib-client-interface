@@ -13,13 +13,21 @@ const Wrapper = styled.div`
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: ${theme.space.xs2}px 20px ${theme.space.xs2}px 20px;
-  border-bottom: 1px solid ${theme.colors.main};
+  align-items: center;
+  padding: ${theme.space.xs}px ${theme.space.sm}px ${theme.space.xs3}px ${theme.space.sm}px;
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.xs2}px ${theme.space.md}px;
+  }
 `
 
 const Body = styled.div`
-  padding: ${theme.space.xs2}px 20px ${theme.space.xs2}px 20px;
+  padding: ${theme.space.xs3}px ${theme.space.sm}px ${theme.space.xs}px ${theme.space.sm}px;
   opacity: 0.7;
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    padding: ${theme.space.xs2}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
+  }
 `
 export const Styled = {
   Wrapper,

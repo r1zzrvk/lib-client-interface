@@ -1,9 +1,6 @@
-type TLoginForm = {
-  firstName: string
-  lastName: string
-}
+import { TLoginFormValues } from './types'
 
-export const LoginForm: TLoginForm = {
+export const loginFormValues: TLoginFormValues = {
   firstName: '',
   lastName: '',
 }

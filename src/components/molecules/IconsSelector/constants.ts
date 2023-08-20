@@ -15,6 +15,7 @@ import {
   faCaretDown,
   faCaretUp,
   faCheck,
+  faInfo,
 } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faTrashAlt, faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { TIcon } from '@types'
@@ -35,6 +36,7 @@ export const icons: Record<TIcon, IconDefinition> = {
   catalog_solid: faLayerGroup,
   cross_solid: faXmark,
   check_solid: faCheck,
+  info_solid: faInfo,
   user_regular: faUser,
   trash_regular: faTrashAlt,
   bookmark_regular: faBookmark,

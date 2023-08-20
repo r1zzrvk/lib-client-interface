@@ -1,0 +1,1 @@
+export { IconBlock } from './IconBlock'

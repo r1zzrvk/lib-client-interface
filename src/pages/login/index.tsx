@@ -1,19 +1,20 @@
 import { FC } from 'react'
-import { Flexbox } from '@components/atoms'
 import { LoginForm } from '@components/organism'
 import { Spacer } from '@ui-kit'
 import { theme } from '@constants'
+import { LayoutTemplate } from '@templates'
+import { getStaticPageProps } from '@api'
+import { THeaderFooter } from '@types'
 
+export const getStaticProps = getStaticPageProps
 
-const LoginPage: FC = () => {
+const LoginPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => {
   return (
-    <>
-      <Spacer size={theme.space.xl4} />
-      <Flexbox justify="center" align="center">
+    <LayoutTemplate headerFooterData={headerFooterData}>
+      <Spacer size={theme.space.xl4} sizeMob={theme.space.xl}/>
         <LoginForm />
-      </Flexbox>
       <Spacer size={theme.space.xl4} />
-    </>
+    </LayoutTemplate>
   )
 }
 

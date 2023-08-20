@@ -40,6 +40,7 @@ export type TIcon =
   | 'catalog_solid'
   | 'cross_solid'
   | 'check_solid'
+  | 'info_solid'
   | 'user_regular'
   | 'trash_regular'
   | 'bookmark_regular'
