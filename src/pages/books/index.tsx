@@ -23,7 +23,7 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
     itemsCount: totalItems || 0,
   })
 
-  const debounedSearch = useDebouncedCallback(
+  const debouncedSearch = useDebouncedCallback(
     ({
       searchTerm,
       page,
@@ -61,7 +61,7 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
       <Formik
         initialValues={searchFormValues}
         onSubmit={({ authorField, categoryField, publisherField, searchField, sorting, titleField }) =>
-          debounedSearch({
+          debouncedSearch({
             searchTerm: searchField,
             page: page,
             filterByCategory: categoryField,
@@ -76,7 +76,7 @@ const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }
           <SearchFormContainer direction="row" justify="start" gap={40}>
             <SearchWithResults
               searchData={searchData}
-              debounedSearch={debounedSearch}
+              debouncedSearch={debouncedSearch}
               onModalOpen={() => setIsOpened(true)}
               nextPage={nextPage}
               packSize={packSize}

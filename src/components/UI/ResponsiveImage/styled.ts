@@ -7,11 +7,13 @@ type TImageProps = {
   isSm?: boolean
   isMd?: boolean
   isLg?: boolean
+  isTouchable?: boolean
 }
 
 const Image = styled.div<TImageProps>`
   display: ${({ isMob }) => (isMob ? 'block' : 'none')};
   flex-shrink: 0;
+  cursor: ${({ isTouchable }) => (isTouchable ? 'pointer' : 'default')};
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: ${({ isTablet }) => (isTablet ? 'block' : 'none')};
