@@ -8,14 +8,12 @@ import { THeaderFooter } from '@types'
 
 export const getStaticProps = getStaticPageProps
 
-const LoginPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => {
-  return (
-    <LayoutTemplate headerFooterData={headerFooterData}>
-      <Spacer size={theme.space.xl4} sizeMob={theme.space.xl}/>
-        <LoginForm />
-      <Spacer size={theme.space.xl4} />
-    </LayoutTemplate>
-  )
-}
+const LoginPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => (
+  <LayoutTemplate headerFooterData={headerFooterData}>
+    <Spacer size={theme.space.xl4} sizeMob={theme.space.xl} />
+    <LoginForm />
+    <Spacer size={theme.space.xl4} />
+  </LayoutTemplate>
+)
 
 export default LoginPage

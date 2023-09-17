@@ -1,11 +1,10 @@
 import { FC } from 'react'
 import { Card } from '@ui-kit'
 import { ItemListWrapper } from '@components/atoms'
-import { ItemList } from '@components/molecules'
+import { ItemList, StatusIllustration } from '@components/molecules'
 import { TResponse } from '@types'
 import { useBreakpoint } from '@hooks'
 import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
-import { StatusIllustration } from '../StatusIllustration'
 
 type TResultsProps = {
   searchData: TResponse | null

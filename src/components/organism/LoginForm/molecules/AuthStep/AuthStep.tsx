@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { useGoogleLogin } from '@react-oauth/google'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { theme } from '@constants'
-import { useBreakpoint } from '@hooks'
+import { useAppDispatch, useBreakpoint } from '@hooks'
+import { auth } from '@api'
+import { setUser } from '@reducers'
 import { NoticeMessage } from './constants'
 import { StepWrapper } from '../../atoms'
 
@@ -14,22 +14,18 @@ type TAuthStepProps = {
 }
 
 export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
-  const router = useRouter()
+  const dispatch = useAppDispatch()
   const { isMob } = useBreakpoint()
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      await axios
-        .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: {
-            Authorization: `Bearer ${codeResponse.access_token}`,
-          },
-        })
-        .then(data => data)
-        .then(() => router.push('/'))
-        .catch(() => onError())
-    },
-  })
+  const googleProvider = new GoogleAuthProvider()
+
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider)
+      .then(({ user }) => {
+        dispatch(setUser(user))
+      })
+      .catch(() => onError())
+  }
 
   const loginAsGuest = () => nextStep()
 

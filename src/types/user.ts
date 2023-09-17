@@ -1,3 +1,5 @@
+import { User } from 'firebase/auth'
+
 export type TUser = {
   id: string
   firstName: string
@@ -6,9 +8,19 @@ export type TUser = {
   email: string
 }
 
+// deprecated
 export type TGuestUser = {
   firstName: string
   lastName: string
   avatar: string
   isGuest: boolean
+}
+
+export type TFirebaseUser = User
+
+// deprecated
+export enum EAuthorizationStatus {
+  AUTH = 'auth',
+  GUEST = 'guest',
+  UNKNOWN = 'unknown',
 }
