@@ -1,6 +1,7 @@
 #  Getting started :wave:
-Web application that implements [https://nextjs-library-app.vercel.app/](https://lib-booksearch.vercel.app/)
+Web application that implements [lib-booksearch.vercel.app](https://lib-booksearch.vercel.app/)
 
+Develop branch deployed here [lib-test-app.vercel.app](https://lib-test-app.vercel.app/)
 # Development :computer:
 `npm run dev` - to start application in development mode. App will be available at http://localhost:3000. 
 - Atomic file system is mandatory. Each component is in its own folder along with its styles, tests and other files intended for it.
