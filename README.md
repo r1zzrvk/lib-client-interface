@@ -1,5 +1,5 @@
 #  Getting started :wave:
-Web application that implements https://nextjs-library-app.vercel.app/
+Web application that implements [https://nextjs-library-app.vercel.app/](https://lib-booksearch.vercel.app/)
 
 # Development :computer:
 `npm run dev` - to start application in development mode. App will be available at http://localhost:3000. 
