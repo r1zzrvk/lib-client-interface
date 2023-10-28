@@ -1,8 +1,8 @@
 export const concatenateParams = (object = {}) =>
-  Object.entries(object).reduce((t, v) => {
-    if ((v[1] === undefined || v[1] === '') && v[0] !== '') {
-      return t
+  Object.entries(object).reduce((acc, item) => {
+    if ((item[1] === undefined || item[1] === '') && item[0] !== '') {
+      return acc
     }
 
-    return `${t}${v[0]}${v[1]}`
+    return `${acc}${item[0]}${item[1]}`
   }, '')

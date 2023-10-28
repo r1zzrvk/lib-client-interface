@@ -1,13 +1,40 @@
 import { FC } from 'react'
+import { AVATAR_SIZES, theme } from '@constants'
 import { Styled } from './styled'
+import { Skeleton } from '../Skeleton'
 
 type TAvatarProps = {
-  src: string
+  src?: string | null
+  size?: 'sm' | 'lg'
+  hasAction?: boolean
 }
-// TODO: Добавить размеры
-export const Avatar: FC<TAvatarProps> = ({ src }) => (
-  <>
-    <Styled.Avatar src={src} alt="avatar" width={52} height={52} isMob />
-    <Styled.Avatar src={src} alt="avatar" width={72} height={72} isTablet isSm isMd isLg />
-  </>
+
+export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
+  <div>
+    {src ? (
+      <>
+        <Styled.Avatar
+          src={src}
+          alt="avatar"
+          width={AVATAR_SIZES[size]}
+          height={AVATAR_SIZES[size]}
+          hasAction={hasAction}
+          isMob
+        />
+        <Styled.Avatar
+          src={src}
+          alt="avatar"
+          width={AVATAR_SIZES[size]}
+          height={AVATAR_SIZES[size]}
+          hasAction={hasAction}
+          isTablet
+          isSm
+          isMd
+          isLg
+        />
+      </>
+    ) : (
+      <Skeleton width={AVATAR_SIZES[size]} height={AVATAR_SIZES[size]} radius={theme.radiuses.round} />
+    )}
+  </div>
 )

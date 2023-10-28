@@ -1,5 +1,6 @@
-import { TFirebaseUser } from '@types'
+import { EAuthorizationStatus, TFirebaseUser } from '@types'
 
 export type TAuthState = {
   user: TFirebaseUser | null
+  authStatus: EAuthorizationStatus
 }

@@ -4,16 +4,18 @@ import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { theme } from '@constants'
 import { useAppDispatch, useBreakpoint } from '@hooks'
 import { auth } from '@api'
-import { setUser } from '@reducers'
+import { setAuthStatus, setUser } from '@reducers'
+import { EAuthorizationStatus } from '@types'
 import { NoticeMessage } from './constants'
 import { StepWrapper } from '../../atoms'
 
 type TAuthStepProps = {
-  nextStep: () => void
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // nextStep: () => void
   onError: () => void
 }
 
-export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
+export const AuthStep: FC<TAuthStepProps> = ({ onError }) => {
   const dispatch = useAppDispatch()
   const { isMob } = useBreakpoint()
 
@@ -23,11 +25,15 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
     await signInWithPopup(auth, googleProvider)
       .then(({ user }) => {
         dispatch(setUser(user))
+        dispatch(setAuthStatus(EAuthorizationStatus.AUTH))
       })
-      .catch(() => onError())
+      .catch(() => {
+        onError()
+        dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
+      })
   }
-
-  const loginAsGuest = () => nextStep()
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // const loginAsGuest = () => nextStep()
 
   return (
     <StepWrapper>
@@ -46,9 +52,10 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
       <Button size="md" onClick={loginWithGoogle} isFluid={isMob}>
         Sign in with Google
       </Button>
-      <Button size="md" onClick={loginAsGuest} isGhost>
+      {/* Отключено: пока не реализована регистрация и авторизация нового пользователя */}
+      {/* <Button size="md" onClick={loginAsGuest} isGhost>
         Continue as guest
-      </Button>
+      </Button> */}
       <Spacer size={theme.space.xs} sizeMob={theme.space.xl} />
       <AlertBanner heading={NoticeMessage.heading} icon={NoticeMessage.icon}>
         <Text

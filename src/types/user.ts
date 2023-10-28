@@ -18,9 +18,7 @@ export type TGuestUser = {
 
 export type TFirebaseUser = User
 
-// deprecated
 export enum EAuthorizationStatus {
   AUTH = 'auth',
-  GUEST = 'guest',
-  UNKNOWN = 'unknown',
+  NO_AUTH = 'no-auth',
 }
