@@ -1,8 +1,8 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-type TWrapperProps = {
-  marginTop: number | undefined
+type TTabsContainerProps = {
+  marginTop?: number
 }
 
 function getMargin(marginTop?: number): string {
@@ -11,23 +11,17 @@ function getMargin(marginTop?: number): string {
     : `0px -${theme.space.sm}px 0px -${theme.space.sm}px`
 }
 
-const Wrapper = styled.div<TWrapperProps>`
+const Wrapper = styled.div`
   display: flex;
-  align-items: flex-start;
-  flex-direction: 'column';
-  overflow-x: auto;
-  padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
-  margin: ${({ marginTop }) => getMargin(marginTop)};
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    margin: ${({ marginTop }) => `${marginTop}px 0px 0px 0px`};
-  }
+  flex-direction: column;
+  margin-top: ${theme.space.sm}px;
 `
 
+const TabsContainer = styled.div<TTabsContainerProps>`
+  padding: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
+  margin: ${({ marginTop }) => getMargin(marginTop)};
+`
 export const Styled = {
   Wrapper,
+  TabsContainer,
 }

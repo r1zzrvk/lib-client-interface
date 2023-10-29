@@ -20,17 +20,8 @@ export const CATEGORIES_BANNER = {
 }
 
 export const PROFILE_MENU = [
-  { id: '1', title: 'My purchases' },
-  { id: '2', title: 'Points piggy bank' },
-  { id: '3', title: 'Payment settings' },
-  { id: '4', title: 'Settings' },
-  { id: '5', title: 'Support' },
-]
-
-export const PROFILE_CUBE = [
-  { id: '1', header: '-15%', content: 'for any chair', color: 'secondary' },
-  { id: '2', header: '1000 points', content: 'Hand over\u000Aold furniture\u000Aand get', color: 'main' },
-  { id: '3', header: '200\u000Awelcome\u000Apoints', content: 'for the first purchase', color: 'secondary' },
+  { id: '1', title: 'Personal information' },
+  { id: '2', title: 'My lists' },
 ]
 
 export const GUEST_AVATAR = 'https://ibb.co/bzrYJ5w'
