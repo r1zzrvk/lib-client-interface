@@ -18,7 +18,7 @@ export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
           alt="avatar"
           width={AVATAR_SIZES[size]}
           height={AVATAR_SIZES[size]}
-          hasAction={hasAction}
+          isTouchable={hasAction}
           isMob
         />
         <Styled.Avatar
@@ -26,7 +26,7 @@ export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
           alt="avatar"
           width={AVATAR_SIZES[size]}
           height={AVATAR_SIZES[size]}
-          hasAction={hasAction}
+          isTouchable={hasAction}
           isTablet
           isSm
           isMd

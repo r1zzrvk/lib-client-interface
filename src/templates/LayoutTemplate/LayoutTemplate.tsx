@@ -1,12 +1,13 @@
 import { ReactNode, FC, useEffect, useCallback } from 'react'
 import { Footer, Header, MobileMenu, Spacer } from '@ui-kit'
-import { PaddingContainer } from '@components/atoms'
+import { Flexbox, PaddingContainer } from '@components/atoms'
 import { theme } from '@constants'
-import { EAuthorizationStatus, THeaderFooter } from '@types'
+import { EAuthorizationStatus, EPagePaths, THeaderFooter } from '@types'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useAppDispatch } from '@hooks'
 import { setAuthStatus, setUser } from '@reducers'
 import { auth } from '@api'
+import { useRouter } from 'next/router'
 
 type TLayoutTemplateProps = {
   children: ReactNode
@@ -14,6 +15,8 @@ type TLayoutTemplateProps = {
 }
 
 export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFooterData }) => {
+  const router = useRouter()
+  const { pathname, push } = router
   const { header, footer } = headerFooterData || {}
   const dispatch = useAppDispatch()
 
@@ -28,15 +31,19 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
 
       dispatch(setUser(null))
       dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
+
+      if (pathname === EPagePaths.PROFILE) {
+        push(EPagePaths.LOGIN)
+      }
     })
-  }, [dispatch])
+  }, [dispatch, pathname, push])
 
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
 
   return (
-    <>
+    <Flexbox direction="column" height="100%">
       <Header headerData={header} />
       <PaddingContainer padding={theme.space.sm} mobOnly>
         {children}
@@ -44,6 +51,6 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
       <Spacer sizeMob={theme.space.xl4} size={0} />
       <MobileMenu />
       <Footer footerData={footer} />
-    </>
+    </Flexbox>
   )
 }

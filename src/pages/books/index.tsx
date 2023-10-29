@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import { Modal, Spacer } from '@ui-kit'
 import { searchFormValues, theme } from '@constants'
 import { useBreakpoint, useDebouncedCallback, usePagination } from '@hooks'
-import { THeaderFooter, TResponse, TSearchBookProps } from '@types'
+import { TPageDataProps, TResponse, TSearchBookProps } from '@types'
 import { getStaticPageProps, searchBook } from '@api'
 import { FiltersForm, SearchWithResults } from '@components/organism'
 import { SearchFormContainer } from '@components/atoms'
@@ -11,7 +11,7 @@ import { LayoutTemplate } from '@templates'
 
 export const getStaticProps = getStaticPageProps
 
-const BooksPage: FC<{ headerFooterData: THeaderFooter }> = ({ headerFooterData }) => {
+const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   const [isOpened, setIsOpened] = useState(false)
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
