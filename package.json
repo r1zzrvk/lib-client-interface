@@ -19,12 +19,14 @@
     "@react-oauth/google": "0.6.1",
     "@reduxjs/toolkit": "1.9.2",
     "axios": "1.2.5",
+    "firebase": "10.2.0",
     "formik": "2.2.9",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "redux": "4.2.1",
+    "reselect": "^4.1.8",
     "styled-components": "5.3.6"
   },
   "devDependencies": {

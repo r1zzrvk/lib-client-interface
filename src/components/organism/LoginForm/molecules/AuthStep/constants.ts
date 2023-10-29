@@ -10,5 +10,5 @@ export const NoticeMessage: TNoticeMessage = {
   heading: 'Notice',
   icon: 'info_solid',
   message:
-    'Pressing "Continue as guest" will create a guest account or sign in your guest account if you already have one. Guest account will only be available on this device.\n\nIf you want to use "My lists" on all of your devices, press "Sign in with Google".',
+    'We apologize for the inconvenience as our registration system is currently undergoing maintenance. We are working hard to get it up and running as soon as possible.\n\n Try "Sign with Google" if you have an account.',
 }

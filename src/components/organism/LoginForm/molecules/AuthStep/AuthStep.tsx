@@ -1,37 +1,39 @@
 import { FC } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { useGoogleLogin } from '@react-oauth/google'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { theme } from '@constants'
-import { useBreakpoint } from '@hooks'
+import { useAppDispatch, useBreakpoint } from '@hooks'
+import { auth } from '@api'
+import { setAuthStatus, setUser } from '@reducers'
+import { EAuthorizationStatus } from '@types'
 import { NoticeMessage } from './constants'
 import { StepWrapper } from '../../atoms'
 
 type TAuthStepProps = {
-  nextStep: () => void
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // nextStep: () => void
   onError: () => void
 }
 
-export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
-  const router = useRouter()
+export const AuthStep: FC<TAuthStepProps> = ({ onError }) => {
+  const dispatch = useAppDispatch()
   const { isMob } = useBreakpoint()
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      await axios
-        .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: {
-            Authorization: `Bearer ${codeResponse.access_token}`,
-          },
-        })
-        .then(data => data)
-        .then(() => router.push('/'))
-        .catch(() => onError())
-    },
-  })
+  const googleProvider = new GoogleAuthProvider()
 
-  const loginAsGuest = () => nextStep()
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider)
+      .then(({ user }) => {
+        dispatch(setUser(user))
+        dispatch(setAuthStatus(EAuthorizationStatus.AUTH))
+      })
+      .catch(() => {
+        onError()
+        dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
+      })
+  }
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // const loginAsGuest = () => nextStep()
 
   return (
     <StepWrapper>
@@ -50,9 +52,10 @@ export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
       <Button size="md" onClick={loginWithGoogle} isFluid={isMob}>
         Sign in with Google
       </Button>
-      <Button size="md" onClick={loginAsGuest} isGhost>
+      {/* Отключено: пока не реализована регистрация и авторизация нового пользователя */}
+      {/* <Button size="md" onClick={loginAsGuest} isGhost>
         Continue as guest
-      </Button>
+      </Button> */}
       <Spacer size={theme.space.xs} sizeMob={theme.space.xl} />
       <AlertBanner heading={NoticeMessage.heading} icon={NoticeMessage.icon}>
         <Text

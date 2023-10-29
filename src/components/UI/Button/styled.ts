@@ -45,6 +45,10 @@ const Button = styled.button<TButtonProps>`
   &:active {
     animation: none;
   }
+
+  &:focus {
+    outline: none;
+  }
 `
 
 export const Styled = {

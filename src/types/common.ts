@@ -1,3 +1,5 @@
+import { THeaderFooter } from './headerFooter'
+
 export enum EPagePaths {
   MAIN = '/',
   CATALOG = '/books',
@@ -31,4 +33,8 @@ export enum EFilterOptions {
   THRILLER = 'Thriller',
   TRUE_CRIME = 'True Crime',
   COMPUTERS = 'Computers',
+}
+
+export type TPageDataProps = {
+  headerFooterData: THeaderFooter
 }

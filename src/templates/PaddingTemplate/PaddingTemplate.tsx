@@ -6,6 +6,8 @@ type TPaddingTemplateProps = {
   withoutPadding?: boolean
 }
 
+// todo: проверить нужно ли еще это
+
 export const PaddingTemplate: FC<TPaddingTemplateProps> = ({ children, withoutPadding = false }) => (
   <Styled.Wrapper withoutPadding={withoutPadding}>{children}</Styled.Wrapper>
 )
