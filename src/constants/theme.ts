@@ -26,8 +26,8 @@ export const theme = {
     height: {
       regular: {
         xs: 16,
-        sm: 20,
-        md: 24,
+        sm: 18,
+        md: 20,
         lg: 24,
       },
       header: {

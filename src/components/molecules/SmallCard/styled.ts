@@ -11,6 +11,7 @@ const Wrapper = styled.section`
   min-height: 256px;
   max-width: 264px;
   max-height: 256px;
+  scroll-snap-align: center;
 `
 
 const Content = styled.div`

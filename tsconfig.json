@@ -32,7 +32,8 @@
       "@utils": ["utils"],
       "@hooks": ["hooks"],
       "@store": ["store"],
-      "@reducers": ["reducers"]
+      "@reducers": ["reducers"],
+      "@selectors": ["selectors"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],

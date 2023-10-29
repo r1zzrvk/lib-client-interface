@@ -1,61 +1,71 @@
 import { FC } from 'react'
-import axios from 'axios'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { theme } from '@constants'
-import { useGoogleLogin } from '@react-oauth/google'
-import { useRouter } from 'next/router'
+import { useAppDispatch, useBreakpoint } from '@hooks'
+import { auth } from '@api'
+import { setAuthStatus, setUser } from '@reducers'
+import { EAuthorizationStatus } from '@types'
 import { NoticeMessage } from './constants'
+import { StepWrapper } from '../../atoms'
 
 type TAuthStepProps = {
-  nextStep: () => void
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // nextStep: () => void
   onError: () => void
 }
 
-export const AuthStep: FC<TAuthStepProps> = ({ nextStep, onError }) => {
-  const router = useRouter()
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: async codeResponse => {
-      await axios
-        .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: {
-            Authorization: `Bearer ${codeResponse.access_token}`,
-          },
-        })
-        .then(data => data)
-        .then(() => router.push('/'))
-        .catch(() => onError())
-    },
-  })
+export const AuthStep: FC<TAuthStepProps> = ({ onError }) => {
+  const dispatch = useAppDispatch()
+  const { isMob } = useBreakpoint()
 
-  const loginAsGuest = () => nextStep()
+  const googleProvider = new GoogleAuthProvider()
+
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider)
+      .then(({ user }) => {
+        dispatch(setUser(user))
+        dispatch(setAuthStatus(EAuthorizationStatus.AUTH))
+      })
+      .catch(() => {
+        onError()
+        dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
+      })
+  }
+  // Отключено: пока не реализована регистрация и авторизация нового пользователя
+  // const loginAsGuest = () => nextStep()
 
   return (
-    <>
+    <StepWrapper>
       <Text
         color={theme.colors.grey}
         fontSize={theme.fonts.size.header.lg}
         fontWeight={theme.fonts.weight.medium}
         fontHeight={theme.fonts.height.header.lg}
+        fontSizeMob={theme.fonts.size.header.md}
+        fontHeightMob={theme.fonts.height.header.md}
+        fontWeightMob={theme.fonts.weight.medium}
       >
         Log in
       </Text>
-      <Spacer size={theme.space.xl2} />
-      <Button size="md" onClick={loginWithGoogle}>
+      <Spacer size={theme.space.xl2} sizeMob={theme.space.lg} />
+      <Button size="md" onClick={loginWithGoogle} isFluid={isMob}>
         Sign in with Google
       </Button>
-      <Button size="md" onClick={loginAsGuest} isGhost>
-        Сontinue as guest
-      </Button>
-      <Spacer size={theme.space.xs} />
+      {/* Отключено: пока не реализована регистрация и авторизация нового пользователя */}
+      {/* <Button size="md" onClick={loginAsGuest} isGhost>
+        Continue as guest
+      </Button> */}
+      <Spacer size={theme.space.xs} sizeMob={theme.space.xl} />
       <AlertBanner heading={NoticeMessage.heading} icon={NoticeMessage.icon}>
         <Text
           color={theme.colors.grey}
-          fontSize={theme.fonts.size.regular.xs}
-          fontHeight={theme.fonts.height.regular.xs}
+          fontSize={theme.fonts.size.regular.sm}
+          fontHeight={theme.fonts.height.regular.sm}
         >
           {NoticeMessage.message}
         </Text>
       </AlertBanner>
-    </>
+    </StepWrapper>
   )
 }

@@ -1,8 +1,9 @@
 import { theme } from '@constants'
 import { FC, ReactNode } from 'react'
-import { Text } from '@ui-kit'
+import { Divider, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
 import { TIcon } from '@types'
+import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 
 type TAlertBannerProps = {
@@ -11,12 +12,29 @@ type TAlertBannerProps = {
   icon: TIcon
 }
 
-export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon }) => (
-  <Styled.Wrapper>
-    <Styled.Header>
-      <Text color={theme.colors.grey}>{heading}</Text>
-      <IconsSelector icon={icon} color={theme.colors.grey} />
-    </Styled.Header>
-    <Styled.Body>{children}</Styled.Body>
-  </Styled.Wrapper>
-)
+export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon }) => {
+  const { isMob } = useBreakpoint()
+  const dividerPadding = isMob ? theme.space.sm : theme.space.md
+  const iconSize = isMob ? 16 : theme.icon_sizes.xs
+
+  return (
+    <Styled.Wrapper>
+      <Styled.Header>
+        <Text
+          color={theme.colors.grey}
+          fontSize={theme.fonts.size.header.xs}
+          fontHeight={theme.fonts.height.header.xs}
+          fontWeight={theme.fonts.weight.medium}
+          fontSizeMob={theme.fonts.size.regular.md}
+          fontHeightMob={theme.fonts.height.regular.md}
+          fontWeightMob={theme.fonts.weight.medium}
+        >
+          {heading}
+        </Text>
+        <IconsSelector icon={icon} color={theme.colors.grey} size={iconSize} />
+      </Styled.Header>
+      <Divider sideMargin={dividerPadding} />
+      <Styled.Body>{children}</Styled.Body>
+    </Styled.Wrapper>
+  )
+}

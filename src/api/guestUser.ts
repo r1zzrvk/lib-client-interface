@@ -1,6 +1,9 @@
 import { ALREADY_CREATED_MESSAGE, GUEST_USER, NOT_YET_CREATED_MESSAGE } from '@constants'
 import { TGuestUser } from '@types'
 
+// deprecated
+// TODO: delete it with constants and types
+
 export const setGuestUser = (user: TGuestUser): void | string => {
   if (localStorage?.getItem(GUEST_USER) === null) {
     return localStorage.setItem(GUEST_USER, JSON.stringify(user))

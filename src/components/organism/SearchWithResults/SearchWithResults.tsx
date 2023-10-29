@@ -12,7 +12,7 @@ import { getDotNeed } from './utils'
 
 type TSearchWithResultsProps = {
   onModalOpen: () => void
-  debounedSearch: (props: TSearchBookProps) => void
+  debouncedSearch: (props: TSearchBookProps) => void
   page: number
   setPage: (page: number) => void
   nextPage: () => void
@@ -26,7 +26,7 @@ type TSearchWithResultsProps = {
 
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   onModalOpen,
-  debounedSearch,
+  debouncedSearch,
   nextPage,
   packSize,
   page,
@@ -49,7 +49,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
 
   useEffect(() => {
     if (searchField) {
-      debounedSearch({
+      debouncedSearch({
         searchTerm: searchField,
         page,
         filterByCategory: categoryField,

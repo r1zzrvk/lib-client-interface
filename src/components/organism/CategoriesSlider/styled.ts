@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   overflow-x: scroll;
   padding: ${theme.space.md}px ${theme.space.sm}px ${theme.space.lg}px ${theme.space.sm}px;
   scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 
   ::-webkit-scrollbar {
     display: none;

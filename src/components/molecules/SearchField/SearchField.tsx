@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
-import { Input, Spacer } from '@ui-kit'
+import { Input } from '@ui-kit'
 import { theme } from '@constants'
-import { Background } from '@components/atoms'
 import { EPagePaths } from '@types'
 import { useRouter } from 'next/router'
 
@@ -16,20 +15,15 @@ export const SearchField: FC = () => {
   }
 
   return (
-    <Background color={theme.colors.main}>
-      <Spacer sizeMob={theme.space.sm} />
-      <Input
-        value={searchTerm}
-        placeholder="Search for books"
-        type="text"
-        color={theme.colors.beige}
-        fluid
-        onChange={e => setSearchTerm(e.target.value)}
-        hasIcon
-        isClearable
-        onClear={() => setSearchTerm('')}
-        onKeyDown={e => handleKeyDown(e)}
-      />
-    </Background>
+    <Input
+      value={searchTerm}
+      placeholder="Search for books"
+      type="text"
+      color={theme.colors.beige}
+      fluid
+      onChange={e => setSearchTerm(e.target.value)}
+      hasIcon
+      onKeyDown={e => handleKeyDown(e)}
+    />
   )
 }

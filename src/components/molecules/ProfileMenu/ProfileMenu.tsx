@@ -1,11 +1,10 @@
 import { FC } from 'react'
-import { PROFILE_CUBE, PROFILE_MENU, theme, userData } from '@constants'
+import { PROFILE_CUBE, PROFILE_MENU, theme } from '@constants'
 import { Spacer, Tabs, Text } from '@ui-kit'
 import { PaddingContainer } from '@components/atoms'
-import { ProfileTab, ItemList, InfoCube } from '@components/molecules'
+import { ProfileTab, ItemList, InfoCube, ProfileBanner } from '@components/molecules'
 import { useBreakpoint } from '@hooks'
 import { TInfoCube } from '@types'
-import { ProfileBanner } from './molecules'
 import { Styled } from './styled'
 
 type TProfileMenuProps = {
@@ -31,7 +30,7 @@ export const ProfileMenu: FC<TProfileMenuProps> = ({ activeTab, onSelect, isColu
           </Text>
         </PaddingContainer>
       )}
-      <ProfileBanner user={userData} />
+      <ProfileBanner variant="horizontal" />
       <Spacer sizeMob={theme.space.sm} />
       <Tabs items={PROFILE_MENU} marginTop={isColumn ? theme.space.md : 0} activeTab={activeTab} onSelect={onSelect} />
       {isColumn && <ProfileTab isColumn={isColumn} />}

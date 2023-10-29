@@ -1,23 +1,47 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { useRouter } from 'next/router'
 import { theme } from '@constants'
-import { THeaderData } from '@types'
-import { Text } from '@ui-kit'
+import { EPagePaths, THeaderData } from '@types'
+import { ResponsiveImage, Text } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
+import { useBreakpoint } from '@hooks'
+import { SearchField } from '@components/molecules'
 import { Styled } from './styled'
-import { UserBlock } from './UserBlock'
+import { IconBlock } from './IconBlock'
 
 type THeaderProps = {
   headerData: THeaderData[]
 }
 
-export const Header: FC<THeaderProps> = ({ headerData }) => (
-  <Styled.Wrapper>
-    <Styled.TextBlock>
-      {headerData?.map(({ title, href }) => (
-        <Text key={title} fontWeight={theme.fonts.weight.medium} asLink href={href}>
-          {title}
-        </Text>
-      ))}
-    </Styled.TextBlock>
-    <UserBlock />
-  </Styled.Wrapper>
-)
+export const Header: FC<THeaderProps> = ({ headerData }) => {
+  const router = useRouter()
+  const { isMob } = useBreakpoint()
+  const [isSearchVisible, setIsSearchVisible] = useState(false)
+
+  return (
+    <Styled.Wrapper>
+      {isMob && isSearchVisible && <SearchField />}
+      {isSearchVisible || (
+        <ResponsiveImage
+          isEverywhere
+          src="/logotype.svg"
+          alt="logotype"
+          width={60}
+          height={51}
+          onClick={() => router.push(EPagePaths.MAIN)}
+          isTouchable
+        />
+      )}
+      <Flexbox>
+        <Styled.TextBlock>
+          {headerData?.map(({ title, href }) => (
+            <Text key={title} fontWeight={theme.fonts.weight.medium} asLink href={href}>
+              {title}
+            </Text>
+          ))}
+        </Styled.TextBlock>
+        <IconBlock onSearchClick={setIsSearchVisible} isSearchVisible={isSearchVisible} />
+      </Flexbox>
+    </Styled.Wrapper>
+  )
+}

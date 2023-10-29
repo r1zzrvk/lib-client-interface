@@ -4,13 +4,14 @@ import { Button, ResponsiveImage, Spacer, Text } from '@ui-kit'
 import { Flexbox } from '@components/atoms'
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
+import { EPagePaths } from '@types'
 
 export const Error404: FC = () => {
   const { isMob } = useBreakpoint()
   const router = useRouter()
 
   const handleClick = () => {
-    router.push('/')
+    router.push(EPagePaths.MAIN)
   }
 
   return (

@@ -5,6 +5,9 @@ type TFlexboxProps = {
   align?: 'center' | 'baseline' | 'flex-end' | 'flex-start' | 'stretch'
   gap?: number
   direction?: 'column' | 'row' | 'row-reverse' | 'column-reverse'
+  width?: number | string
+  height?: number | string
+  flex?: string
 }
 
 export const Flexbox = styled.div<TFlexboxProps>`
@@ -13,4 +16,7 @@ export const Flexbox = styled.div<TFlexboxProps>`
   align-items: ${({ align }) => align};
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap}px;
+  height: ${({ height }) => Boolean(height) && (typeof height === 'string' ? height : `${height}px`)};
+  width: ${({ width }) => Boolean(width) && (typeof width === 'string' ? width : `${width}px`)};
+  flex: ${({ flex }) => flex};
 `
