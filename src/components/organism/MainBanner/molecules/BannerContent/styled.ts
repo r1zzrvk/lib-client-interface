@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 
   @media (min-width: ${theme.breakpoints.sm}px) {
     width: 100%;
+    max-width: 500px;
     align-self: center;
     margin-left: 0px;
     margin-top: 0px;

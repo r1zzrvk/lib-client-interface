@@ -15,7 +15,6 @@ const Wrapper = styled.div<TStyledVariantProps>`
   border-radius: ${theme.radiuses.md}px;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
   padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
-  margin: 0px ${theme.space.sm}px 0px ${theme.space.sm}px;
 `
 
 const TextWrapper = styled.div<TStyledVariantProps>`

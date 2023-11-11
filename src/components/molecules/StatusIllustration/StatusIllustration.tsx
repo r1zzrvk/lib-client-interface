@@ -9,12 +9,22 @@ type TStatusIllustrationProps = {
   title: string
   isVisible: boolean
   subtitle?: string
+  width?: number
+  height?: number
 }
 
-export const StatusIllustration: FC<TStatusIllustrationProps> = ({ altText, imgUrl, title, subtitle, isVisible }) => (
+export const StatusIllustration: FC<TStatusIllustrationProps> = ({
+  altText,
+  imgUrl,
+  title,
+  subtitle,
+  isVisible,
+  width = 330,
+  height = 228,
+}) => (
   <Styled.Wrapper justify="center" align="center" direction="column" isVisible={isVisible}>
     <Spacer size={theme.space.lg} sizeMob={theme.space.sm} />
-    <ResponsiveImage src={imgUrl} alt={altText} width={330} height={228} isEverywhere />
+    <ResponsiveImage src={imgUrl} alt={altText} width={width} height={height} isEverywhere />
     <Spacer size={theme.space.lg} sizeMob={theme.space.sm} />
     <Text
       color={theme.colors.grey}
