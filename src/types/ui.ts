@@ -62,3 +62,8 @@ export type TMobileMenuItem = {
   path: EPagePaths
   title: string
 }
+
+export enum EProfileTabs {
+  PERSONAL = 'Personal information',
+  LISTS = 'My lists',
+}

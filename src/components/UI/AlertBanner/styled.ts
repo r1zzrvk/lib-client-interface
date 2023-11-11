@@ -1,13 +1,17 @@
 import { theme } from '@constants'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+type TWrapperProps = {
+  isFluid?: boolean
+}
+
+const Wrapper = styled.div<TWrapperProps>`
   width: 100%;
   background-color: ${theme.colors.beige};
   border-radius: ${theme.radiuses.sm}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    width: 500px;
+    width: ${({ isFluid }) => (isFluid ? '100%' : '500px')};
   }
 `
 const Header = styled.header`

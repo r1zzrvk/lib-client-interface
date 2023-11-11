@@ -1,3 +1,5 @@
+import { EProfileTabs } from '@types'
+
 /* eslint-disable quotes */
 export const PROMO_FOOTER = {
   header: 'Google authorization',
@@ -20,8 +22,8 @@ export const CATEGORIES_BANNER = {
 }
 
 export const PROFILE_MENU = [
-  { id: '1', title: 'Personal information' },
-  { id: '2', title: 'My lists' },
+  { id: '1', title: EProfileTabs.PERSONAL },
+  { id: '2', title: EProfileTabs.LISTS },
 ]
 
 export const GUEST_AVATAR = 'https://ibb.co/bzrYJ5w'
