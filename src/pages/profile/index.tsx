@@ -16,7 +16,7 @@ const ProfilePage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      {!isAuth ? <ProfileMenu activeTab={selectedTab} onSelect={setSelectedTab} /> : <ProfileSkeleton />}
+      {isAuth ? <ProfileMenu activeTab={selectedTab} onSelect={setSelectedTab} /> : <ProfileSkeleton />}
     </LayoutTemplate>
   )
 }
