@@ -1,25 +1,22 @@
 import { FC, useState } from 'react'
-import { ProfileTab, ProfileMenu } from '@components/molecules'
-import { ProfileWrapper } from '@components/atoms'
+import { ProfileMenu } from '@components/organism'
 import { PROFILE_MENU } from '@constants'
-import { useBreakpoint } from '@hooks'
 import { TPageDataProps, TTab } from '@types'
 import { getStaticPageProps } from '@api'
 import { LayoutTemplate } from '@templates'
+import { useAppSelector } from '@hooks'
+import { getUserAuth } from '@selectors'
+import { ProfileSkeleton } from '@components/molecules'
 
 export const getStaticProps = getStaticPageProps
 
 const ProfilePage: FC<TPageDataProps> = ({ headerFooterData }) => {
-  const [selectedTabId, setSelectedTabId] = useState('1')
-  const currentTab: TTab | undefined = PROFILE_MENU.find(({ id }) => id === selectedTabId)
-  const { isTablet, isSm, isMob } = useBreakpoint()
+  const isAuth = useAppSelector(getUserAuth)
+  const [selectedTab, setSelectedTab] = useState<TTab>(PROFILE_MENU[0])
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <ProfileWrapper>
-        <ProfileMenu activeTab={selectedTabId} onSelect={setSelectedTabId} isColumn={isTablet || isSm} />
-        {isTablet || isSm || isMob || <ProfileTab activeTab={currentTab} />}
-      </ProfileWrapper>
+      {isAuth ? <ProfileMenu activeTab={selectedTab} onSelect={setSelectedTab} /> : <ProfileSkeleton />}
     </LayoutTemplate>
   )
 }

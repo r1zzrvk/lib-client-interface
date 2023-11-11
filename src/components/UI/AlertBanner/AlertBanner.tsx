@@ -10,15 +10,16 @@ type TAlertBannerProps = {
   children: ReactNode
   heading: string
   icon: TIcon
+  isFluid?: boolean
 }
 
-export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon }) => {
+export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon, isFluid }) => {
   const { isMob } = useBreakpoint()
   const dividerPadding = isMob ? theme.space.sm : theme.space.md
   const iconSize = isMob ? 16 : theme.icon_sizes.xs
 
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper isFluid={isFluid}>
       <Styled.Header>
         <Text
           color={theme.colors.grey}

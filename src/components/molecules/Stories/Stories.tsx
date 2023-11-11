@@ -2,7 +2,7 @@ import { theme } from '@constants'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-// todo: перенести в компоненты, заготовка для Stories
+// заготовка для Stories
 
 // progress bar
 const ProgressContainer = styled.div`

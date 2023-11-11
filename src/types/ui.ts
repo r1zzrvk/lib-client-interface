@@ -17,13 +17,6 @@ export type TTab = {
   title: string
 }
 
-export type TInfoCube = {
-  id: string
-  header: string
-  content: string
-  color: 'main' | 'secondary'
-}
-
 export type TIcon =
   | 'home_solid'
   | 'search_solid'
@@ -68,4 +61,9 @@ export type TMobileMenuItem = {
   icon: TIcon
   path: EPagePaths
   title: string
+}
+
+export enum EProfileTabs {
+  PERSONAL = 'Personal information',
+  LISTS = 'My lists',
 }
