@@ -61,7 +61,17 @@ Common types can be:
 ```
 https://www.googleapis.com/your_request
 ```
- - [`Authorization`](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow?hl=ru#authorization-errors-origin-mismatch)
+ - [`Firebase inegration`](https://firebase.google.com/docs/web/setup#add-sdk-and-initialize)
+
+ - [`Firestore cloud`](https://firebase.google.com/docs/firestore/query-data/get-data?hl=en&authuser=2)
+
+ - [`Firestore data manage`](https://firebase.google.com/docs/firestore/manage-data/structure-data)
+
+ - [`Firebase auth`](https://firebase.google.com/docs/auth/web/firebaseui)
+
+ - [`Manage users`](https://firebase.google.com/docs/auth/web/manage-users)
+
+ - [`User types`](https://firebase.google.com/docs/reference/js/auth.user)
 
  - [`Books`](https://developers.google.com/books/docs/v1/getting_started)
 
