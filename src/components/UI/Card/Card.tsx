@@ -1,15 +1,49 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { theme } from '@constants'
-import { TBook } from '@types'
+import { TBook, TFirebaseUser } from '@types'
 import { IconsSelector } from '@components/molecules'
 import { Divider } from '@ui-kit'
 import { getImage, sliceItems, textLimiter } from '@utils'
 import { Flexbox } from '@components/atoms'
+import { updateBookmarkList } from '@api'
 import { Text } from '../Text'
 import { Styled } from './styled'
 
-export const Card: FC<TBook> = ({ volumeInfo }) => {
+type TCardProps = {
+  bookmarks: TBook[]
+  uid?: TFirebaseUser['uid']
+  updateList?: Dispatch<SetStateAction<TBook[]>>
+} & TBook
+
+export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
   const { title, imageLinks, categories, authors } = volumeInfo
+
+  const isActive = !!bookmarks?.find(bookmark => bookmark.id === id)
+
+  const handleBookmarkClick = async () => {
+    if (uid) {
+      if (isActive) {
+        updateBookmarkList({ uid, list: bookmarks.filter(item => item.id !== id) })
+
+        updateList?.(bookmarks)
+        return
+      }
+
+      updateBookmarkList({
+        uid,
+        list: [
+          ...bookmarks,
+          {
+            id,
+            volumeInfo,
+            ...rest,
+          },
+        ],
+      })
+
+      updateList?.(bookmarks)
+    }
+  }
 
   return (
     <Styled.Wrapper>
@@ -54,9 +88,15 @@ export const Card: FC<TBook> = ({ volumeInfo }) => {
               {authors && sliceItems(authors, 1)}
             </Text>
           </Flexbox>
-          <Styled.Icon>
-            <IconsSelector icon="bookmark_regular" color={theme.colors.grey} />
-          </Styled.Icon>
+          {uid && (
+            <Styled.Icon>
+              <IconsSelector
+                icon={isActive ? 'bookmark_solid' : 'bookmark_regular'}
+                color={isActive ? theme.colors.main : theme.colors.grey}
+                onClick={handleBookmarkClick}
+              />
+            </Styled.Icon>
+          )}
         </Styled.ButtonBlock>
       </Styled.Content>
     </Styled.Wrapper>

@@ -4,7 +4,7 @@ import { theme } from '@constants'
 import { getArrayFromNumber } from '@utils'
 import { SkeletonCard } from './atoms'
 
-export const SkeletonPreloader: FC = () => {
+export const CardsPreloader: FC = () => {
   const array = getArrayFromNumber(10)
 
   return (

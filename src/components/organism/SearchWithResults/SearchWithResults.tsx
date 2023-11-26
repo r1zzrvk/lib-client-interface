@@ -6,8 +6,9 @@ import { fastSearchBadges, theme } from '@constants'
 import { Badge, Input, Paginator, Spacer } from '@ui-kit'
 import { ESearchTypes, TBadge, TResponse, TSearchBookProps, TSearchFormValues } from '@types'
 import { scrollToTop } from '@utils'
+import { CardsPreloader } from '@components/molecules'
 import { Styled } from './styled'
-import { Results, SkeletonPreloader } from './molecules'
+import { Results } from './molecules'
 import { getDotNeed } from './utils'
 
 type TSearchWithResultsProps = {
@@ -133,7 +134,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
         ))}
       </Styled.BadgesContainer>
       {isLoading ? (
-        <SkeletonPreloader />
+        <CardsPreloader />
       ) : (
         <Results searchData={searchData} isRequestError={isRequestError} packSize={packSize} />
       )}

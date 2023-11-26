@@ -47,3 +47,17 @@ export const STARTING_SEARCH = {
   imgUrl: '/emptylist.png',
   subtitle: "Find what you're looking for with ease!",
 }
+
+export const EMPTY_BOOKMARKS = {
+  title: 'This list is empty',
+  altText: 'list empty',
+  imgUrl: '/emptylist.png',
+  subtitle: 'Go to catalog to add some books to this list',
+}
+
+export const NO_AUTH = {
+  title: 'Here will be your lists',
+  altText: 'No auth',
+  imgUrl: '/emptylist.png',
+  subtitle: 'Log in to add lists and bookmarks',
+}

@@ -8,3 +8,4 @@ export const NOT_YET_CREATED_MESSAGE = 'User not yet created'
 export const LIBRARY_SERVER_API = 'https://library-server-orpin.vercel.app/'
 export const HEADER_PATH = `${LIBRARY_SERVER_API}header`
 export const FOOTER_PATH = `${LIBRARY_SERVER_API}footer`
+export const BOOKMARK_LIST_ID = 'bookmarks'
