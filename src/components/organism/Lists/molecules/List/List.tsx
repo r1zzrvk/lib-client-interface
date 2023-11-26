@@ -64,12 +64,12 @@ export const List: FC<TListProps> = ({ listItems, listTitle, uid, updateList }) 
         isVisible={!listItems?.length}
       />
       {!listItems?.length && (
-        <>
+        <Flexbox justify="center" align="center" direction="column">
           <Spacer size={theme.space.lg} sizeMob={theme.space.sm} />
           <Button isFluid={isMob} onClick={handleClickToCatalog} size="lg">
             View catalog
           </Button>
-        </>
+        </Flexbox>
       )}
       {isShowMoreVisible && (
         <Flexbox justify="center" align="center">
