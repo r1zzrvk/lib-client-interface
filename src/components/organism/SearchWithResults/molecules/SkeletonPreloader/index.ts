@@ -1,1 +1,0 @@
-export { SkeletonPreloader } from './SkeletonPreloader'

@@ -20,7 +20,7 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
   const { uid } = user || {}
   const itemsGap = isMob ? theme.space.xs : theme.space.sm
   const [updatedList, updateList] = useState<TBook[]>([])
-  const bookmarks = useLists<TBook[]>({ uid, docId: BOOKMARK_LIST_ID, list: updatedList })
+  const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList })
 
   return (
     <ItemListWrapper rowGap={itemsGap}>

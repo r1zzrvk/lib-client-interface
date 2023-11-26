@@ -9,3 +9,8 @@ export type TUpdateBookmarkList = {
 export enum EDatabaseDocs {
   LISTS = 'lists',
 }
+
+export type TList = {
+  listTitle: string
+  listItems: TBook[]
+}
