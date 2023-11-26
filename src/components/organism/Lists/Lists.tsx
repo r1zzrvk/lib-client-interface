@@ -15,7 +15,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
   const lists = useLists({ uid, list: updatedList })
 
   useEffect(() => {
-    dispatch(setIsLoading(!!lists))
+    dispatch(setIsLoading(!lists))
   }, [dispatch, lists])
 
   return (

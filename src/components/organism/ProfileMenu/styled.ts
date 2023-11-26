@@ -20,6 +20,10 @@ const Wrapper = styled.div`
     padding: 0px ${theme.space.lg}px;
     margin: ${theme.space.xl}px 0px;
   }
+
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    align-items: center;
+  }
 `
 
 const DesktopLayout = styled.div`
