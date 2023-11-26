@@ -11,7 +11,7 @@ type TUseDatabaseDocs = {
 }
 
 // if `docId` prop is empty, hook will return all lists
-// `list` prop used for update data
+// `list` prop is used to update data
 
 export function useLists({ uid, docId, list }: TUseDatabaseDocs) {
   const [data, setData] = useState<DocumentData | null>(null)
