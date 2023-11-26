@@ -12,7 +12,7 @@ type TStatusIllustrationProps = {
   width?: number
   height?: number
 }
-
+// todo: добавить кнопку опционально, как в List
 export const StatusIllustration: FC<TStatusIllustrationProps> = ({
   altText,
   imgUrl,
