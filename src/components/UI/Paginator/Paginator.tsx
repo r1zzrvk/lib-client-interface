@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { getPagesArray } from '@utils'
 import { theme } from '@constants'
 import { Flexbox } from '@components/atoms'
@@ -24,7 +24,7 @@ export const Paginator: FC<TPaginatorProps> = ({ totalPages, currentPage, nextPa
   const middlePage = isMob ? 3 : 5
   const leftPages = currentPage > middlePage ? currentPage - leftSide : 0
   const rightPages = currentPage > middlePage ? currentPage + rightSide : defaultPages
-  const pages = getPagesArray(totalPages)
+  const pages = useMemo(() => getPagesArray(totalPages), [totalPages])
 
   return (
     <Flexbox justify="center" align="center" direction="column">

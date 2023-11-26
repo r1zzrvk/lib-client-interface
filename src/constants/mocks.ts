@@ -136,3 +136,5 @@ export const mobileMenuItems: TMobileMenuItem[] = [
     path: EPagePaths.PROFILE,
   },
 ]
+
+export const NO_LIST_TITLE = 'No name'

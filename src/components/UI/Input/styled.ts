@@ -18,10 +18,6 @@ const Wrapper = styled.div<TWrapperProps>`
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 48px;
   border-radius: ${theme.radiuses.sm}px;
-
-  :active {
-    outline: black;
-  }
 `
 
 const Input = styled.input<TWrapperProps>`

@@ -17,9 +17,12 @@ const Wrapper = styled.div`
   margin-top: ${theme.space.sm}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    align-items: center;
     padding: 0px ${theme.space.lg}px;
     margin: ${theme.space.xl}px 0px;
+  }
+
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    align-items: center;
   }
 `
 

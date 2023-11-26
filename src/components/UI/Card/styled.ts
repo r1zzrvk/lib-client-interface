@@ -11,8 +11,10 @@ const Wrapper = styled.div`
   transition: 0.3s ease-in;
   cursor: pointer;
 
-  :hover {
-    scale: 1.05;
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    :hover {
+      scale: 1.05;
+    }
   }
 `
 

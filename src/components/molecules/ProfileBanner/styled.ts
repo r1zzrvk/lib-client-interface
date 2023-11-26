@@ -9,6 +9,7 @@ type TStyledVariantProps = {
 const Wrapper = styled.div<TStyledVariantProps>`
   display: flex;
   align-items: center;
+  gap: ${theme.space.sm}px;
   flex-direction: ${({ variant }) => (variant === 'horizontal' ? 'row' : 'column')};
   background-color: ${({ color }) => color};
   justify-content: space-between;

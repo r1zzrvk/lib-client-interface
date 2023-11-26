@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Card } from '@ui-kit'
 import { ItemListWrapper } from '@components/atoms'
 import { ItemList, StatusIllustration } from '@components/molecules'
-import { TResponse } from '@types'
-import { useBreakpoint } from '@hooks'
-import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
+import { TBook, TResponse } from '@types'
+import { useAppSelector, useBreakpoint, useLists } from '@hooks'
+import { BOOKMARK_LIST_ID, NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
+import { getUserData } from '@selectors'
 
 type TResultsProps = {
   searchData: TResponse | null
@@ -15,12 +16,19 @@ type TResultsProps = {
 export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchData }) => {
   const { items, totalItems } = searchData || {}
   const { isMob } = useBreakpoint()
+  const user = useAppSelector(getUserData)
+  const { uid } = user || {}
   const itemsGap = isMob ? theme.space.xs : theme.space.sm
+  const [updatedList, updateList] = useState<TBook[]>([])
+  const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList })
 
   return (
     <ItemListWrapper rowGap={itemsGap}>
       {items && !isRequestError && (
-        <ItemList renderItem={book => <Card {...book} key={book.id} />} items={items.slice(0, packSize)} />
+        <ItemList
+          renderItem={book => <Card {...book} key={book.id} bookmarks={bookmarks} uid={uid} updateList={updateList} />}
+          items={items.slice(0, packSize)}
+        />
       )}
       <StatusIllustration
         title={STARTING_SEARCH.title}
@@ -33,6 +41,7 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         title={NOTHING_FOUND.title}
         altText={NOTHING_FOUND.altText}
         imgUrl={NOTHING_FOUND.imgUrl}
+        subtitle={NOTHING_FOUND.subtitle}
         isVisible={totalItems === 0 && !isRequestError}
       />
       <StatusIllustration

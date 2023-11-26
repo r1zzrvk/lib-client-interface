@@ -33,10 +33,11 @@ const BadgesContainer = styled.div`
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     margin: 0px -${theme.space.lg}px;
-    padding: ${theme.space.sm}px ${theme.space.lg}px ${theme.space.sm}px ${theme.space.lg}px;
+    padding: ${theme.space.sm}px ${theme.space.lg}px;
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
+    flex-wrap: wrap;
     padding: ${theme.space.sm}px ${theme.space.xs3}px;
     margin: 0px;
   }

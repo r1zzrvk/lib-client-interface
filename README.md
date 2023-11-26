@@ -58,12 +58,29 @@ Common types can be:
 
 ##  Google documentation
 
+ - [`Firebase integration`](https://firebase.google.com/docs/web/setup#add-sdk-and-initialize)
+
+### `Data`
+
+ - [`Firestore cloud`](https://firebase.google.com/docs/firestore/query-data/get-data?hl=en&authuser=2)
+
+ - [`Firestore data manage`](https://firebase.google.com/docs/firestore/manage-data/structure-data)
+
+### `Auth`
+
+ - [`Firebase auth`](https://firebase.google.com/docs/auth/web/firebaseui)
+
+ - [`Manage users`](https://firebase.google.com/docs/auth/web/manage-users)
+
+ - [`User types`](https://firebase.google.com/docs/reference/js/auth.user)
+
+### `Google Books`
+
+ - [`Books`](https://developers.google.com/books/docs/v1/getting_started)
+
 ```
 https://www.googleapis.com/your_request
 ```
- - [`Authorization`](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow?hl=ru#authorization-errors-origin-mismatch)
-
- - [`Books`](https://developers.google.com/books/docs/v1/getting_started)
 
 ##  Figma :art:
 

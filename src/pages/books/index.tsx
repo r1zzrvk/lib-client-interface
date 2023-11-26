@@ -31,7 +31,6 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
       filterByCategory,
       filterByAuthor,
       searchByTitle,
-      searchByPublisher,
     }: TSearchBookProps) => {
       setIsLoading(true)
 
@@ -41,7 +40,6 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
         filterByCategory,
         sortingBy,
         filterByAuthor,
-        searchByPublisher,
         searchByTitle,
       })
         .then(data => setSearchData(data))
@@ -60,14 +58,13 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
       <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
       <Formik
         initialValues={searchFormValues}
-        onSubmit={({ authorField, categoryField, publisherField, searchField, sorting, titleField }) =>
+        onSubmit={({ authorField, categoryField, searchField, sorting, titleField }) =>
           debouncedSearch({
             searchTerm: searchField,
             page: page,
             filterByCategory: categoryField,
             sortingBy: sorting,
             filterByAuthor: authorField,
-            searchByPublisher: publisherField,
             searchByTitle: titleField,
           })
         }
