@@ -20,7 +20,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
 
   return (
     <div>
-      {lists.length ? (
+      {lists?.length ? (
         <ItemList
           renderItem={list => <List uid={uid} key={list.listTitle} updateList={updateList} {...list} />}
           items={lists as TList[]}
