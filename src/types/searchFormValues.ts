@@ -7,5 +7,13 @@ export type TSearchFormValues = {
   sorting: string
   titleField: string
   authorField: string
-  publisherField: string
+}
+
+export enum ESearchFormFields {
+  searchField = 'searchField',
+  selectedBadge = 'selectedBadge',
+  categoryField = 'categoryField',
+  sorting = 'sorting',
+  titleField = 'titleField',
+  authorField = 'authorField',
 }

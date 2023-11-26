@@ -32,7 +32,7 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
       dispatch(setUser(null))
       dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
 
-      if (pathname === EPagePaths.PROFILE) {
+      if (pathname === EPagePaths.PROFILE || pathname === EPagePaths.MY_LISTS) {
         push(EPagePaths.LOGIN)
       }
     })

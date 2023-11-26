@@ -1,8 +1,8 @@
-import { fetchDatabaseDocs } from '@api'
-import { TFirebaseUser, EDatabaseDocs, TBook, TList } from '@types'
 import { DocumentData } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { getMappedLists } from 'utils/getMappedLists'
+import { fetchDatabaseDocs } from '@api'
+import { TFirebaseUser, EDatabaseDocs, TBook, TList } from '@types'
+import { getMappedLists } from '@utils'
 
 type TUseDatabaseDocs = {
   uid: TFirebaseUser['uid'] | undefined
