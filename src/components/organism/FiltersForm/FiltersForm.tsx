@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik'
 import { Button, Input, Select, Text } from '@ui-kit'
 import { theme } from '@constants'
 import { getOptionsFromObject } from '@utils'
-import { EFilterOptions, ESortingOptions, TSearchFormValues } from '@types'
+import { EFilterOptions, ESearchFormFields, ESortingOptions, TSearchFormValues } from '@types'
 import { Styled } from './styled'
 
 type TFilterFormProps = {
@@ -12,14 +12,13 @@ type TFilterFormProps = {
 
 export const FiltersForm: FC<TFilterFormProps> = ({ onClick }) => {
   const { setFieldValue, values, setValues } = useFormikContext<TSearchFormValues>()
-  const { authorField, categoryField, publisherField, titleField, sorting } = values
+  const { authorField, categoryField, titleField, sorting } = values
 
   const handleResetValues = () => {
     setValues(prev => ({
       ...prev,
       authorField: '',
       categoryField: '',
-      publisherField: '',
       selectedBadge: null,
       sorting: '',
       titleField: '',
@@ -42,52 +41,42 @@ export const FiltersForm: FC<TFilterFormProps> = ({ onClick }) => {
         Search settings
       </Text>
       <Select
-        name="sorting"
+        name={ESearchFormFields.sorting}
         selectedValue={sorting}
         placeholder="Sorting by"
         options={getOptionsFromObject<typeof ESortingOptions>(ESortingOptions)}
-        onSelect={(value: string) => setFieldValue('sorting', value)}
-        onClear={() => setFieldValue('sorting', '')}
+        onSelect={(value: string) => setFieldValue(ESearchFormFields.sorting, value)}
+        onClear={() => setFieldValue(ESearchFormFields.sorting, '')}
         fluid
       />
       <Select
-        name="categoryField"
+        name={ESearchFormFields.categoryField}
         selectedValue={categoryField}
         placeholder="Choose a category"
         options={getOptionsFromObject<typeof EFilterOptions>(EFilterOptions)}
-        onSelect={(value: string) => setFieldValue('categoryField', value)}
-        onClear={() => setFieldValue('categoryField', '')}
+        onSelect={(value: string) => setFieldValue(ESearchFormFields.categoryField, value)}
+        onClear={() => setFieldValue(ESearchFormFields.categoryField, '')}
         fluid
       />
       <Input
-        name="titleField"
+        name={ESearchFormFields.titleField}
         placeholder="Search in title"
         type="text"
         fluid
-        onChange={e => setFieldValue('titleField', e.target.value)}
+        onChange={e => setFieldValue(ESearchFormFields.titleField, e.target.value)}
         isClearable
-        onClear={() => setFieldValue('titleField', '')}
+        onClear={() => setFieldValue(ESearchFormFields.titleField, '')}
         value={titleField}
       />
       <Input
-        name="authorField"
+        name={ESearchFormFields.authorField}
         placeholder="Search in author"
         type="text"
         fluid
-        onChange={e => setFieldValue('authorField', e.target.value)}
+        onChange={e => setFieldValue(ESearchFormFields.authorField, e.target.value)}
         isClearable
-        onClear={() => setFieldValue('authorField', '')}
+        onClear={() => setFieldValue(ESearchFormFields.authorField, '')}
         value={authorField}
-      />
-      <Input
-        name="publisherField"
-        placeholder="Search in publisher"
-        type="text"
-        fluid
-        onChange={e => setFieldValue('publisherField', e.target.value)}
-        isClearable
-        onClear={() => setFieldValue('publisherField', '')}
-        value={publisherField}
       />
       <Styled.ButtonBlock>
         <Button onClick={onClick} isFluid type="button">

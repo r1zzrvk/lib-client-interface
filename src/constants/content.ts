@@ -39,6 +39,7 @@ export const NOTHING_FOUND = {
   title: 'Your search did not match\nany results',
   altText: 'nothing found',
   imgUrl: '/nothingfound.png',
+  subtitle: 'Try again or change filters',
 }
 
 export const STARTING_SEARCH = {

@@ -16,7 +16,7 @@ export const Badge: FC<TBadgeProps> = ({ value, label, id, checked, onChange, ty
     <Styled.Input
       name={name}
       id={value + id}
-      type="radio"
+      type="checkbox"
       value={value}
       checked={checked}
       onChange={() => onChange({ id, label, value, type })}

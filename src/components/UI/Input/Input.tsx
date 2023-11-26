@@ -86,6 +86,7 @@ export const Input: FC<TInputProps> = ({
         disabled={readonly}
         isIcon={hasIcon}
         onKeyDown={e => handleKeyDown(e)}
+        autoComplete="off"
         fluid
       />
       {isClearable && value !== '' && (

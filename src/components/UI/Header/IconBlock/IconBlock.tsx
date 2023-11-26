@@ -14,7 +14,6 @@ type TIconBlockProps = {
 export const IconBlock: FC<TIconBlockProps> = ({ onSearchClick, isSearchVisible }) => {
   const router = useRouter()
   const { isMob } = useBreakpoint()
-  const iconSize = isMob ? theme.icon_sizes.md : theme.icon_sizes.sm
   const icon = isSearchVisible ? 'cross_solid' : 'search_solid'
   const isCatalogPage = router.pathname === EPagePaths.CATALOG
 
@@ -34,7 +33,7 @@ export const IconBlock: FC<TIconBlockProps> = ({ onSearchClick, isSearchVisible 
         icon={icon}
         color={theme.colors.white}
         onClick={() => handleClick(EPagePaths.CATALOG)}
-        size={iconSize}
+        size={theme.icon_sizes.sm}
         isButton
       />
     </Styled.Wrapper>

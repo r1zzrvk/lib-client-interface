@@ -7,5 +7,4 @@ export const searchFormValues: TSearchFormValues = {
   sorting: '',
   titleField: '',
   authorField: '',
-  publisherField: '',
 }

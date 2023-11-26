@@ -41,6 +41,7 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         title={NOTHING_FOUND.title}
         altText={NOTHING_FOUND.altText}
         imgUrl={NOTHING_FOUND.imgUrl}
+        subtitle={NOTHING_FOUND.subtitle}
         isVisible={totalItems === 0 && !isRequestError}
       />
       <StatusIllustration
