@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { theme } from '@constants'
-import { TBook, TFirebaseUser } from '@types'
+import { TBook, TFirebaseUser, TList } from '@types'
 import { IconsSelector } from '@components/molecules'
 import { Divider } from '@ui-kit'
 import { getImage, sliceItems, textLimiter } from '@utils'
@@ -10,20 +10,27 @@ import { Text } from '../Text'
 import { Styled } from './styled'
 
 type TCardProps = {
-  bookmarks: TBook[]
+  bookmarks: TList
   uid?: TFirebaseUser['uid']
-  updateList?: Dispatch<SetStateAction<TBook[]>>
+  updateList?: Dispatch<SetStateAction<TList | null>>
 } & TBook
 
 export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
   const { title, imageLinks, categories, authors } = volumeInfo
+  const { listItems } = bookmarks || {}
 
-  const isActive = !!bookmarks?.find(bookmark => bookmark.id === id)
+  const isActive = !!listItems?.find(bookmark => bookmark.id === id)
 
   const handleBookmarkClick = async () => {
     if (uid) {
       if (isActive) {
-        updateBookmarkList({ uid, list: bookmarks.filter(item => item.id !== id) })
+        updateBookmarkList({
+          uid,
+          list: {
+            ...bookmarks,
+            listItems: listItems.filter(item => item.id !== id),
+          },
+        })
 
         updateList?.(bookmarks)
         return
@@ -31,14 +38,17 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
 
       updateBookmarkList({
         uid,
-        list: [
+        list: {
           ...bookmarks,
-          {
-            id,
-            volumeInfo,
-            ...rest,
-          },
-        ],
+          listItems: [
+            ...listItems,
+            {
+              id,
+              volumeInfo,
+              ...rest,
+            },
+          ],
+        },
       })
 
       updateList?.(bookmarks)
