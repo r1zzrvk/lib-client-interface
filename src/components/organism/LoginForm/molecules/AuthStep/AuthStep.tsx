@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
-import { theme } from '@constants'
+import { NEW_BOOKMARK_LIST, theme } from '@constants'
 import { useAppDispatch, useBreakpoint } from '@hooks'
-import { auth } from '@api'
+import { auth, fetchDatabaseDocs, updateBookmarkList } from '@api'
 import { setAuthStatus, setUser } from '@reducers'
 import { EAuthorizationStatus } from '@types'
 import { NoticeMessage } from './constants'
@@ -18,15 +18,27 @@ type TAuthStepProps = {
 export const AuthStep: FC<TAuthStepProps> = ({ onError }) => {
   const dispatch = useAppDispatch()
   const { isMob } = useBreakpoint()
-
   const googleProvider = new GoogleAuthProvider()
+
+  const createBookmarksForNewUsers = (uid: string) => {
+    if (uid) {
+      fetchDatabaseDocs(uid).then(response => {
+        if (!response) {
+          updateBookmarkList({ uid, list: NEW_BOOKMARK_LIST })
+        }
+      })
+    }
+  }
 
   const loginWithGoogle = async () => {
     await signInWithPopup(auth, googleProvider)
       .then(({ user }) => {
         dispatch(setUser(user))
         dispatch(setAuthStatus(EAuthorizationStatus.AUTH))
+
+        return user
       })
+      .then(({ uid }) => createBookmarksForNewUsers(uid))
       .catch(() => {
         onError()
         dispatch(setAuthStatus(EAuthorizationStatus.NO_AUTH))
