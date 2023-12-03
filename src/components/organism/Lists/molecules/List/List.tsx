@@ -2,7 +2,7 @@ import { Flexbox, ItemListWrapper } from '@components/atoms'
 import { ItemList, StatusIllustration } from '@components/molecules'
 import { EMPTY_BOOKMARKS, theme } from '@constants'
 import { useBreakpoint, usePagination } from '@hooks'
-import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
+import { EPagePaths, TFirebaseUser, TList } from '@types'
 import { Button, Card, Spacer, Text } from '@ui-kit'
 import { useRouter } from 'next/router'
 import { Dispatch, FC, SetStateAction } from 'react'
@@ -10,10 +10,12 @@ import { ListContainer } from '../../atoms'
 
 type TListProps = {
   uid: TFirebaseUser['uid']
-  updateList: Dispatch<SetStateAction<TBook[]>>
-} & TList
+  updateList: Dispatch<SetStateAction<TList | null>>
+  list: TList
+}
 
-export const List: FC<TListProps> = ({ listItems, listTitle, uid, updateList }) => {
+export const List: FC<TListProps> = ({ list, uid, updateList }) => {
+  const { listItems, title } = list
   const { isMob } = useBreakpoint()
   const { firstIndex, packSize, showMore } = usePagination({ contentPerPage: 10, itemsCount: listItems?.length })
   const router = useRouter()
@@ -35,7 +37,7 @@ export const List: FC<TListProps> = ({ listItems, listTitle, uid, updateList }) 
           fontHeightMob={theme.fonts.height.header.sm}
           fontWeightMob={theme.fonts.weight.medium}
         >
-          {listTitle}
+          {title}
         </Text>
         <Text
           color={theme.colors.main}
@@ -52,7 +54,7 @@ export const List: FC<TListProps> = ({ listItems, listTitle, uid, updateList }) 
       <Spacer sizeMob={theme.space.sm} size={theme.space.md} />
       <ItemListWrapper rowGap={theme.space.sm}>
         <ItemList
-          renderItem={book => <Card {...book} key={book.id} bookmarks={listItems} uid={uid} updateList={updateList} />}
+          renderItem={book => <Card {...book} key={book.id} bookmarks={list} uid={uid} updateList={updateList} />}
           items={listItems.slice(firstIndex, packSize)}
         />
       </ItemListWrapper>

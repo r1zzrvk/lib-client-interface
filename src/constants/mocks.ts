@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import { EPagePaths, ESearchTypes, TMobileMenuItem } from '@types'
+import { EPagePaths, ESearchTypes, TList, TMobileMenuItem } from '@types'
 
 export const categoriesCardData = [
   {
@@ -137,4 +137,10 @@ export const mobileMenuItems: TMobileMenuItem[] = [
   },
 ]
 
-export const NO_LIST_TITLE = 'No name'
+export const NEW_BOOKMARK_LIST: TList = {
+  id: 'bookmarks',
+  title: 'Bookmarks',
+  description: '',
+  isPinned: true,
+  listItems: [],
+}

@@ -62,3 +62,17 @@ export const NO_AUTH = {
   imgUrl: '/emptylist.png',
   subtitle: 'Log in to add lists and bookmarks',
 }
+
+export const NO_LISTS = {
+  title: 'Nothing found!',
+  altText: 'list is empty',
+  imgUrl: '/nothingfound.png',
+  subtitle: "You don't have any lists yet",
+}
+
+export const NO_CREATED_LISTS = {
+  title: 'Created lists not found!',
+  altText: 'Created lists is empty',
+  imgUrl: '/nothingfound.png',
+  subtitle: "You don't have any lists yet",
+}
