@@ -1,6 +1,6 @@
 import { ItemList, ListsSkeleton } from '@components/molecules'
 import { useAppDispatch, useLists } from '@hooks'
-import { TBook, TFirebaseUser, TList } from '@types'
+import { TFirebaseUser, TList } from '@types'
 import { FC, useEffect, useState } from 'react'
 import { setIsLoading } from '@reducers'
 import { List } from './molecules'
@@ -11,7 +11,7 @@ type TListsProps = {
 
 export const Lists: FC<TListsProps> = ({ uid }) => {
   const dispatch = useAppDispatch()
-  const [updatedList, updateList] = useState<TBook[]>([])
+  const [updatedList, updateList] = useState<TList | null>(null)
   const lists = useLists({ uid, list: updatedList })
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
     <div>
       {lists?.length ? (
         <ItemList
-          renderItem={list => <List uid={uid} key={list.listTitle} updateList={updateList} {...list} />}
+          renderItem={list => <List uid={uid} key={list.id} updateList={updateList} list={list} />}
           items={lists as TList[]}
         />
       ) : (

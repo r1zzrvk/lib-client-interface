@@ -12,7 +12,7 @@ export const updateBookmarkList = async ({ uid, list }: TUpdateBookmarkList) => 
   const listsRef = doc(database, String(uid), EDatabaseDocs.LISTS)
 
   await setDoc(listsRef, {
-    bookmarks: list,
+    bookmarks: [list],
   }).catch((e: Error) => console.log(e))
 }
 

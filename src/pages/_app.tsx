@@ -16,7 +16,7 @@ const MyApp: FC = ({ Component, pageProps }: any) => (
       <meta name="description" content="Library app" />
       <link rel="icon" href="/favicon.ico" />
 
-      <title>Library | Book searching app</title>
+      <title>Lib | Book searching app</title>
     </Head>
     <Component {...pageProps} />
   </Provider>
