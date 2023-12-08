@@ -98,7 +98,7 @@ export type TBook = {
   accessInfo: TAccessInfo
 }
 
-export type TResponse = {
+export type TSearchBookResponse = {
   items: TBook[]
   kind: string
   totalItems: number
