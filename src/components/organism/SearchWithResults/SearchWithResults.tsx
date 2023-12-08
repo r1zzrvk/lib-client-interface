@@ -4,7 +4,14 @@ import { useRouter } from 'next/router'
 import { useBreakpoint } from '@hooks'
 import { theme } from '@constants'
 import { Badge, Input, Paginator, Spacer } from '@ui-kit'
-import { EFilterOptions, ESearchFormFields, TBadge, TResponse, TSearchBookProps, TSearchFormValues } from '@types'
+import {
+  EFilterOptions,
+  ESearchFormFields,
+  TBadge,
+  TSearchBookResponse,
+  TSearchBookProps,
+  TSearchFormValues,
+} from '@types'
 import { scrollToTop, getBadgesFromObject } from '@utils'
 import { CardsPreloader } from '@components/molecules'
 import { Styled } from './styled'
@@ -22,7 +29,7 @@ type TSearchWithResultsProps = {
   packSize: number
   isRequestError: boolean
   isLoading: boolean
-  searchData: TResponse | null
+  searchData: TSearchBookResponse | null
 }
 
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({

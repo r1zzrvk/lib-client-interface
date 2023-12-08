@@ -1,11 +1,12 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, FC, MouseEvent, SetStateAction } from 'react'
 import { theme } from '@constants'
-import { TBook, TFirebaseUser, TList } from '@types'
+import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
 import { IconsSelector } from '@components/molecules'
 import { Divider } from '@ui-kit'
 import { getImage, sliceItems, textLimiter } from '@utils'
 import { Flexbox } from '@components/atoms'
 import { updateBookmarkList } from '@api'
+import { useRouter } from 'next/router'
 import { Text } from '../Text'
 import { Styled } from './styled'
 
@@ -16,12 +17,19 @@ type TCardProps = {
 } & TBook
 
 export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
+  const router = useRouter()
   const { title, imageLinks, categories, authors } = volumeInfo
   const { listItems } = bookmarks || {}
 
   const isActive = !!listItems?.find(bookmark => bookmark.id === id)
 
-  const handleBookmarkClick = async () => {
+  const handleCardClick = () => {
+    router.push(`${EPagePaths.CATALOG}/${id}`)
+  }
+
+  const handleBookmarkClick = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    e.stopPropagation()
+
     if (uid) {
       if (isActive) {
         updateBookmarkList({
@@ -56,7 +64,7 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
   }
 
   return (
-    <Styled.Wrapper>
+    <Styled.Wrapper onClick={handleCardClick}>
       <Styled.Image
         src={getImage(imageLinks)}
         alt="book cover"
@@ -99,11 +107,10 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
             </Text>
           </Flexbox>
           {uid && (
-            <Styled.Icon>
+            <Styled.Icon onClick={e => handleBookmarkClick(e)}>
               <IconsSelector
                 icon={isActive ? 'bookmark_solid' : 'bookmark_regular'}
                 color={isActive ? theme.colors.main : theme.colors.grey}
-                onClick={handleBookmarkClick}
               />
             </Styled.Icon>
           )}
