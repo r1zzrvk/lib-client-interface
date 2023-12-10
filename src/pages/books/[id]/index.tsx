@@ -15,10 +15,12 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   } = useRouter()
   const { isMob } = useBreakpoint()
   const [book, setBook] = useState<TBook | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (isReady && bookId && typeof bookId === 'string') {
-      getBookData(bookId).then(book => setBook(book))
+      setIsLoading(true)
+      getBookData(bookId).then(book => setBook(book)).finally(() => setIsLoading(false))
     }
   }, [bookId, isReady, getBookData, setBook])
 
@@ -26,7 +28,7 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-     {book && isMob && <MobileBookPageLayout {...book} />} 
+     {book && isMob && <MobileBookPageLayout {...book} isLoading={isLoading} />} 
     </LayoutTemplate>
   )
 }
