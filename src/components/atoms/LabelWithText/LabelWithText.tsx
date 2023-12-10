@@ -15,6 +15,9 @@ export const LabelWithText: FC<TLabelWithTextProps> = ({ label, text }) => (
       fontSizeMob={theme.fonts.size.regular.md}
       fontHeightMob={theme.fonts.height.regular.md}
       fontWeightMob={theme.fonts.weight.regular}
+      fontSize={theme.fonts.size.regular.md}
+      fontHeight={theme.fonts.height.regular.md}
+      fontWeight={theme.fonts.weight.regular}
     >
       {label}
     </Text>

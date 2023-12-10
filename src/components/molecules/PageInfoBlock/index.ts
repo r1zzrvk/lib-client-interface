@@ -1,0 +1,1 @@
+export { PageInfoBlock } from './PageInfoBlock'

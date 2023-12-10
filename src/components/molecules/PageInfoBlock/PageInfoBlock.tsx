@@ -6,9 +6,10 @@ import { FC, ReactNode } from 'react'
 type TInfoBlockProps = {
   title: string
   children: ReactNode
+  gap?: number
 }
 
-export const InfoBlock: FC<TInfoBlockProps> = ({ children, title }) => (
+export const PageInfoBlock: FC<TInfoBlockProps> = ({ children, title, gap = theme.space.xs2 }) => (
   <>
     <Text
       color={theme.colors.grey}
@@ -16,10 +17,14 @@ export const InfoBlock: FC<TInfoBlockProps> = ({ children, title }) => (
       fontHeightMob={theme.fonts.height.header.xs}
       fontWeightMob={theme.fonts.weight.medium}
       marginBottomMob={theme.space.xs}
+      fontSize={theme.fonts.size.header.sm}
+      fontHeight={theme.fonts.height.header.sm}
+      fontWeight={theme.fonts.weight.medium}
+      marginBottom={theme.space.xs3}
     >
       {title}
     </Text>
-    <Flexbox direction="column" gap={theme.space.xs2}>
+    <Flexbox direction="column" gap={gap}>
       {children}
     </Flexbox>
   </>

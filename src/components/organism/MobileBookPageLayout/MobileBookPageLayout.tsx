@@ -5,11 +5,19 @@ import { BookHeader, BookInfo } from './molecules'
 
 type TMobileBookPageLayoutProps = {
   isLoading: boolean
+  onBookmarkClick: () => void
+  isBookmarked: boolean
 } & TBook
 
-export const MobileBookPageLayout: FC<TMobileBookPageLayoutProps> = ({ volumeInfo, id, isLoading, ...rest }) => (
+export const MobileBookPageLayout: FC<TMobileBookPageLayoutProps> = ({
+  volumeInfo,
+  id,
+  isLoading,
+  onBookmarkClick,
+  isBookmarked,
+}) => (
   <Styled.Background>
-    <BookHeader {...rest} id={id} volumeInfo={volumeInfo} isLoading={isLoading} />
-    <BookInfo {...rest} id={id} volumeInfo={volumeInfo} isLoading={isLoading} />
+    <BookHeader id={id} isLoading={isLoading} onBookmarkClick={onBookmarkClick} isBookmarked={isBookmarked} />
+    <BookInfo volumeInfo={volumeInfo} isLoading={isLoading} />
   </Styled.Background>
 )
