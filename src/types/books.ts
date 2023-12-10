@@ -87,6 +87,9 @@ type TAccessInfo = {
   quoteSharingAllowed: boolean
 }
 
+// Full list of possible data, types and descriptions:
+// https://developers.google.com/books/docs/v1/reference/volumes#resource-representations
+
 export type TBook = {
   kind: string
   id: string
