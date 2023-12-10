@@ -4,20 +4,31 @@ import { Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
 import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
 import { LabelWithText } from '@components/atoms'
+import { PageInfoBlock } from '@components/molecules'
 import { Styled } from './styled'
-import { InfoBlock, InfoSkeleton } from '../../atoms'
+import { InfoSkeleton } from '../../atoms'
 
 type TBookInfoProps = {
   isLoading: boolean
-} & TBook
+  volumeInfo: TBook['volumeInfo']
+}
 
 export const BookInfo: FC<TBookInfoProps> = ({ volumeInfo, isLoading }) => {
-  const averageRatingText = volumeInfo.ratingsCount
-    ? `${volumeInfo.averageRating} (${volumeInfo.ratingsCount} reviews)`
-    : volumeInfo.averageRating?.toString()
-  const showAboutEdition =
-    volumeInfo.publishedDate || volumeInfo.publisher || volumeInfo.pageCount || volumeInfo.language
-  const showAboutWork = volumeInfo.categories || volumeInfo?.averageRating || volumeInfo.description
+  const {
+    ratingsCount,
+    averageRating,
+    publishedDate,
+    publisher,
+    pageCount,
+    language,
+    categories,
+    description,
+    authors,
+    title,
+  } = volumeInfo
+  const averageRatingText = ratingsCount ? `${averageRating} (${ratingsCount} reviews)` : averageRating?.toString()
+  const showAboutEdition = publishedDate || publisher || pageCount || language
+  const showAboutWork = categories || averageRating || description
 
   return (
     <Styled.Wrapper>
@@ -32,7 +43,7 @@ export const BookInfo: FC<TBookInfoProps> = ({ volumeInfo, isLoading }) => {
             fontWeightMob={theme.fonts.weight.semibold}
             marginBottomMob={theme.space.xs4}
           >
-            {volumeInfo?.title}
+            {title}
           </Text>
           <Text
             color={theme.colors.main}
@@ -41,39 +52,34 @@ export const BookInfo: FC<TBookInfoProps> = ({ volumeInfo, isLoading }) => {
             fontWeightMob={theme.fonts.weight.regular}
             marginBottomMob={theme.space.md}
           >
-            {volumeInfo.authors?.join(', ')}
+            {authors?.join(', ')}
           </Text>
           {showAboutEdition && (
-            <InfoBlock title="About this edition">
-              {volumeInfo.publishedDate && (
-                <LabelWithText
-                  label="Publish date:"
-                  text={formatDate(volumeInfo.publishedDate, EDateFormats.MMMM_DD_YYYY)}
-                />
+            <PageInfoBlock title="About this edition">
+              {publishedDate && (
+                <LabelWithText label="Publish date:" text={formatDate(publishedDate, EDateFormats.MMMM_DD_YYYY)} />
               )}
-              {volumeInfo.publisher && <LabelWithText label="Publisher:" text={volumeInfo.publisher} />}
-              {volumeInfo.pageCount && <LabelWithText label="Page count:" text={volumeInfo.pageCount.toString()} />}
-              {volumeInfo.language && <LabelWithText label="Language:" text={formatIsoLang(volumeInfo.language)} />}
-            </InfoBlock>
+              {publisher && <LabelWithText label="Publisher:" text={publisher} />}
+              {pageCount && <LabelWithText label="Page count:" text={pageCount.toString()} />}
+              {language && <LabelWithText label="Language:" text={formatIsoLang(language)} />}
+            </PageInfoBlock>
           )}
           {showAboutWork && (
             <>
               <Spacer sizeMob={theme.space.md} />
-              <InfoBlock title="About the work">
-                {volumeInfo?.categories?.length && (
-                  <LabelWithText label="Genres:" text={volumeInfo.categories.join(', ')} />
-                )}
-                {volumeInfo?.averageRating && <LabelWithText label="Google rating:" text={averageRatingText} />}
-                {(volumeInfo?.categories?.length || volumeInfo?.averageRating) && <Spacer sizeMob={theme.space.md} />}
-              </InfoBlock>
-              {volumeInfo?.description && (
+              <PageInfoBlock title="About the work">
+                {categories?.length && <LabelWithText label="Genres:" text={categories.join(', ')} />}
+                {averageRating && <LabelWithText label="Google rating:" text={averageRatingText} />}
+                {(categories?.length || averageRating) && <Spacer sizeMob={theme.space.md} />}
+              </PageInfoBlock>
+              {description && (
                 <Text
                   color={theme.colors.grey}
                   fontSizeMob={theme.fonts.size.regular.md}
                   fontHeightMob={theme.fonts.height.regular.md}
                   fontWeightMob={theme.fonts.weight.regular}
                 >
-                  {removeHTMLFromString(volumeInfo.description, ' ')}
+                  {removeHTMLFromString(description, ' ')}
                 </Text>
               )}
             </>
