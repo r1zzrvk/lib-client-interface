@@ -1,8 +1,7 @@
 import { Flexbox } from '@components/atoms'
 import { IconsSelector } from '@components/molecules'
-import { BOOKMARK_LIST_ID, theme } from '@constants'
+import { BOOKMARK_LIST_ID, BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
 import { TBook, TList } from '@types'
-import { getImage } from '@utils'
 import { useRouter } from 'next/router'
 import { FC, useState } from 'react'
 import { ResponsiveImage, Spacer } from '@ui-kit'
@@ -18,10 +17,10 @@ type TBookHeaderProps = TBook & {
 export const BookHeader: FC<TBookHeaderProps> = ({ volumeInfo, id, ...rest }) => {
   const router = useRouter()
   const { uid } = useAppSelector(getUserData) || {}
-  const { imageLinks } = volumeInfo
   const [updatedList, updateList] = useState<TList | null>(null)
   const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList })?.[0]
   const isActive = !!bookmarks?.listItems?.find(bookmark => bookmark.id === id)
+  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
 
   const handleBackClick = () => {
     router.back()
@@ -78,7 +77,7 @@ export const BookHeader: FC<TBookHeaderProps> = ({ volumeInfo, id, ...rest }) =>
       </Flexbox>
       <Spacer size={0} sizeMob={theme.space.sm} />
       <Flexbox justify="center">
-        <ResponsiveImage src={getImage(imageLinks)} height={360} width={230} isEverywhere />
+        <ResponsiveImage src={imageLink} height={360} width={230} isEverywhere />
       </Flexbox>
       <Spacer sizeMob={theme.space.sm} />
     </>
