@@ -45,7 +45,7 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
   return (
     <Flexbox direction="column" height="100%">
       <Header headerData={header} />
-      <PaddingContainer padding={theme.space.sm} mobOnly>
+      <PaddingContainer padding={theme.space.sm} mobOnly withMaxHeight>
         {children}
       </PaddingContainer>
       <Spacer sizeMob={theme.space.xl4} size={0} />

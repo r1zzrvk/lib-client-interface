@@ -78,6 +78,8 @@ Common types can be:
 
  - [`Books`](https://developers.google.com/books/docs/v1/getting_started)
 
+ - [`Volume`](https://developers.google.com/books/docs/v1/reference/volumes#resource-representations)
+
 ```
 https://www.googleapis.com/your_request
 ```

@@ -34,6 +34,7 @@ export const IconsSelector: FC<TIconsSelectorProps> = ({
     isButton={isButton}
     withBorder={withBorder}
     borderColor={borderColor}
+    size={size}
     onClick={onClick}
   >
     <FontAwesomeIcon icon={icons[icon]} color={color} fontSize={size} />

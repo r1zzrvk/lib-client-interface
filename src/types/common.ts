@@ -38,3 +38,7 @@ export enum EFilterOptions {
 export type TPageDataProps = {
   headerFooterData: THeaderFooter
 }
+
+export enum EDateFormats {
+  MMMM_DD_YYYY = 'MMMM DD, YYYY',
+}

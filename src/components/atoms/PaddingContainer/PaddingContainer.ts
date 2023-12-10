@@ -4,6 +4,7 @@ import styled from 'styled-components'
 type TPaddingContainerProps = {
   padding: number
   mobOnly?: boolean
+  withMaxHeight?: boolean
 }
 
 export const PaddingContainer = styled.div<TPaddingContainerProps>`
@@ -11,5 +12,6 @@ export const PaddingContainer = styled.div<TPaddingContainerProps>`
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     padding: ${({ mobOnly }) => mobOnly && 0}px;
+    min-height: ${({ withMaxHeight }) => (withMaxHeight ? '65vh' : 'auto')};
   }
 `
