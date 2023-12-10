@@ -1,0 +1,1 @@
+export { InfoSkeleton } from './InfoSkeleton'
