@@ -32,6 +32,7 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
       filterByAuthor,
       searchByTitle,
     }: TSearchBookProps) => {
+      setIsError(false)
       setIsLoading(true)
 
       searchBook({

@@ -58,8 +58,8 @@ export const BookInfo: FC<TBookInfoProps> = ({ volumeInfo }) => {
               <LabelWithText label="Genres:" text={volumeInfo.categories.join(', ')} />
             )}
             {volumeInfo?.averageRating && <LabelWithText label="Google rating:" text={averageRatingText} />}
+            {(volumeInfo?.categories?.length || volumeInfo?.averageRating) && <Spacer sizeMob={theme.space.md} />}
           </InfoBlock>
-          <Spacer sizeMob={theme.space.md} />
           {volumeInfo?.description && (
             <Text
               color={theme.colors.grey}

@@ -1,9 +1,9 @@
 import { Dispatch, FC, MouseEvent, SetStateAction } from 'react'
-import { theme } from '@constants'
+import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
 import { IconsSelector } from '@components/molecules'
 import { Divider } from '@ui-kit'
-import { getImage, sliceItems, textLimiter } from '@utils'
+import { sliceItems, textLimiter } from '@utils'
 import { Flexbox } from '@components/atoms'
 import { updateBookmarkList } from '@api'
 import { useRouter } from 'next/router'
@@ -18,8 +18,9 @@ type TCardProps = {
 
 export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
   const router = useRouter()
-  const { title, imageLinks, categories, authors } = volumeInfo
+  const { title, categories, authors } = volumeInfo
   const { listItems } = bookmarks || {}
+  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
 
   const isActive = !!listItems?.find(bookmark => bookmark.id === id)
 
@@ -65,14 +66,7 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
 
   return (
     <Styled.Wrapper onClick={handleCardClick}>
-      <Styled.Image
-        src={getImage(imageLinks)}
-        alt="book cover"
-        width={110}
-        height={170}
-        objectFit="cover"
-        isEverywhere
-      />
+      <Styled.Image src={imageLink} alt="book cover" width={106} height={170} objectFit="cover" isEverywhere />
       <Styled.Content>
         <div>
           <Text
