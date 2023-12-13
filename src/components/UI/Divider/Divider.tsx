@@ -8,7 +8,9 @@ type TDividerProps = {
 
 export const Divider = styled.hr<TDividerProps>`
   border-radius: 1px;
-  border: 1px solid ${theme.colors.main};
+  background-color: ${theme.colors.main};
+  border: none;
+  height: 2px;
   opacity: 0.2;
   margin: ${({ sideMargin }) => sideMargin && `0px ${sideMargin}px 0px ${sideMargin}px`};
   transform: ${({ isVertical }) => isVertical && 'rotate(180deg)'};

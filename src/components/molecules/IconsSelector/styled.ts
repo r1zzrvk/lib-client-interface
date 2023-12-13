@@ -6,13 +6,19 @@ type TWrapperProps = {
   isButton: boolean
   withBorder: boolean
   borderColor: string
+  size: number
 }
 
 const Wrapper = styled.div<TWrapperProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: ${({ isButton }) => isButton && 'pointer'};
   padding: ${({ upDownPadding, sidePadding }) =>
     upDownPadding && sidePadding && `${upDownPadding}px ${sidePadding}px ${upDownPadding}px ${sidePadding}px `};
   border-left: ${({ withBorder, borderColor }) => withBorder && `2px solid ${borderColor}`};
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
 `
 
 export const Styled = {
