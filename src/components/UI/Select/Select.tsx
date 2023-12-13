@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react'
 import { IconsSelector } from '@components/molecules'
 import { theme } from '@constants'
 import { TOption } from '@types'
@@ -25,6 +25,15 @@ export const Select: FC<TSelectProps> = ({
   name,
 }) => {
   const [isOpened, setIsOpened] = useState(false)
+  const rootEl = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const onClick = (e: Event) => rootEl?.current?.contains(e.target as Node) || setIsOpened(false)
+
+    document.addEventListener('click', onClick)
+
+    return () => document.removeEventListener('click', onClick)
+  }, [])
 
   const handleSelectValue = ({ target }: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     onSelect((target as HTMLInputElement).value)
@@ -36,7 +45,7 @@ export const Select: FC<TSelectProps> = ({
   }
 
   return (
-    <Styled.SelectWrapper fluid={fluid}>
+    <Styled.SelectWrapper fluid={fluid} ref={rootEl}>
       {selectedValue === '' && <Styled.Label>{placeholder}</Styled.Label>}
       <Input
         name={name}

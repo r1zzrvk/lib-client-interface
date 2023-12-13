@@ -5,6 +5,8 @@ import { TBook } from '@types'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { ResponsiveImage, Skeleton, Spacer } from '@ui-kit'
+import { useAppSelector } from '@hooks'
+import { getUserAuth } from '@selectors'
 import { Styled } from './styled'
 
 type TBookHeaderProps = {
@@ -16,6 +18,7 @@ type TBookHeaderProps = {
 
 export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClick, isBookmarked }) => {
   const router = useRouter()
+  const isAuth = useAppSelector(getUserAuth)
   const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
 
   const handleBackClick = () => {
@@ -31,14 +34,16 @@ export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClic
         {isLoading ? (
           <Skeleton radius={theme.radiuses.round} width={48} height={48} />
         ) : (
-          <Styled.IconWrapper onClick={onBookmarkClick}>
-            <IconsSelector
-              size={theme.icon_sizes.sm}
-              icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-              color={isBookmarked ? theme.colors.main : theme.colors.grey}
-              isButton
-            />
-          </Styled.IconWrapper>
+          isAuth && (
+            <Styled.IconWrapper onClick={onBookmarkClick}>
+              <IconsSelector
+                size={theme.icon_sizes.sm}
+                icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                color={isBookmarked ? theme.colors.main : theme.colors.grey}
+                isButton
+              />
+            </Styled.IconWrapper>
+          )
         )}
       </Flexbox>
       <Spacer size={0} sizeMob={theme.space.sm} />
