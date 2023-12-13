@@ -17,6 +17,7 @@ const ActionWrapper = styled(Flexbox)`
   margin-bottom: ${theme.space.md}px;
   padding: ${theme.space.xs}px ${theme.space.lg}px;
   border-radius: ${theme.radiuses.md}px;
+  cursor: pointer;
 `
 
 const IconWrapper = styled.div`
