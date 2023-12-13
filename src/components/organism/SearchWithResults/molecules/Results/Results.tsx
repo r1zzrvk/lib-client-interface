@@ -2,13 +2,13 @@ import { FC, useState } from 'react'
 import { Card } from '@ui-kit'
 import { ItemListWrapper } from '@components/atoms'
 import { ItemList, StatusIllustration } from '@components/molecules'
-import { TList, TResponse } from '@types'
+import { TList, TSearchBookResponse } from '@types'
 import { useAppSelector, useBreakpoint, useLists } from '@hooks'
 import { BOOKMARK_LIST_ID, NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
 import { getUserData } from '@selectors'
 
 type TResultsProps = {
-  searchData: TResponse | null
+  searchData: TSearchBookResponse | null
   packSize: number
   isRequestError: boolean
 }

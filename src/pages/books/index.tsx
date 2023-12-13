@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import { Modal, Spacer } from '@ui-kit'
 import { searchFormValues, theme } from '@constants'
 import { useBreakpoint, useDebouncedCallback, usePagination } from '@hooks'
-import { TPageDataProps, TResponse, TSearchBookProps } from '@types'
+import { TPageDataProps, TSearchBookResponse, TSearchBookProps } from '@types'
 import { getStaticPageProps, searchBook } from '@api'
 import { FiltersForm, SearchWithResults } from '@components/organism'
 import { SearchFormContainer } from '@components/atoms'
@@ -16,13 +16,13 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { isMob, isTablet } = useBreakpoint()
-  const [searchData, setSearchData] = useState<TResponse | null>(null)
+  const [searchData, setSearchData] = useState<TSearchBookResponse | null>(null)
   const { totalItems } = searchData || {}
   const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({
     contentPerPage: isMob ? 5 : 10,
     itemsCount: totalItems || 0,
   })
-
+  
   const debouncedSearch = useDebouncedCallback(
     ({
       searchTerm,
@@ -32,6 +32,7 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
       filterByAuthor,
       searchByTitle,
     }: TSearchBookProps) => {
+      setIsError(false)
       setIsLoading(true)
 
       searchBook({
