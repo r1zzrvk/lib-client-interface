@@ -80,7 +80,11 @@ Common types can be:
 
  - [`Volume`](https://developers.google.com/books/docs/v1/reference/volumes#resource-representations)
 
-> `book.volumeInfo.imageLinks` - array contains images in poor quality that shouldn't be used. So I found the solution using another link in the directory `src/constants/api/BOOKS_IMAGE_SIZE` with `book.id`
+<br>
+
+> `book.volumeInfo.imageLinks` - object contains images in poor quality that shouldn't be used. So I found the solution using another link in the directory `src/constants/api/BOOKS_IMAGE_SIZE` with `book.id`
+
+<br>
 
 ```
 https://www.googleapis.com/your_request
