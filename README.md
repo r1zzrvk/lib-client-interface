@@ -92,7 +92,7 @@ https://www.googleapis.com/your_request
 
 ##  Figma :art:
 
-Disign and ui-kit based on these [layouts](https://www.figma.com/file/3KUeji625hyCsGa52g8MIB/Cosssy-%5BFurniture-store%5D-(Community)?type=design&node-id=451-965). But for some pages and components I had to create it myself :)
+Design and ui-kit based on these [layouts](https://www.figma.com/file/3KUeji625hyCsGa52g8MIB/Cosssy-%5BFurniture-store%5D-(Community)?type=design&node-id=451-965). But for some pages and components I had to create it myself :)
 
 
 
