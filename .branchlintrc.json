@@ -11,5 +11,7 @@
     "release/v"
   ],
   "separator": "",
-  "maxSections": 1
+  "maxSections": 1,
+  "msgPrefixNotAllowed": "Branch name \"%s\" is not allowed.\nAllowed branch name prefixes is feature/LIB-, bugfix/LIB-, hotfix/LIB-, feature/ISSUE-, bugfix/ISSUE-, hotfix/ISSUE-",
+  "msgSectionsOver" :  "Branch name \"%s\" is not allowed\nThere should be no separators after the task/issue number" 
 }
