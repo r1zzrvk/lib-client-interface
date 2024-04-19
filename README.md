@@ -34,25 +34,59 @@ fix(server): send cors headers
 feat(blog): add comment section
 ```
 Common types can be:
-- build
-- chore
-- ci
-- docs
-- feat
-- fix
-- perf
-- refactor
-- revert
-- style
-- test
+
+  - build
+  - chore
+  - ci
+  - docs
+  - feat
+  - fix
+  - perf
+  - refactor
+  - revert
+  - style
+  - test
 
 > Before committing, I recommend running a linter because if there are errors when pushing, it will be rejected! `npm run lint` and `npm run type-check` will start automatically with `git push`.
 
-####  Branches rules :heavy_exclamation_mark:
+###  Branches rules :heavy_exclamation_mark:
+
+**A branch name should consist of two sections:**
+
+1. Task type suffix:
+
+   - feature: for new features or enhancements
+   - bugfix: for fixing bugs or resolving issues
+   - hotfix: for fixing urgent bugs in the main or release branch
+   - release: for updating changes in the main branch
+
+2. Name and issue/task number:
+
+   - The second section should include the name and number of the corresponding issue or task.
+   - Use the format `ISSUE-{issue number}` for issues and `LIB-{task number}` for tasks.
+
+**Example:**
+
+```
+feature/LIB-322
+bugfix/ISSUE-456
+```
+**Release branch naming:**
+
+   - For the release branch, it is not required to specify the issue number.
+   - Instead of ISSUE or LIB, use "v" and add the desired version number.
+
+**Example:**
+
+```
+release/v3.2.2
+```
+
+**Developer Branch Access Table:**
 
 |                | MR           | Push       | Branching|
 |----------------|--------------------|--------------|---------|
-|master 				 |:x: can not merge by request|:x: can not push           | :heavy_check_mark: can branch from|
+|main 				 |:x: can not merge by request|:x: can not push           | :heavy_check_mark: can branch from|
 |develop         |:heavy_check_mark:	can merge by request   |:x: can not push         | :heavy_check_mark: can branch from|
 |feature/bugfix  | :heavy_check_mark: can merge by request and without| :heavy_check_mark: can push | :heavy_check_mark: can branch from|
 
