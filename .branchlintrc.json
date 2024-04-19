@@ -1,0 +1,15 @@
+{
+  "allowed": ["main", "develop"],
+  "disallowed": [],
+  "prefixes": [
+    "feature/LIB-",
+    "bugfix/LIB-",
+    "hotfix/LIB-",
+    "feature/ISSUE-",
+    "bugfix/ISSUE-",
+    "hotfix/ISSUE-",
+    "release/v"
+  ],
+  "separator": "",
+  "maxSections": 1
+}
