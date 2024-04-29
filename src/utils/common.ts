@@ -6,7 +6,7 @@ export const sliceItems = (arr: string[], slice = 2): string =>
     .map(item => textLimiter(item, 35))
     .join(', ')
 
-export const scrollToTop = (yAxis = 0) =>
+export const scrollToYAxis = (yAxis = 0) =>
   window.scrollTo({
     top: yAxis,
     behavior: 'smooth',
