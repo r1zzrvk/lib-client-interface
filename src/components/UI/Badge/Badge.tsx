@@ -8,7 +8,7 @@ type TBadgeProps = TBadge & {
   onChange: (value: TBadge) => void
 }
 
-export const Badge: FC<TBadgeProps> = ({ value, label, id, checked, onChange, type, name }) => (
+export const Badge: FC<TBadgeProps> = ({ value, label, id, checked, onChange, name }) => (
   <Styled.Badge>
     <Styled.Label htmlFor={value + id} checked={checked}>
       {label}
@@ -19,7 +19,7 @@ export const Badge: FC<TBadgeProps> = ({ value, label, id, checked, onChange, ty
       type="checkbox"
       value={value}
       checked={checked}
-      onChange={() => onChange({ id, label, value, type })}
+      onChange={() => onChange({ id, label, value })}
     />
   </Styled.Badge>
 )
