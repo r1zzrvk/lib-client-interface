@@ -1,0 +1,17 @@
+{
+  "allowed": ["main", "develop"],
+  "disallowed": [],
+  "prefixes": [
+    "feature/LIB-",
+    "bugfix/LIB-",
+    "hotfix/LIB-",
+    "feature/ISSUE-",
+    "bugfix/ISSUE-",
+    "hotfix/ISSUE-",
+    "release/v"
+  ],
+  "separator": "",
+  "maxSections": 1,
+  "msgPrefixNotAllowed": "Branch name \"%s\" is not allowed!\n Check README.md file for getting more information about branch rules.\nAllowed branch name prefixes is:\nfeature/LIB-,\nbugfix/LIB-,\nhotfix/LIB-,\nfeature/ISSUE-,\nbugfix/ISSUE-,\nhotfix/ISSUE-",
+  "msgSectionsOver" :  "Branch name \"%s\" is not allowed!\nThere should be no separators after the task/issue number" 
+}
