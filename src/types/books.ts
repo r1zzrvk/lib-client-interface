@@ -113,7 +113,5 @@ export type TSearchBookProps = {
   maxResults?: number
   sortingBy?: ESortingOptions | string
   filterByCategory?: EFilterOptions | string
-  filterByAuthor?: string
-  searchByTitle?: string
-  searchByPublisher?: string
+  searchBy?: string
 }

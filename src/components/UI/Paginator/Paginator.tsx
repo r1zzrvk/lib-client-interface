@@ -14,9 +14,17 @@ type TPaginatorProps = {
   nextPage: () => void
   prevPage: () => void
   setPage: (page: number) => void
+  goToFirstPage?: () => void
 }
 
-export const Paginator: FC<TPaginatorProps> = ({ totalPages, currentPage, nextPage, prevPage, setPage }) => {
+export const Paginator: FC<TPaginatorProps> = ({
+  totalPages,
+  currentPage,
+  nextPage,
+  prevPage,
+  setPage,
+  goToFirstPage,
+}) => {
   const { isMob } = useBreakpoint()
   const defaultPages = isMob ? 5 : 10
   const leftSide = isMob ? 2 : 4
@@ -47,8 +55,8 @@ export const Paginator: FC<TPaginatorProps> = ({ totalPages, currentPage, nextPa
           <IconsSelector icon="caretRight_solid" color={theme.colors.grey} />
         </Styled.ArrowButton>
       </Flexbox>
-      {currentPage > middlePage ? (
-        <Button isGhost onClick={() => setPage(1)}>
+      {currentPage > middlePage && goToFirstPage ? (
+        <Button isGhost onClick={goToFirstPage}>
           Go to first page
         </Button>
       ) : (

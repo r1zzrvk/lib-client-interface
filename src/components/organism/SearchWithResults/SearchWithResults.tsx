@@ -1,26 +1,17 @@
-import { FC, useEffect, useMemo } from 'react'
+import { FC, KeyboardEvent, useEffect, useMemo } from 'react'
 import { useFormikContext } from 'formik'
 import { useRouter } from 'next/router'
 import { useBreakpoint } from '@hooks'
 import { theme } from '@constants'
 import { Badge, Input, Paginator, Spacer } from '@ui-kit'
-import {
-  EFilterOptions,
-  ESearchFormFields,
-  TBadge,
-  TSearchBookResponse,
-  TSearchBookProps,
-  TSearchFormValues,
-} from '@types'
-import { scrollToTop, getBadgesFromObject } from '@utils'
+import { ESearchByOptionsLabels, ESearchFormFields, TBadge, TSearchBookResponse, TSearchFormValues } from '@types'
+import { scrollToYAxis, getBadgesFromObject, getHasFilters } from '@utils'
 import { CardsPreloader } from '@components/molecules'
 import { Styled } from './styled'
 import { Results } from './molecules'
-import { getDotNeed } from './utils'
 
 type TSearchWithResultsProps = {
   onModalOpen: () => void
-  debouncedSearch: (props: TSearchBookProps) => void
   page: number
   setPage: (page: number) => void
   nextPage: () => void
@@ -34,7 +25,6 @@ type TSearchWithResultsProps = {
 
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   onModalOpen,
-  debouncedSearch,
   nextPage,
   packSize,
   page,
@@ -46,73 +36,60 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   searchData,
 }) => {
   const { setFieldValue, values, submitForm } = useFormikContext<TSearchFormValues>()
-  const { searchField, selectedBadge, authorField, categoryField, titleField, sorting } = values
+  const { searchField, selectedBadge } = values
   const { isMob, isTablet } = useBreakpoint()
   const { query, isReady } = useRouter()
-  const { category, searchTerm } = query
-  const badges = useMemo(() => getBadgesFromObject<typeof EFilterOptions>(EFilterOptions), [])
+  const { category, searchTerm, searchBy, sortingBy } = query
+  const badges = useMemo(() => getBadgesFromObject<typeof ESearchByOptionsLabels>(ESearchByOptionsLabels), [])
 
   useEffect(() => {
-    scrollToTop()
+    scrollToYAxis()
   }, [page])
-
-  useEffect(() => {
-    if (searchField) {
-      debouncedSearch({
-        searchTerm: searchField,
-        page,
-        filterByCategory: categoryField,
-        sortingBy: sorting,
-        filterByAuthor: authorField,
-        searchByTitle: titleField,
-      })
-    }
-  }, [searchField, page, authorField, categoryField, titleField, sorting])
 
   useEffect(() => {
     if (isReady && searchTerm) {
       setFieldValue(ESearchFormFields.searchField, String(searchTerm))
-
-      return
     }
 
     if (isReady && category) {
-      const badge = badges.find(({ label }) => category === label)
+      setFieldValue(ESearchFormFields.categoryField, category)
 
-      setFieldValue(ESearchFormFields.searchField, String(category))
-      setFieldValue(ESearchFormFields.categoryField, String(category))
+      if (!searchTerm) {
+        setFieldValue(ESearchFormFields.searchField, category)
+      }
+    }
+
+    if (isReady && searchBy) {
+      const badge = badges.find(({ value }) => searchBy === value)
+
       setFieldValue(ESearchFormFields.selectedBadge, badge)
     }
-  }, [category, isReady, searchTerm, setFieldValue, badges])
+
+    if (isReady && sortingBy) {
+      setFieldValue(ESearchFormFields.sorting, sortingBy)
+    }
+  }, [badges, category, isReady, searchBy, searchTerm, setFieldValue, sortingBy])
 
   const handleSearchChange = (term: string) => {
-    if (page !== 1) {
-      setPage(1)
-    }
-
     setFieldValue(ESearchFormFields.searchField, term)
   }
 
   const handleClickBadge = (value: TBadge) => {
-    const badge = badges.find(({ label }) => searchField === label)
-
-    if (searchField === '' || (searchField !== value?.label && badge)) {
-      setFieldValue(ESearchFormFields.searchField, value?.label)
-    }
-
-    if (searchField === value.label) {
-      setFieldValue(ESearchFormFields.searchField, '')
-    }
-
     if (value.id === selectedBadge?.id) {
       setFieldValue(ESearchFormFields.selectedBadge, null)
-      setFieldValue(ESearchFormFields.categoryField, '')
 
       return
     }
 
     setFieldValue(ESearchFormFields.selectedBadge, value)
-    setFieldValue(ESearchFormFields.categoryField, value.label)
+
+    submitForm()
+  }
+
+  const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter') {
+      submitForm()
+    }
   }
 
   return (
@@ -124,13 +101,13 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
         onChange={e => handleSearchChange(e.target.value)}
         onClick={onModalOpen}
         onClear={() => setFieldValue(ESearchFormFields.searchField, '')}
-        onKeyDown={submitForm}
+        onKeyDown={handleEnterKeyDown}
         value={searchField}
-        hasButton={(isMob || isTablet) && !!searchField}
+        hasButton={isMob || isTablet}
         hasIcon
         isClearable
         fluid
-        hasDot={getDotNeed(values)}
+        hasDot={getHasFilters(values)}
       />
       <Styled.BadgesContainer>
         {badges.map(({ id, ...rest }) => (
