@@ -46,17 +46,17 @@ export type TOption = {
   label: string
 }
 
-export enum ESearchTypes {
-  CATEGORY = 'category',
-  AUTHOR = 'author',
-  PUBLISHER = 'publisher',
+export enum ESearchByOptionsLabels {
+  ALL = 'All',
+  AUTHOR = 'By author',
+  TITLE = 'By title',
+  PUBLISHER = 'By publisher',
 }
 
 export type TBadge = {
   value: string
   label: string
   id: string
-  type?: ESearchTypes
 }
 
 export type TMobileMenuItem = {

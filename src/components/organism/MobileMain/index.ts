@@ -1,1 +1,0 @@
-export { MobileMain } from './MobileMain'

@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import { EPagePaths, ESearchTypes, TList, TMobileMenuItem } from '@types'
+import { EPagePaths, TList, TMobileMenuItem } from '@types'
 
 export const categoriesCardData = [
   {
@@ -55,45 +55,6 @@ export const categoriesCardData = [
     title: 'Children',
     description: "Inspire your child's love for reading",
     image: 'https://books.google.com/books/publisher/content/images/frontcover/ImlfPrztbgoC?fife=w480-h690',
-  },
-]
-
-export const fastSearchBadges = [
-  {
-    id: '1',
-    value: 'king',
-    label: 'Stephen King',
-    type: ESearchTypes.AUTHOR,
-  },
-  {
-    id: '2',
-    value: 'tolkien',
-    label: 'Tolkien',
-    type: ESearchTypes.AUTHOR,
-  },
-  {
-    id: '3',
-    value: 'computers',
-    label: 'Computers',
-    type: ESearchTypes.CATEGORY,
-  },
-  {
-    id: '4',
-    value: 'cooking',
-    label: 'Cooking',
-    type: ESearchTypes.CATEGORY,
-  },
-  {
-    id: '5',
-    value: 'bloomsbury',
-    label: 'Bloomsbury',
-    type: ESearchTypes.PUBLISHER,
-  },
-  {
-    id: '6',
-    value: "o'reilly",
-    label: "O'Reilly",
-    type: ESearchTypes.PUBLISHER,
   },
 ]
 
