@@ -4,7 +4,14 @@ import { useRouter } from 'next/router'
 import { useBreakpoint } from '@hooks'
 import { theme } from '@constants'
 import { Badge, Input, Paginator, Spacer } from '@ui-kit'
-import { ESearchByOptionsLabels, ESearchFormFields, TBadge, TSearchBookResponse, TSearchFormValues } from '@types'
+import {
+  ESearchByOptionsLabels,
+  ESearchFormFields,
+  TBadge,
+  TSearchBookProps,
+  TSearchBookResponse,
+  TSearchFormValues,
+} from '@types'
 import { scrollToYAxis, getBadgesFromObject, getHasFilters } from '@utils'
 import { CardsPreloader } from '@components/molecules'
 import { Styled } from './styled'
@@ -21,6 +28,7 @@ type TSearchWithResultsProps = {
   isRequestError: boolean
   isLoading: boolean
   searchData: TSearchBookResponse | null
+  onSubmit: (props: TSearchBookProps) => void
 }
 
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
@@ -34,9 +42,10 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   isRequestError,
   isLoading,
   searchData,
+  onSubmit,
 }) => {
-  const { setFieldValue, values, submitForm } = useFormikContext<TSearchFormValues>()
-  const { searchField, selectedBadge } = values
+  const { setFieldValue, values } = useFormikContext<TSearchFormValues>()
+  const { searchField, selectedBadge, categoryField, sorting } = values
   const { isMob, isTablet } = useBreakpoint()
   const { query, isReady } = useRouter()
   const { category, searchTerm, searchBy, sortingBy } = query
@@ -83,12 +92,26 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
 
     setFieldValue(ESearchFormFields.selectedBadge, value)
 
-    submitForm()
+    onSubmit({
+      searchTerm: searchField,
+      filterByCategory: categoryField,
+      searchBy: value.value,
+      sortingBy: sorting,
+      page: 1,
+    })
+    setPage(1)
   }
 
   const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter') {
-      submitForm()
+      onSubmit({
+        searchTerm: searchField,
+        filterByCategory: categoryField,
+        searchBy: selectedBadge?.value,
+        sortingBy: sorting,
+        page: 1,
+      })
+      setPage(1)
     }
   }
 
