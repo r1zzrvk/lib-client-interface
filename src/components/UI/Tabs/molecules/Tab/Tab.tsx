@@ -13,8 +13,8 @@ export const Tab: FC<TTabProps> = ({ title, active, onClick }) => (
   <Styled.Wrapper active={active} onClick={onClick}>
     <Text
       color={active ? theme.colors.grey : theme.colors.main}
-      fontSizeMob={theme.fonts.size.regular.sm}
-      fontHeightMob={theme.fonts.height.regular.sm}
+      fontSizeMob={theme.fonts.size.regular.md}
+      fontHeightMob={theme.fonts.height.regular.md}
     >
       {title}
     </Text>
