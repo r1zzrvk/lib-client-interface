@@ -3,17 +3,18 @@ import { useFormikContext } from 'formik'
 import { Button, Select, Text } from '@ui-kit'
 import { theme } from '@constants'
 import { getHasFilters, getOptionsFromObject } from '@utils'
-import { EFilterOptions, ESearchFormFields, ESortingOptions, TSearchFormValues } from '@types'
+import { EFilterOptions, ESearchFormFields, ESortingOptions, TSearchBookProps, TSearchFormValues } from '@types'
 import { Styled } from './styled'
 
 type TFilterFormProps = {
   onClick: () => void
   setPage: (page: number) => void
+  onSubmit: (props: TSearchBookProps) => void
 }
 
-export const FiltersForm: FC<TFilterFormProps> = ({ onClick, setPage }) => {
-  const { setFieldValue, values, setValues, initialValues, submitForm } = useFormikContext<TSearchFormValues>()
-  const { categoryField, sorting } = values
+export const FiltersForm: FC<TFilterFormProps> = ({ onClick, setPage, onSubmit }) => {
+  const { setFieldValue, values, setValues, initialValues, dirty } = useFormikContext<TSearchFormValues>()
+  const { categoryField, sorting, searchField, selectedBadge } = values
 
   const handleResetValues = () => {
     setValues(prev => ({
@@ -26,12 +27,21 @@ export const FiltersForm: FC<TFilterFormProps> = ({ onClick, setPage }) => {
 
   const handleClick = () => {
     onClick()
-    submitForm()
+
+    if (dirty) {
+      onSubmit({
+        searchTerm: searchField,
+        filterByCategory: categoryField,
+        searchBy: selectedBadge?.value,
+        sortingBy: sorting,
+        page: 1,
+      })
+      setPage(1)
+    }
   }
 
   const handleSelectCategory = (value: string) => {
     setFieldValue(ESearchFormFields.categoryField, value)
-    setPage(1)
   }
 
   return (
