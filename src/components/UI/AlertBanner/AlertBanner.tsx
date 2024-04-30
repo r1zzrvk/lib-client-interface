@@ -26,8 +26,8 @@ export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon, is
           fontSize={theme.fonts.size.header.xs}
           fontHeight={theme.fonts.height.header.xs}
           fontWeight={theme.fonts.weight.medium}
-          fontSizeMob={theme.fonts.size.regular.md}
-          fontHeightMob={theme.fonts.height.regular.md}
+          fontSizeMob={theme.fonts.size.header.xs}
+          fontHeightMob={theme.fonts.height.header.xs}
           fontWeightMob={theme.fonts.weight.medium}
         >
           {heading}

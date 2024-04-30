@@ -14,6 +14,8 @@ export const PersonalInfo: FC = () => {
           color={theme.colors.grey}
           fontSize={theme.fonts.size.regular.sm}
           fontHeight={theme.fonts.height.regular.sm}
+          fontSizeMob={theme.fonts.size.regular.md}
+          fontHeightMob={theme.fonts.height.regular.md}
         >
           {GoogleAuthNotice.message}
         </Text>

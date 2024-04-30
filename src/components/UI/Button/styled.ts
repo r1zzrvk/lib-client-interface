@@ -12,8 +12,8 @@ const Button = styled.button<TButtonProps>`
   border: none;
   cursor: pointer;
   width: ${({ size, isFluid }) => (!isFluid && size ? `${SIZES[size]}px` : '100%')};
-  font-size: ${theme.fonts.size.regular.sm}px;
-  line-height: ${theme.fonts.height.regular.sm}px;
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   font-family: '${theme.fonts.family}', sans-serif;
   color: ${({ isGhost }) => (isGhost ? theme.colors.main : theme.colors.grey)};
   background-color: ${({ isGhost }) => (isGhost ? 'inherit' : theme.colors.secondary)};

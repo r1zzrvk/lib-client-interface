@@ -16,13 +16,15 @@ export const MyLists: FC = () => {
     <Styled.Wrapper direction="column">
       <Spacer size={theme.space.md} sizeMob={theme.space.sm} />
       <ListItem {...lists[0]} isBookmarks />
-      <Spacer size={theme.space.md} sizeMob={theme.space.sm} />
+      <Spacer size={theme.space.xl} sizeMob={theme.space.md} />
       <Text
         color={theme.colors.grey}
-        fontSizeMob={theme.fonts.size.regular.md}
-        fontHeightMob={theme.fonts.height.regular.md}
-        fontSize={theme.fonts.size.regular.lg}
-        fontHeight={theme.fonts.height.regular.lg}
+        fontSizeMob={theme.fonts.size.regular.lg}
+        fontHeightMob={theme.fonts.height.regular.lg}
+        fontSize={theme.fonts.size.header.sm}
+        fontHeight={theme.fonts.height.header.sm}
+        fontWeight={theme.fonts.weight.medium}
+        fontWeightMob={theme.fonts.weight.medium}
       >
         Created lists
       </Text>

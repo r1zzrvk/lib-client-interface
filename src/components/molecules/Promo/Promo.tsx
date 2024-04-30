@@ -30,6 +30,7 @@ export const Promo: FC<TPromoProps> = ({
       fontSize={headerFontSize}
       fontHeight={headerFontHeight}
       fontWeight={theme.fonts.weight.medium}
+      fontWeightMob={theme.fonts.weight.medium}
       fontSizeMob={theme.fonts.size.header.sm}
       fontHeightMob={theme.fonts.height.header.sm}
       marginBottomMob={theme.space.sm}
@@ -40,8 +41,8 @@ export const Promo: FC<TPromoProps> = ({
       marginBottom={theme.space.md}
       fontSize={contentFontSize}
       fontHeight={contentFontHeight}
-      fontSizeMob={theme.fonts.size.regular.sm}
-      fontHeightMob={theme.fonts.height.regular.sm}
+      fontSizeMob={theme.fonts.size.regular.md}
+      fontHeightMob={theme.fonts.height.regular.md}
       marginBottomMob={theme.space.md}
     >
       {content}

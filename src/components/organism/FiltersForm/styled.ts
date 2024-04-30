@@ -8,7 +8,7 @@ export const Filters = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: ${theme.space.xs2}px;
+  gap: ${theme.space.xs}px;
 
   @media (min-width: ${theme.breakpoints.sm}px) {
     padding: ${theme.space.sm}px;
