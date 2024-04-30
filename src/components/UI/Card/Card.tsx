@@ -2,9 +2,7 @@ import { Dispatch, FC, MouseEvent, SetStateAction } from 'react'
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
 import { IconsSelector } from '@components/molecules'
-import { Divider } from '@ui-kit'
 import { sliceItems, textLimiter } from '@utils'
-import { Flexbox } from '@components/atoms'
 import { updateBookmarkList } from '@api'
 import { useRouter } from 'next/router'
 import { Text } from '../Text'
@@ -18,7 +16,7 @@ type TCardProps = {
 
 export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
   const router = useRouter()
-  const { title, categories, authors } = volumeInfo
+  const { title, authors } = volumeInfo
   const { listItems } = bookmarks || {}
   const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
 
@@ -66,7 +64,7 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
 
   return (
     <Styled.Wrapper onClick={handleCardClick}>
-      <Styled.Image src={imageLink} alt="book cover" width={106} height={170} objectFit="cover" isEverywhere />
+      <Styled.Image src={imageLink} alt="book cover" width={120} height={180} objectFit="cover" isEverywhere />
       <Styled.Content>
         <div>
           <Text
@@ -82,24 +80,18 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
           >
             {textLimiter(title, 30)}
           </Text>
-          <Divider />
-          <Text color={theme.colors.grey} fontWeight={theme.fonts.weight.regular}>
-            {sliceItems(categories)}
+          <Text
+            color={theme.colors.main}
+            fontWeight={theme.fonts.weight.medium}
+            fontSizeMob={theme.fonts.size.regular.md}
+            fontHeightMob={theme.fonts.height.regular.md}
+            fontWeightMob={theme.fonts.weight.medium}
+            marginBottomMob={theme.space.xs3}
+          >
+            {authors && sliceItems(authors, 1)}
           </Text>
         </div>
         <Styled.ButtonBlock>
-          <Flexbox direction="column">
-            <Text
-              color={theme.colors.main}
-              fontWeight={theme.fonts.weight.medium}
-              fontSizeMob={theme.fonts.size.regular.sm}
-              fontHeightMob={theme.fonts.height.regular.sm}
-              fontWeightMob={theme.fonts.weight.medium}
-              marginBottomMob={theme.space.xs3}
-            >
-              {authors && sliceItems(authors, 1)}
-            </Text>
-          </Flexbox>
           {uid && (
             <Styled.Icon onClick={e => handleBookmarkClick(e)}>
               <IconsSelector

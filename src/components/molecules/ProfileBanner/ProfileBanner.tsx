@@ -51,11 +51,18 @@ export const ProfileBanner: FC<TProfileBannerProps> = ({
             fontSize={theme.fonts.size.header.sm}
             fontHeight={theme.fonts.height.header.sm}
             fontWeight={theme.fonts.weight.medium}
-            fontSizeMob={theme.fonts.size.regular.md}
+            fontSizeMob={theme.fonts.size.regular.lg}
+            fontHeightMob={theme.fonts.height.regular.lg}
           >
             {displayName}
           </Text>
-          <Text color={theme.colors.main}>{email}</Text>
+          <Text
+            color={theme.colors.main}
+            fontSizeMob={theme.fonts.size.regular.md}
+            fontHeightMob={theme.fonts.height.regular.md}
+          >
+            {email}
+          </Text>
         </Styled.TextWrapper>
       </Styled.UserInfo>
       {variant === 'horizontal' ? (

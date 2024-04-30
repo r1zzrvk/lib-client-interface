@@ -46,8 +46,8 @@ export const StatusIllustration: FC<TStatusIllustrationProps> = ({
         fontSize={theme.fonts.size.regular.md}
         fontWeight={theme.fonts.weight.medium}
         fontHeight={theme.fonts.height.regular.md}
-        fontSizeMob={theme.fonts.size.regular.sm}
-        fontHeightMob={theme.fonts.height.regular.sm}
+        fontSizeMob={theme.fonts.size.regular.md}
+        fontHeightMob={theme.fonts.height.regular.md}
         fontWeightMob={theme.fonts.weight.medium}
         align="center"
       >

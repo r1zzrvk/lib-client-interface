@@ -34,6 +34,7 @@ export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, sub
         fontSize={theme.fonts.size.header.md}
         fontHeight={theme.fonts.height.header.md}
         fontWeight={theme.fonts.weight.medium}
+        fontWeightMob={theme.fonts.weight.medium}
         color={theme.colors.main}
         marginBottom={theme.space.xl}
         fontSizeMob={theme.fonts.size.header.sm}
@@ -47,8 +48,8 @@ export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, sub
         fontHeight={theme.fonts.height.regular.md}
         color={theme.colors.grey}
         marginBottom={theme.space.xs}
-        fontSizeMob={theme.fonts.size.regular.sm}
-        fontHeightMob={theme.fonts.height.regular.sm}
+        fontSizeMob={theme.fonts.size.regular.md}
+        fontHeightMob={theme.fonts.height.regular.md}
         marginBottomMob={theme.space.xs2}
       >
         {subheader}
@@ -57,8 +58,8 @@ export const CategoriesBanner: FC<TCategoriesBannerProps> = ({ header, text, sub
         fontSize={theme.fonts.size.regular.md}
         fontHeight={theme.fonts.height.regular.md}
         color={theme.colors.grey}
-        fontSizeMob={theme.fonts.size.regular.sm}
-        fontHeightMob={theme.fonts.height.regular.sm}
+        fontSizeMob={theme.fonts.size.regular.md}
+        fontHeightMob={theme.fonts.height.regular.md}
       >
         {text}
       </Text>

@@ -5,15 +5,11 @@ const SearchWithResults = styled.div`
   width: 100%;
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    width: 600px;
+    width: 500px;
   }
 
   @media (min-width: ${theme.breakpoints.md}px) {
-    width: 600px;
-  }
-
-  @media (min-width: ${theme.breakpoints.md}px) {
-    width: 700px;
+    width: 800px;
   }
 `
 
