@@ -15,8 +15,8 @@ const Label = styled.label<TBadgeProps>`
   cursor: pointer;
   padding: ${theme.space.xs3}px ${theme.space.xs}px;
   color: ${theme.colors.grey};
-  font-size: ${theme.fonts.size.regular.sm}px;
-  line-height: ${theme.fonts.height.regular.sm}px;
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   background-color: ${({ checked }) => (checked ? theme.colors.beige : theme.colors.white)};
   border-radius: ${theme.radiuses.xs}px;
   user-select: none;
