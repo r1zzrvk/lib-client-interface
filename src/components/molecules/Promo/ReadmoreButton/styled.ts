@@ -15,6 +15,8 @@ const Button = styled.button`
   padding: 0px;
   margin: 0px;
 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   &:hover {
     color: ${theme.colors.secondary};
   }
