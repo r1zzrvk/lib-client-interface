@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   transition: 0.3s ease-in;
   cursor: pointer;
 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   @media (min-width: ${theme.breakpoints.tablet}px) {
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
 
