@@ -24,6 +24,8 @@ export const Switch = styled.div<TSwitchProps>`
   height: ${({ height }) => height};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   transition: 0.2s ease-in;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
 
 export const Input = styled.input`

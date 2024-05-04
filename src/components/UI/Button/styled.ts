@@ -20,6 +20,8 @@ const Button = styled.button<TButtonProps>`
   padding: ${theme.space.sm}px 0px ${theme.space.sm}px 0px;
   text-decoration: ${({ isGhost }) => (isGhost ? 'underline' : 'none')};
 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   &:hover {
     transition: all 1s ease;
     color: ${theme.colors.grey};

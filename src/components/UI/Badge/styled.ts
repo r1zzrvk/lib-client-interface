@@ -8,6 +8,8 @@ type TBadgeProps = {
 const Badge = styled.div`
   display: inline-block;
   flex-shrink: 0;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
 
 const Label = styled.label<TBadgeProps>`
