@@ -9,6 +9,7 @@ const Button = styled.button`
   color: ${theme.colors.white};
   font-size: ${theme.fonts.size.regular.md}px;
   line-height: ${theme.fonts.height.regular.md}px;
+  font-weight: ${theme.fonts.weight.medium};
   font-family: '${theme.fonts.family}', sans-serif;
   transition: 0.4s;
   align-items: center;
