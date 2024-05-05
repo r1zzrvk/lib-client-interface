@@ -19,8 +19,15 @@ export const MobileMenu: FC = () => {
   return (
     <Styled.Wrapper>
       {mobileMenuItems.map(({ icon, path, id, title }) => (
-        <Flexbox key={id} direction="column" justify="center" align="center" gap={theme.space.xs3}>
-          <IconsSelector icon={icon} color={getActivePage(path)} onClick={() => handleNavigateTo(path)} isButton />
+        <Flexbox
+          key={id}
+          direction="column"
+          justify="center"
+          align="center"
+          gap={theme.space.xs3}
+          onClick={() => handleNavigateTo(path)}
+        >
+          <IconsSelector icon={icon} color={getActivePage(path)} isButton />
           <Text color={theme.colors.grey}>{title}</Text>
         </Flexbox>
       ))}

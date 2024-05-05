@@ -67,12 +67,7 @@ export const Input: FC<TInputProps> = ({
   return (
     <Styled.Wrapper fluid={fluid} color={color}>
       {hasIcon && (
-        <IconsSelector
-          icon={icon}
-          color={theme.colors.grey}
-          sidePadding={theme.space.sm}
-          upDownPadding={theme.space.xs}
-        />
+        <IconsSelector icon={icon} color={theme.colors.grey} sidePadding={theme.space.sm} upDownPadding={14} />
       )}
       <Spacer size={theme.space.xl} samespace />
       <Styled.Input
@@ -95,7 +90,7 @@ export const Input: FC<TInputProps> = ({
           color={theme.colors.grey}
           size={theme.icon_sizes.xs}
           sidePadding={hasButton ? theme.space.xs4 : theme.space.sm}
-          upDownPadding={14}
+          upDownPadding={16}
           onClick={handleClear}
           isButton
         />
@@ -108,7 +103,7 @@ export const Input: FC<TInputProps> = ({
             color={theme.colors.grey}
             size={theme.icon_sizes.xs}
             sidePadding={theme.space.sm}
-            upDownPadding={14}
+            upDownPadding={16}
             isButton={hasButton}
             onClick={handleClick}
           />

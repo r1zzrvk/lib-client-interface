@@ -15,6 +15,8 @@ const Image = styled.div<TImageProps>`
   flex-shrink: 0;
   cursor: ${({ isTouchable }) => (isTouchable ? 'pointer' : 'default')};
 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   @media (min-width: ${theme.breakpoints.tablet}px) {
     display: ${({ isTablet }) => (isTablet ? 'block' : 'none')};
   }

@@ -16,15 +16,15 @@ const Wrapper = styled.div<TWrapperProps>`
   background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
-  height: 48px;
+  height: 52px;
   border-radius: ${theme.radiuses.sm}px;
 `
 
 const Input = styled.input<TWrapperProps>`
   background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
-  font-size: ${theme.fonts.size.regular.sm}px;
-  line-height: ${theme.fonts.height.regular.sm}px;
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
   font-family: '${theme.fonts.family}', sans-serif;
   border-radius: ${theme.radiuses.sm}px;
@@ -36,8 +36,8 @@ const Input = styled.input<TWrapperProps>`
 
   &::placeholder {
     opacity: 1;
-    font-size: ${theme.fonts.size.regular.sm}px;
-    line-height: ${theme.fonts.height.regular.sm}px;
+    font-size: ${theme.fonts.size.regular.md}px;
+    line-height: ${theme.fonts.height.regular.md}px;
     font-weight: ${theme.fonts.weight.medium};
   }
 `

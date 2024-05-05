@@ -6,7 +6,7 @@ import { TAuthState } from './types'
 const initialState: TAuthState = {
   user: null,
   authStatus: EAuthorizationStatus.NO_AUTH,
-  isLoading: true,
+  isLoading: false,
 }
 
 export const authReducer = createSlice({

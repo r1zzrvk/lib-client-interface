@@ -1,17 +1,16 @@
 import { FC } from 'react'
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
 import { getArrayFromNumber } from '@utils'
 import { SkeletonCard } from './atoms'
+import { Styled } from './styled'
 
 export const CardsPreloader: FC = () => {
   const array = getArrayFromNumber(10)
 
   return (
-    <Flexbox direction="column" gap={theme.space.xs2}>
+    <Styled.ItemListWrapper>
       {array.map(item => (
         <SkeletonCard key={item} />
       ))}
-    </Flexbox>
+    </Styled.ItemListWrapper>
   )
 }

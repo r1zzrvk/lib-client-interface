@@ -37,12 +37,12 @@ const Option = styled.button`
   background-color: inherit;
   cursor: pointer;
   color: ${theme.colors.grey};
-  font-size: ${theme.fonts.size.regular.sm}px;
-  line-height: ${theme.fonts.height.regular.sm}px;
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
   font-family: '${theme.fonts.family}', sans-serif;
   padding: 0px 0px 0px ${theme.space.sm}px;
-  height: 48px;
+  height: 52px;
   border: none;
   flex-shrink: 0;
 
@@ -66,11 +66,11 @@ const Option = styled.button`
 const Label = styled.label`
   position: absolute;
   left: 16px;
-  top: 14px;
+  top: 16px;
   opacity: 1;
   color: ${theme.colors.grey};
-  font-size: ${theme.fonts.size.regular.sm}px;
-  line-height: ${theme.fonts.height.regular.sm}px;
+  font-size: ${theme.fonts.size.regular.md}px;
+  line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
 `
 

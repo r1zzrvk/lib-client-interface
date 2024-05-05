@@ -19,6 +19,8 @@ const Wrapper = styled.div<TWrapperProps>`
   border-left: ${({ withBorder, borderColor }) => withBorder && `2px solid ${borderColor}`};
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `
 
 export const Styled = {

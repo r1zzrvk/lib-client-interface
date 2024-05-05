@@ -24,15 +24,17 @@ export const BannerContent: FC = () => {
         fontHeightMob={theme.fonts.height.header.sm}
         fontSizeTablet={theme.fonts.size.header.sm}
         fontHeightTablet={theme.fonts.height.header.sm}
+        fontWeightMob={theme.fonts.weight.medium}
+        fontWeightTablet={theme.fonts.weight.medium}
       >
         Discover new releases, bestsellers and&nbsp;hidden&nbsp;gems
       </Text>
-      <Spacer size={theme.space.md} sizeTablet={theme.space.sm} sizeMob={theme.space.xs2} />
+      <Spacer size={theme.space.md} sizeTablet={theme.space.sm} sizeMob={theme.space.xs} />
       <Text
         fontSizeTablet={theme.fonts.size.regular.sm}
         fontHeightTablet={theme.fonts.height.regular.sm}
-        fontSizeMob={theme.fonts.size.regular.sm}
-        fontHeightMob={theme.fonts.height.regular.sm}
+        fontSizeMob={theme.fonts.size.regular.md}
+        fontHeightMob={theme.fonts.height.regular.md}
       >
         Find your next read with ease.
         <br />
@@ -40,7 +42,7 @@ export const BannerContent: FC = () => {
         <br />
         Start your journey today and dive into a&nbsp;world&nbsp;of&nbsp;literature.
       </Text>
-      <Spacer size={theme.space.xl} sizeTablet={theme.space.sm} sizeMob={theme.space.xs} />
+      <Spacer size={theme.space.xl} sizeTablet={theme.space.sm} sizeMob={theme.space.sm} />
       {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
       <Button onClick={handleClick} isFluid={isMob || isTablet} size="md">
         Go to catalog

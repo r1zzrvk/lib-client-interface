@@ -23,15 +23,17 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
   const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList }) || []
 
   return (
-    <ItemListWrapper rowGap={itemsGap}>
-      {items && !isRequestError && (
-        <ItemList
-          renderItem={book => (
-            <Card {...book} key={book.id} bookmarks={bookmarks[0] || []} uid={uid} updateList={updateList} />
-          )}
-          items={items.slice(0, packSize)}
-        />
-      )}
+    <>
+      <ItemListWrapper rowGap={itemsGap}>
+        {items && !isRequestError && (
+          <ItemList
+            renderItem={book => (
+              <Card {...book} key={book.id} bookmarks={bookmarks[0] || []} uid={uid} updateList={updateList} />
+            )}
+            items={items.slice(0, packSize)}
+          />
+        )}
+      </ItemListWrapper>
       <StatusIllustration
         title={STARTING_SEARCH.title}
         altText={STARTING_SEARCH.altText}
@@ -53,6 +55,6 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         subtitle={SERVER_ERROR.subtitle}
         isVisible={isRequestError}
       />
-    </ItemListWrapper>
+    </>
   )
 }

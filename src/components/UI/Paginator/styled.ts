@@ -23,6 +23,8 @@ const PageButton = styled.button<TPageButtonProps>`
   border-radius: 12px;
   min-width: 38px;
 
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   &:hover {
     text-decoration: underline;
   }
@@ -32,6 +34,8 @@ const ArrowButton = styled.button<TArrowButtonProps>`
   background-color: inherit;
   opacity: ${({ isInvisible }) => (isInvisible ? 0 : 1)};
   transition: 0.4s;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   &:hover {
     opacity: ${({ isInvisible }) => (isInvisible ? 0 : 0.5)};
