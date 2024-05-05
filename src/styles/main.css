@@ -5,8 +5,6 @@ body {
   margin: 0px;
   padding: 0px;
   scroll-behavior: smooth;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
 
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     select:focus, textarea:focus, input:focus {
