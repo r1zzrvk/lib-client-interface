@@ -66,7 +66,7 @@ const Option = styled.button`
 const Label = styled.label`
   position: absolute;
   left: 16px;
-  top: 14px;
+  top: 16px;
   opacity: 1;
   color: ${theme.colors.grey};
   font-size: ${theme.fonts.size.regular.md}px;

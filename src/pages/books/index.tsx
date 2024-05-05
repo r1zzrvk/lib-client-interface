@@ -118,7 +118,9 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
               isLoading={isLoading}
               onSubmit={handleSubmit}
             />
-            {isMob || isTablet || <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />}
+            {isMob || isTablet || (
+              <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
+            )}
             {(isMob || isTablet) && (
               <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} sidePadding={theme.space.sm}>
                 <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
