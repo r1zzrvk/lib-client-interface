@@ -76,3 +76,10 @@ export const NO_CREATED_LISTS = {
   imgUrl: '/nothingfound.png',
   subtitle: "You don't have any lists yet",
 }
+
+export const LIST_FOR_AUTHED_USERS = {
+  title: 'Sign in to access your lists',
+  altText: 'No auth',
+  imgUrl: '/nothingfound.png',
+  subtitle: 'Start managing and enjoying your saved lists',
+}
