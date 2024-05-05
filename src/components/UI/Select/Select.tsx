@@ -46,7 +46,7 @@ export const Select: FC<TSelectProps> = ({
 
   return (
     <Styled.SelectWrapper fluid={fluid} ref={rootEl}>
-      {selectedValue === '' && <Styled.Label>{placeholder}</Styled.Label>}
+      {selectedValue === '' && <Styled.Label onClick={() => setIsOpened(prev => !prev)}>{placeholder}</Styled.Label>}
       <Input
         name={name}
         placeholder={placeholder}
