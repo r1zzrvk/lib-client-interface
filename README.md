@@ -1,3 +1,6 @@
+![изображение](https://github.com/r1zzrvk/lib-client-interface/assets/82266287/c9f72e6c-5203-4179-b289-b2eeff3978bf)
+
+
 #  Getting started :wave:
 Web application that implements [lib-booksearch.vercel.app](https://lib-booksearch.vercel.app/)
 
