@@ -4,6 +4,7 @@ import { Button, Select, Text } from '@ui-kit'
 import { theme } from '@constants'
 import { getHasFilters, getOptionsFromObject } from '@utils'
 import { EFilterOptions, ESearchFormFields, ESortingOptions, TSearchBookProps, TSearchFormValues } from '@types'
+import { useBreakpoint } from '@hooks'
 import { Styled } from './styled'
 
 type TFilterFormProps = {
@@ -13,6 +14,7 @@ type TFilterFormProps = {
 }
 
 export const FiltersForm: FC<TFilterFormProps> = ({ onClick, setPage, onSubmit }) => {
+  const { isMob, isTablet } = useBreakpoint()
   const { setFieldValue, values, setValues, initialValues, dirty } = useFormikContext<TSearchFormValues>()
   const { categoryField, sorting, searchField, selectedBadge } = values
 
@@ -46,19 +48,21 @@ export const FiltersForm: FC<TFilterFormProps> = ({ onClick, setPage, onSubmit }
 
   return (
     <Styled.Filters>
-      <Text
-        color={theme.colors.grey}
-        fontSize={theme.fonts.size.regular.lg}
-        fontWeight={theme.fonts.weight.medium}
-        fontHeight={theme.fonts.height.regular.lg}
-        marginBottom={theme.space.sm}
-        fontSizeMob={theme.fonts.size.header.xs}
-        fontHeightMob={theme.fonts.height.header.xs}
-        fontWeightMob={theme.fonts.weight.medium}
-        marginBottomMob={theme.space.sm}
-      >
-        Search settings
-      </Text>
+      {isMob || isTablet || (
+        <Text
+          color={theme.colors.grey}
+          fontSize={theme.fonts.size.regular.lg}
+          fontWeight={theme.fonts.weight.medium}
+          fontHeight={theme.fonts.height.regular.lg}
+          marginBottom={theme.space.sm}
+          fontSizeMob={theme.fonts.size.header.xs}
+          fontHeightMob={theme.fonts.height.header.xs}
+          fontWeightMob={theme.fonts.weight.medium}
+          marginBottomMob={theme.space.sm}
+        >
+          Search settings
+        </Text>
+      )}
       <Select
         name={ESearchFormFields.sorting}
         selectedValue={sorting}

@@ -1,10 +1,10 @@
 import { Flexbox } from '@components/atoms'
 import { IconsSelector } from '@components/molecules'
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { TBook } from '@types'
+import { TBook, TList } from '@types'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
-import { ResponsiveImage, Skeleton, Spacer } from '@ui-kit'
+import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
 import { Styled } from './styled'
@@ -14,9 +14,18 @@ type TBookHeaderProps = {
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
+  listWithBook: TList
+  onAddToListClick: () => void
 }
 
-export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClick, isBookmarked }) => {
+export const BookHeader: FC<TBookHeaderProps> = ({
+  id,
+  isLoading,
+  onBookmarkClick,
+  isBookmarked,
+  listWithBook,
+  onAddToListClick,
+}) => {
   const router = useRouter()
   const isAuth = useAppSelector(getUserAuth)
   const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
@@ -28,6 +37,7 @@ export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClic
   return (
     <>
       <Flexbox justify="space-between">
+        {/* TODO: вынести в отдельный компонент и использовать везде с иконками */}
         <Styled.IconWrapper onClick={handleBackClick}>
           <IconsSelector size={theme.icon_sizes.sm} icon="caretLeft_solid" color={theme.colors.grey} isButton />
         </Styled.IconWrapper>
@@ -37,7 +47,7 @@ export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClic
           isAuth && (
             <Styled.IconWrapper onClick={onBookmarkClick}>
               <IconsSelector
-                size={theme.icon_sizes.sm}
+                size={theme.icon_sizes.xs}
                 icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
                 color={isBookmarked ? theme.colors.main : theme.colors.grey}
                 isButton
@@ -55,6 +65,29 @@ export const BookHeader: FC<TBookHeaderProps> = ({ id, isLoading, onBookmarkClic
         )}
       </Flexbox>
       <Spacer sizeMob={theme.space.sm} />
+      {isAuth && (
+        <>
+          {/* TODO: добавить иконку в компонент кнопки с пропом left/right section */}
+          <Button onClick={onAddToListClick} isFluid>
+            <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+              <Text
+                color={theme.colors.grey}
+                fontSizeMob={theme.fonts.size.regular.md}
+                fontHeightMob={theme.fonts.height.regular.md}
+                fontWeightMob={theme.fonts.weight.regular}
+              >
+                {listWithBook ? 'In my list' : 'Add to list'}
+              </Text>
+              <IconsSelector
+                size={theme.icon_sizes.xs}
+                icon={listWithBook ? 'check_solid' : 'plus_solid'}
+                color={theme.colors.grey}
+              />
+            </Flexbox>
+          </Button>
+          <Spacer sizeMob={theme.space.sm} />
+        </>
+      )}
     </>
   )
 }

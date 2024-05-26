@@ -14,6 +14,20 @@ Develop branch deployed here [lib-test-app.vercel.app](https://lib-test-app.verc
 `npm run type-check` - to start looking for type errors
  
 `npm run install:hooks` - if you have problem with husky (Mac/Linux only)
+<br/><br/>
+#### Recommended Node.js version: 20.4.0
+Using older versions may cause issues with package installation or compilation. I also recommend using `nvm`
+
+[Nvm Installation Instructions](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+
+[Nvm Installation Instructions for Windows](https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#install-nvm-windows)
+
+#### Nvm commands for installation node.js:
+
+```
+nvm install 20.4.0
+nvm use 20.4.0
+```
 
 ###  Git
 When creating a commit, pay attention to its structure. For linting use [commitlint](https://github.com/conventional-changelog/commitlint). But for convenience I have placed rules here.

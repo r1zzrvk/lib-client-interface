@@ -12,7 +12,6 @@ export const ItemListWrapper = styled.div<TItemListWrapper>`
   grid-column-gap: ${({ columnGap }) => columnGap || theme.space.sm}px;
   grid-row-gap: ${({ rowGap }) => rowGap || theme.space.md}px;
   grid-template-columns: repeat(1, 1fr);
-  padding: 0px 0px ${theme.space.sm}px 0px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     grid-template-columns: repeat(2, 1fr);

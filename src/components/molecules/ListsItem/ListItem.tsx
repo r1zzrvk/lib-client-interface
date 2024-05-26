@@ -1,24 +1,52 @@
 import { theme } from '@constants'
-import { TList } from '@types'
+import { TFirebaseUser, TList } from '@types'
 import { Skeleton, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
 import { Flexbox } from '@components/atoms'
 import { FC, useState } from 'react'
 import { useBreakpoint } from '@hooks'
+import { updateDocList } from '@api'
 import { Styled } from './styled'
 import { ActionBlock } from './molecules'
 
 type TListItemProps = {
+  uid: TFirebaseUser['uid']
+  onEditClick: (list: TList) => void
+  onDeleteClick: (id: string) => void
   isBookmarks?: boolean
+  updateLists?: () => void
 } & TList
 
-export const ListItem: FC<TListItemProps> = ({ listItems, title, isBookmarks, isPinned }) => {
+export const ListItem: FC<TListItemProps> = ({
+  isBookmarks,
+  updateLists,
+  uid,
+  onEditClick,
+  onDeleteClick,
+  ...rest
+}) => {
+  const { isPinned, description, id, listItems, title } = rest
   const { isMob } = useBreakpoint()
   const [opened, setOpened] = useState(false)
-  const [checked, setChecked] = useState(isBookmarks ? true : isPinned)
-
+  const [isChecked, setIsChecked] = useState(isPinned)
   const skeletonHeight = isMob ? 24 : 27
   const iconSize = isMob ? theme.icon_sizes.xs : theme.icon_sizes.sm
+
+  const handlePin = () => {
+    setIsChecked(!isChecked)
+    updateDocList({
+      uid,
+      list: {
+        description,
+        id,
+        isPinned: !isChecked,
+        lastUpdate: new Date().toISOString(),
+        listItems,
+        title,
+      },
+      isBookmarks: false,
+    }).then(() => updateLists?.())
+  }
 
   return (
     <Styled.ListItem>
@@ -54,7 +82,7 @@ export const ListItem: FC<TListItemProps> = ({ listItems, title, isBookmarks, is
           )}
         </Flexbox>
         <Flexbox align="center" gap={theme.space.md}>
-          {isPinned && (
+          {isPinned && !isBookmarks && (
             <Styled.Pin>
               <IconsSelector icon="pin_solid" color={theme.colors.main} size={iconSize} />
             </Styled.Pin>
@@ -68,10 +96,13 @@ export const ListItem: FC<TListItemProps> = ({ listItems, title, isBookmarks, is
       </Flexbox>
       {(opened || !isMob) && (
         <ActionBlock
-          checked={checked}
-          onChecked={() => setChecked(!checked)}
+          list={rest}
+          checked={isChecked}
+          onChecked={handlePin}
           iconSize={iconSize}
           isBookmarks={isBookmarks}
+          onDelete={onDeleteClick}
+          onEdit={onEditClick}
         />
       )}
     </Styled.ListItem>

@@ -1,13 +1,15 @@
 import { LayoutTemplate } from '@templates'
 import { TBook, TList, TPageDataProps } from '@types'
-import { getBookData, getServerSidePageProps, updateBookmarkList } from '@api'
+import { getBookData, getServerSidePageProps, updateList } from '@api'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
 import { useAppSelector, useBreakpoint, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { BOOKMARK_LIST_ID } from '@constants'
-import { Flexbox } from 'components'
+import { Flexbox } from '@components/atoms'
+import { filterLists } from '@utils'
+import { AddToListModal } from '@components/molecules'
 
 export const getServerSideProps = getServerSidePageProps
 
@@ -20,9 +22,69 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   const [book, setBook] = useState<TBook | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const { uid } = useAppSelector(getUserData) || {}
-  const [updatedList, updateList] = useState<TList | null>(null)
-  const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList })?.[0]
+  const [lists, getLists] = useLists({ uid })
+  const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
+  const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
+  const filteredLists = useMemo(() => filterLists(lists), [lists])
+  const bookmarks = filteredLists?.find(list => list.id === BOOKMARK_LIST_ID)
   const isBookmarked = !!bookmarks?.listItems?.find(bookmark => bookmark.id === book?.id)
+  const listsWithBook = lists?.filter(
+    list => list.id !== BOOKMARK_LIST_ID && list.listItems.find(items => items.id === book?.id),
+  )
+
+  const handleAddToBookmarksClick = () => {
+    if (uid && book) {
+      updateList({
+        book,
+        isBookmarks: true,
+        uid,
+        updateLists: () => getLists(),
+        bookmarks,
+        isBookmarked,
+      })
+    }
+  }
+
+  const handleAddClick = () => {
+    setIsAddToListModalOpened(true)
+  }
+
+  const handleModalClose = () => {
+    setIsAddToListModalOpened(false)
+    setSelectedListIds([])
+  }
+
+  const handleAddToCustomList = () => {
+    if (uid && book) {
+      selectedListIds.forEach(id => {
+        updateList({
+          book,
+          lists,
+          isBookmarks: false,
+          uid,
+          updateLists: () => getLists(),
+          listId: id,
+        })
+      })
+
+      handleModalClose()
+    }
+  }
+
+  const handleSelectId = useCallback(
+    (listId: string) => {
+      const hasInArray = !!selectedListIds.find(item => item === listId)
+
+      if (hasInArray) {
+        setSelectedListIds(selectedListIds.filter(item => item !== listId))
+
+        return
+      }
+
+      setSelectedListIds([...selectedListIds, listId])
+    },
+    [selectedListIds],
+  )
 
   useEffect(() => {
     if (isReady && bookId && typeof bookId === 'string') {
@@ -31,39 +93,13 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
         .then(book => setBook(book))
         .finally(() => setIsLoading(false))
     }
-  }, [bookId, isReady, getBookData, setBook])
+  }, [bookId, isReady, setBook])
 
-  const handleBookmarkClick = async () => {
-    if (uid && book) {
-      if (isBookmarked) {
-        updateBookmarkList({
-          uid,
-          list: {
-            ...bookmarks,
-            listItems: bookmarks.listItems.filter(item => item.id !== book?.id),
-          },
-        })
-
-        updateList?.(bookmarks)
-        return
-      }
-
-      updateBookmarkList({
-        uid,
-        list: {
-          ...bookmarks,
-          listItems: [
-            ...bookmarks.listItems,
-            {
-              ...book,
-            },
-          ],
-        },
-      })
-
-      updateList?.(bookmarks)
+  useEffect(() => {
+    if (!lists.length && uid) {
+      getLists()
     }
-  }
+  })
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
@@ -71,8 +107,10 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
         <MobileBookPageLayout
           {...book}
           isLoading={isLoading}
-          onBookmarkClick={handleBookmarkClick}
+          onBookmarkClick={handleAddToBookmarksClick}
           isBookmarked={isBookmarked}
+          listWithBook={listsWithBook[0]}
+          onAddToListClick={handleAddClick}
         />
       )}
       {book && !isMob && (
@@ -80,11 +118,21 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
           <BookPageLayout
             {...book}
             isLoading={isLoading}
-            onBookmarkClick={handleBookmarkClick}
+            onBookmarkClick={handleAddToBookmarksClick}
             isBookmarked={isBookmarked}
+            listWithBook={listsWithBook[0]}
+            onAddToListClick={handleAddClick}
           />
         </Flexbox>
       )}
+      <AddToListModal
+        bookId={book?.id}
+        isOpened={isAddToListModalOpened}
+        onClose={handleModalClose}
+        lists={lists}
+        onSaveClick={handleAddToCustomList}
+        onSelectList={id => handleSelectId(id)}
+      />
     </LayoutTemplate>
   )
 }

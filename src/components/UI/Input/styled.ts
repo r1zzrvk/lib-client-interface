@@ -57,9 +57,15 @@ const Dot = styled.div`
   left: 32px;
   border-radius: ${theme.radiuses.round}px;
 `
+
+const ErrorText = styled.div`
+  padding: 0px ${theme.space.sm}px;
+`
+
 export const Styled = {
   Input,
   Wrapper,
   CustomIcon,
   Dot,
+  ErrorText,
 }

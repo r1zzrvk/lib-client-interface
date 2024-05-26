@@ -4,6 +4,7 @@ import { IconsSelector } from 'components/molecules'
 import React, { FC } from 'react'
 import { Styled } from './styled'
 import { Spacer } from '../Spacer'
+import { Text } from '../Text'
 
 type TInputProps = {
   type: string
@@ -24,6 +25,7 @@ type TInputProps = {
   value?: string | number
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   hasDot?: boolean
+  error?: string
 }
 
 export const Input: FC<TInputProps> = ({
@@ -45,6 +47,7 @@ export const Input: FC<TInputProps> = ({
   onClear,
   onKeyDown,
   hasDot = false,
+  error,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -65,50 +68,68 @@ export const Input: FC<TInputProps> = ({
   }
 
   return (
-    <Styled.Wrapper fluid={fluid} color={color}>
-      {hasIcon && (
-        <IconsSelector icon={icon} color={theme.colors.grey} sidePadding={theme.space.sm} upDownPadding={14} />
-      )}
-      <Spacer size={theme.space.xl} samespace />
-      <Styled.Input
-        value={value}
-        type={type}
-        color={color}
-        placeholder={placeholder}
-        name={name}
-        onChange={e => onChange(e)}
-        onClick={type === 'button' ? handleClick : () => ''}
-        disabled={readonly}
-        isIcon={hasIcon}
-        onKeyDown={e => handleKeyDown(e)}
-        autoComplete="off"
-        fluid
-      />
-      {isClearable && value !== '' && (
-        <IconsSelector
-          icon="cross_solid"
-          color={theme.colors.grey}
-          size={theme.icon_sizes.xs}
-          sidePadding={hasButton ? theme.space.xs4 : theme.space.sm}
-          upDownPadding={16}
-          onClick={handleClear}
-          isButton
+    <>
+      <Styled.Wrapper fluid={fluid} color={color}>
+        {hasIcon && (
+          <IconsSelector icon={icon} color={theme.colors.grey} sidePadding={theme.space.sm} upDownPadding={14} />
+        )}
+        <Spacer size={theme.space.xl} samespace />
+        <Styled.Input
+          value={value}
+          type={type}
+          color={color}
+          placeholder={placeholder}
+          name={name}
+          onChange={e => onChange(e)}
+          onClick={type === 'button' ? handleClick : () => ''}
+          disabled={readonly}
+          isIcon={hasIcon}
+          onKeyDown={e => handleKeyDown(e)}
+          autoComplete="off"
+          fluid
         />
-      )}
-      {hasButton && (
-        <Styled.CustomIcon isActive={isActive}>
-          {hasDot && <Styled.Dot />}
+        {isClearable && value !== '' && (
           <IconsSelector
-            icon={buttonIcon}
+            icon="cross_solid"
             color={theme.colors.grey}
             size={theme.icon_sizes.xs}
-            sidePadding={theme.space.sm}
+            sidePadding={hasButton ? theme.space.xs4 : theme.space.sm}
             upDownPadding={16}
-            isButton={hasButton}
-            onClick={handleClick}
+            onClick={handleClear}
+            isButton
           />
-        </Styled.CustomIcon>
+        )}
+        {hasButton && (
+          <Styled.CustomIcon isActive={isActive}>
+            {hasDot && <Styled.Dot />}
+            <IconsSelector
+              icon={buttonIcon}
+              color={theme.colors.grey}
+              size={theme.icon_sizes.xs}
+              sidePadding={theme.space.sm}
+              upDownPadding={16}
+              isButton={hasButton}
+              onClick={handleClick}
+            />
+          </Styled.CustomIcon>
+        )}
+      </Styled.Wrapper>
+      {error && (
+        <>
+          <Spacer size={theme.space.xs3} samespace />
+          <Styled.ErrorText>
+            <Text
+              color={theme.colors.red}
+              fontSize={theme.fonts.size.regular.sm}
+              fontSizeMob={theme.fonts.size.regular.sm}
+              fontHeight={theme.fonts.height.regular.sm}
+              fontHeightMob={theme.fonts.height.regular.sm}
+            >
+              {error}
+            </Text>
+          </Styled.ErrorText>
+        </>
       )}
-    </Styled.Wrapper>
+    </>
   )
 }
