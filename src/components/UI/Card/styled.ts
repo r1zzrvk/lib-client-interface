@@ -33,6 +33,11 @@ const ButtonBlock = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+  gap: ${theme.space.xs2}px;
+
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    gap: ${theme.space.xs4}px;
+  }
 `
 
 const Content = styled.div`
@@ -48,7 +53,6 @@ const Content = styled.div`
 `
 
 const Icon = styled.div`
-  align-self: flex-end;
   padding: ${theme.space.xs}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {

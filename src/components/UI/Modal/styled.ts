@@ -6,7 +6,7 @@ type TWrapperProps = {
 }
 
 type TModalProps = {
-  sidePadding: number
+  size: 'lg' | 'sm'
 }
 
 const Wrapper = styled.div<TWrapperProps>`
@@ -23,34 +23,40 @@ const Wrapper = styled.div<TWrapperProps>`
 `
 const Modal = styled.div<TModalProps>`
   display: flex;
-  padding: ${({ sidePadding }) => `0px ${sidePadding}px`};
-  width: 100%;
-  height: 100%;
+  width: ${({ size }) => (size === 'lg' ? '100%' : '90%')};
+  height: ${({ size }) => (size === 'lg' ? '100%' : 'auto')};
+  border-radius: ${({ size }) => (size === 'lg' ? '0px' : `${theme.radiuses.md}px`)};
   background-color: white;
   flex-direction: column;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    width: 700px;
-    height: 80%;
+    width: ${({ size }) => (size === 'lg' ? '700px' : '500px')};
+    height: auto;
     border-radius: ${theme.radiuses.md}px;
   }
 
   @media (min-width: ${theme.breakpoints.md}px) {
-    width: 700px;
-    height: 90%;
+    width: ${({ size }) => (size === 'lg' ? '700px' : '500px')};
+    height: auto;
     border-radius: ${theme.radiuses.md}px;
   }
+`
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${theme.space.sm}px ${theme.space.sm}px ${theme.space.xs2}px ${theme.space.sm}px;
 `
 
 const Icon = styled.div`
   cursor: pointer;
   align-self: flex-end;
-  padding-right: ${theme.space.sm}px;
-  padding-top: ${theme.space.md}px;
 `
 
 export const Styled = {
   Wrapper,
   Icon,
+  Header,
   Modal,
 }

@@ -19,6 +19,7 @@ import {
   faThumbTack,
   faPenToSquare,
   faUpRightFromSquare,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faTrashAlt, faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { TIcon } from '@types'
@@ -44,6 +45,7 @@ export const icons: Record<TIcon, IconDefinition> = {
   info_solid: faInfo,
   link_solid: faUpRightFromSquare,
   user_regular: faUser,
+  plus_solid: faPlus,
   trash_regular: faTrashAlt,
   bookmark_regular: faBookmark,
 }

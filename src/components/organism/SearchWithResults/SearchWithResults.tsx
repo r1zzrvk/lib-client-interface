@@ -149,7 +149,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
       ) : (
         <Results searchData={searchData} isRequestError={isRequestError} packSize={packSize} />
       )}
-      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+      <Spacer size={theme.space.xl} sizeMob={theme.space.md} />
       {totalPages > 1 && !isRequestError && !isLoading && (
         <Paginator
           totalPages={totalPages}
