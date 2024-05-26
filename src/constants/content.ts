@@ -11,7 +11,7 @@ export const PROMO_FOOTER = {
 export const PROMO_BANNER = {
   header: 'Create your own book collections',
   content:
-    'Simply search for a book and then click the “Add to Collection” button to add it to your personal collection. You can create multiple collections for different genres or reading moods and easily access them anytime. Start exploring and building your own book collections today!',
+    'Simply search for a book and then click the «Add to list» button to add it to your personal collection. You can create multiple collections for different genres or reading moods and easily access them anytime. Start exploring and building your own book collections today!',
 }
 
 export const CATEGORIES_BANNER = {

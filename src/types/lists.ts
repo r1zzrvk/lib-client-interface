@@ -7,11 +7,13 @@ export type TList = {
   description: string
   isPinned: boolean
   listItems: TBook[]
+  lastUpdate: string
 }
 
-export type TUpdateBookmarkList = {
+export type TUpdateDocList = {
   uid: TFirebaseUser['uid']
   list: TList
+  isBookmarks: boolean
 }
 
 export enum EDatabaseDocs {

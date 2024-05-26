@@ -3,7 +3,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { AlertBanner, Button, Spacer, Text } from '@ui-kit'
 import { NEW_BOOKMARK_LIST, theme } from '@constants'
 import { useAppDispatch, useBreakpoint } from '@hooks'
-import { auth, fetchDatabaseDocs, updateBookmarkList } from '@api'
+import { auth, fetchDatabaseDocs, updateDocList } from '@api'
 import { setAuthStatus, setUser } from '@reducers'
 import { EAuthorizationStatus } from '@types'
 import { NoticeMessage } from './constants'
@@ -24,7 +24,7 @@ export const AuthStep: FC<TAuthStepProps> = ({ onError }) => {
     if (uid) {
       fetchDatabaseDocs(uid).then(response => {
         if (!response) {
-          updateBookmarkList({ uid, list: NEW_BOOKMARK_LIST })
+          updateDocList({ uid, list: NEW_BOOKMARK_LIST, isBookmarks: true })
         }
       })
     }

@@ -1,6 +1,6 @@
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { EDateFormats, TBook } from '@types'
-import { ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
+import { EDateFormats, TBook, TList } from '@types'
+import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
 import { Flexbox, LabelWithText } from '@components/atoms'
 import { IconsSelector, PageInfoBlock } from '@components/molecules'
@@ -14,6 +14,8 @@ type TBookPageLayoutProps = {
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
+  listWithBook: TList
+  onAddToListClick: () => void
 } & TBook
 
 export const BookPageLayout: FC<TBookPageLayoutProps> = ({
@@ -22,6 +24,8 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
   onBookmarkClick,
   isBookmarked,
   volumeInfo,
+  listWithBook,
+  onAddToListClick,
 }) => {
   const {
     title,
@@ -60,14 +64,24 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
               <Skeleton radius={theme.radiuses.round} width={48} height={48} />
             ) : (
               isAuth && (
-                <Styled.IconWrapper onClick={onBookmarkClick}>
-                  <IconsSelector
-                    size={theme.icon_sizes.sm}
-                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                    color={theme.colors.white}
-                    isButton
-                  />
-                </Styled.IconWrapper>
+                <Flexbox gap={theme.space.sm}>
+                  <Styled.IconWrapper onClick={onAddToListClick}>
+                    <IconsSelector
+                      size={theme.icon_sizes.sm}
+                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
+                      color={theme.colors.white}
+                      isButton
+                    />
+                  </Styled.IconWrapper>
+                  <Styled.IconWrapper onClick={onBookmarkClick}>
+                    <IconsSelector
+                      size={theme.icon_sizes.sm}
+                      icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                      color={theme.colors.white}
+                      isButton
+                    />
+                  </Styled.IconWrapper>
+                </Flexbox>
               )
             )}
           </Flexbox>
@@ -150,22 +164,33 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
           </Flexbox>
           {isTablet ||
             (isAuth && (
-              <Styled.ActionWrapper justify="center" align="center" gap={theme.space.xs3} onClick={onBookmarkClick}>
-                <Text
-                  color={theme.colors.grey}
-                  fontSize={theme.fonts.size.regular.md}
-                  fontHeight={theme.fonts.height.regular.md}
-                  fontWeight={theme.fonts.weight.regular}
-                >
-                  {isBookmarked ? 'Remove from bookmarks' : 'Add to bookmarks'}
-                </Text>
-                <IconsSelector
-                  size={theme.icon_sizes.sm}
-                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                  color={isBookmarked ? theme.colors.main : theme.colors.grey}
-                  isButton
-                />
-              </Styled.ActionWrapper>
+              <Flexbox align="center" gap={theme.space.sm}>
+                <Button onClick={onAddToListClick} size="lg">
+                  <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+                    <Text
+                      color={theme.colors.grey}
+                      fontSize={theme.fonts.size.regular.md}
+                      fontHeight={theme.fonts.height.regular.md}
+                      fontWeight={theme.fonts.weight.regular}
+                    >
+                      {listWithBook ? 'In my list' : 'Add to list'}
+                    </Text>
+                    <IconsSelector
+                      size={theme.icon_sizes.xs}
+                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
+                      color={theme.colors.grey}
+                    />
+                  </Flexbox>
+                </Button>
+                <Styled.IconWrapper onClick={onBookmarkClick}>
+                  <IconsSelector
+                    size={theme.icon_sizes.sm}
+                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                    color={theme.colors.white}
+                    isButton
+                  />
+                </Styled.IconWrapper>
+              </Flexbox>
             ))}
         </Flexbox>
       </Flexbox>

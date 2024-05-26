@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import { theme } from '@constants'
 
 export const Filters = styled.div`
-  padding: ${theme.space.sm}px 0px;
-  width: 100%;
+  padding: ${theme.space.sm}px;
   display: flex;
   justify-content: center;
   flex-direction: column;

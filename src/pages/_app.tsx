@@ -44,7 +44,9 @@ const MyApp: FC = ({ Component, pageProps }: any) => {
           property="og:description"
           content="Find your next read with ease. Search for books by title, author, genre or keyword. Start your journey today and dive into a world of literature."
         />
-        <meta property="og:image" content="/previewLogo.png" />
+        <meta property="og:image" content="/previewBanner.png" />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="640" />
       </Head>
       {isLoading ? <PagePreloader /> : <Component {...pageProps} />}
     </Provider>

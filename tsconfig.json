@@ -33,7 +33,7 @@
       "@hooks": ["hooks"],
       "@store": ["store"],
       "@reducers": ["reducers"],
-      "@selectors": ["selectors"]
+      "@selectors": ["selectors"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
