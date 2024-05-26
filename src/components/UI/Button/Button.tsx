@@ -8,6 +8,7 @@ type TButton = {
   isGhost?: boolean
   isFluid?: boolean
   type?: 'submit' | 'button' | 'reset'
+  disabled?: boolean
 }
 
 export const Button: FC<TButton> = ({
@@ -17,8 +18,9 @@ export const Button: FC<TButton> = ({
   isGhost = false,
   isFluid = false,
   type = 'submit',
+  disabled = false,
 }) => (
-  <Styled.Button type={type} onClick={onClick} size={size} isGhost={isGhost} isFluid={isFluid}>
+  <Styled.Button type={type} onClick={onClick} size={size} isGhost={isGhost} isFluid={isFluid} disabled={disabled}>
     {children}
   </Styled.Button>
 )

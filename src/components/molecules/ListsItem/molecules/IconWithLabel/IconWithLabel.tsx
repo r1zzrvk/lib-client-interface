@@ -9,7 +9,7 @@ import { Styled } from './styled'
 type TIconWithLabelProps = {
   icon: TIcon
   iconSize: number
-  onClick?: () => void // todo: вернуть в обязательные
+  onClick?: () => void
   label?: string
 }
 

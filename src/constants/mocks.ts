@@ -88,7 +88,8 @@ export const mobileMenuItems: TMobileMenuItem[] = [
 export const NEW_BOOKMARK_LIST: TList = {
   id: 'bookmarks',
   title: 'Bookmarks',
-  description: '',
+  description: 'Store all your book discoveries in one convenient place.',
   isPinned: true,
   listItems: [],
+  lastUpdate: new Date().toISOString(),
 }

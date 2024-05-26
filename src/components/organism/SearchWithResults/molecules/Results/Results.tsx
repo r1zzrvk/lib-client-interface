@@ -1,11 +1,12 @@
-import { FC, useState } from 'react'
-import { Card } from '@ui-kit'
+import { FC, useCallback, useMemo, useState } from 'react'
 import { ItemListWrapper } from '@components/atoms'
-import { ItemList, StatusIllustration } from '@components/molecules'
-import { TList, TSearchBookResponse } from '@types'
-import { useAppSelector, useBreakpoint, useLists } from '@hooks'
-import { BOOKMARK_LIST_ID, NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
+import { AddToListModal, BookCard, ItemList, StatusIllustration } from '@components/molecules'
+import { TBook, TList, TSearchBookResponse } from '@types'
+import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
+import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
 import { getUserData } from '@selectors'
+import { filterLists } from '@utils'
+import { updateList } from '@api'
 
 type TResultsProps = {
   searchData: TSearchBookResponse | null
@@ -18,9 +19,59 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
   const { isMob } = useBreakpoint()
   const user = useAppSelector(getUserData)
   const { uid } = user || {}
+  const [selectedBook, setSelectedBook] = useState<TBook | null>(null)
+  const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
+  const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
   const itemsGap = isMob ? theme.space.xs : theme.space.sm
-  const [updatedList, updateList] = useState<TList | null>(null)
-  const bookmarks = useLists({ uid, docId: BOOKMARK_LIST_ID, list: updatedList }) || []
+  const [lists, getLists] = useLists({ uid })
+  const filteredLists = useMemo(() => filterLists(lists), [lists])
+
+  const handleModalClose = () => {
+    setIsAddToListModalOpened(false)
+    setSelectedBook(null)
+    setSelectedListIds([])
+  }
+
+  const handleAddClick = (book: TBook) => {
+    setSelectedBook(book)
+    setIsAddToListModalOpened(true)
+  }
+
+  const handleAddToCustomList = () => {
+    if (uid && selectedBook) {
+      selectedListIds.forEach(id => {
+        updateList({
+          book: selectedBook,
+          lists: filteredLists,
+          isBookmarks: false,
+          uid,
+          updateLists: () => getLists(),
+          listId: id,
+        })
+      })
+
+      handleModalClose()
+    }
+  }
+
+  const handleSelectId = useCallback(
+    (listId: string) => {
+      const hasInArray = !!selectedListIds.find(item => item === listId)
+
+      if (hasInArray) {
+        setSelectedListIds(selectedListIds.filter(item => item !== listId))
+
+        return
+      }
+
+      setSelectedListIds([...selectedListIds, listId])
+    },
+    [selectedListIds],
+  )
+
+  useDidMount(() => {
+    getLists()
+  })
 
   return (
     <>
@@ -28,7 +79,14 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         {items && !isRequestError && (
           <ItemList
             renderItem={book => (
-              <Card {...book} key={book.id} bookmarks={bookmarks[0] || []} uid={uid} updateList={updateList} />
+              <BookCard
+                key={book.id}
+                book={book}
+                uid={uid}
+                lists={filteredLists}
+                updateLists={() => getLists()}
+                onAddClick={handleAddClick}
+              />
             )}
             items={items.slice(0, packSize)}
           />
@@ -54,6 +112,14 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         imgUrl={SERVER_ERROR.imgUrl}
         subtitle={SERVER_ERROR.subtitle}
         isVisible={isRequestError}
+      />
+      <AddToListModal
+        bookId={selectedBook?.id}
+        isOpened={isAddToListModalOpened}
+        onClose={handleModalClose}
+        lists={filteredLists}
+        onSaveClick={handleAddToCustomList}
+        onSelectList={id => handleSelectId(id)}
       />
     </>
   )

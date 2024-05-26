@@ -1,65 +1,47 @@
-import { Dispatch, FC, MouseEvent, SetStateAction } from 'react'
+import { FC, MouseEvent } from 'react'
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
+import { TBook, TFirebaseUser } from '@types'
 import { IconsSelector } from '@components/molecules'
 import { sliceItems, textLimiter } from '@utils'
-import { updateBookmarkList } from '@api'
-import { useRouter } from 'next/router'
 import { Text } from '../Text'
 import { Styled } from './styled'
 
 type TCardProps = {
-  bookmarks: TList
+  book: TBook
   uid?: TFirebaseUser['uid']
-  updateList?: Dispatch<SetStateAction<TList | null>>
-} & TBook
+  isBookmarked?: boolean
+  isAtLeastOneList?: boolean
+  onCardClick?: (id?: string) => void
+  onAddClick?: () => void
+  onBookmarkClick?: () => void
+}
 
-export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateList, ...rest }) => {
-  const router = useRouter()
-  const { title, authors } = volumeInfo
-  const { listItems } = bookmarks || {}
-  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
-
-  const isActive = !!listItems?.find(bookmark => bookmark.id === id)
+export const Card: FC<TCardProps> = ({
+  uid,
+  onAddClick,
+  onBookmarkClick,
+  onCardClick,
+  book,
+  isBookmarked,
+  isAtLeastOneList,
+}) => {
+  const imageLink = `${BOOKS_IMAGE_PATH}${book.id}${BOOKS_IMAGE_SIZE}`
+  const { title, authors } = book.volumeInfo
 
   const handleCardClick = () => {
-    router.push(`${EPagePaths.CATALOG}/${id}`)
+    onCardClick?.(book.id)
   }
 
-  const handleBookmarkClick = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+  const handleAddToListClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     e.stopPropagation()
 
-    if (uid) {
-      if (isActive) {
-        updateBookmarkList({
-          uid,
-          list: {
-            ...bookmarks,
-            listItems: listItems.filter(item => item.id !== id),
-          },
-        })
+    onAddClick?.()
+  }
 
-        updateList?.(bookmarks)
-        return
-      }
+  const handleClickBookmark = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    e.stopPropagation()
 
-      updateBookmarkList({
-        uid,
-        list: {
-          ...bookmarks,
-          listItems: [
-            ...listItems,
-            {
-              id,
-              volumeInfo,
-              ...rest,
-            },
-          ],
-        },
-      })
-
-      updateList?.(bookmarks)
-    }
+    onBookmarkClick?.()
   }
 
   return (
@@ -93,12 +75,20 @@ export const Card: FC<TCardProps> = ({ volumeInfo, bookmarks, id, uid, updateLis
         </div>
         <Styled.ButtonBlock>
           {uid && (
-            <Styled.Icon onClick={e => handleBookmarkClick(e)}>
-              <IconsSelector
-                icon={isActive ? 'bookmark_solid' : 'bookmark_regular'}
-                color={isActive ? theme.colors.main : theme.colors.grey}
-              />
-            </Styled.Icon>
+            <>
+              <Styled.Icon onClick={handleAddToListClick}>
+                <IconsSelector
+                  icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
+                  color={isAtLeastOneList ? theme.colors.main : theme.colors.grey}
+                />
+              </Styled.Icon>
+              <Styled.Icon onClick={handleClickBookmark}>
+                <IconsSelector
+                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                  color={isBookmarked ? theme.colors.main : theme.colors.grey}
+                />
+              </Styled.Icon>
+            </>
           )}
         </Styled.ButtonBlock>
       </Styled.Content>

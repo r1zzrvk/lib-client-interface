@@ -37,6 +37,7 @@ export type TIcon =
   | 'pin_solid'
   | 'edit_solid'
   | 'link_solid'
+  | 'plus_solid'
   | 'user_regular'
   | 'trash_regular'
   | 'bookmark_regular'

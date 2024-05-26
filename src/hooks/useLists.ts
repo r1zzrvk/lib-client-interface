@@ -1,5 +1,5 @@
 import { DocumentData } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { fetchDatabaseDocs } from '@api'
 import { TFirebaseUser, EDatabaseDocs, TList } from '@types'
 import { getMappedLists } from '@utils'
@@ -7,24 +7,27 @@ import { getMappedLists } from '@utils'
 type TUseDatabaseDocs = {
   uid: TFirebaseUser['uid'] | undefined
   docId?: string
-  list?: TList | null
 }
 
 // if `docId` prop is empty, hook will return all lists
-// `list` prop is used to update data
 
-export function useLists({ uid, docId, list }: TUseDatabaseDocs): TList[] {
+export function useLists({ uid, docId }: TUseDatabaseDocs): [TList[], () => void, boolean] {
   const [data, setData] = useState<DocumentData | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
+  const getListsData = async () => {
     if (uid) {
-      fetchDatabaseDocs(uid).then(response => setData(response))
-    }
-  }, [uid, list])
+      setIsLoading(true)
 
-  if (!docId) {
-    return getMappedLists(data?.[EDatabaseDocs.LISTS])
+      await fetchDatabaseDocs(uid)
+        .then(response => setData(response))
+        .finally(() => setIsLoading(false))
+    }
   }
 
-  return data?.[EDatabaseDocs.LISTS]?.[docId]
+  if (!docId) {
+    return [getMappedLists(data?.[EDatabaseDocs.LISTS]), getListsData, isLoading]
+  }
+
+  return [data?.[EDatabaseDocs.LISTS]?.[docId], getListsData, isLoading]
 }
