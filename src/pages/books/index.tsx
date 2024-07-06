@@ -6,7 +6,7 @@ import { useBreakpoint, usePagination } from '@hooks'
 import { TPageDataProps, TSearchBookResponse, TSearchBookProps } from '@types'
 import { getStaticPageProps, searchBook } from '@api'
 import { FiltersForm, SearchWithResults } from '@components/organism'
-import { SearchFormContainer } from '@components/atoms'
+import { Background, SearchFormContainer } from '@components/atoms'
 import { LayoutTemplate } from '@templates'
 import { useRouter } from 'next/router'
 
@@ -90,46 +90,48 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
-      <Formik
-        initialValues={searchFormValues}
-        onSubmit={({ categoryField, searchField, sorting, selectedBadge }) => {
-          handleSubmit({
-            searchTerm: searchField,
-            page,
-            filterByCategory: categoryField,
-            sortingBy: sorting,
-            searchBy: selectedBadge?.value,
-          })
-        }}
-      >
-        <Form>
-          <SearchFormContainer direction="row" justify="start" gap={40}>
-            <SearchWithResults
-              searchData={searchData}
-              onModalOpen={() => setIsOpened(true)}
-              nextPage={nextPage}
-              packSize={packSize}
-              page={page}
-              prevPage={prevPage}
-              setPage={setPage}
-              totalPages={totalPages}
-              isRequestError={isError}
-              isLoading={isLoading}
-              onSubmit={handleSubmit}
-            />
-            {isMob || isTablet || (
-              <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
-            )}
-            {(isMob || isTablet) && (
-              <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} title="Search settings">
+      <Background color={theme.colors.white}>
+        <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+        <Formik
+          initialValues={searchFormValues}
+          onSubmit={({ categoryField, searchField, sorting, selectedBadge }) => {
+            handleSubmit({
+              searchTerm: searchField,
+              page,
+              filterByCategory: categoryField,
+              sortingBy: sorting,
+              searchBy: selectedBadge?.value,
+            })
+          }}
+        >
+          <Form>
+            <SearchFormContainer direction="row" justify="start" gap={40}>
+              <SearchWithResults
+                searchData={searchData}
+                onModalOpen={() => setIsOpened(true)}
+                nextPage={nextPage}
+                packSize={packSize}
+                page={page}
+                prevPage={prevPage}
+                setPage={setPage}
+                totalPages={totalPages}
+                isRequestError={isError}
+                isLoading={isLoading}
+                onSubmit={handleSubmit}
+              />
+              {isMob || isTablet || (
                 <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
-              </Modal>
-            )}
-          </SearchFormContainer>
-        </Form>
-      </Formik>
-      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+              )}
+              {(isMob || isTablet) && (
+                <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} title="Search settings">
+                  <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
+                </Modal>
+              )}
+            </SearchFormContainer>
+          </Form>
+        </Formik>
+        <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+      </Background>
     </LayoutTemplate>
   )
 }

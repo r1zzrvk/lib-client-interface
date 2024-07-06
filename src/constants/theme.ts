@@ -8,6 +8,8 @@ export const theme = {
     white: '#FFFFFF',
     beige: '#DBD3D2',
     red: '#F94343',
+    blue: '#2196F3',
+    success: '#2E7D32',
   },
   fonts: {
     size: {

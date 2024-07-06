@@ -5,6 +5,7 @@ type TWrapperProps = {
   color: string
   fluid: boolean
   isIcon?: boolean
+  error?: string
 }
 
 type TIconProps = {
@@ -18,6 +19,8 @@ const Wrapper = styled.div<TWrapperProps>`
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 52px;
   border-radius: ${theme.radiuses.sm}px;
+
+  outline: ${({ error }) => (error ? `2px solid ${theme.colors.red}` : 'none')};
 `
 
 const Input = styled.input<TWrapperProps>`
@@ -39,6 +42,14 @@ const Input = styled.input<TWrapperProps>`
     font-size: ${theme.fonts.size.regular.md}px;
     line-height: ${theme.fonts.height.regular.md}px;
     font-weight: ${theme.fonts.weight.medium};
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    -webkit-transition-delay: 9999s;
   }
 `
 
