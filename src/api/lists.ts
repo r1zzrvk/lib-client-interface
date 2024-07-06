@@ -12,7 +12,7 @@ export const updateDocList = async ({ uid, list, isBookmarks }: TUpdateDocList) 
     return
   }
 
-  const listsRef = doc(database, String(uid), EDatabaseDocs.LISTS)
+  const listsRef = doc(database, uid, EDatabaseDocs.LISTS)
   const listObject = !isBookmarks ? { [list.id]: [list] } : { bookmarks: [list] }
 
   await setDoc(listsRef, listObject, { merge: true }).catch((e: Error) => console.log(e))

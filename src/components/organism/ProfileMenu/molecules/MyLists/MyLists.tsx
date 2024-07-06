@@ -1,14 +1,14 @@
-import { FC, useMemo, useState } from 'react'
-import { ItemList, ListItem, ListsSkeleton, StatusIllustration } from '@components/molecules'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
-import { BOOKMARK_LIST_ID, NO_LISTS, theme } from '@constants'
-import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
-import { getUserData } from '@selectors'
-import { filterLists } from '@utils'
-import { TList } from '@types'
-import { CreateList } from '@components/organism'
 import { deleteList } from '@api'
 import { Flexbox } from '@components/atoms'
+import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
+import { CreateList } from '@components/organism'
+import { BOOKMARK_LIST_ID, theme } from '@constants'
+import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
+import { getUserData } from '@selectors'
+import { TList } from '@types'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+import { filterLists } from '@utils'
+import { FC, useMemo, useState } from 'react'
 import { Styled } from './styled'
 
 export const MyLists: FC = () => {
@@ -55,6 +55,14 @@ export const MyLists: FC = () => {
 
   return (
     <Styled.Wrapper direction="column">
+      <Spacer size={theme.space.md} samespace />
+      <Text
+        color={theme.colors.main}
+        fontSizeMob={theme.fonts.size.regular.md}
+        fontHeightMob={theme.fonts.height.regular.md}
+      >
+        This is where your personal lists are stored. You can manage and edit them here.
+      </Text>
       {uid && !isLoading ? (
         <Styled.ListsWrapper>
           <ItemList
@@ -75,15 +83,6 @@ export const MyLists: FC = () => {
       ) : (
         <ListsSkeleton />
       )}
-      <StatusIllustration
-        imgUrl={NO_LISTS.imgUrl}
-        altText={NO_LISTS.altText}
-        title={NO_LISTS.title}
-        subtitle={NO_LISTS.subtitle}
-        width={200}
-        height={150}
-        isVisible={!filtedLists.slice(1).length}
-      />
       <Spacer size={theme.space.xl} sizeMob={theme.space.lg} />
       {uid && (
         <CreateList
@@ -105,7 +104,7 @@ export const MyLists: FC = () => {
             fontHeightMob={theme.fonts.height.header.xs}
             fontWeightMob={theme.fonts.weight.regular}
           >
-            Deletion cannot be undone
+            This action cannot be undone
           </Text>
           <Spacer size={theme.space.md} sizeMob={theme.space.md} />
           <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>

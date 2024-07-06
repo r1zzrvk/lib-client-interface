@@ -1,7 +1,8 @@
 import { theme } from '@constants'
 import { TIcon } from '@types'
-import { IconsSelector } from 'components/molecules'
+import { IconsSelector } from '@components/molecules'
 import React, { FC } from 'react'
+import { Flexbox } from '@components/atoms'
 import { Styled } from './styled'
 import { Spacer } from '../Spacer'
 import { Text } from '../Text'
@@ -18,7 +19,6 @@ type TInputProps = {
   onClick?: () => void
   name?: string
   color?: string
-  readonly?: boolean
   isActive?: boolean
   isClearable?: boolean
   onClear?: () => void
@@ -26,6 +26,7 @@ type TInputProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   hasDot?: boolean
   error?: string
+  disabled?: boolean
 }
 
 export const Input: FC<TInputProps> = ({
@@ -40,7 +41,6 @@ export const Input: FC<TInputProps> = ({
   name,
   onChange,
   color = theme.colors.beige,
-  readonly,
   isActive = false,
   value,
   isClearable = false,
@@ -48,6 +48,7 @@ export const Input: FC<TInputProps> = ({
   onKeyDown,
   hasDot = false,
   error,
+  disabled = false,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -69,9 +70,14 @@ export const Input: FC<TInputProps> = ({
 
   return (
     <>
-      <Styled.Wrapper fluid={fluid} color={color}>
+      <Styled.Wrapper fluid={fluid} color={color} error={error}>
         {hasIcon && (
-          <IconsSelector icon={icon} color={theme.colors.grey} sidePadding={theme.space.sm} upDownPadding={14} />
+          <IconsSelector
+            icon={icon}
+            color={error ? theme.colors.red : theme.colors.grey}
+            sidePadding={theme.space.sm}
+            upDownPadding={14}
+          />
         )}
         <Spacer size={theme.space.xl} samespace />
         <Styled.Input
@@ -82,10 +88,10 @@ export const Input: FC<TInputProps> = ({
           name={name}
           onChange={e => onChange(e)}
           onClick={type === 'button' ? handleClick : () => ''}
-          disabled={readonly}
           isIcon={hasIcon}
           onKeyDown={e => handleKeyDown(e)}
           autoComplete="off"
+          disabled={disabled}
           fluid
         />
         {isClearable && value !== '' && (
@@ -93,8 +99,8 @@ export const Input: FC<TInputProps> = ({
             icon="cross_solid"
             color={theme.colors.grey}
             size={theme.icon_sizes.xs}
-            sidePadding={hasButton ? theme.space.xs4 : theme.space.sm}
-            upDownPadding={16}
+            sidePadding={hasButton ? theme.space.xs3 : theme.space.sm}
+            upDownPadding={theme.space.sm}
             onClick={handleClear}
             isButton
           />
@@ -115,7 +121,7 @@ export const Input: FC<TInputProps> = ({
         )}
       </Styled.Wrapper>
       {error && (
-        <>
+        <Flexbox justify="start" direction="column">
           <Spacer size={theme.space.xs3} samespace />
           <Styled.ErrorText>
             <Text
@@ -128,7 +134,7 @@ export const Input: FC<TInputProps> = ({
               {error}
             </Text>
           </Styled.ErrorText>
-        </>
+        </Flexbox>
       )}
     </>
   )

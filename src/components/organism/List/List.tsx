@@ -127,6 +127,7 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
           </>
         )}
       </Styled.InfoBanner>
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
       <ItemListWrapper rowGap={theme.space.sm}>
         <ItemList
           renderItem={book => (
@@ -184,7 +185,7 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
             fontHeightMob={theme.fonts.height.header.xs}
             fontWeightMob={theme.fonts.weight.regular}
           >
-            Deletion cannot be undone
+            This action cannot be undone
           </Text>
           <Spacer size={theme.space.md} sizeMob={theme.space.md} />
           <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>

@@ -23,10 +23,9 @@ export const CATEGORIES_BANNER = {
 
 export const PROFILE_MENU = [
   { id: '1', title: EProfileTabs.PERSONAL },
-  { id: '2', title: EProfileTabs.LISTS },
+  { id: '2', title: EProfileTabs.ACCOUNT },
+  { id: '3', title: EProfileTabs.LISTS },
 ]
-
-export const GUEST_AVATAR = 'https://ibb.co/bzrYJ5w'
 
 export const SERVER_ERROR = {
   title: 'Sorry, something went wrong!',

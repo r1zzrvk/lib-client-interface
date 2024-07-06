@@ -9,10 +9,8 @@ const InfoBanner = styled.div`
   border-radius: ${theme.radiuses.md}px;
   box-shadow: 4px 4px 8px 0px rgba(144, 134, 133, 0.25), -4px -4px 8px 0px rgba(153, 139, 138, 0.25);
   padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.sm}px ${theme.space.md}px;
-  margin: ${theme.space.sm}px 0px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
-    margin: ${theme.space.xl}px 0px;
     max-width: 600px;
   }
 `

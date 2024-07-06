@@ -1,4 +1,4 @@
 export * from './AuthStep'
-export * from './GuestStep'
 export * from './ErrorStep'
-export * from './SignedStep'
+export * from './SignUpStep'
+export * from './AccountRecoveryStep'

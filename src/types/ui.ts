@@ -17,7 +17,7 @@ export type TTab = {
   title: string
 }
 
-export type TIcon =
+type TSolidIcon =
   | 'home_solid'
   | 'search_solid'
   | 'user_solid'
@@ -38,9 +38,17 @@ export type TIcon =
   | 'edit_solid'
   | 'link_solid'
   | 'plus_solid'
-  | 'user_regular'
-  | 'trash_regular'
-  | 'bookmark_regular'
+  | 'at_solid'
+  | 'lock_solid'
+  | 'eye_solid'
+  | 'slashEye_solid'
+  | 'hashtag_solid'
+  | 'image_solid'
+  | 'calendar_solid'
+
+type TRegularIcon = 'user_regular' | 'trash_regular' | 'bookmark_regular'
+
+export type TIcon = TSolidIcon | TRegularIcon
 
 export type TOption = {
   value: string
@@ -69,5 +77,6 @@ export type TMobileMenuItem = {
 
 export enum EProfileTabs {
   PERSONAL = 'Personal information',
+  ACCOUNT = 'Account information',
   LISTS = 'My lists',
 }

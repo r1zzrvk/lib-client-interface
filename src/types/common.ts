@@ -41,4 +41,5 @@ export type TPageDataProps = {
 
 export enum EDateFormats {
   MMMM_DD_YYYY = 'MMMM DD, YYYY',
+  MMMM_DD_YYYY_HH_mm = 'MMMM DD, YYYY, HH:mm',
 }
