@@ -27,6 +27,7 @@ type TInputProps = {
   hasDot?: boolean
   error?: string
   disabled?: boolean
+  autoComplete?: string
 }
 
 export const Input: FC<TInputProps> = ({
@@ -49,6 +50,7 @@ export const Input: FC<TInputProps> = ({
   hasDot = false,
   error,
   disabled = false,
+  autoComplete = 'new-password',
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -90,7 +92,7 @@ export const Input: FC<TInputProps> = ({
           onClick={type === 'button' ? handleClick : () => ''}
           isIcon={hasIcon}
           onKeyDown={e => handleKeyDown(e)}
-          autoComplete="off"
+          autoComplete={autoComplete}
           disabled={disabled}
           fluid
         />

@@ -43,6 +43,14 @@ const Input = styled.input<TWrapperProps>`
     line-height: ${theme.fonts.height.regular.md}px;
     font-weight: ${theme.fonts.weight.medium};
   }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    -webkit-transition-delay: 9999s;
+  }
 `
 
 const CustomIcon = styled.div<TIconProps>`
