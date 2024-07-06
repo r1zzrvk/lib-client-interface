@@ -111,6 +111,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
         sortingBy: sorting,
         page: 1,
       })
+      e.currentTarget.blur()
       setPage(1)
     }
   }

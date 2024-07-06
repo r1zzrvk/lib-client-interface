@@ -5,6 +5,7 @@ type TWrapperProps = {
   color: string
   fluid: boolean
   isIcon?: boolean
+  error?: string
 }
 
 type TIconProps = {
@@ -18,6 +19,8 @@ const Wrapper = styled.div<TWrapperProps>`
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 52px;
   border-radius: ${theme.radiuses.sm}px;
+
+  outline: ${({ error }) => (error ? `2px solid ${theme.colors.red}` : 'none')};
 `
 
 const Input = styled.input<TWrapperProps>`

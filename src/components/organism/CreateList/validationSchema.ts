@@ -1,6 +1,7 @@
 import { object, string } from 'yup'
+import { FIELD_IS_TOO_LONG, MAX_SYMBOLS } from '@constants'
 import { EListFormFields } from './types'
-import { FIELD_IS_TOO_LONG, LIST_TITLE_IS_REQUIRED, MAX_SYMBOLS } from './constants'
+import { LIST_TITLE_IS_REQUIRED } from './constants'
 
 export const validationSchema = object().shape({
   [EListFormFields.title]: string().required(LIST_TITLE_IS_REQUIRED).max(MAX_SYMBOLS, FIELD_IS_TOO_LONG),

@@ -12,6 +12,7 @@ export const PaddingContainer = styled.div<TPaddingContainerProps>`
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     padding: ${({ mobOnly }) => mobOnly && 0}px;
-    min-height: ${({ withMaxHeight }) => (withMaxHeight ? '65vh' : 'auto')};
+    min-height: 100%;
+    height: 100%;
   }
 `

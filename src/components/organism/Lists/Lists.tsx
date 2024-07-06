@@ -114,7 +114,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
             fontHeightMob={theme.fonts.height.header.xs}
             fontWeightMob={theme.fonts.weight.regular}
           >
-            Deletion cannot be undone
+            This action cannot be undone
           </Text>
           <Spacer size={theme.space.md} sizeMob={theme.space.md} />
           <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>

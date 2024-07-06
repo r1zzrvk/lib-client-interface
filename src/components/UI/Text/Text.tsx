@@ -21,6 +21,7 @@ type TTextProps = {
   asLink?: boolean
   href?: string
   align?: 'center' | 'left'
+  onClick?: () => void
 }
 
 export const Text: FC<TTextProps> = ({
@@ -28,9 +29,9 @@ export const Text: FC<TTextProps> = ({
   fontSize = theme.fonts.size.regular.md,
   fontWeight = theme.fonts.weight.regular,
   fontHeight = theme.fonts.height.regular.md,
-  fontSizeMob = theme.fonts.size.regular.xs,
+  fontSizeMob = theme.fonts.size.regular.sm,
   fontWeightMob = theme.fonts.weight.regular,
-  fontHeightMob = theme.fonts.height.regular.xs,
+  fontHeightMob = theme.fonts.height.regular.sm,
   fontSizeTablet = fontSize,
   fontWeightTablet = fontWeight,
   fontHeightTablet = fontHeight,
@@ -41,10 +42,19 @@ export const Text: FC<TTextProps> = ({
   asLink = false,
   href,
   align,
+  onClick,
 }) => {
   const router = useRouter()
 
-  const handleClick = () => asLink && router.push(String(href))
+  const handleClick = () => {
+    if (asLink && href) {
+      router.push(href)
+    }
+
+    onClick?.()
+  }
+
+  // TODO: убрать asLink и создать компонент под ссылку
 
   return (
     <Styled.TextWrapper

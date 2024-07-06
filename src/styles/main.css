@@ -5,10 +5,20 @@ body {
   margin: 0px;
   padding: 0px;
   scroll-behavior: smooth;
+  min-height: 100% !important;
+  height: 100%;
+  background-color: #FFFFFF;
 
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    select:focus, textarea:focus, input:focus {
-            font-size: 16px;
-        }
+
+    select:focus,
+    textarea:focus,
+    input:focus {
+      font-size: 16px;
     }
+  }
+
+  @media (min-width: 1024px) {
+    background-color: #B3A3A1;
+  }
 }
