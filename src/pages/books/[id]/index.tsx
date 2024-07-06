@@ -6,8 +6,8 @@ import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
 import { useAppSelector, useBreakpoint, useLists } from '@hooks'
 import { getUserData } from '@selectors'
-import { BOOKMARK_LIST_ID } from '@constants'
-import { Flexbox } from '@components/atoms'
+import { BOOKMARK_LIST_ID, theme } from '@constants'
+import { Background, Flexbox } from '@components/atoms'
 import { filterLists } from '@utils'
 import { AddToListModal } from '@components/molecules'
 
@@ -103,19 +103,9 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      {book && isMob && (
-        <MobileBookPageLayout
-          {...book}
-          isLoading={isLoading}
-          onBookmarkClick={handleAddToBookmarksClick}
-          isBookmarked={isBookmarked}
-          listWithBook={listsWithBook[0]}
-          onAddToListClick={handleAddClick}
-        />
-      )}
-      {book && !isMob && (
-        <Flexbox justify="center">
-          <BookPageLayout
+      <Background color={theme.colors.white}>
+        {book && isMob && (
+          <MobileBookPageLayout
             {...book}
             isLoading={isLoading}
             onBookmarkClick={handleAddToBookmarksClick}
@@ -123,16 +113,28 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
             listWithBook={listsWithBook[0]}
             onAddToListClick={handleAddClick}
           />
-        </Flexbox>
-      )}
-      <AddToListModal
-        bookId={book?.id}
-        isOpened={isAddToListModalOpened}
-        onClose={handleModalClose}
-        lists={lists}
-        onSaveClick={handleAddToCustomList}
-        onSelectList={id => handleSelectId(id)}
-      />
+        )}
+        {book && !isMob && (
+          <Flexbox justify="center">
+            <BookPageLayout
+              {...book}
+              isLoading={isLoading}
+              onBookmarkClick={handleAddToBookmarksClick}
+              isBookmarked={isBookmarked}
+              listWithBook={listsWithBook[0]}
+              onAddToListClick={handleAddClick}
+            />
+          </Flexbox>
+        )}
+        <AddToListModal
+          bookId={book?.id}
+          isOpened={isAddToListModalOpened}
+          onClose={handleModalClose}
+          lists={lists}
+          onSaveClick={handleAddToCustomList}
+          onSelectList={id => handleSelectId(id)}
+        />
+      </Background>
     </LayoutTemplate>
   )
 }

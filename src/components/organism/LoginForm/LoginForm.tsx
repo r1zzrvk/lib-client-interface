@@ -1,11 +1,13 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
+import { useRouter } from 'next/router'
 import { Styled } from './styled'
-import { AuthStep, ErrorStep, GuestStep, SignedStep } from './molecules'
+import { AccountRecoveryStep, AuthStep, ErrorStep, SignUpStep } from './molecules'
 import { ESteps } from './constants'
 
 export const LoginForm: FC = () => {
+  const router = useRouter()
   const isAuth = useAppSelector(getUserAuth)
   const [step, setStep] = useState<ESteps>(ESteps.Auth)
 
@@ -14,11 +16,11 @@ export const LoginForm: FC = () => {
   const stepHandler = useCallback(() => {
     switch (step) {
       case ESteps.Auth:
-        return <AuthStep onError={handleError} />
-      case ESteps.Guest:
-        return <GuestStep prevStep={() => setStep(ESteps.Auth)} />
-      case ESteps.Signed:
-        return <SignedStep onError={handleError} />
+        return <AuthStep onError={handleError} setStep={step => setStep(step)} />
+      case ESteps.SignUp:
+        return <SignUpStep onError={handleError} setStep={step => setStep(step)} />
+      case ESteps.AccRecovery:
+        return <AccountRecoveryStep onError={handleError} setStep={step => setStep(step)} />
       default:
         return <ErrorStep />
     }
@@ -30,11 +32,11 @@ export const LoginForm: FC = () => {
 
   useEffect(() => {
     if (isAuth) {
-      setStep(ESteps.Signed)
+      router.back()
     } else {
       setStep(ESteps.Auth)
     }
-  }, [isAuth])
+  }, [isAuth, router])
 
   return <Styled.Wrapper>{stepHandler()}</Styled.Wrapper>
 }

@@ -1,6 +1,6 @@
 export enum ESteps {
   Auth = 'Auth',
-  Guest = 'Guest',
-  Signed = 'Signed',
+  SignUp = 'SignUp',
+  AccRecovery = 'AccRecovery',
   Error = 'Error',
 }
