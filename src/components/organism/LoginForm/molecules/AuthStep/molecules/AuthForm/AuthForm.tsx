@@ -32,6 +32,7 @@ export const AuthForm: FC<TAuthFormProps> = ({ onSignUp, onSignWithGoogle, onFor
           isClearable={!!email}
           error={errors[EAuthFormFields.email]}
           fluid={isMob}
+          autoComplete="off"
           hasIcon
         />
         <Spacer size={theme.space.sm} samespace />
@@ -48,6 +49,7 @@ export const AuthForm: FC<TAuthFormProps> = ({ onSignUp, onSignWithGoogle, onFor
           isClearable={!!password}
           error={errors[EAuthFormFields.password]}
           fluid={isMob}
+          autoComplete="off"
           hasButton
           hasIcon
         />
