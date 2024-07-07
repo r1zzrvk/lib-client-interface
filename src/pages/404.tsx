@@ -1,9 +1,12 @@
+/* eslint-disable import/no-default-export */
 import { FC } from 'react'
+
 import { Error404 } from '@components/organism'
+import { Background } from '@components/atoms'
+
 import { getStaticPageProps } from '@api'
 import { THeaderFooter } from '@types'
 import { LayoutTemplate } from '@templates'
-import { Background } from '@components/atoms'
 import { theme } from '@constants'
 
 export const getStaticProps = getStaticPageProps

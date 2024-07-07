@@ -1,5 +1,6 @@
 import { EDateFormats, TFirebaseUser } from '@types'
 import { formatDate } from '@utils'
+
 import { personalInfoFormInitialValues } from './initialValues'
 import { TPersonalInfoFormValues } from './types'
 

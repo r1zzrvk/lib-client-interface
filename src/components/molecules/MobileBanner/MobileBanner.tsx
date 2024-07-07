@@ -1,6 +1,9 @@
 import { FC } from 'react'
+
 import { Text } from '@ui-kit'
+
 import { theme } from '@constants'
+
 import { Styled } from './styled'
 
 type TMobileBannerProps = {

@@ -29,6 +29,7 @@ import {
   faCalendarDays,
 } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faTrashAlt, faBookmark } from '@fortawesome/free-regular-svg-icons'
+
 import { TIcon } from '@types'
 
 export const icons: Record<TIcon, IconDefinition> = {

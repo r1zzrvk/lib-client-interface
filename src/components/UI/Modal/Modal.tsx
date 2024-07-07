@@ -1,6 +1,8 @@
-import { theme } from '@constants'
 import { IconsSelector } from 'components/molecules'
 import { FC, ReactNode } from 'react'
+
+import { theme } from '@constants'
+
 import { Styled } from './styled'
 import { Text } from '../Text'
 

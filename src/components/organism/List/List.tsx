@@ -1,13 +1,16 @@
+import { useRouter } from 'next/router'
+import { FC, useCallback, useState } from 'react'
+
 import { Flexbox, ItemListWrapper } from '@components/atoms'
 import { AddToListModal, BookCard, IconsSelector, ItemList, StatusIllustration } from '@components/molecules'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+import { CreateList } from '@components/organism'
+
 import { BOOKMARK_LIST_ID, EMPTY_BOOKMARKS, theme } from '@constants'
 import { useBreakpoint, usePagination } from '@hooks'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
-import { useRouter } from 'next/router'
-import { FC, useCallback, useState } from 'react'
-import { CreateList } from '@components/organism'
 import { deleteList, updateList as updateBookOnList } from '@api'
+
 import { ListContainer } from '../Lists/atoms'
 import { Styled } from './styled'
 

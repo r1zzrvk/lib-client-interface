@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
+import { FC } from 'react'
+
+import { Card } from '@ui-kit'
+
 import { updateList } from '@api'
 import { BOOKMARK_LIST_ID } from '@constants'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
-import { Card } from '@ui-kit'
-import { useRouter } from 'next/router'
-import { FC } from 'react'
 
 type TBookCardProps = {
   book: TBook

@@ -1,8 +1,11 @@
+import React, { FC } from 'react'
+
+import { IconsSelector } from '@components/molecules'
+import { Flexbox } from '@components/atoms'
+
 import { theme } from '@constants'
 import { TIcon } from '@types'
-import { IconsSelector } from '@components/molecules'
-import React, { FC } from 'react'
-import { Flexbox } from '@components/atoms'
+
 import { Styled } from './styled'
 import { Spacer } from '../Spacer'
 import { Text } from '../Text'

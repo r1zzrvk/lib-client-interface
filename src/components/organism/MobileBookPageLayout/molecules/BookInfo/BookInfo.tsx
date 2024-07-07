@@ -1,10 +1,13 @@
-import { theme } from '@constants'
-import { EDateFormats, TBook } from '@types'
-import { Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
-import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
+
+import { Spacer, Text } from '@ui-kit'
 import { LabelWithText } from '@components/atoms'
 import { PageInfoBlock } from '@components/molecules'
+
+import { theme } from '@constants'
+import { EDateFormats, TBook } from '@types'
+import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
+
 import { Styled } from './styled'
 import { InfoSkeleton } from '../../atoms'
 

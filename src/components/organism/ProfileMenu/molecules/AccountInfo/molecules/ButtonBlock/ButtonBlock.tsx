@@ -1,6 +1,7 @@
+import { FC } from 'react'
+
 import { Flexbox } from '@components/atoms'
 import { Button } from '@ui-kit'
-import { FC } from 'react'
 
 type TButtonBlockProps = {
   onCancel: () => void

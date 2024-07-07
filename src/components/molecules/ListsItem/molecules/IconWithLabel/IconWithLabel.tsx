@@ -1,9 +1,12 @@
+import { FC } from 'react'
+
 import { IconsSelector } from '@components/molecules'
+import { Text } from '@ui-kit'
+
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { TIcon } from '@types'
-import { Text } from '@ui-kit'
-import { FC } from 'react'
+
 import { Styled } from './styled'
 
 type TIconWithLabelProps = {

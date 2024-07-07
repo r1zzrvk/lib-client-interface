@@ -1,15 +1,18 @@
+/* eslint-disable import/no-default-export */
+import { useRouter } from 'next/router'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+
+import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
+import { Background, Flexbox } from '@components/atoms'
+import { AddToListModal } from '@components/molecules'
+
 import { LayoutTemplate } from '@templates'
 import { TBook, TList, TPageDataProps } from '@types'
 import { getBookData, getServerSidePageProps, updateList } from '@api'
-import { useRouter } from 'next/router'
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
-import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
 import { useAppSelector, useBreakpoint, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { BOOKMARK_LIST_ID, theme } from '@constants'
-import { Background, Flexbox } from '@components/atoms'
 import { filterLists } from '@utils'
-import { AddToListModal } from '@components/molecules'
 
 export const getServerSideProps = getServerSidePageProps
 

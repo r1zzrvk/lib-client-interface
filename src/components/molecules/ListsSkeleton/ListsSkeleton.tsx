@@ -1,7 +1,8 @@
-import { theme } from '@constants'
 import { Skeleton, Spacer } from '@ui-kit'
-import { useBreakpoint } from '@hooks'
 import { Flexbox } from '@components/atoms'
+
+import { theme } from '@constants'
+import { useBreakpoint } from '@hooks'
 
 export const ListsSkeleton = () => {
   const { isMob } = useBreakpoint()

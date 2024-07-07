@@ -1,7 +1,9 @@
 import { FC, useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
-import { useRouter } from 'next/router'
+
 import { Styled } from './styled'
 import { AccountRecoveryStep, AuthStep, ErrorStep, SignUpStep } from './molecules'
 import { ESteps } from './constants'

@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+
 import { EPagePaths, TFooterData } from '@types'
+
 import { Styled } from './styled'
 import { DesktopMenu } from './DesktopMenu'
 import { TabletMenu } from './TabletMenu'

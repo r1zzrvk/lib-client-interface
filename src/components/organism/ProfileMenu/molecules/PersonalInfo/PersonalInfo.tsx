@@ -1,13 +1,16 @@
+import { deleteUser, updateProfile } from 'firebase/auth'
+import { Form, Formik } from 'formik'
+import { FC, useState } from 'react'
+
 import { Flexbox } from '@components/atoms'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+
 import { theme } from '@constants'
 import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
 import { setUser } from '@reducers'
 import { getUserData } from '@selectors'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { isGoogleProvider } from '@utils'
-import { deleteUser, updateProfile } from 'firebase/auth'
-import { Form, Formik } from 'formik'
-import { FC, useState } from 'react'
+
 import { PersonalInfoForm } from './mocelules'
 import { Styled } from './styled'
 import { TPersonalInfoFormValues } from './types'

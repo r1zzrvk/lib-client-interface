@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import { useCallback, useEffect, useState } from 'react'
+
+import { theme } from '@constants'
 
 export const useBreakpoint = () => {
   const [breakpoint, setBreakpoint] = useState(0)

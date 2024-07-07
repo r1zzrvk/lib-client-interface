@@ -1,9 +1,12 @@
 import { FC, KeyboardEvent, useEffect, useMemo } from 'react'
 import { useFormikContext } from 'formik'
 import { useRouter } from 'next/router'
+
+import { Badge, Input, Paginator, Spacer } from '@ui-kit'
+import { CardsPreloader } from '@components/molecules'
+
 import { useBreakpoint } from '@hooks'
 import { theme } from '@constants'
-import { Badge, Input, Paginator, Spacer } from '@ui-kit'
 import {
   ESearchByOptionsLabels,
   ESearchFormFields,
@@ -13,7 +16,7 @@ import {
   TSearchFormValues,
 } from '@types'
 import { scrollToYAxis, getBadgesFromObject, getHasFilters } from '@utils'
-import { CardsPreloader } from '@components/molecules'
+
 import { Styled } from './styled'
 import { Results } from './molecules'
 

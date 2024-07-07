@@ -1,10 +1,11 @@
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/router'
+import { FC, ReactNode, useCallback, useEffect } from 'react'
+
 import { auth } from '@api'
 import { useAppDispatch } from '@hooks'
 import { setAuthStatus, setUser } from '@reducers'
 import { EAuthorizationStatus, EPagePaths } from '@types'
-import { onAuthStateChanged } from 'firebase/auth'
-import { useRouter } from 'next/router'
-import { FC, ReactNode, useCallback, useEffect } from 'react'
 
 type TAuthProviderProps = {
   children: ReactNode

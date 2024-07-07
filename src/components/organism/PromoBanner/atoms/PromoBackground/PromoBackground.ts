@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
 
 export const PromoBackground = styled.div`
   background-color: ${theme.colors.main};

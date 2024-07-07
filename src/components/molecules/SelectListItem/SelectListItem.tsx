@@ -1,7 +1,10 @@
-import { TBook, TList } from '@types'
 import { FC, useState } from 'react'
+
 import { Text } from '@ui-kit'
+
+import { TBook, TList } from '@types'
 import { theme } from '@constants'
+
 import { Styled } from './styled'
 import { IconsSelector } from '../IconsSelector'
 

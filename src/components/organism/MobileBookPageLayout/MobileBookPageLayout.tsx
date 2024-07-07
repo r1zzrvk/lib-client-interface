@@ -1,5 +1,7 @@
-import { TBook, TList } from '@types'
 import { FC } from 'react'
+
+import { TBook, TList } from '@types'
+
 import { Styled } from './styled'
 import { BookHeader, BookInfo } from './molecules'
 

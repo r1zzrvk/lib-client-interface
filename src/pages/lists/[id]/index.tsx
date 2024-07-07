@@ -1,15 +1,18 @@
+/* eslint-disable import/no-default-export */
+import { useRouter } from 'next/router'
+import { FC, useEffect, useMemo } from 'react'
+
+import { List } from '@components/organism'
+import { ListPreloader } from '@components/molecules'
+import { Background } from '@components/atoms'
+
 import { getServerSidePageProps } from '@api'
 import { useAppSelector, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { LayoutTemplate } from '@templates'
 import { TPageDataProps } from '@types'
-import { List } from '@components/organism'
-import { useRouter } from 'next/router'
-import { FC, useEffect, useMemo } from 'react'
-import { ListPreloader } from '@components/molecules'
 import { filterLists } from '@utils'
 import { theme } from '@constants'
-import { Background } from '@components/atoms'
 
 export const getServerSideProps = getServerSidePageProps
 

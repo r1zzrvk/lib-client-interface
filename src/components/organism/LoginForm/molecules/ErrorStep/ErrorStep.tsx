@@ -1,10 +1,13 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+
 import { StatusIllustration } from '@components/molecules'
-import { SERVER_ERROR, theme } from '@constants'
 import { Button, Spacer } from '@ui-kit'
+
+import { SERVER_ERROR, theme } from '@constants'
 import { EPagePaths } from '@types'
 import { useBreakpoint } from '@hooks'
+
 import { StepWrapper } from '../../atoms'
 
 export const ErrorStep: FC = () => {

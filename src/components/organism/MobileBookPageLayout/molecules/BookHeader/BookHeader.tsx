@@ -1,12 +1,15 @@
-import { Flexbox } from '@components/atoms'
-import { IconsSelector } from '@components/molecules'
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { TBook, TList } from '@types'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { IconsSelector } from '@components/molecules'
 import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
+
+import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { TBook, TList } from '@types'
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
+
 import { Styled } from './styled'
 
 type TBookHeaderProps = {

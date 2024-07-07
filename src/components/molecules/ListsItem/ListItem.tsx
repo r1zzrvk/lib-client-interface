@@ -1,11 +1,14 @@
-import { theme } from '@constants'
-import { TFirebaseUser, TList } from '@types'
+import { FC, useState } from 'react'
+
 import { Skeleton, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
 import { Flexbox } from '@components/atoms'
-import { FC, useState } from 'react'
+
+import { theme } from '@constants'
+import { TFirebaseUser, TList } from '@types'
 import { useBreakpoint } from '@hooks'
 import { updateDocList } from '@api'
+
 import { Styled } from './styled'
 import { ActionBlock } from './molecules'
 

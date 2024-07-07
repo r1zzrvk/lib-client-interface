@@ -1,9 +1,3 @@
-import { Flexbox } from '@components/atoms'
-import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
-import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
-import { setUser } from '@reducers'
-import { getUserData } from '@selectors'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { FirebaseError } from 'firebase/app'
 import {
   AuthErrorCodes,
@@ -16,6 +10,15 @@ import {
 } from 'firebase/auth'
 import { Form, Formik, FormikErrors, FormikState } from 'formik'
 import { FC, useState } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+
+import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
+import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
+import { setUser } from '@reducers'
+import { getUserData } from '@selectors'
+
 import { AccountInfoForm } from './molecules'
 import { Styled } from './styled'
 import { EAccountInfoFormFields, TAccountInfoFormValues } from './types'

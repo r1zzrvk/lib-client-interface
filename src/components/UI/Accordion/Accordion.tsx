@@ -1,5 +1,7 @@
 import { FC, ReactNode, useState } from 'react'
+
 import { theme } from '@constants'
+
 import { Styled } from './styled'
 
 type TAccordionProps = {

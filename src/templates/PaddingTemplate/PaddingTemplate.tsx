@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+
 import { Styled } from './styled'
 
 type TPaddingTemplateProps = {

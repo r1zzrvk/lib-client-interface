@@ -1,8 +1,11 @@
 import { FC } from 'react'
-import { PROMO_FOOTER, theme } from '@constants'
+
 import { Promo } from '@components/molecules'
 import { Flexbox } from '@components/atoms'
+
+import { PROMO_FOOTER, theme } from '@constants'
 import { TFooterData } from '@types'
+
 import { Menu } from '../Menu'
 import { Styled } from './styled'
 

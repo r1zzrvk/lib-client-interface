@@ -1,6 +1,9 @@
 import { FC } from 'react'
-import { theme } from '@constants'
+
 import { Text } from '@ui-kit'
+
+import { theme } from '@constants'
+
 import { Styled } from './styled'
 
 type TTabProps = {

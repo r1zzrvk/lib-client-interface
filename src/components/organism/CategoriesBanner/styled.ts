@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
 
 const Wrapper = styled.div`
   padding: ${theme.space.md}px 0px 0px 0px;

@@ -1,6 +1,8 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { Flexbox } from '@components/atoms'
+
+import { theme } from '@constants'
 
 const Wrapper = styled(Flexbox)`
   width: 100%;

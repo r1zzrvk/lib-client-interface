@@ -1,9 +1,12 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+
 import { IconsSelector } from '@components/molecules'
 import { Flexbox } from '@components/atoms'
+
 import { mobileMenuItems, theme } from '@constants'
 import { EPagePaths } from '@types'
+
 import { Styled } from './styled'
 import { Text } from '../Text'
 
