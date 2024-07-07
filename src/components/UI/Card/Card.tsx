@@ -1,8 +1,11 @@
 import { FC, MouseEvent } from 'react'
+
+import { IconsSelector } from '@components/molecules'
+
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
 import { TBook, TFirebaseUser } from '@types'
-import { IconsSelector } from '@components/molecules'
 import { sliceItems, textLimiter } from '@utils'
+
 import { Text } from '../Text'
 import { Styled } from './styled'
 

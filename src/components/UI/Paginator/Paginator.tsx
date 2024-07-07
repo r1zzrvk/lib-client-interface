@@ -1,9 +1,12 @@
 import { FC, useMemo } from 'react'
-import { getPagesArray } from '@utils'
-import { theme } from '@constants'
+
 import { Flexbox } from '@components/atoms'
 import { IconsSelector } from '@components/molecules'
+
+import { getPagesArray } from '@utils'
+import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
+
 import { Styled } from './styled'
 import { Button } from '../Button'
 import { Spacer } from '../Spacer'

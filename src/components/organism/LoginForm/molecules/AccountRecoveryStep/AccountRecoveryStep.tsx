@@ -1,10 +1,13 @@
-import { auth } from '@api'
-import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
-import { Spacer, Text } from '@ui-kit'
 import { FirebaseError } from 'firebase/app'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { Form, Formik, FormikErrors } from 'formik'
 import { FC, useState } from 'react'
+
+import { Spacer, Text } from '@ui-kit'
+
+import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
+import { auth } from '@api'
+
 import { StepWrapper } from '../../atoms'
 import { ESteps } from '../../constants'
 import { accountRecoveryFormInitialValues } from './initialValues'

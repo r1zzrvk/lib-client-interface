@@ -1,9 +1,12 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { useRouter } from 'next/router'
+
 import { IconsSelector } from '@components/molecules'
+
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { EPagePaths } from '@types'
+
 import { Styled } from './styled'
 
 type TIconBlockProps = {

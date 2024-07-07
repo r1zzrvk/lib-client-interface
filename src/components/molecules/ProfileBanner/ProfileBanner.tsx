@@ -1,13 +1,16 @@
 import { FC } from 'react'
+import { signOut } from 'firebase/auth'
+
 import { Avatar, Button, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
+
 import { theme } from '@constants'
 import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
 import { getUserData } from '@selectors'
 import { EAuthorizationStatus } from '@types'
-import { signOut } from 'firebase/auth'
 import { auth } from '@api'
 import { setAuthStatus, setUser } from '@reducers'
+
 import { Styled } from './styled'
 
 type TProfileBannerProps = {

@@ -1,9 +1,12 @@
-import { theme } from '@constants'
 import { FC, ReactNode } from 'react'
+
 import { Divider, Text } from '@ui-kit'
 import { IconsSelector } from '@components/molecules'
+
+import { theme } from '@constants'
 import { TIcon } from '@types'
 import { useBreakpoint } from '@hooks'
+
 import { Styled } from './styled'
 
 type TAlertBannerProps = {

@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router'
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { SwitchToggle } from '@ui-kit'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { SwitchToggle } from '@ui-kit'
+
+import { theme } from '@constants'
 import { EPagePaths, TList } from '@types'
+
 import { IconWithLabel } from '../IconWithLabel'
 
 type TActionBlockProps = {

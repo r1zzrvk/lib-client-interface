@@ -1,14 +1,17 @@
+import { FC, useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
+
 import { useAppDispatch, useBreakpoint, useDidMount, useLists } from '@hooks'
 import { EPagePaths, TFirebaseUser, TList } from '@types'
-import { FC, useEffect, useMemo, useState } from 'react'
 import { setIsLoading } from '@reducers'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { BOOKMARK_LIST_ID, theme } from '@constants'
 import { filterLists } from '@utils'
 import { deleteList } from '@api'
-import { Flexbox } from '@components/atoms'
-import { useRouter } from 'next/router'
+
 import { CreateList } from '../CreateList'
 import { Styled } from './styled'
 

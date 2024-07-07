@@ -1,5 +1,7 @@
 import { FC } from 'react'
+
 import { AVATAR_SIZES, theme } from '@constants'
+
 import { Styled } from './styled'
 import { Skeleton } from '../Skeleton'
 

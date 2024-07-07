@@ -1,7 +1,9 @@
 import { FC } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { TIcon } from '@types'
 import { theme } from '@constants'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { icons } from './constants'
 import { Styled } from './styled'
 

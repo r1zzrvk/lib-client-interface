@@ -1,5 +1,7 @@
 import { FC } from 'react'
+
 import { TBadge } from '@types'
+
 import { Styled } from './styled'
 
 type TBadgeProps = TBadge & {

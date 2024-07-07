@@ -1,11 +1,14 @@
 import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
-import { theme } from '@constants'
-import { EPagePaths, THeaderData } from '@types'
+
 import { ResponsiveImage, Text } from '@ui-kit'
 import { Flexbox } from '@components/atoms'
-import { useBreakpoint } from '@hooks'
 import { SearchField } from '@components/molecules'
+
+import { theme } from '@constants'
+import { EPagePaths, THeaderData } from '@types'
+import { useBreakpoint } from '@hooks'
+
 import { Styled } from './styled'
 import { IconBlock } from './IconBlock'
 

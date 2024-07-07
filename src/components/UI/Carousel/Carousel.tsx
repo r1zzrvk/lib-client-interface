@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+
 import { IconsSelector, ItemList } from '@components/molecules'
+
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { getPagesArray } from '@utils'
+
 import { Styled } from './styled'
 
 type TCarouselProps<T> = {

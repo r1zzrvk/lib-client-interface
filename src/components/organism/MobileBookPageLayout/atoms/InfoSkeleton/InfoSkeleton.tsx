@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import { Skeleton, Spacer } from '@ui-kit'
+
+import { theme } from '@constants'
 
 export const InfoSkeleton = () => (
   <>

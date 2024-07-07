@@ -1,9 +1,12 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Button, Input, Modal, Spacer, Text } from '@ui-kit'
 import { useFormikContext } from 'formik'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Input, Modal, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
+
 import { EAccountRecoveryFormFields, TAccountRecoveryFormValues } from '../../types'
 import { RECOVERY_SUBTITLE, getConfirmationSubtitle } from '../../constants'
 import { Styled } from './styled'

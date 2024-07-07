@@ -1,6 +1,9 @@
 import { FC } from 'react'
+
 import { Flexbox } from '@components/atoms'
+
 import { theme } from '@constants'
+
 import { Styled } from './styled'
 import { sizePresets } from './constants'
 import { Text } from '../Text'

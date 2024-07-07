@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import { Input } from '@ui-kit'
+
 import { theme } from '@constants'
 import { EPagePaths } from '@types'
-import { useRouter } from 'next/router'
 
 export const SearchField: FC = () => {
   const router = useRouter()

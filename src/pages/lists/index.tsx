@@ -1,15 +1,18 @@
+/* eslint-disable import/no-default-export */
 import React, { FC } from 'react'
+import { useRouter } from 'next/router'
+
+import { Lists } from '@components/organism'
+import { Button, Spacer } from '@ui-kit'
+import { ListsSkeleton, StatusIllustration } from '@components/molecules'
+import { Background, Flexbox } from '@components/atoms'
+
 import { LayoutTemplate } from '@templates'
 import { EPagePaths, TPageDataProps } from '@types'
 import { getStaticPageProps } from '@api'
 import { useAppSelector, useBreakpoint } from '@hooks'
 import { getLoading, getUserAuth, getUserData } from '@selectors'
-import { Lists } from '@components/organism'
-import { Button, Spacer } from '@ui-kit'
 import { LIST_FOR_AUTHED_USERS, theme } from '@constants'
-import { ListsSkeleton, StatusIllustration } from '@components/molecules'
-import { Background, Flexbox } from '@components/atoms'
-import { useRouter } from 'next/router'
 
 export const getStaticProps = getStaticPageProps
 

@@ -1,9 +1,12 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { useBreakpoint } from '@hooks'
-import { Button, Input, Spacer } from '@ui-kit'
 import { useFormikContext } from 'formik'
 import { FC, useState } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Input, Spacer } from '@ui-kit'
+
+import { theme } from '@constants'
+import { useBreakpoint } from '@hooks'
+
 import { ESignUpFormFields, TSignUpValues } from '../../types'
 
 type TSignUpFormProps = {

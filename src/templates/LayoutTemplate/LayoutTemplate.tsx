@@ -1,9 +1,11 @@
 import { ReactNode, FC } from 'react'
+
 import { Footer, Header, MobileMenu, Spacer } from '@ui-kit'
 import { Flexbox, PaddingContainer } from '@components/atoms'
+import { AuthProvider } from '@components/molecules'
+
 import { theme } from '@constants'
 import { THeaderFooter } from '@types'
-import { AuthProvider } from '@components/molecules'
 
 type TLayoutTemplateProps = {
   children: ReactNode

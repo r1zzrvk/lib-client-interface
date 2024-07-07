@@ -1,13 +1,16 @@
+/* eslint-disable import/no-default-export */
 import { FC, useState } from 'react'
+
+import { Background } from '@components/atoms'
+import { ProfileSkeleton } from '@components/molecules'
 import { ProfileMenu } from '@components/organism'
-import { PROFILE_MENU, theme } from '@constants'
-import { TPageDataProps, TTab } from '@types'
+
 import { getStaticPageProps } from '@api'
-import { LayoutTemplate } from '@templates'
+import { PROFILE_MENU, theme } from '@constants'
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
-import { ProfileSkeleton } from '@components/molecules'
-import { Background } from '@components/atoms'
+import { LayoutTemplate } from '@templates'
+import { TPageDataProps, TTab } from '@types'
 
 export const getStaticProps = getStaticPageProps
 
@@ -17,8 +20,8 @@ const ProfilePage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-       <Background color={theme.colors.white}>
-      {isAuth ? <ProfileMenu activeTab={selectedTab} onSelect={setSelectedTab} /> : <ProfileSkeleton />}
+      <Background color={theme.colors.white}>
+        {isAuth ? <ProfileMenu activeTab={selectedTab} onSelect={setSelectedTab} /> : <ProfileSkeleton />}
       </Background>
     </LayoutTemplate>
   )

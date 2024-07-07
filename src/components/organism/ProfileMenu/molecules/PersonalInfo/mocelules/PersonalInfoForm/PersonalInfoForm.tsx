@@ -1,8 +1,11 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Button, Input, Spacer, Text } from '@ui-kit'
 import { useFormikContext } from 'formik'
 import { FC, useState } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Input, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
+
 import { EPersonalInfoFormFields, TPersonalInfoFormValues } from '../../types'
 
 type TPersonalInfoFormProps = {

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { theme } from '@constants'
+
 import { Flexbox } from '../Flexbox'
 
 export const SearchFormContainer = styled(Flexbox)`

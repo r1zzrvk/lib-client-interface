@@ -1,8 +1,11 @@
 import { FC } from 'react'
-import { PROMO_FOOTER, theme } from '@constants'
+
 import { Text, Accordion, Spacer } from '@ui-kit'
 import { Promo } from '@components/molecules'
+
+import { PROMO_FOOTER, theme } from '@constants'
 import { TFooterData } from '@types'
+
 import { Styled } from './styled'
 
 type TTabletMenuProps = {

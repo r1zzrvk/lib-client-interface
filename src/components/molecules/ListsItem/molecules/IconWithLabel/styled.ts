@@ -1,5 +1,6 @@
-import { Flexbox } from '@components/atoms'
 import styled from 'styled-components'
+
+import { Flexbox } from '@components/atoms'
 
 const IconWrapper = styled(Flexbox)`
   cursor: pointer;

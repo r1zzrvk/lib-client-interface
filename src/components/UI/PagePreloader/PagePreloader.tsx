@@ -1,4 +1,5 @@
 import { FC } from 'react'
+
 import { ResponsiveImage } from '../ResponsiveImage'
 import { Styled } from './styled'
 

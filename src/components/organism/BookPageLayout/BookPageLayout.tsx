@@ -1,13 +1,16 @@
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { EDateFormats, TBook, TList } from '@types'
-import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
+import { useRouter } from 'next/router'
+
+import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 import { Flexbox, LabelWithText } from '@components/atoms'
 import { IconsSelector, PageInfoBlock } from '@components/molecules'
+
+import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { EDateFormats, TBook, TList } from '@types'
 import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
 import { useAppSelector, useBreakpoint } from '@hooks'
-import { useRouter } from 'next/router'
 import { getUserAuth } from '@selectors'
+
 import { Styled } from './styled'
 
 type TBookPageLayoutProps = {

@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 // todo: избавиться от логов
 import { DocumentData, collection, doc, getDocs, setDoc, deleteField, updateDoc } from 'firebase/firestore'
+
 import { EDatabaseDocs, TUpdateDocList } from '@types'
+
 import { database } from './firebase'
 
 // Function updates a list by ID. The ID also serves as the key for an object

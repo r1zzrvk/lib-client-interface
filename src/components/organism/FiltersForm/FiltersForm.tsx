@@ -1,10 +1,13 @@
 import { FC } from 'react'
 import { useFormikContext } from 'formik'
+
 import { Button, Select, Text } from '@ui-kit'
+
 import { theme } from '@constants'
 import { getHasFilters, getOptionsFromObject } from '@utils'
 import { EFilterOptions, ESearchFormFields, ESortingOptions, TSearchBookProps, TSearchFormValues } from '@types'
 import { useBreakpoint } from '@hooks'
+
 import { Styled } from './styled'
 
 type TFilterFormProps = {

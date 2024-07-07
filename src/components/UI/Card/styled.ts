@@ -1,5 +1,7 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
+
 import { ResponsiveImage } from '../ResponsiveImage'
 
 const Wrapper = styled.div`

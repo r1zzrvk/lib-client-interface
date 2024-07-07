@@ -1,7 +1,10 @@
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react'
+
 import { IconsSelector } from '@components/molecules'
+
 import { theme } from '@constants'
 import { TOption } from '@types'
+
 import { Input } from '../Input'
 import { Styled } from './styled'
 

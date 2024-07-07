@@ -1,14 +1,17 @@
-import { deleteList } from '@api'
+import { FC, useMemo, useState } from 'react'
+
 import { Flexbox } from '@components/atoms'
 import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
 import { CreateList } from '@components/organism'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+
+import { deleteList } from '@api'
 import { BOOKMARK_LIST_ID, theme } from '@constants'
 import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { TList } from '@types'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { filterLists } from '@utils'
-import { FC, useMemo, useState } from 'react'
+
 import { Styled } from './styled'
 
 export const MyLists: FC = () => {

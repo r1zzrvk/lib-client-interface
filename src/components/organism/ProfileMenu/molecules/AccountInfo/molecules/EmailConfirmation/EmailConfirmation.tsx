@@ -1,7 +1,9 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
 
 type TEmailConfirmationProps = {
   isEditing: boolean

@@ -1,10 +1,13 @@
-import { Flexbox } from '@components/atoms'
-import { BOOKMARK_LIST_ID, theme } from '@constants'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { FC } from 'react'
+import { useRouter } from 'next/router'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Modal, Spacer, Text } from '@ui-kit'
+
+import { BOOKMARK_LIST_ID, theme } from '@constants'
 import { EPagePaths, TBook, TList } from '@types'
 import { useBreakpoint } from '@hooks'
-import { useRouter } from 'next/router'
+
 import { Styled } from './styled'
 import { SelectListItem } from '../SelectListItem'
 import { IconsSelector } from '../IconsSelector'

@@ -1,5 +1,7 @@
 import { object, string } from 'yup'
+
 import { EMAIL_ERROR, EMAIL_REGEX, EMAIL_REQUIRED, FIELD_IS_TOO_LONG, MAX_SYMBOLS, PASSWORD_REQUIRED } from '@constants'
+
 import { EAuthFormFields } from './types'
 
 export const validationSchema = object().shape({

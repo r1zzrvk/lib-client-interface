@@ -1,4 +1,5 @@
 import { TFirebaseUser } from '@types'
+
 import { accountInfoFormInitialValues } from './initialValues'
 import { TAccountInfoFormValues } from './types'
 

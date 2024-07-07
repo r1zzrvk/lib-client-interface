@@ -1,8 +1,11 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { PROMO_BANNER, theme } from '@constants'
+
 import { Promo } from '@components/molecules'
+
+import { PROMO_BANNER, theme } from '@constants'
 import { EPagePaths } from '@types'
+
 import { BackgroundImage, PromoBackground } from './atoms'
 
 export const PromoBanner: FC = () => {

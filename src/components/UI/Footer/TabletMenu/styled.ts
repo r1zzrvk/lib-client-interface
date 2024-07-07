@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
 
 const TabletMenu = styled.div`
   padding: ${theme.space.lg}px;

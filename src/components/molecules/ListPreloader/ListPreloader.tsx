@@ -1,7 +1,10 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Skeleton, Spacer } from '@ui-kit'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Skeleton, Spacer } from '@ui-kit'
+
+import { theme } from '@constants'
+
 import { CardsPreloader } from '../CardsPreloader'
 
 export const ListPreloader: FC = () => (
