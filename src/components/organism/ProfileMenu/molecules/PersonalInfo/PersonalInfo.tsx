@@ -1,26 +1,23 @@
 import { deleteUser, updateProfile } from 'firebase/auth'
 import { Form, Formik } from 'formik'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
-import { Flexbox } from '@components/atoms'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
+import { Spacer, Text } from '@ui-kit'
 
 import { theme } from '@constants'
-import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
+import { useAppDispatch, useAppSelector, useDialog } from '@hooks'
 import { setUser } from '@reducers'
 import { getUserData } from '@selectors'
 import { isGoogleProvider } from '@utils'
 
 import { PersonalInfoForm } from './mocelules'
-import { Styled } from './styled'
 import { TPersonalInfoFormValues } from './types'
 import { getPersonalInitialValues } from './utils'
 import { validationSchema } from './validationSchema'
 
 export const PersonalInfo: FC = () => {
   const user = useAppSelector(getUserData)
-  const { isMob } = useBreakpoint()
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
+  const { dialog: Dialog, close, show } = useDialog()
   const dispatch = useAppDispatch()
 
   if (!user) {
@@ -41,7 +38,7 @@ export const PersonalInfo: FC = () => {
 
   const handleDelete = () => {
     if (user) {
-      deleteUser(user).then(() => setIsDialogOpened(false))
+      deleteUser(user).then(() => close())
     }
   }
 
@@ -67,36 +64,20 @@ export const PersonalInfo: FC = () => {
       >
         <Form>
           <PersonalInfoForm
-            onDeleteClick={() => setIsDialogOpened(true)}
+            onDeleteClick={show}
             onSubmitClick={handleSubmit}
             isGoogleProvider={isGoogleProvider(user)}
           />
         </Form>
       </Formik>
-      <Modal isOpen={isDialogOpened} onClose={() => setIsDialogOpened(false)} size="sm" title="Are you sure?">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            This action cannot be undone
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={() => handleDelete()} isFluid={isMob} size="lg">
-              Delete
-            </Button>
-            <Button onClick={() => setIsDialogOpened(false)} isFluid={isMob} size="sm" isGhost>
-              Сancel
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Are you sure?"
+        subtitle="This action cannot be undone"
+        cancelButtonText="Сancel"
+        submitButtonText="Delete"
+        onCancel={close}
+        onSubmit={handleDelete}
+      />
     </>
   )
 }

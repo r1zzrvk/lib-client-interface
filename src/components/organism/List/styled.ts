@@ -22,16 +22,7 @@ const IconWrapper = styled.div`
   background-color: ${theme.colors.white};
 `
 
-const Dialog = styled.div`
-  padding: 0px ${theme.space.sm}px ${theme.space.sm}px ${theme.space.sm}px;
-
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    padding: ${theme.space.sm}px;
-  }
-`
-
 export const Styled = {
   InfoBanner,
   IconWrapper,
-  Dialog,
 }
