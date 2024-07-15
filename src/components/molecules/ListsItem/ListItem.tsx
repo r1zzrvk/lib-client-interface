@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 
 import { Skeleton, Text } from '@ui-kit'
-import { IconsSelector } from '@components/molecules'
 import { Flexbox } from '@components/atoms'
 
 import { theme } from '@constants'
@@ -11,6 +10,7 @@ import { updateDocList } from '@api'
 
 import { Styled } from './styled'
 import { ActionBlock } from './molecules'
+import { Icon } from '../Icon'
 
 type TListItemProps = {
   uid: TFirebaseUser['uid']
@@ -87,12 +87,12 @@ export const ListItem: FC<TListItemProps> = ({
         <Flexbox align="center" gap={theme.space.md}>
           {isPinned && !isBookmarks && (
             <Styled.Pin>
-              <IconsSelector icon="pin_solid" color={theme.colors.main} size={iconSize} />
+              <Icon icon="pin_solid" color={theme.colors.main} size={iconSize} />
             </Styled.Pin>
           )}
           {isMob && (
             <Styled.Icon isActive={opened}>
-              <IconsSelector icon="caretDown_solid" color={theme.colors.grey} size={iconSize} />
+              <Icon icon="caretDown_solid" color={theme.colors.grey} size={iconSize} />
             </Styled.Icon>
           )}
         </Flexbox>

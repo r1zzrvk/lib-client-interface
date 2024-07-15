@@ -1,8 +1,7 @@
 import { FC } from 'react'
 import { signOut } from 'firebase/auth'
 
-import { Avatar, Button, Text } from '@ui-kit'
-import { IconsSelector } from '@components/molecules'
+import { ActionIcon, Avatar, Button, Text } from '@ui-kit'
 
 import { theme } from '@constants'
 import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
@@ -69,12 +68,11 @@ export const ProfileBanner: FC<TProfileBannerProps> = ({
         </Styled.TextWrapper>
       </Styled.UserInfo>
       {variant === 'horizontal' ? (
-        <IconsSelector
+        <ActionIcon
           icon="exit_solid"
           color={theme.colors.grey}
           size={isMob ? theme.icon_sizes.xs : theme.icon_sizes.sm}
           onClick={handleSignOut}
-          isButton
         />
       ) : (
         <Button onClick={handleSignOut} size="sm" isGhost>

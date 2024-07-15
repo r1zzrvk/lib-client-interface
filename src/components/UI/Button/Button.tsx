@@ -1,4 +1,10 @@
-import { FC, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Icon } from '@components/molecules'
+
+import { theme } from '@constants'
+import { TIcon } from '@types'
 
 import { Styled } from './styled'
 
@@ -10,6 +16,9 @@ type TButton = {
   isFluid?: boolean
   type?: 'submit' | 'button' | 'reset'
   disabled?: boolean
+  rightIcon?: TIcon
+  iconColor?: string
+  iconSize?: number
 }
 
 export const Button: FC<TButton> = ({
@@ -20,8 +29,14 @@ export const Button: FC<TButton> = ({
   isFluid = false,
   type = 'submit',
   disabled = false,
+  rightIcon,
+  iconColor = theme.colors.grey,
+  iconSize = theme.icon_sizes.xs,
 }) => (
   <Styled.Button type={type} onClick={onClick} size={size} isGhost={isGhost} isFluid={isFluid} disabled={disabled}>
-    {children}
+    <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+      {children}
+      {rightIcon && <Icon size={iconSize} icon={rightIcon} color={iconColor} />}
+    </Flexbox>
   </Styled.Button>
 )

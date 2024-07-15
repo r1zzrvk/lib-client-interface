@@ -6,7 +6,7 @@ import { TBook, TList } from '@types'
 import { theme } from '@constants'
 
 import { Styled } from './styled'
-import { IconsSelector } from '../IconsSelector'
+import { Icon } from '../Icon'
 
 type TSelectListItemProps = {
   list: TList
@@ -33,7 +33,7 @@ export const SelectListItem: FC<TSelectListItemProps> = ({ list, bookId, onSelec
       >
         {list.title}
       </Text>
-      {hasOnList && <IconsSelector icon="check_solid" color={theme.colors.main} />}
+      {hasOnList && <Icon icon="check_solid" color={theme.colors.main} />}
     </Styled.Wrapper>
   )
 }

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Divider, Text } from '@ui-kit'
-import { IconsSelector } from '@components/molecules'
+import { Icon } from '@components/molecules'
 
 import { theme } from '@constants'
 import { TIcon } from '@types'
@@ -35,7 +35,7 @@ export const AlertBanner: FC<TAlertBannerProps> = ({ children, heading, icon, is
         >
           {heading}
         </Text>
-        <IconsSelector icon={icon} color={theme.colors.grey} size={iconSize} />
+        <Icon icon={icon} color={theme.colors.grey} size={iconSize} />
       </Styled.Header>
       <Divider sideMargin={dividerPadding} />
       <Styled.Body>{children}</Styled.Body>

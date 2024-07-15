@@ -1,13 +1,12 @@
 import { FC, MouseEvent } from 'react'
 
-import { IconsSelector } from '@components/molecules'
-
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
 import { TBook, TFirebaseUser } from '@types'
 import { sliceItems, textLimiter } from '@utils'
 
 import { Text } from '../Text'
 import { Styled } from './styled'
+import { ActionIcon } from '../ActionIcon'
 
 type TCardProps = {
   book: TBook
@@ -79,18 +78,16 @@ export const Card: FC<TCardProps> = ({
         <Styled.ButtonBlock>
           {uid && (
             <>
-              <Styled.Icon onClick={handleAddToListClick}>
-                <IconsSelector
-                  icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
-                  color={isAtLeastOneList ? theme.colors.main : theme.colors.grey}
-                />
-              </Styled.Icon>
-              <Styled.Icon onClick={handleClickBookmark}>
-                <IconsSelector
-                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                  color={isBookmarked ? theme.colors.main : theme.colors.grey}
-                />
-              </Styled.Icon>
+              <ActionIcon
+                icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
+                color={isAtLeastOneList ? theme.colors.main : theme.colors.grey}
+                onClick={handleAddToListClick}
+              />
+              <ActionIcon
+                icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                color={isBookmarked ? theme.colors.main : theme.colors.grey}
+                onClick={handleClickBookmark}
+              />
             </>
           )}
         </Styled.ButtonBlock>

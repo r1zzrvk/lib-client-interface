@@ -2,12 +2,12 @@ import { useRouter } from 'next/router'
 import { FC, useCallback, useState } from 'react'
 
 import { Flexbox, ItemListWrapper } from '@components/atoms'
-import { AddToListModal, BookCard, IconsSelector, ItemList, StatusIllustration } from '@components/molecules'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
+import { AddToListModal, BookCard, ItemList, StatusIllustration } from '@components/molecules'
+import { ActionIcon, Button, Spacer, Text } from '@ui-kit'
 import { CreateList } from '@components/organism'
 
 import { BOOKMARK_LIST_ID, EMPTY_BOOKMARKS, theme } from '@constants'
-import { useBreakpoint, usePagination } from '@hooks'
+import { useBreakpoint, useDialog, usePagination } from '@hooks'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
 import { deleteList, updateList as updateBookOnList } from '@api'
 
@@ -27,9 +27,9 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
   const { isMob } = useBreakpoint()
   const [isEditModalOpened, setIsEditModalOpened] = useState(false)
   const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
   const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
   const [selectedBook, setSelectedBook] = useState<TBook | null>(null)
+  const { dialog: Dialog, close, show } = useDialog()
   const { listItems, title, description, id } = list
   const { firstIndex, packSize, showMore } = usePagination({ contentPerPage: 10, itemsCount: listItems?.length })
   const isShowMoreVisible = listItems?.length > 10 && listItems?.length > packSize
@@ -37,7 +37,10 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
   const handleDelete = () => {
     deleteList(uid, id)
       .then(() => updateList())
-      .finally(() => router.push(EPagePaths.MY_LISTS))
+      .finally(() => {
+        close()
+        router.push(EPagePaths.MY_LISTS)
+      })
   }
 
   const handleClickToCatalog = () => {
@@ -120,12 +123,13 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
           <>
             <Spacer size={theme.space.md} sizeMob={theme.space.md} />
             <Flexbox justify="space-between" gap={theme.space.lg}>
-              <Styled.IconWrapper onClick={() => setIsEditModalOpened(true)}>
-                <IconsSelector size={theme.icon_sizes.sm} icon="edit_solid" color={theme.colors.grey} isButton />
-              </Styled.IconWrapper>
-              <Styled.IconWrapper onClick={() => setIsDialogOpened(true)}>
-                <IconsSelector size={theme.icon_sizes.sm} icon="trash_solid" color={theme.colors.grey} isButton />
-              </Styled.IconWrapper>
+              <ActionIcon
+                size={theme.icon_sizes.sm}
+                icon="edit_solid"
+                color={theme.colors.grey}
+                onClick={() => setIsEditModalOpened(true)}
+              />
+              <ActionIcon size={theme.icon_sizes.sm} icon="trash_solid" color={theme.colors.grey} onClick={show} />
             </Flexbox>
           </>
         )}
@@ -152,15 +156,10 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
         imgUrl={EMPTY_BOOKMARKS.imgUrl}
         subtitle={EMPTY_BOOKMARKS.subtitle}
         isVisible={!listItems?.length}
+        buttonText="View catalog"
+        onButtonClick={handleClickToCatalog}
+        hasButton
       />
-      {!listItems?.length && (
-        <Flexbox justify="center" align="center" direction="column">
-          <Spacer size={theme.space.lg} sizeMob={theme.space.sm} />
-          <Button isFluid={isMob} onClick={handleClickToCatalog} size="lg">
-            View catalog
-          </Button>
-        </Flexbox>
-      )}
       {isShowMoreVisible && (
         <Flexbox justify="center" align="center">
           <Button isFluid={isMob} size="lg" onClick={showMore}>
@@ -176,31 +175,14 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
         onModalClose={() => setIsEditModalOpened(false)}
         isModalOpened={isEditModalOpened}
       />
-      {/* TODO: вынести в отдельный компонент */}
-      <Modal isOpen={isDialogOpened} onClose={() => setIsDialogOpened(false)} size="sm" title="Are you sure?">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            This action cannot be undone
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={() => handleDelete()} isFluid={isMob} size="lg">
-              Delete
-            </Button>
-            <Button onClick={() => setIsDialogOpened(false)} isFluid={isMob} size="sm" isGhost>
-              Сancel
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Are you sure?"
+        subtitle="This action cannot be undone"
+        cancelButtonText="Сancel"
+        submitButtonText="Delete"
+        onCancel={close}
+        onSubmit={handleDelete}
+      />
       <AddToListModal
         bookId={selectedBook?.id}
         isOpened={isAddToListModalOpened}

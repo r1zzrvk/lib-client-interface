@@ -15,12 +15,14 @@ type TIconProps = {
 
 const Wrapper = styled.div<TWrapperProps>`
   display: flex;
+  align-items: center;
+  box-sizing: border-box;
   background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 52px;
   border-radius: ${theme.radiuses.sm}px;
-
+  padding: 0px ${theme.space.sm}px;
   outline: ${({ error }) => (error ? `2px solid ${theme.colors.red}` : 'none')};
 `
 
@@ -30,12 +32,11 @@ const Input = styled.input<TWrapperProps>`
   font-size: ${theme.fonts.size.regular.md}px;
   line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
+  padding: 0px ${theme.space.xs}px;
   font-family: '${theme.fonts.family}', sans-serif;
-  border-radius: ${theme.radiuses.sm}px;
   width: ${({ fluid }) => (fluid ? '100%' : '300px')};
   border: none;
   outline: none;
-  padding: ${({ isIcon }) => (isIcon ? '0px' : `0px 0px 0px ${theme.space.sm}px`)};
   text-align: left;
 
   &::placeholder {

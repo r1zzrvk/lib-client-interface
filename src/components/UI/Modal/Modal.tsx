@@ -1,10 +1,10 @@
-import { IconsSelector } from 'components/molecules'
 import { FC, ReactNode } from 'react'
 
 import { theme } from '@constants'
 
 import { Styled } from './styled'
 import { Text } from '../Text'
+import { ActionIcon } from '../ActionIcon'
 
 type TModalProps = {
   children: ReactNode
@@ -27,8 +27,8 @@ export const Modal: FC<TModalProps> = ({ children, isOpen, onClose, size = 'lg',
         >
           {title}
         </Text>
-        <Styled.Icon onClick={() => onClose()}>
-          <IconsSelector icon="cross_solid" color={theme.colors.grey} />
+        <Styled.Icon>
+          <ActionIcon icon="cross_solid" color={theme.colors.grey} onClick={() => onClose()} />
         </Styled.Icon>
       </Styled.Header>
       {children}

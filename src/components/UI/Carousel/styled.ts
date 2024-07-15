@@ -7,11 +7,6 @@ type TListProps = {
   animationType: string
 }
 
-type TButtonProps = {
-  isInvisible: boolean
-  isLeft?: boolean
-}
-
 type TDotProps = {
   active: boolean
 }
@@ -76,17 +71,6 @@ const List = styled.div<TListProps>`
   }
 `
 
-const Button = styled.button<TButtonProps>`
-  border: none;
-  background-color: inherit;
-  opacity: ${({ isInvisible }) => (isInvisible ? 0 : 1)};
-  transition: 0.4s;
-
-  &:hover {
-    opacity: ${({ isInvisible }) => (isInvisible ? 0 : 0.5)};
-  }
-`
-
 const Paginator = styled.div`
   text-align: center;
   margin-top: ${theme.space.xl}px;
@@ -108,7 +92,6 @@ const Dot = styled.span<TDotProps>`
 `
 export const Styled = {
   Wrapper,
-  Button,
   Paginator,
   Dot,
   List,

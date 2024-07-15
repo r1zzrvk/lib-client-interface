@@ -1,15 +1,15 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
+import { FC } from 'react'
 
-import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 import { Flexbox, LabelWithText } from '@components/atoms'
-import { IconsSelector, PageInfoBlock } from '@components/molecules'
+import { PageInfoBlock } from '@components/molecules'
+import { ActionIcon, Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 
 import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { EDateFormats, TBook, TList } from '@types'
-import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
 import { useAppSelector, useBreakpoint } from '@hooks'
 import { getUserAuth } from '@selectors'
+import { EDateFormats, TBook, TList } from '@types'
+import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
 
 import { Styled } from './styled'
 
@@ -60,30 +60,29 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
       <Flexbox gap={theme.space.sm} direction={imageLayout}>
         {isTablet && (
           <Flexbox justify="space-between">
-            <Styled.IconWrapper onClick={handleBackClick}>
-              <IconsSelector size={theme.icon_sizes.sm} icon="caretLeft_solid" color={theme.colors.white} isButton />
-            </Styled.IconWrapper>
+            <ActionIcon
+              size={theme.icon_sizes.sm}
+              icon="caretLeft_solid"
+              color={theme.colors.white}
+              onClick={handleBackClick}
+            />
             {isLoading ? (
               <Skeleton radius={theme.radiuses.round} width={48} height={48} />
             ) : (
               isAuth && (
                 <Flexbox gap={theme.space.sm}>
-                  <Styled.IconWrapper onClick={onAddToListClick}>
-                    <IconsSelector
-                      size={theme.icon_sizes.sm}
-                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                      color={theme.colors.white}
-                      isButton
-                    />
-                  </Styled.IconWrapper>
-                  <Styled.IconWrapper onClick={onBookmarkClick}>
-                    <IconsSelector
-                      size={theme.icon_sizes.sm}
-                      icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                      color={theme.colors.white}
-                      isButton
-                    />
-                  </Styled.IconWrapper>
+                  <ActionIcon
+                    size={theme.icon_sizes.sm}
+                    icon={listWithBook ? 'check_solid' : 'plus_solid'}
+                    color={theme.colors.white}
+                    onClick={onAddToListClick}
+                  />
+                  <ActionIcon
+                    size={theme.icon_sizes.sm}
+                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                    color={theme.colors.white}
+                    onClick={onBookmarkClick}
+                  />
                 </Flexbox>
               )
             )}
@@ -168,31 +167,22 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
           {isTablet ||
             (isAuth && (
               <Flexbox align="center" gap={theme.space.sm}>
-                <Button onClick={onAddToListClick} size="lg">
-                  <Flexbox justify="center" align="center" gap={theme.space.xs2}>
-                    <Text
-                      color={theme.colors.grey}
-                      fontSize={theme.fonts.size.regular.md}
-                      fontHeight={theme.fonts.height.regular.md}
-                      fontWeight={theme.fonts.weight.regular}
-                    >
-                      {listWithBook ? 'In my list' : 'Add to list'}
-                    </Text>
-                    <IconsSelector
-                      size={theme.icon_sizes.xs}
-                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                      color={theme.colors.grey}
-                    />
-                  </Flexbox>
+                <Button onClick={onAddToListClick} size="lg" rightIcon={listWithBook ? 'check_solid' : 'plus_solid'}>
+                  <Text
+                    color={theme.colors.grey}
+                    fontSize={theme.fonts.size.regular.md}
+                    fontHeight={theme.fonts.height.regular.md}
+                    fontWeight={theme.fonts.weight.regular}
+                  >
+                    {listWithBook ? 'In my list' : 'Add to list'}
+                  </Text>
                 </Button>
-                <Styled.IconWrapper onClick={onBookmarkClick}>
-                  <IconsSelector
-                    size={theme.icon_sizes.sm}
-                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                    color={theme.colors.white}
-                    isButton
-                  />
-                </Styled.IconWrapper>
+                <ActionIcon
+                  size={theme.icon_sizes.sm}
+                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                  color={theme.colors.white}
+                  onClick={onBookmarkClick}
+                />
               </Flexbox>
             ))}
         </Flexbox>
