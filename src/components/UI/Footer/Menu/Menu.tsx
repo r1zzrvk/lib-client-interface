@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
-import { Text } from '@ui-kit'
+import { Link, Text } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
 
 import { theme } from '@constants'
 import { TMenuItem } from '@types'
@@ -14,23 +15,18 @@ export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
   <section>
     <Text
       marginBottom={theme.space.sm}
-      fontSize={theme.fonts.size.regular.md}
-      fontHeight={theme.fonts.height.regular.md}
+      fontSize={theme.fonts.size.header.xs}
+      fontHeight={theme.fonts.height.header.xs}
       fontWeight={theme.fonts.weight.semibold}
     >
       {header}
     </Text>
-    {menuItems?.map(({ text, href }) => (
-      <Text
-        key={text}
-        marginBottom={theme.space.xs2}
-        fontSize={theme.fonts.size.regular.sm}
-        fontHeight={theme.fonts.height.regular.sm}
-        asLink
-        href={href}
-      >
-        {text}
-      </Text>
-    ))}
+    <Flexbox direction="column" gap={theme.space.xs2}>
+      {menuItems?.map(({ text, href }) => (
+        <Link key={text} href={href}>
+          {text}
+        </Link>
+      ))}
+    </Flexbox>
   </section>
 )

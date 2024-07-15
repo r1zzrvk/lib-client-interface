@@ -16,7 +16,6 @@ type TStyledProps = {
   marginBottom: number
   marginBottomMob: number
   paddingRight: number
-  asLink: boolean
   align?: 'center' | 'left'
 }
 
@@ -29,8 +28,7 @@ const TextWrapper = styled.p<TStyledProps>`
   margin-bottom: ${({ marginBottomMob }) => marginBottomMob}px;
   font-family: '${theme.fonts.family}', sans-serif;
   padding-right: ${({ paddingRight }) => paddingRight}px;
-  cursor: ${({ asLink }) => (asLink ? 'pointer' : 'default')};
-  transition: 0.4s;
+  cursor: default;
   white-space: pre-line;
   text-align: ${({ align }) => align};
 
@@ -45,10 +43,6 @@ const TextWrapper = styled.p<TStyledProps>`
     font-size: ${({ fontSize }) => fontSize}px;
     font-weight: ${({ fontWeight }) => fontWeight};
     line-height: ${({ fontHeight }) => fontHeight}px;
-  }
-  &:hover {
-    color: ${({ color, asLink }) =>
-      asLink && (color === theme.colors.white ? theme.colors.secondary : theme.colors.main)};
   }
 `
 

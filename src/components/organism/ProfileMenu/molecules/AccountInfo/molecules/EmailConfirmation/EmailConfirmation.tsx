@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { Flexbox } from '@components/atoms'
-import { Spacer, Text } from '@ui-kit'
+import { Link, Spacer, Text } from '@ui-kit'
 
 import { theme } from '@constants'
 
@@ -38,17 +38,10 @@ export const EmailConfirmation: FC<TEmailConfirmationProps> = ({ isEditing, isCo
         >
           Email is not confirmed yet.
         </Text>
-        <Text
-          color={theme.colors.blue}
-          fontSizeMob={theme.fonts.size.regular.md}
-          fontHeightMob={theme.fonts.height.regular.md}
-          marginBottom={theme.space.xs3}
-          marginBottomMob={theme.space.xs3}
-          asLink
-          onClick={onConfirmEmail}
-        >
+        <Link color={theme.colors.blue} hoverColor={theme.colors.grey_light} onClick={onConfirmEmail} asButton>
           Confirm
-        </Text>
+        </Link>
+        <Spacer size={theme.space.xs3} samespace />
       </Flexbox>
     </>
   )
