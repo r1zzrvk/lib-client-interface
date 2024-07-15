@@ -19,6 +19,7 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
     <AuthProvider>
       <Flexbox direction="column" height="100%">
         <Header headerData={header} />
+        <Spacer sizeMob={0} sizeTablet={105} size={135} />
         <PaddingContainer padding={theme.space.sm} mobOnly withMaxHeight>
           {children}
         </PaddingContainer>

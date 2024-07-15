@@ -1,16 +1,16 @@
-import { FC, useState } from 'react'
 import { useRouter } from 'next/router'
+import { FC, useState } from 'react'
 
-import { ResponsiveImage, Text } from '@ui-kit'
-import { Flexbox } from '@components/atoms'
 import { SearchField } from '@components/molecules'
+import { Link, ResponsiveImage } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
 
 import { theme } from '@constants'
+import { useBreakpoint, useHeaderAnimation } from '@hooks'
 import { EPagePaths, THeaderData } from '@types'
-import { useBreakpoint } from '@hooks'
 
-import { Styled } from './styled'
 import { IconBlock } from './IconBlock'
+import { Styled } from './styled'
 
 type THeaderProps = {
   headerData: THeaderData[]
@@ -18,13 +18,15 @@ type THeaderProps = {
 
 export const Header: FC<THeaderProps> = ({ headerData }) => {
   const router = useRouter()
-  const { isMob } = useBreakpoint()
+  const { isMob, isTablet } = useBreakpoint()
+  const isCatalogPage = router.pathname === EPagePaths.CATALOG
+  const isMobile = isTablet || isMob
   const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const isScrolling = useHeaderAnimation()
 
   return (
-    <Styled.Wrapper>
-      {isMob && isSearchVisible && <SearchField />}
-      {isSearchVisible || (
+    <Styled.Wrapper isScrolling={isScrolling}>
+      {(isMobile && isSearchVisible) || (
         <ResponsiveImage
           isEverywhere
           src="/logotype.svg"
@@ -35,16 +37,21 @@ export const Header: FC<THeaderProps> = ({ headerData }) => {
           isTouchable
         />
       )}
-      <Flexbox>
+      <Styled.Menu>
+        {isCatalogPage || (
+          <Flexbox align="center" gap={theme.space.xs} width={isSearchVisible ? '100%' : 'auto'}>
+            {(isSearchVisible || !isMobile) && <SearchField />}
+            {!isMobile || <IconBlock onSearchClick={setIsSearchVisible} isSearchVisible={isSearchVisible} />}
+          </Flexbox>
+        )}
         <Styled.TextBlock>
           {headerData?.map(({ title, href }) => (
-            <Text key={title} fontWeight={theme.fonts.weight.medium} asLink href={href}>
+            <Link key={title} href={href} fontWeight={theme.fonts.weight.medium}>
               {title}
-            </Text>
+            </Link>
           ))}
         </Styled.TextBlock>
-        <IconBlock onSearchClick={setIsSearchVisible} isSearchVisible={isSearchVisible} />
-      </Flexbox>
+      </Styled.Menu>
     </Styled.Wrapper>
   )
 }
