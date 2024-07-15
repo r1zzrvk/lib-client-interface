@@ -1,7 +1,8 @@
 import { FC } from 'react'
 
-import { Text, Accordion, Spacer } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
 import { Promo } from '@components/molecules'
+import { Accordion, Link, Spacer } from '@ui-kit'
 
 import { PROMO_FOOTER, theme } from '@constants'
 import { TFooterData } from '@types'
@@ -19,32 +20,22 @@ export const TabletMenu: FC<TTabletMenuProps> = ({ footerData, onSignClick }) =>
   return (
     <Styled.TabletMenu>
       <Accordion title={catalog?.header}>
-        {catalog?.menuItems.map(({ text, href }) => (
-          <Text
-            key={text}
-            href={href}
-            fontSize={theme.fonts.size.regular.sm}
-            fontHeight={theme.fonts.height.regular.sm}
-            marginBottom={theme.space.xs2}
-            asLink
-          >
-            {text}
-          </Text>
-        ))}
+        <Flexbox direction="column" gap={theme.space.xs2}>
+          {catalog?.menuItems.map(({ text, href }) => (
+            <Link key={text} href={href}>
+              {text}
+            </Link>
+          ))}
+        </Flexbox>
       </Accordion>
       <Accordion title={information?.header}>
-        {information?.menuItems.map(({ text, href }) => (
-          <Text
-            key={text}
-            href={href}
-            fontSize={theme.fonts.size.regular.sm}
-            fontHeight={theme.fonts.height.regular.sm}
-            marginBottom={theme.space.xs2}
-            asLink
-          >
-            {text}
-          </Text>
-        ))}
+        <Flexbox direction="column" gap={theme.space.xs2}>
+          {information?.menuItems.map(({ text, href }) => (
+            <Link key={text} href={href}>
+              {text}
+            </Link>
+          ))}
+        </Flexbox>
       </Accordion>
       <Spacer size={theme.space.xl} samespace />
       <Promo

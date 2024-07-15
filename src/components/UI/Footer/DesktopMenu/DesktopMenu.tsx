@@ -27,10 +27,10 @@ export const DesktopMenu: FC<TDesktopMenuProps> = ({ footerData, onSignClick }) 
         header={PROMO_FOOTER.header}
         content={PROMO_FOOTER.content}
         buttonText={PROMO_FOOTER.buttonText}
-        headerFontSize={theme.fonts.size.regular.md}
-        headerFontHeight={theme.fonts.height.regular.md}
-        contentFontSize={theme.fonts.size.regular.sm}
-        contentFontHeight={theme.fonts.height.regular.sm}
+        headerFontSize={theme.fonts.size.header.xs}
+        headerFontHeight={theme.fonts.height.header.xs}
+        contentFontSize={theme.fonts.size.regular.md}
+        contentFontHeight={theme.fonts.height.regular.md}
         onButtonClick={onSignClick}
       />
     </Styled.DesktopMenu>
