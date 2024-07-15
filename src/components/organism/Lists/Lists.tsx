@@ -1,16 +1,15 @@
-import { FC, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
-import { Flexbox } from '@components/atoms'
+import { Button } from '@ui-kit'
 
-import { useAppDispatch, useBreakpoint, useDidMount, useLists } from '@hooks'
-import { EPagePaths, TFirebaseUser, TList } from '@types'
-import { setIsLoading } from '@reducers'
-import { BOOKMARK_LIST_ID, theme } from '@constants'
-import { filterLists } from '@utils'
 import { deleteList } from '@api'
+import { BOOKMARK_LIST_ID } from '@constants'
+import { useAppDispatch, useBreakpoint, useDialog, useDidMount, useLists } from '@hooks'
+import { setIsLoading } from '@reducers'
+import { EPagePaths, TFirebaseUser, TList } from '@types'
+import { filterLists } from '@utils'
 
 import { CreateList } from '../CreateList'
 import { Styled } from './styled'
@@ -26,7 +25,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
   const { isMob } = useBreakpoint()
   const [lists, getLists, isLoading] = useLists({ uid })
   const [isModalOpened, setIsModalOpened] = useState(false)
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
+  const { dialog: Dialog, close, show } = useDialog()
   const [deletingListId, setDeletingListId] = useState<string>('')
   const [editingList, setEditingList] = useState<TList | null>(null)
   const filtedLists = useMemo(() => filterLists(lists), [lists])
@@ -42,12 +41,12 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
   }
 
   const handleClickDelete = (id: string) => {
-    setIsDialogOpened(true)
+    show()
     setDeletingListId(id)
   }
 
   const handleDialogClose = () => {
-    setIsDialogOpened(false)
+    close()
     setDeletingListId('')
   }
 
@@ -106,30 +105,14 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
       ) : (
         <ListsSkeleton />
       )}
-      <Modal isOpen={isDialogOpened} onClose={() => setIsDialogOpened(false)} size="sm" title="Are you sure?">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            This action cannot be undone
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={() => handleConfirmDelete()} isFluid={isMob} size="lg">
-              Delete
-            </Button>
-            <Button onClick={() => setIsDialogOpened(false)} isFluid={isMob} size="sm" isGhost>
-              Сancel
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Are you sure?"
+        subtitle="This action cannot be undone"
+        cancelButtonText="Сancel"
+        submitButtonText="Delete"
+        onCancel={close}
+        onSubmit={handleConfirmDelete}
+      />
     </Styled.PaddingContainer>
   )
 }
