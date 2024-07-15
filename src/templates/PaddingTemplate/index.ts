@@ -1,1 +1,0 @@
-export { PaddingTemplate } from './PaddingTemplate'

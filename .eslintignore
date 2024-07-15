@@ -6,4 +6,3 @@ node_modules/
 commitlint.config.js
 next.config.js
 tsconfig.tsbuildinfo
-# pages/

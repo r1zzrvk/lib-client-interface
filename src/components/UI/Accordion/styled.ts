@@ -38,8 +38,8 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   border: none;
   outline: none;
   text-align: left;
-  font-size: ${theme.fonts.size.regular.md}px;
-  line-height: ${theme.fonts.height.regular.md}px;
+  font-size: ${theme.fonts.size.header.xs}px;
+  line-height: ${theme.fonts.height.header.xs}px;
   font-weight: ${theme.fonts.weight.regular};
   transition: 0.4s;
   background-color: inherit;
@@ -56,6 +56,7 @@ const AccordionItem = styled.div<TAccordionItemProps>`
   overflow: hidden;
   display: ${({ active }) => (active ? 'block' : 'none')};
   animation: ${({ animation }) => `${animation} 0.5s both`};
+  padding-bottom: ${theme.space.xs}px;
   border-bottom: ${({ color }) =>
     `1px solid ${color === theme.colors.white ? theme.colors.secondary : theme.colors.main}`};
   z-index: 0;

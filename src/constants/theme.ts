@@ -77,9 +77,9 @@ export const theme = {
     round: 1000,
   },
   icon_sizes: {
-    lg: 40,
-    md: 32,
-    sm: 24,
-    xs: 20,
+    lg: 24,
+    md: 20,
+    sm: 16,
+    xs: 14,
   },
 } as const
