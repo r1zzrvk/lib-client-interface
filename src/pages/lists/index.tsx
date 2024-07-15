@@ -1,18 +1,18 @@
 /* eslint-disable import/no-default-export */
-import React, { FC } from 'react'
 import { useRouter } from 'next/router'
+import { FC } from 'react'
 
-import { Lists } from '@components/organism'
-import { Button, Spacer } from '@ui-kit'
+import { Background } from '@components/atoms'
 import { ListsSkeleton, StatusIllustration } from '@components/molecules'
-import { Background, Flexbox } from '@components/atoms'
+import { Lists } from '@components/organism'
+import { Spacer } from '@ui-kit'
 
+import { getStaticPageProps } from '@api'
+import { LIST_FOR_AUTHED_USERS, theme } from '@constants'
+import { useAppSelector } from '@hooks'
+import { getLoading, getUserAuth, getUserData } from '@selectors'
 import { LayoutTemplate } from '@templates'
 import { EPagePaths, TPageDataProps } from '@types'
-import { getStaticPageProps } from '@api'
-import { useAppSelector, useBreakpoint } from '@hooks'
-import { getLoading, getUserAuth, getUserData } from '@selectors'
-import { LIST_FOR_AUTHED_USERS, theme } from '@constants'
 
 export const getStaticProps = getStaticPageProps
 
@@ -21,7 +21,6 @@ const MyLists: FC<TPageDataProps> = ({ headerFooterData }) => {
   const isLoading = useAppSelector(getLoading)
   const isAuth = useAppSelector(getUserAuth)
   const user = useAppSelector(getUserData)
-  const { isMob } = useBreakpoint()
   const { uid } = user || {}
 
   const handleAuthClick = () => {
@@ -39,15 +38,10 @@ const MyLists: FC<TPageDataProps> = ({ headerFooterData }) => {
           imgUrl={LIST_FOR_AUTHED_USERS.imgUrl}
           subtitle={LIST_FOR_AUTHED_USERS.subtitle}
           isVisible={!isAuth && !uid && !isLoading}
+          buttonText="Log in"
+          onButtonClick={handleAuthClick}
+          hasButton
         />
-        {!isAuth && !uid && !isLoading && (
-          <Flexbox justify="center" align="center" direction="column">
-            <Spacer size={theme.space.lg} sizeMob={theme.space.sm} />
-            <Button isFluid={isMob} onClick={handleAuthClick} size="lg">
-              Log in
-            </Button>
-          </Flexbox>
-        )}
         {isLoading && isAuth && uid && <ListsSkeleton />}
         <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
       </Background>

@@ -9,6 +9,7 @@ type TSpacerProps = {
 }
 
 const Spacer = styled.div<TSpacerProps>`
+  background-color: inherit;
   height: ${({ sizeMob }) => sizeMob}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
