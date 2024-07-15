@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { IconsSelector } from '@components/molecules'
 import { Text } from '@ui-kit'
+import { Icon } from '@components/molecules'
 
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
@@ -30,7 +30,7 @@ export const IconWithLabel: FC<TIconWithLabelProps> = ({ icon, label, iconSize, 
           {label}
         </Text>
       )}
-      <IconsSelector isButton icon={icon} color={theme.colors.grey} size={iconSize} />
+      <Icon icon={icon} color={theme.colors.grey} size={iconSize} />
     </Styled.IconWrapper>
   )
 }

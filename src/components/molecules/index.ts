@@ -1,4 +1,4 @@
-export * from './IconsSelector'
+export * from './Icon'
 export * from './Promo'
 export * from './MobileBanner'
 export * from './SmallCard'

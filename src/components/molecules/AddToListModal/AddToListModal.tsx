@@ -1,16 +1,15 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
+import { FC } from 'react'
 
 import { Flexbox } from '@components/atoms'
 import { Button, Modal, Spacer, Text } from '@ui-kit'
 
 import { BOOKMARK_LIST_ID, theme } from '@constants'
-import { EPagePaths, TBook, TList } from '@types'
 import { useBreakpoint } from '@hooks'
+import { EPagePaths, TBook, TList } from '@types'
 
-import { Styled } from './styled'
 import { SelectListItem } from '../SelectListItem'
-import { IconsSelector } from '../IconsSelector'
+import { Styled } from './styled'
 
 type TAddToListModalProps = {
   lists: TList[]
@@ -74,18 +73,15 @@ export const AddToListModal: FC<TAddToListModalProps> = ({
               Save
             </Button>
           ) : (
-            <Button onClick={handleClickCreate} size="lg" isFluid={isMob} type="button">
-              <Flexbox justify="center" align="center" gap={theme.space.xs2}>
-                <Text
-                  color={theme.colors.grey}
-                  fontSizeMob={theme.fonts.size.regular.md}
-                  fontHeightMob={theme.fonts.height.regular.md}
-                  fontWeightMob={theme.fonts.weight.regular}
-                >
-                  Create one
-                </Text>
-                <IconsSelector size={theme.icon_sizes.xs} icon="link_solid" color={theme.colors.grey} />
-              </Flexbox>
+            <Button onClick={handleClickCreate} size="lg" isFluid={isMob} type="button" rightIcon="link_solid">
+              <Text
+                color={theme.colors.grey}
+                fontSizeMob={theme.fonts.size.regular.md}
+                fontHeightMob={theme.fonts.height.regular.md}
+                fontWeightMob={theme.fonts.weight.regular}
+              >
+                Create one
+              </Text>
             </Button>
           )}
         </Flexbox>

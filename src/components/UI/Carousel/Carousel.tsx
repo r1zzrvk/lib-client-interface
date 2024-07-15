@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
-import { IconsSelector, ItemList } from '@components/molecules'
+import { ItemList } from '@components/molecules'
 
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { getPagesArray } from '@utils'
 
 import { Styled } from './styled'
+import { ActionIcon } from '../ActionIcon'
 
 type TCarouselProps<T> = {
   component: (item: T) => React.ReactNode | Element
@@ -49,24 +50,19 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
   return (
     <>
       <Styled.Wrapper onAnimationEnd={() => setAnimation({ ...animation, isAnimate: false })}>
-        <Styled.Button
+        <ActionIcon
           onClick={() => handleArrowClick(prevPage, false)}
-          isInvisible={page === 1}
-          disabled={page === 1}
-          isLeft
-        >
-          <IconsSelector icon="caretLeft_solid" color={theme.colors.grey} />
-        </Styled.Button>
+          icon="caretLeft_solid"
+          color={theme.colors.grey}
+        />
         <Styled.List isAnimate={animation.isAnimate} animationType={animation.animationType}>
           <ItemList items={items.slice(firstIndex, lastIndex)} renderItem={component} />
         </Styled.List>
-        <Styled.Button
+        <ActionIcon
           onClick={() => handleArrowClick(nextPage, true)}
-          isInvisible={page === pages.length}
-          disabled={page === pages.length}
-        >
-          <IconsSelector icon="caretRight_solid" color={theme.colors.grey} />
-        </Styled.Button>
+          icon="caretRight_solid"
+          color={theme.colors.grey}
+        />
       </Styled.Wrapper>
       <Styled.Paginator>
         <ItemList

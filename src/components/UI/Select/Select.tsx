@@ -1,12 +1,11 @@
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react'
 
-import { IconsSelector } from '@components/molecules'
-
 import { theme } from '@constants'
 import { TOption } from '@types'
 
 import { Input } from '../Input'
 import { Styled } from './styled'
+import { ActionIcon } from '../ActionIcon'
 
 type TSelectProps = {
   selectedValue: string
@@ -70,12 +69,11 @@ export const Select: FC<TSelectProps> = ({
             <Styled.Option type="button" value={value} onClick={handleSelectValue} key={value}>
               {label}
               {value === selectedValue && (
-                <IconsSelector
+                <ActionIcon
                   icon="check_solid"
                   color={theme.colors.grey}
                   size={theme.icon_sizes.xs}
-                  sidePadding={theme.space.sm}
-                  upDownPadding={theme.space.xs}
+                  padding={theme.space.sm}
                 />
               )}
             </Styled.Option>
