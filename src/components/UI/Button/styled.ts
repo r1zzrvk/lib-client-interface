@@ -4,6 +4,7 @@ import { theme, SIZES } from '@constants'
 
 type TButtonProps = {
   size: 'sm' | 'md' | 'lg'
+  animate: boolean
   isGhost?: boolean
   isFluid?: boolean
 }
@@ -21,29 +22,26 @@ const Button = styled.button<TButtonProps>`
   background-color: ${({ isGhost }) => (isGhost ? 'inherit' : theme.colors.secondary)};
   padding: ${theme.space.sm}px 0px ${theme.space.sm}px 0px;
   text-decoration: ${({ isGhost }) => (isGhost ? 'underline' : 'none')};
-
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  animation: ${({ animate }) => (animate ? 'click 0.5s ease' : 'none')};
+
+  @keyframes click {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.97);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
   &:hover {
     transition: all 1s ease;
+    background-color: ${({ isGhost }) => (isGhost ? 'inherit' : theme.colors.tertiary)};
     color: ${theme.colors.grey};
     text-decoration: ${({ isGhost }) => (isGhost ? 'none' : 'underline')};
-  }
-
-  &:focus {
-    animation: click 0.9s ease;
-
-    @keyframes click {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.3;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
   }
 
   &:active {

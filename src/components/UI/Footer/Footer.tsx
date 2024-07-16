@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { EPagePaths, TFooterData } from '@types'
 
 import { Styled } from './styled'
-import { DesktopMenu } from './DesktopMenu'
-import { TabletMenu } from './TabletMenu'
+import { DesktopMenu, TabletMenu } from './molecules'
 
 type TFooterProps = {
   footerData: TFooterData

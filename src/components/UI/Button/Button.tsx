@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, MouseEvent, ReactNode, useState } from 'react'
 
 import { Flexbox } from '@components/atoms'
 import { Icon } from '@components/molecules'
@@ -10,7 +10,7 @@ import { Styled } from './styled'
 
 type TButton = {
   children: ReactNode
-  onClick?: () => void
+  onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void
   size?: 'sm' | 'md' | 'lg'
   isGhost?: boolean
   isFluid?: boolean
@@ -32,11 +32,28 @@ export const Button: FC<TButton> = ({
   rightIcon,
   iconColor = theme.colors.grey,
   iconSize = theme.icon_sizes.xs,
-}) => (
-  <Styled.Button type={type} onClick={onClick} size={size} isGhost={isGhost} isFluid={isFluid} disabled={disabled}>
-    <Flexbox justify="center" align="center" gap={theme.space.xs2}>
-      {children}
-      {rightIcon && <Icon size={iconSize} icon={rightIcon} color={iconColor} />}
-    </Flexbox>
-  </Styled.Button>
-)
+}) => {
+  const [animate, setAnimate] = useState(false)
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    onClick?.(e)
+    setAnimate(true)
+  }
+
+  return (
+    <Styled.Button
+      animate={animate}
+      type={type}
+      onClick={handleClick}
+      size={size}
+      isGhost={isGhost}
+      isFluid={isFluid}
+      disabled={disabled}
+    >
+      <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+        {children}
+        {rightIcon && <Icon size={iconSize} icon={rightIcon} color={iconColor} />}
+      </Flexbox>
+    </Styled.Button>
+  )
+}

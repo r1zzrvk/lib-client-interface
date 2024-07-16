@@ -6,9 +6,10 @@ type TIconWrapperProps = {
   backgroundColor: string
   padding: number
   size: number
+  animate: boolean
 }
 
-const IconWrapper = styled.div<TIconWrapperProps>`
+const IconWrapper = styled.button<TIconWrapperProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,11 +21,33 @@ const IconWrapper = styled.div<TIconWrapperProps>`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   flex-shrink: 0;
-  transition: all 0.3s ease-in;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border: none;
+  animation: ${({ animate }) => (animate ? 'iconClick 0.5s ease' : 'none')};
+
+  @keyframes iconClick {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
   &:hover {
+    transition: all 0.3s ease-in;
     background-color: ${theme.colors.secondary};
+  }
+
+  &:active {
+    animation: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 `
 

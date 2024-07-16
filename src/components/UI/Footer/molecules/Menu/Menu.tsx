@@ -12,8 +12,9 @@ type TMenuProps = {
 }
 
 export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
-  <section>
+  <section style={{ width: '100%' }}>
     <Text
+      color={theme.colors.grey}
       marginBottom={theme.space.sm}
       fontSize={theme.fonts.size.header.xs}
       fontHeight={theme.fonts.height.header.xs}
@@ -23,7 +24,7 @@ export const Menu: FC<TMenuProps> = ({ header, menuItems }) => (
     </Text>
     <Flexbox direction="column" gap={theme.space.xs2}>
       {menuItems?.map(({ text, href }) => (
-        <Link key={text} href={href}>
+        <Link key={text} href={href} color={theme.colors.grey} hoverColor={theme.colors.grey_light}>
           {text}
         </Link>
       ))}
