@@ -34,13 +34,13 @@ export const Card: FC<TCardProps> = ({
     onCardClick?.(book.id)
   }
 
-  const handleAddToListClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+  const handleAddToListClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.stopPropagation()
 
     onAddClick?.()
   }
 
-  const handleClickBookmark = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+  const handleClickBookmark = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     e.stopPropagation()
 
     onBookmarkClick?.()
