@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 50px;
+  z-index: 10;
 `
 
 const List = styled.div<TListProps>`
@@ -24,22 +25,28 @@ const List = styled.div<TListProps>`
   align-items: center;
   gap: 50px;
   transition: transform 0.8s ease-in-out;
-  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} .8s ease-in`};
+  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} 0.5s ease`};
+  z-index: 0;
 
   @keyframes ParallaxIn {
     0% {
-      opacity: 0.1;
-      transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0px);
     }
 
     25% {
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateX(200px);
     }
 
     50% {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(0px);
+    }
+
+    75% {
+      opacity: 0;
+      transform: translateX(-200px);
     }
 
     100% {
@@ -50,18 +57,23 @@ const List = styled.div<TListProps>`
 
   @keyframes ParallaxOut {
     0% {
-      opacity: 0.3;
-      transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0px);
     }
 
     25% {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(-200px);
     }
 
     50% {
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateX(0px);
+    }
+
+    75% {
+      opacity: 0;
+      transform: translateX(200px);
     }
 
     100% {
@@ -90,9 +102,16 @@ const Dot = styled.span<TDotProps>`
     background-color: ${theme.colors.main};
   }
 `
+
+const Mock = styled.div`
+  background-color: inherit;
+  width: ${theme.space.lg}px;
+  height: ${theme.space.lg}px;
+`
 export const Styled = {
   Wrapper,
   Paginator,
   Dot,
   List,
+  Mock,
 }

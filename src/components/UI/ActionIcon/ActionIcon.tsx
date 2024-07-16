@@ -7,7 +7,7 @@ import { theme } from '@constants'
 import { Styled } from './styled'
 
 type TActionIconProps = {
-  onClick?: (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
+  onClick?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void
   backgroundColor?: string
   padding?: number
   disabled?: boolean
@@ -23,15 +23,25 @@ export const ActionIcon: FC<TActionIconProps> = ({
   onClick,
 }) => {
   const [hover, setHover] = useState(false)
+  const [animate, setAnimate] = useState(false)
+
+  const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    onClick?.(e)
+    setAnimate(true)
+  }
 
   return (
     <Styled.IconWrapper
-      onClick={e => !disabled && onClick?.(e)}
+      animate={animate}
+      onClick={handleClick}
+      disabled={disabled}
+      type="button"
       backgroundColor={backgroundColor}
       padding={padding}
       size={size + padding}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onAnimationEnd={() => setAnimate(false)}
     >
       <Icon icon={icon} color={hover ? theme.colors.grey_light : color} size={size} />
     </Styled.IconWrapper>

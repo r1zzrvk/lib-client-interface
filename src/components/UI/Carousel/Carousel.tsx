@@ -6,8 +6,8 @@ import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { getPagesArray } from '@utils'
 
-import { Styled } from './styled'
 import { ActionIcon } from '../ActionIcon'
+import { Styled } from './styled'
 
 type TCarouselProps<T> = {
   component: (item: T) => React.ReactNode | Element
@@ -49,20 +49,34 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
 
   return (
     <>
-      <Styled.Wrapper onAnimationEnd={() => setAnimation({ ...animation, isAnimate: false })}>
-        <ActionIcon
-          onClick={() => handleArrowClick(prevPage, false)}
-          icon="caretLeft_solid"
-          color={theme.colors.grey}
-        />
-        <Styled.List isAnimate={animation.isAnimate} animationType={animation.animationType}>
+      <Styled.Wrapper>
+        {page !== 1 ? (
+          <ActionIcon
+            onClick={() => handleArrowClick(prevPage, false)}
+            icon="caretLeft_solid"
+            color={theme.colors.grey}
+            disabled={page === 1}
+          />
+        ) : (
+          <Styled.Mock />
+        )}
+        <Styled.List
+          isAnimate={animation.isAnimate}
+          animationType={animation.animationType}
+          onAnimationEnd={() => setAnimation({ ...animation, isAnimate: false })}
+        >
           <ItemList items={items.slice(firstIndex, lastIndex)} renderItem={component} />
         </Styled.List>
-        <ActionIcon
-          onClick={() => handleArrowClick(nextPage, true)}
-          icon="caretRight_solid"
-          color={theme.colors.grey}
-        />
+        {page !== pages.length ? (
+          <ActionIcon
+            onClick={() => handleArrowClick(nextPage, true)}
+            icon="caretRight_solid"
+            color={theme.colors.grey}
+            disabled={page === pages.length}
+          />
+        ) : (
+          <Styled.Mock />
+        )}
       </Styled.Wrapper>
       <Styled.Paginator>
         <ItemList

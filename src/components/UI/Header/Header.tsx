@@ -9,7 +9,7 @@ import { theme } from '@constants'
 import { useBreakpoint, useHeaderAnimation } from '@hooks'
 import { EPagePaths, THeaderData } from '@types'
 
-import { IconBlock } from './IconBlock'
+import { IconBlock } from './molecules'
 import { Styled } from './styled'
 
 type THeaderProps = {
@@ -22,10 +22,15 @@ export const Header: FC<THeaderProps> = ({ headerData }) => {
   const isCatalogPage = router.pathname === EPagePaths.CATALOG
   const isMobile = isTablet || isMob
   const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const [hover, setHover] = useState(false)
   const isScrolling = useHeaderAnimation()
 
   return (
-    <Styled.Wrapper isScrolling={isScrolling}>
+    <Styled.Wrapper
+      isScrolling={isScrolling && !hover}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       {(isMobile && isSearchVisible) || (
         <ResponsiveImage
           isEverywhere
