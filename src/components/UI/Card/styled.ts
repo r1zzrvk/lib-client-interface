@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
 
     :hover {
-      scale: 1.05;
+      scale: 1.02;
     }
   }
 `
@@ -35,10 +35,10 @@ const ButtonBlock = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: ${theme.space.xs2}px;
+  gap: ${theme.space.sm}px;
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    gap: ${theme.space.xs4}px;
+    gap: ${theme.space.xs}px;
   }
 `
 
@@ -47,7 +47,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  padding-left: ${theme.space.xs}px;
+  padding: 0px 0px ${theme.space.xs}px ${theme.space.xs}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     padding: ${theme.space.xs}px;

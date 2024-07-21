@@ -27,11 +27,12 @@ export const Paginator: FC<TPaginatorProps> = ({
   setPage,
   goToFirstPage,
 }) => {
-  const { isMob } = useBreakpoint()
-  const defaultPages = isMob ? 5 : 10
-  const leftSide = isMob ? 2 : 4
-  const rightSide = isMob ? 2 : 5
-  const middlePage = isMob ? 3 : 5
+  const { isLg, isMd } = useBreakpoint()
+  const isDesktop = isMd || isLg
+  const defaultPages = !isDesktop ? 5 : 10
+  const leftSide = !isDesktop ? 2 : 4
+  const rightSide = !isDesktop ? 2 : 5
+  const middlePage = !isDesktop ? 3 : 5
   const leftPages = currentPage > middlePage ? currentPage - leftSide : 0
   const rightPages = currentPage > middlePage ? currentPage + rightSide : defaultPages
   const pages = useMemo(() => getPagesArray(totalPages), [totalPages])
