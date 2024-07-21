@@ -4,6 +4,14 @@ import { theme } from '@constants'
 
 const SearchWithResults = styled.div`
   width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    background-color: ${theme.colors.white};
+    border-radius: ${theme.radiuses.md}px;
+    padding: ${theme.space.sm}px ${theme.space.md}px ${theme.space.xl}px ${theme.space.md}px;
+    box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
+  }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
     width: 500px;

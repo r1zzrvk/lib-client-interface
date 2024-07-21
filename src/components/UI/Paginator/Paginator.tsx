@@ -2,14 +2,13 @@ import { FC, useMemo } from 'react'
 
 import { Flexbox } from '@components/atoms'
 
-import { getPagesArray } from '@utils'
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
+import { getPagesArray } from '@utils'
 
-import { Styled } from './styled'
-import { Button } from '../Button'
-import { Spacer } from '../Spacer'
 import { ActionIcon } from '../ActionIcon'
+import { Button } from '../Button'
+import { Styled } from './styled'
 
 type TPaginatorProps = {
   totalPages: number
@@ -40,7 +39,14 @@ export const Paginator: FC<TPaginatorProps> = ({
   return (
     <Flexbox justify="center" align="center" direction="column">
       <Flexbox justify="center" align="center" gap={theme.space.xs2}>
-        <ActionIcon onClick={prevPage} icon="caretLeft_solid" color={theme.colors.grey} disabled={currentPage === 1} />
+        <Styled.ArrowButton isInvisible={currentPage === 1}>
+          <ActionIcon
+            onClick={prevPage}
+            icon="caretLeft_solid"
+            color={theme.colors.grey}
+            disabled={currentPage === 1}
+          />
+        </Styled.ArrowButton>
         {pages
           .filter(page => page >= leftPages && page <= rightPages)
           .map(item => (
@@ -48,19 +54,19 @@ export const Paginator: FC<TPaginatorProps> = ({
               {item}
             </Styled.PageButton>
           ))}
-        <ActionIcon
-          onClick={nextPage}
-          icon="caretRight_solid"
-          color={theme.colors.grey}
-          disabled={currentPage === pages.length}
-        />
+        <Styled.ArrowButton isInvisible={currentPage === pages.length}>
+          <ActionIcon
+            onClick={nextPage}
+            icon="caretRight_solid"
+            color={theme.colors.grey}
+            disabled={currentPage === pages.length}
+          />
+        </Styled.ArrowButton>
       </Flexbox>
-      {currentPage > middlePage && goToFirstPage ? (
+      {currentPage > middlePage && goToFirstPage && (
         <Button isGhost onClick={goToFirstPage}>
           Go to first page
         </Button>
-      ) : (
-        <Spacer size={theme.space.xl2} samespace />
       )}
     </Flexbox>
   )

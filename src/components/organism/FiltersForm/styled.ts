@@ -11,6 +11,7 @@ export const Filters = styled.div`
   gap: ${theme.space.xs}px;
 
   @media (min-width: ${theme.breakpoints.sm}px) {
+    background-color: ${theme.colors.white};
     padding: ${theme.space.sm}px;
     height: 100%;
     border-radius: ${theme.radiuses.md}px;

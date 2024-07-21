@@ -99,8 +99,9 @@ export const Input: FC<TInputProps> = ({
           <ActionIcon
             icon="cross_solid"
             color={theme.colors.grey}
-            size={theme.icon_sizes.xs}
-            padding={theme.space.sm}
+            backgroundColor={theme.colors.beige}
+            size={theme.icon_sizes.md}
+            padding={theme.space.xs}
             onClick={handleClear}
           />
         )}
@@ -110,8 +111,9 @@ export const Input: FC<TInputProps> = ({
             <ActionIcon
               icon={buttonIcon}
               color={theme.colors.grey}
-              size={theme.icon_sizes.xs}
-              padding={theme.space.sm}
+              backgroundColor={theme.colors.beige}
+              size={theme.icon_sizes.md}
+              padding={theme.space.xs}
               onClick={handleClick}
             />
           </Styled.CustomIcon>
