@@ -27,7 +27,9 @@ const PageButton = styled.button<TPageButtonProps>`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   &:hover {
+    transition: all 0.3s ease-in;
     text-decoration: underline;
+    background-color: ${theme.colors.tertiary};
   }
 `
 const ArrowButton = styled.button<TArrowButtonProps>`

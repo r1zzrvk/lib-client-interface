@@ -80,11 +80,15 @@ export const Card: FC<TCardProps> = ({
             <>
               <ActionIcon
                 icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
+                size={theme.icon_sizes.md}
+                padding={theme.space.xs}
                 color={isAtLeastOneList ? theme.colors.main : theme.colors.grey}
                 onClick={handleAddToListClick}
               />
               <ActionIcon
                 icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                size={theme.icon_sizes.md}
+                padding={theme.space.xs}
                 color={isBookmarked ? theme.colors.main : theme.colors.grey}
                 onClick={handleClickBookmark}
               />
