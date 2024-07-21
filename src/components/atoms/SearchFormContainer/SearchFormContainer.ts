@@ -12,6 +12,6 @@ export const SearchFormContainer = styled(Flexbox)`
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    padding: 0px 100px;
+    padding: 0px 120px;
   }
 `

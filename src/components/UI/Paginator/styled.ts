@@ -34,13 +34,8 @@ const ArrowButton = styled.button<TArrowButtonProps>`
   border: none;
   background-color: inherit;
   opacity: ${({ isInvisible }) => (isInvisible ? 0 : 1)};
-  transition: 0.4s;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-  &:hover {
-    opacity: ${({ isInvisible }) => (isInvisible ? 0 : 0.5)};
-  }
 `
 
 export const Styled = {

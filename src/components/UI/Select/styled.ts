@@ -18,7 +18,7 @@ const OptionsWrapper = styled.div`
   flex-direction: column;
   position: absolute;
   background-color: ${theme.colors.beige};
-  top: 52px;
+  top: 56px;
   z-index: 999;
   width: 100%;
   border-radius: ${theme.radiuses.sm}px;
@@ -42,7 +42,7 @@ const Option = styled.button`
   line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
   font-family: '${theme.fonts.family}', sans-serif;
-  padding: 0px 0px 0px ${theme.space.sm}px;
+  padding: 0px ${theme.space.md}px 0px ${theme.space.sm}px;
   height: 52px;
   border: none;
   flex-shrink: 0;
@@ -65,10 +65,14 @@ const Option = styled.button`
 `
 
 const Label = styled.label`
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
   position: absolute;
-  left: 16px;
-  top: 16px;
+  height: 52px;
+  width: 100%;
   opacity: 1;
+  padding: 0px 0px 0px ${theme.space.md}px;
   color: ${theme.colors.grey};
   font-size: ${theme.fonts.size.regular.md}px;
   line-height: ${theme.fonts.height.regular.md}px;

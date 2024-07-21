@@ -16,7 +16,7 @@ type TModalProps = {
 
 export const Modal: FC<TModalProps> = ({ children, isOpen, onClose, size = 'lg', title = '' }) => (
   <Styled.Wrapper isOpen={isOpen} onClick={() => onClose()}>
-    <Styled.Modal onClick={e => e.stopPropagation()} size={size}>
+    <Styled.Modal onClick={e => e.stopPropagation()} size={size} id="modal">
       <Styled.Header>
         <Text
           color={theme.colors.grey}

@@ -63,11 +63,12 @@ const CustomIcon = styled.div<TIconProps>`
 
 const Dot = styled.div`
   position: absolute;
+  z-index: 10;
   background-color: ${theme.colors.red};
   width: 8px;
   height: 8px;
-  top: 12px;
-  left: 32px;
+  top: 4px;
+  right: 4px;
   border-radius: ${theme.radiuses.round}px;
 `
 

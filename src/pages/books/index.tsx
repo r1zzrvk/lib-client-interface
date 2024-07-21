@@ -3,9 +3,9 @@ import { Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 
-import { Modal, Spacer } from '@ui-kit'
+import { SearchFormContainer } from '@components/atoms'
 import { FiltersForm, SearchWithResults } from '@components/organism'
-import { Background, SearchFormContainer } from '@components/atoms'
+import { Modal, Spacer } from '@ui-kit'
 
 import { getStaticPageProps } from '@api'
 import { searchFormValues, theme } from '@constants'
@@ -37,7 +37,9 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
       '&searchBy=': searchBy,
     }
 
-    router.push(concatenateParams(terms))
+    if (searchTerm) {
+      router.push(concatenateParams(terms))
+    }
   }
 
   useEffect(() => {
@@ -50,48 +52,46 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <Background color={theme.colors.white}>
-        <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
-        <Formik
-          initialValues={searchFormValues}
-          onSubmit={({ categoryField, searchField, sorting, selectedBadge }) => {
-            handleSubmit({
-              searchTerm: searchField,
-              page,
-              filterByCategory: categoryField,
-              sortingBy: sorting,
-              searchBy: selectedBadge?.value,
-            })
-          }}
-        >
-          <Form>
-            <SearchFormContainer direction="row" justify="start" gap={40}>
-              <SearchWithResults
-                searchData={data}
-                onModalOpen={() => setIsOpened(true)}
-                nextPage={nextPage}
-                packSize={packSize}
-                page={page}
-                prevPage={prevPage}
-                setPage={setPage}
-                totalPages={totalPages}
-                isRequestError={isError}
-                isLoading={isLoading}
-                onSubmit={handleSubmit}
-              />
-              {isMob || isTablet || (
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
+      <Formik
+        initialValues={searchFormValues}
+        onSubmit={({ categoryField, searchField, sorting, selectedBadge }) => {
+          handleSubmit({
+            searchTerm: searchField,
+            page,
+            filterByCategory: categoryField,
+            sortingBy: sorting,
+            searchBy: selectedBadge?.value,
+          })
+        }}
+      >
+        <Form>
+          <SearchFormContainer direction="row" justify="start" gap={40}>
+            <SearchWithResults
+              searchData={data}
+              onModalOpen={() => setIsOpened(true)}
+              nextPage={nextPage}
+              packSize={packSize}
+              page={page}
+              prevPage={prevPage}
+              setPage={setPage}
+              totalPages={totalPages}
+              isRequestError={isError}
+              isLoading={isLoading}
+              onSubmit={handleSubmit}
+            />
+            {isMob || isTablet || (
+              <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
+            )}
+            {(isMob || isTablet) && (
+              <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} title="Search settings">
                 <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
-              )}
-              {(isMob || isTablet) && (
-                <Modal isOpen={isOpened} onClose={() => setIsOpened(false)} title="Search settings">
-                  <FiltersForm onClick={() => setIsOpened(false)} setPage={setPage} onSubmit={handleSubmit} />
-                </Modal>
-              )}
-            </SearchFormContainer>
-          </Form>
-        </Formik>
-        <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
-      </Background>
+              </Modal>
+            )}
+          </SearchFormContainer>
+        </Form>
+      </Formik>
+      <Spacer size={theme.space.xl} sizeMob={theme.space.sm} />
     </LayoutTemplate>
   )
 }
