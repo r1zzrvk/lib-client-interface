@@ -10,10 +10,10 @@ import { Styled } from './styled'
 
 type TCardProps = {
   book: TBook
+  href: string
   uid?: TFirebaseUser['uid']
   isBookmarked?: boolean
   isAtLeastOneList?: boolean
-  onCardClick?: (id?: string) => void
   onAddClick?: () => void
   onBookmarkClick?: () => void
 }
@@ -22,31 +22,27 @@ export const Card: FC<TCardProps> = ({
   uid,
   onAddClick,
   onBookmarkClick,
-  onCardClick,
+  href,
   book,
   isBookmarked,
   isAtLeastOneList,
 }) => {
   const { title, authors } = book.volumeInfo
 
-  const handleCardClick = () => {
-    onCardClick?.(book.id)
-  }
-
   const handleAddToListClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-    e.stopPropagation()
+    e.preventDefault()
 
     onAddClick?.()
   }
 
   const handleClickBookmark = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
-    e.stopPropagation()
+    e.preventDefault()
 
     onBookmarkClick?.()
   }
 
   return (
-    <Styled.Wrapper onClick={handleCardClick}>
+    <Styled.Wrapper href={`${href}${book.id}`}>
       <Styled.Image
         src={getImageURL(book.id)}
         alt="book cover"

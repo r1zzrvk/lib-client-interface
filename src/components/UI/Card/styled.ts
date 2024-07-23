@@ -4,13 +4,14 @@ import { theme } from '@constants'
 
 import { ResponsiveImage } from '../ResponsiveImage'
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   display: flex;
   width: 100%;
   height: 180px;
   border-radius: ${theme.radiuses.sm}px;
   transition: 0.3s ease-in;
   cursor: pointer;
+  text-decoration: none;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 

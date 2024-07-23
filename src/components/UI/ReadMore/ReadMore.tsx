@@ -26,7 +26,12 @@ export const ReadMore: FC<TReadMoreProps> = ({ amountOfWords = 76, textProps, te
         {isExpanded || '...'}
         {isExpanded && endText}
         {itCanOverflow && (
-          <Link color={theme.colors.blue} onClick={() => setIsExpanded(prev => !prev)} asButton>
+          <Link
+            color={theme.colors.blue}
+            hoverColor={theme.colors.grey_light}
+            onClick={() => setIsExpanded(prev => !prev)}
+            asButton
+          >
             {isExpanded ? '\u0020Show less' : '\u0020Show more'}
           </Link>
         )}
