@@ -5,11 +5,11 @@ import { Flexbox, LabelWithText } from '@components/atoms'
 import { PageInfoBlock } from '@components/molecules'
 import { ActionIcon, Button, ReadMore, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { theme } from '@constants'
 import { useAppSelector, useBreakpoint } from '@hooks'
 import { getUserAuth } from '@selectors'
 import { EDateFormats, TBook, TList } from '@types'
-import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
+import { formatDate, formatIsoLang, getImageURL, removeHTMLFromString } from '@utils'
 
 import { Styled } from './styled'
 
@@ -33,7 +33,6 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
   const router = useRouter()
   const { isTablet } = useBreakpoint()
   const isAuth = useAppSelector(getUserAuth)
-  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
   const averageRatingText = volumeInfo?.ratingsCount
     ? `${volumeInfo?.averageRating} (${volumeInfo?.ratingsCount} reviews)`
     : volumeInfo?.averageRating?.toString()
@@ -88,13 +87,13 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
         {isLoading && !isTablet ? (
           <Skeleton radius={theme.radiuses.xs} height={496} width={310} />
         ) : (
-          <ResponsiveImage src={imageLink} height={496} width={310} isLg isMd isSm />
+          <ResponsiveImage src={getImageURL(id || '')} height={496} width={310} isLg isMd isSm />
         )}
         <Flexbox justify="center">
           {isLoading && isTablet ? (
             <Skeleton radius={theme.radiuses.xs} height={360} width={230} />
           ) : (
-            <ResponsiveImage src={imageLink} height={360} width={230} isTablet />
+            <ResponsiveImage src={getImageURL(id || '')} height={360} width={230} isTablet />
           )}
         </Flexbox>
         <Flexbox justify="space-between" direction="column">
