@@ -43,9 +43,9 @@ const AccordionButton = styled.button<TAccordionButtonProps>`
   font-size: ${theme.fonts.size.header.xs}px;
   line-height: ${theme.fonts.height.header.xs}px;
   font-weight: ${theme.fonts.weight.regular};
-  transition: 0.1s;
 
   &:hover {
+    transition: color 0.3s;
     color: ${theme.colors.grey_light};
   }
 `
@@ -55,7 +55,7 @@ const AccordionItem = styled.div<TAccordionItemProps>`
   padding: 0px ${theme.space.sm}px ${theme.space.sm}px ${theme.space.sm}px;
   background-color: ${theme.colors.beige};
   border-radius: ${({ active }) => (active ? itemRadius : `${theme.radiuses.sm}px`)};
-  display: ${({ active }) => (active ? 'block' : 'none')};
+  display: block;
   animation: ${({ animation }) => `${animation} 0.3s both`};
   z-index: 0;
 
@@ -84,6 +84,7 @@ const AccordionItem = styled.div<TAccordionItemProps>`
       transform: scaleY(0);
       transform-origin: 0% 0%;
       opacity: 0;
+      display: none;
     }
   }
 `

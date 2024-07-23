@@ -4,7 +4,7 @@ import { theme } from '@constants'
 
 import { Styled } from './styled'
 
-type TTextProps = {
+export type TTextProps = {
   children: ReactNode
   fontSize?: number
   fontWeight?: number

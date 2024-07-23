@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
-import { Background, Flexbox } from '@components/atoms'
+import { Flexbox, PaddingContainer } from '@components/atoms'
 import { AddToListModal } from '@components/molecules'
 
 import { LayoutTemplate } from '@templates'
@@ -21,9 +21,9 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
     query: { id: bookId },
     isReady,
   } = useRouter()
-  const { isMob } = useBreakpoint()
+  const { isMob, isTablet } = useBreakpoint()
   const [book, setBook] = useState<TBook | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const { uid } = useAppSelector(getUserData) || {}
   const [lists, getLists] = useLists({ uid })
   const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
@@ -106,18 +106,18 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <Background color={theme.colors.white}>
-        {book && isMob && (
-          <MobileBookPageLayout
-            {...book}
-            isLoading={isLoading}
-            onBookmarkClick={handleAddToBookmarksClick}
-            isBookmarked={isBookmarked}
-            listWithBook={listsWithBook[0]}
-            onAddToListClick={handleAddClick}
-          />
-        )}
-        {book && !isMob && (
+      {isMob && (
+        <MobileBookPageLayout
+          {...book}
+          isLoading={isLoading}
+          onBookmarkClick={handleAddToBookmarksClick}
+          isBookmarked={isBookmarked}
+          listWithBook={listsWithBook[0]}
+          onAddToListClick={handleAddClick}
+        />
+      )}
+      {!isMob && (
+        <PaddingContainer padding={isTablet ? theme.space.lg : 120}>
           <Flexbox justify="center">
             <BookPageLayout
               {...book}
@@ -128,16 +128,16 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
               onAddToListClick={handleAddClick}
             />
           </Flexbox>
-        )}
-        <AddToListModal
-          bookId={book?.id}
-          isOpened={isAddToListModalOpened}
-          onClose={handleModalClose}
-          lists={lists}
-          onSaveClick={handleAddToCustomList}
-          onSelectList={id => handleSelectId(id)}
-        />
-      </Background>
+        </PaddingContainer>
+      )}
+      <AddToListModal
+        bookId={book?.id}
+        isOpened={isAddToListModalOpened}
+        onClose={handleModalClose}
+        lists={lists}
+        onSaveClick={handleAddToCustomList}
+        onSelectList={id => handleSelectId(id)}
+      />
     </LayoutTemplate>
   )
 }

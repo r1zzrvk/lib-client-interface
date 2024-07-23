@@ -11,7 +11,7 @@ type TMobileBookPageLayoutProps = {
   isBookmarked: boolean
   listWithBook: TList
   onAddToListClick: () => void
-} & TBook
+} & Partial<TBook>
 
 export const MobileBookPageLayout: FC<TMobileBookPageLayoutProps> = ({
   volumeInfo,

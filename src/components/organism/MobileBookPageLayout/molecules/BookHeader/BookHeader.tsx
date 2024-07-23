@@ -10,12 +10,12 @@ import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
 
 type TBookHeaderProps = {
-  id: TBook['id']
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
   listWithBook: TList
   onAddToListClick: () => void
+  id?: TBook['id']
 }
 
 export const BookHeader: FC<TBookHeaderProps> = ({
@@ -39,17 +39,19 @@ export const BookHeader: FC<TBookHeaderProps> = ({
       <Flexbox justify="space-between">
         <ActionIcon
           onClick={handleBackClick}
-          size={theme.icon_sizes.sm}
+          size={theme.icon_sizes.md}
+          padding={theme.space.md}
           icon="caretLeft_solid"
           color={theme.colors.grey}
         />
-        {isLoading ? (
+        {isLoading || !id ? (
           <Skeleton radius={theme.radiuses.round} width={48} height={48} />
         ) : (
           isAuth && (
             <ActionIcon
               onClick={onBookmarkClick}
-              size={theme.icon_sizes.xs}
+              size={theme.icon_sizes.md}
+              padding={theme.space.md}
               icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
               color={isBookmarked ? theme.colors.main : theme.colors.grey}
             />
@@ -58,7 +60,7 @@ export const BookHeader: FC<TBookHeaderProps> = ({
       </Flexbox>
       <Spacer size={0} sizeMob={theme.space.sm} />
       <Flexbox justify="center">
-        {isLoading ? (
+        {isLoading || !id ? (
           <Skeleton radius={theme.radiuses.xs} height={360} width={230} />
         ) : (
           <ResponsiveImage src={imageLink} height={360} width={230} isEverywhere />
