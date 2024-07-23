@@ -1,12 +1,12 @@
 import { FC, MouseEvent } from 'react'
 
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { theme } from '@constants'
 import { TBook, TFirebaseUser } from '@types'
-import { sliceItems, textLimiter } from '@utils'
+import { getImageURL, sliceItems, textLimiter } from '@utils'
 
+import { ActionIcon } from '../ActionIcon'
 import { Text } from '../Text'
 import { Styled } from './styled'
-import { ActionIcon } from '../ActionIcon'
 
 type TCardProps = {
   book: TBook
@@ -27,7 +27,6 @@ export const Card: FC<TCardProps> = ({
   isBookmarked,
   isAtLeastOneList,
 }) => {
-  const imageLink = `${BOOKS_IMAGE_PATH}${book.id}${BOOKS_IMAGE_SIZE}`
   const { title, authors } = book.volumeInfo
 
   const handleCardClick = () => {
@@ -48,7 +47,14 @@ export const Card: FC<TCardProps> = ({
 
   return (
     <Styled.Wrapper onClick={handleCardClick}>
-      <Styled.Image src={imageLink} alt="book cover" width={120} height={180} objectFit="cover" isEverywhere />
+      <Styled.Image
+        src={getImageURL(book.id)}
+        alt="book cover"
+        width={120}
+        height={180}
+        objectFit="cover"
+        isEverywhere
+      />
       <Styled.Content>
         <div>
           <Text

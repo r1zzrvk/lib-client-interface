@@ -4,10 +4,11 @@ import { FC } from 'react'
 import { Flexbox } from '@components/atoms'
 import { ActionIcon, Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { theme } from '@constants'
 import { TBook, TList } from '@types'
 import { useAppSelector } from '@hooks'
 import { getUserAuth } from '@selectors'
+import { getImageURL } from '@utils'
 
 type TBookHeaderProps = {
   isLoading: boolean
@@ -28,7 +29,6 @@ export const BookHeader: FC<TBookHeaderProps> = ({
 }) => {
   const router = useRouter()
   const isAuth = useAppSelector(getUserAuth)
-  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
 
   const handleBackClick = () => {
     router.back()
@@ -63,7 +63,7 @@ export const BookHeader: FC<TBookHeaderProps> = ({
         {isLoading || !id ? (
           <Skeleton radius={theme.radiuses.xs} height={360} width={230} />
         ) : (
-          <ResponsiveImage src={imageLink} height={360} width={230} isEverywhere />
+          <ResponsiveImage src={getImageURL(id)} height={360} width={230} isEverywhere />
         )}
       </Flexbox>
       <Spacer sizeMob={theme.space.sm} />
