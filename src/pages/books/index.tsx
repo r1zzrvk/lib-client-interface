@@ -23,7 +23,7 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   const { isMob, isTablet } = useBreakpoint()
   const { data, isLoading, isError } = useSearchBooks()
   const { totalItems } = data || {}
-  const { packSize, page, totalPages, nextPage, prevPage, setPage } = usePagination({
+  const { page, totalPages, nextPage, prevPage, setPage } = usePagination({
     contentPerPage: isMob ? 5 : 10,
     itemsCount: totalItems || 0,
   })
@@ -71,7 +71,6 @@ const BooksPage: FC<TPageDataProps> = ({ headerFooterData }) => {
               searchData={data}
               onModalOpen={() => setIsOpened(true)}
               nextPage={nextPage}
-              packSize={packSize}
               page={page}
               prevPage={prevPage}
               setPage={setPage}

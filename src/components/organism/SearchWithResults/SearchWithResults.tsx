@@ -27,7 +27,6 @@ type TSearchWithResultsProps = {
   nextPage: () => void
   prevPage: () => void
   totalPages: number
-  packSize: number
   isRequestError: boolean
   isLoading: boolean
   searchData: TSearchBookResponse | null
@@ -37,7 +36,6 @@ type TSearchWithResultsProps = {
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   onModalOpen,
   nextPage,
-  packSize,
   page,
   prevPage,
   setPage,
@@ -148,11 +146,7 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
           />
         ))}
       </Styled.BadgesContainer>
-      {isLoading ? (
-        <CardsPreloader />
-      ) : (
-        <Results searchData={searchData} isRequestError={isRequestError} packSize={packSize} />
-      )}
+      {isLoading ? <CardsPreloader /> : <Results searchData={searchData} isRequestError={isRequestError} />}
       {totalPages > 1 && !isRequestError && !isLoading && (
         <>
           <Spacer size={theme.space.xl} sizeMob={theme.space.md} />
