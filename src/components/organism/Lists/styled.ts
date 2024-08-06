@@ -13,18 +13,6 @@ const Wrapper = styled.div`
   }
 `
 
-const PaddingContainer = styled.div`
-  @media (min-width: ${theme.breakpoints.tablet}px) {
-    padding: 0px ${theme.space.lg}px;
-  }
-
-  @media (min-width: ${theme.breakpoints.sm}px) {
-    padding: 0px 120px;
-    max-width: 700px;
-  }
-`
-
 export const Styled = {
   Wrapper,
-  PaddingContainer,
 }

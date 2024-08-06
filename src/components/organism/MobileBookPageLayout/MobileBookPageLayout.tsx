@@ -6,31 +6,34 @@ import { Styled } from './styled'
 import { BookHeader, BookInfo } from './molecules'
 
 type TMobileBookPageLayoutProps = {
+  book: TBook | null
   isLoading: boolean
-  onBookmarkClick: () => void
   isBookmarked: boolean
   listWithBook: TList
-  onAddToListClick: () => void
-} & Partial<TBook>
+  onBookmarkClick: () => void
+  onAddToListClick: (listIds: string[], book: TBook) => void
+  lists?: TList[]
+}
 
 export const MobileBookPageLayout: FC<TMobileBookPageLayoutProps> = ({
-  volumeInfo,
-  id,
   isLoading,
   onBookmarkClick,
   isBookmarked,
   listWithBook,
+  lists,
   onAddToListClick,
+  book,
 }) => (
   <Styled.Background>
     <BookHeader
-      id={id}
+      book={book}
       isLoading={isLoading}
       onBookmarkClick={onBookmarkClick}
       isBookmarked={isBookmarked}
       listWithBook={listWithBook}
+      lists={lists}
       onAddToListClick={onAddToListClick}
     />
-    <BookInfo volumeInfo={volumeInfo} isLoading={isLoading} />
+    <BookInfo volumeInfo={book?.volumeInfo} isLoading={isLoading} />
   </Styled.Background>
 )

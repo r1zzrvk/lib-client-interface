@@ -74,8 +74,8 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
   }, [dispatch, lists])
 
   return (
-    <Styled.PaddingContainer>
-      <Button onClick={() => setIsModalOpened(true)} isFluid={isMob} size="lg">
+    <div>
+      <Button rightIcon="plus_solid" onClick={() => setIsModalOpened(true)} isFluid={isMob} size="lg">
         Create list
       </Button>
       <CreateList
@@ -113,6 +113,6 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
         onCancel={close}
         onSubmit={handleConfirmDelete}
       />
-    </Styled.PaddingContainer>
+    </div>
   )
 }

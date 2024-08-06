@@ -71,7 +71,8 @@ export const ProfileBanner: FC<TProfileBannerProps> = ({
         <ActionIcon
           icon="exit_solid"
           color={theme.colors.grey}
-          size={isMob ? theme.icon_sizes.xs : theme.icon_sizes.sm}
+          size={isMob ? theme.icon_sizes.md : theme.icon_sizes.lg}
+          padding={isMob ? theme.space.xs : theme.space.sm}
           onClick={handleSignOut}
         />
       ) : (

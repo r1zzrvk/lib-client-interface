@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router'
-import { FC, useCallback, useState } from 'react'
+import { FC, useState } from 'react'
 
 import { Flexbox, ItemListWrapper } from '@components/atoms'
-import { AddToListModal, BookCard, ItemList, StatusIllustration } from '@components/molecules'
-import { ActionIcon, Button, Spacer, Text } from '@ui-kit'
+import { BookCard, ItemList, StatusIllustration } from '@components/molecules'
 import { CreateList } from '@components/organism'
+import { ActionIcon, Button, Spacer, Text } from '@ui-kit'
 
+import { deleteList, updateList as updateBookOnList } from '@api'
 import { BOOKMARK_LIST_ID, EMPTY_BOOKMARKS, theme } from '@constants'
 import { useBreakpoint, useDialog, usePagination } from '@hooks'
 import { EPagePaths, TBook, TFirebaseUser, TList } from '@types'
-import { deleteList, updateList as updateBookOnList } from '@api'
 
 import { ListContainer } from '../Lists/atoms'
 import { Styled } from './styled'
@@ -26,9 +26,6 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
   const router = useRouter()
   const { isMob } = useBreakpoint()
   const [isEditModalOpened, setIsEditModalOpened] = useState(false)
-  const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
-  const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
-  const [selectedBook, setSelectedBook] = useState<TBook | null>(null)
   const { dialog: Dialog, close, show } = useDialog()
   const { listItems, title, description, id } = list
   const { firstIndex, packSize, showMore } = usePagination({ contentPerPage: 10, itemsCount: listItems?.length })
@@ -47,48 +44,23 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
     router.push(EPagePaths.CATALOG)
   }
 
-  const handleAddClick = (book: TBook) => {
-    setSelectedBook(book)
-    setIsAddToListModalOpened(true)
-  }
-
-  const handleModalClose = () => {
-    setIsAddToListModalOpened(false)
-    setSelectedBook(null)
-    setSelectedListIds([])
-  }
-
-  const handleAddToCustomList = () => {
-    if (uid && selectedBook) {
-      selectedListIds.forEach(id => {
+  const handleAddToCustomList = (listsIds: string[], book: TBook) => {
+    if (uid) {
+      listsIds.forEach(id => {
         updateBookOnList({
-          book: selectedBook,
+          book,
           lists: allLists,
           isBookmarks: false,
           uid,
-          updateLists: () => updateList(),
+          updateLists: () => {
+            updateList()
+            updateAllLists()
+          },
           listId: id,
         })
       })
-
-      handleModalClose()
     }
   }
-
-  const handleSelectId = useCallback(
-    (listId: string) => {
-      const hasInArray = !!selectedListIds.find(item => item === listId)
-
-      if (hasInArray) {
-        setSelectedListIds(selectedListIds.filter(item => item !== listId))
-
-        return
-      }
-
-      setSelectedListIds([...selectedListIds, listId])
-    },
-    [selectedListIds],
-  )
 
   return (
     <ListContainer>
@@ -144,7 +116,7 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
               uid={uid}
               lists={allLists}
               updateLists={() => updateAllLists()}
-              onAddClick={handleAddClick}
+              onAddClick={handleAddToCustomList}
             />
           )}
           items={listItems.slice(firstIndex, packSize)}
@@ -182,14 +154,6 @@ export const List: FC<TListProps> = ({ list, uid, updateList, allLists, updateAl
         submitButtonText="Delete"
         onCancel={close}
         onSubmit={handleDelete}
-      />
-      <AddToListModal
-        bookId={selectedBook?.id}
-        isOpened={isAddToListModalOpened}
-        onClose={handleModalClose}
-        lists={allLists}
-        onSaveClick={handleAddToCustomList}
-        onSelectList={id => handleSelectId(id)}
       />
     </ListContainer>
   )

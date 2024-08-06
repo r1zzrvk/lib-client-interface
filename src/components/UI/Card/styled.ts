@@ -17,10 +17,6 @@ const Wrapper = styled.a`
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
-
-    :hover {
-      scale: 1.02;
-    }
   }
 `
 
@@ -62,10 +58,23 @@ const Icon = styled.div`
     padding: ${theme.space.sm}px;
   }
 `
+
+const ButtonWrapper = styled.div`
+  padding: 0px ${theme.space.xs2}px;
+`
+
+const EmptyListsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: ${theme.space.md}px ${theme.space.xs2}px;
+`
+
 export const Styled = {
   Wrapper,
   Image,
   ButtonBlock,
   Content,
   Icon,
+  ButtonWrapper,
+  EmptyListsWrapper,
 }

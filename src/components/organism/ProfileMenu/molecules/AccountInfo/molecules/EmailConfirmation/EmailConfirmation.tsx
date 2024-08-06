@@ -33,8 +33,6 @@ export const EmailConfirmation: FC<TEmailConfirmationProps> = ({ isEditing, isCo
           color={theme.colors.grey_light}
           fontSizeMob={theme.fonts.size.regular.md}
           fontHeightMob={theme.fonts.height.regular.md}
-          marginBottom={theme.space.xs3}
-          marginBottomMob={theme.space.xs3}
         >
           Email is not confirmed yet.
         </Text>

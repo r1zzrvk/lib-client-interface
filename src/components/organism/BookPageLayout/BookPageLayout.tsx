@@ -1,38 +1,44 @@
+/* eslint-disable max-lines-per-function */
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { Flexbox, LabelWithText } from '@components/atoms'
 import { PageInfoBlock } from '@components/molecules'
-import { ActionIcon, Button, ReadMore, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
+import { ActionIcon, Button, Menu, ReadMore, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
 
 import { theme } from '@constants'
-import { useAppSelector, useBreakpoint } from '@hooks'
+import { useAppSelector, useBreakpoint, useSelectingLists } from '@hooks'
 import { getUserAuth } from '@selectors'
-import { EDateFormats, TBook, TList } from '@types'
+import { EDateFormats, EPagePaths, TBook, TList } from '@types'
 import { formatDate, formatIsoLang, getImageURL, removeHTMLFromString } from '@utils'
 
 import { Styled } from './styled'
 
 type TBookPageLayoutProps = {
+  book: TBook | null
+  lists: TList[]
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
   listWithBook: TList
-  onAddToListClick: () => void
-} & Partial<TBook>
+  onAddToListClick: (listIds: string[], book: TBook) => void
+}
 
 export const BookPageLayout: FC<TBookPageLayoutProps> = ({
-  id,
+  book,
+  lists,
   isLoading,
   onBookmarkClick,
   isBookmarked,
-  volumeInfo,
   listWithBook,
   onAddToListClick,
 }) => {
   const router = useRouter()
   const { isTablet } = useBreakpoint()
   const isAuth = useAppSelector(getUserAuth)
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
+  const { volumeInfo, id } = book || {}
+  const { menuItems, selectedListIds, onClear, checkAddedLists } = useSelectingLists({ lists, bookId: id || '' })
   const averageRatingText = volumeInfo?.ratingsCount
     ? `${volumeInfo?.averageRating} (${volumeInfo?.ratingsCount} reviews)`
     : volumeInfo?.averageRating?.toString()
@@ -44,6 +50,30 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
   const handleBackClick = () => {
     router.back()
   }
+
+  const handleOpenMenu = () => {
+    setIsMenuOpened(prev => !prev)
+    checkAddedLists()
+  }
+
+  const handleSubmitClick = () => {
+    if (menuItems.length && book) {
+      onAddToListClick?.(selectedListIds, book)
+      onClear()
+      setIsMenuOpened(false)
+
+      return
+    }
+
+    router.push(`${EPagePaths.MY_LISTS}/?createOne=true`)
+  }
+
+  useEffect(() => {
+    if (lists.length) {
+      checkAddedLists()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lists.length])
 
   return (
     <Styled.Wrapper>
@@ -63,14 +93,43 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
             ) : (
               isAuth && (
                 <Flexbox gap={theme.space.sm}>
-                  <ActionIcon
-                    size={theme.icon_sizes.md}
-                    padding={theme.space.md}
-                    icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                    color={theme.colors.grey}
-                    backgroundColor={theme.colors.beige}
-                    onClick={onAddToListClick}
-                  />
+                  <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+                    <ActionIcon
+                      size={theme.icon_sizes.md}
+                      padding={theme.space.md}
+                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
+                      color={theme.colors.grey}
+                      backgroundColor={theme.colors.beige}
+                      onClick={handleOpenMenu}
+                    />
+                    {menuItems?.length ? (
+                      menuItems?.map(({ action, icon, title, color, id }) => (
+                        <Menu.MenuItem
+                          key={id}
+                          onClick={() => action()}
+                          title={title}
+                          color={color}
+                          icon={icon}
+                          iconPosition="right"
+                        />
+                      ))
+                    ) : (
+                      <Styled.EmptyListsWrapper>
+                        <Text
+                          color={theme.colors.grey}
+                          fontSizeMob={theme.fonts.size.regular.md}
+                          fontHeightMob={theme.fonts.height.regular.md}
+                        >
+                          No lists found
+                        </Text>
+                      </Styled.EmptyListsWrapper>
+                    )}
+                    <Styled.ButtonWrapper>
+                      <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                        {menuItems?.length ? 'Update' : 'Create a list'}
+                      </Button>
+                    </Styled.ButtonWrapper>
+                  </Menu.Popover>
                   <ActionIcon
                     size={theme.icon_sizes.md}
                     padding={theme.space.md}
@@ -173,16 +232,45 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
           {isTablet ||
             (isAuth && (
               <Flexbox align="center" gap={theme.space.sm}>
-                <Button onClick={onAddToListClick} size="lg" rightIcon={listWithBook ? 'check_solid' : 'plus_solid'}>
-                  <Text
-                    color={theme.colors.grey}
-                    fontSize={theme.fonts.size.regular.md}
-                    fontHeight={theme.fonts.height.regular.md}
-                    fontWeight={theme.fonts.weight.regular}
-                  >
-                    {listWithBook ? 'In my list' : 'Add to list'}
-                  </Text>
-                </Button>
+                <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+                  <Button onClick={handleOpenMenu} size="lg" rightIcon={listWithBook ? 'check_solid' : 'plus_solid'}>
+                    <Text
+                      color={theme.colors.grey}
+                      fontSize={theme.fonts.size.regular.md}
+                      fontHeight={theme.fonts.height.regular.md}
+                      fontWeight={theme.fonts.weight.regular}
+                    >
+                      {listWithBook ? 'In my list' : 'Add to list'}
+                    </Text>
+                  </Button>
+                  {menuItems?.length ? (
+                    menuItems?.map(({ action, icon, title, color, id }) => (
+                      <Menu.MenuItem
+                        key={id}
+                        onClick={() => action()}
+                        title={title}
+                        color={color}
+                        icon={icon}
+                        iconPosition="right"
+                      />
+                    ))
+                  ) : (
+                    <Styled.EmptyListsWrapper>
+                      <Text
+                        color={theme.colors.grey}
+                        fontSizeMob={theme.fonts.size.regular.md}
+                        fontHeightMob={theme.fonts.height.regular.md}
+                      >
+                        No lists found
+                      </Text>
+                    </Styled.EmptyListsWrapper>
+                  )}
+                  <Styled.ButtonWrapper>
+                    <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                      {menuItems?.length ? 'Update' : 'Create a list'}
+                    </Button>
+                  </Styled.ButtonWrapper>
+                </Menu.Popover>
                 <ActionIcon
                   icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
                   onClick={onBookmarkClick}

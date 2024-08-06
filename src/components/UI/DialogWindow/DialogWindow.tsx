@@ -39,9 +39,9 @@ export const DialogWindow: FC<TDialogWindowProps> = ({
       <Styled.Dialog>
         <Text
           color={theme.colors.main}
-          fontSize={theme.fonts.size.header.sm}
+          fontSize={theme.fonts.size.regular.md}
           fontWeight={theme.fonts.weight.regular}
-          fontHeight={theme.fonts.height.header.sm}
+          fontHeight={theme.fonts.height.regular.md}
           fontSizeMob={theme.fonts.size.header.xs}
           fontHeightMob={theme.fonts.height.header.xs}
           fontWeightMob={theme.fonts.weight.regular}

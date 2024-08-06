@@ -27,6 +27,8 @@ import {
   faHashtag,
   faImage,
   faCalendarDays,
+  faEllipsisV,
+  faArrowTurnUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faTrashAlt, faBookmark } from '@fortawesome/free-regular-svg-icons'
 
@@ -61,6 +63,8 @@ export const icons: Record<TIcon, IconDefinition> = {
   slashEye_solid: faEyeSlash,
   image_solid: faImage,
   calendar_solid: faCalendarDays,
+  ellipsis_vertical_solid: faEllipsisV,
+  arrow_turn_up_solid: faArrowTurnUp,
   trash_regular: faTrashAlt,
   bookmark_regular: faBookmark,
 }

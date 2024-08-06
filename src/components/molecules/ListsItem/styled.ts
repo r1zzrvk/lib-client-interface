@@ -2,11 +2,9 @@ import styled from 'styled-components'
 
 import { theme } from '@constants'
 
-type TIconProps = {
-  isActive: boolean
-}
-
-const ListItem = styled.div`
+const ListItem = styled.a`
+  cursor: pointer;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   gap: ${theme.space.lg}px;
@@ -19,17 +17,21 @@ const ListItem = styled.div`
   }
 `
 
-const Icon = styled.div<TIconProps>`
-  transition: 0.2s ease-in;
-  transform: ${({ isActive }) => isActive && 'rotate(180deg)'};
-`
-
 const Pin = styled.div`
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
   transform: rotate(45deg);
+
+  @media (min-width: ${theme.breakpoints.tablet}px) {
+    width: 40px;
+    height: 40px;
+  }
 `
 
 export const Styled = {
   ListItem,
-  Icon,
   Pin,
 }

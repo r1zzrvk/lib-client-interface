@@ -45,6 +45,8 @@ type TSolidIcon =
   | 'hashtag_solid'
   | 'image_solid'
   | 'calendar_solid'
+  | 'ellipsis_vertical_solid'
+  | 'arrow_turn_up_solid'
 
 type TRegularIcon = 'user_regular' | 'trash_regular' | 'bookmark_regular'
 
