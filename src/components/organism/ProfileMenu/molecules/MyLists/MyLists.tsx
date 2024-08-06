@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react'
 
-import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
+import { ListCard, ListsSkeleton } from '@components/molecules'
 import { CreateList } from '@components/organism'
 import { Spacer, Text } from '@ui-kit'
 
@@ -20,7 +20,7 @@ export const MyLists: FC = () => {
   const { dialog: Dialog, close, show } = useDialog()
   const [deletingListId, setDeletingListId] = useState<string>('')
   const [editingList, setEditingList] = useState<TList | null>(null)
-  const filtedLists = useMemo(() => filterLists(lists), [lists])
+  const filteredLists = useMemo(() => filterLists(lists), [lists])
 
   const handleEditClick = (list: TList) => {
     setEditingList(list)
@@ -66,20 +66,18 @@ export const MyLists: FC = () => {
       </Text>
       {uid && !isLoading ? (
         <Styled.ListsWrapper>
-          <ItemList
-            items={filtedLists}
-            renderItem={list => (
-              <ListItem
-                {...list}
-                key={list.id}
-                isBookmarks={list.id === BOOKMARK_LIST_ID}
-                onEditClick={handleEditClick}
-                onDeleteClick={handleClickDelete}
-                updateLists={() => getLists()}
-                uid={uid}
-              />
-            )}
-          />
+          {filteredLists.map((list, i) => (
+            <ListCard
+              {...list}
+              key={list.id}
+              isBookmarks={list.id === BOOKMARK_LIST_ID}
+              isLastIndex={i === filteredLists.length - 1}
+              onEditClick={handleEditClick}
+              onDeleteClick={handleClickDelete}
+              updateLists={() => getLists()}
+              uid={uid}
+            />
+          ))}
         </Styled.ListsWrapper>
       ) : (
         <ListsSkeleton />

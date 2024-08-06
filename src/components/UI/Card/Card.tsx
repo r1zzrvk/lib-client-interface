@@ -13,6 +13,7 @@ import { Styled } from './styled'
 type TCardProps = {
   book: TBook
   href: string
+  isLastIndex?: boolean
   uid?: TFirebaseUser['uid']
   menuItems?: TMenuItem[]
   isBookmarked?: boolean
@@ -32,6 +33,7 @@ export const Card: FC<TCardProps> = ({
   isBookmarked,
   isAtLeastOneList,
   menuItems,
+  isLastIndex,
 }) => {
   const { title, authors } = book.volumeInfo
   const [isMenuOpened, setIsMenuOpened] = useState(false)
@@ -99,7 +101,11 @@ export const Card: FC<TCardProps> = ({
         <Styled.ButtonBlock>
           {uid && (
             <>
-              <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+              <Menu.Popover
+                opened={isMenuOpened}
+                onClose={() => setIsMenuOpened(false)}
+                positionY={isLastIndex ? 'top' : 'bottom'}
+              >
                 <ActionIcon
                   icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
                   size={theme.icon_sizes.md}

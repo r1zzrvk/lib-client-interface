@@ -29,7 +29,7 @@ const ListsWrapper = styled.div`
 
   @media (min-width: ${theme.breakpoints.sm}px) {
     margin: ${theme.space.lg}px 120px ${theme.space.lg}px 120px;
-    max-width: 900px;
+    max-width: 700px;
   }
 `
 

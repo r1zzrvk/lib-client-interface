@@ -26,8 +26,10 @@ const MenuItem = styled(Flexbox)<TMenuItemProps>`
   padding-left: ${({ position }) => (position === 'right' ? theme.space.xs3 : 0)}px;
   min-height: 32px;
 
-  &:hover {
-    background-color: ${theme.colors.secondary};
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    &:hover {
+      background-color: ${theme.colors.secondary};
+    }
   }
 `
 

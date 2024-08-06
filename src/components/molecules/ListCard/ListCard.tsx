@@ -13,20 +13,22 @@ import { useMenuItems } from './hooks'
 import { Styled } from './styled'
 import { cutDescription } from './utils'
 
-type TListItemProps = {
+type TListCardProps = {
   uid: TFirebaseUser['uid']
   onEditClick: (list: TList) => void
   onDeleteClick: (id: string) => void
+  isLastIndex?: boolean
   isBookmarks?: boolean
   updateLists?: () => void
 } & TList
 
-export const ListItem: FC<TListItemProps> = ({
+export const ListCard: FC<TListCardProps> = ({
   isBookmarks,
   updateLists,
   uid,
   onEditClick,
   onDeleteClick,
+  isLastIndex,
   ...rest
 }) => {
   const { isPinned, description, id, listItems, title } = rest
@@ -73,7 +75,7 @@ export const ListItem: FC<TListItemProps> = ({
   }
 
   return (
-    <Styled.ListItem href={`${EPagePaths.MY_LISTS}/${id}`}>
+    <Styled.ListCard href={`${EPagePaths.MY_LISTS}/${id}`}>
       <Flexbox justify="space-between" gap={theme.space.lg}>
         <Flexbox align="center" gap={theme.space.xs2}>
           {title ? (
@@ -124,7 +126,11 @@ export const ListItem: FC<TListItemProps> = ({
               <Icon icon="pin_solid" color={theme.colors.main} size={iconSize} />
             </Styled.Pin>
           )}
-          <Menu.Popover opened={isMenuOpened} onClose={() => setMenuOpened(false)}>
+          <Menu.Popover
+            opened={isMenuOpened}
+            onClose={() => setMenuOpened(false)}
+            positionY={isLastIndex ? 'top' : 'bottom'}
+          >
             <ActionIcon
               icon="ellipsis_vertical_solid"
               color={theme.colors.grey}
@@ -144,6 +150,6 @@ export const ListItem: FC<TListItemProps> = ({
           </Menu.Popover>
         </Flexbox>
       </Flexbox>
-    </Styled.ListItem>
+    </Styled.ListCard>
   )
 }
