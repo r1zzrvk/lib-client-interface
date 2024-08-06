@@ -1,17 +1,16 @@
 /* eslint-disable import/no-default-export */
 import { useRouter } from 'next/router'
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
-import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
 import { Flexbox, PaddingContainer } from '@components/atoms'
-import { AddToListModal } from '@components/molecules'
+import { BookPageLayout, MobileBookPageLayout } from '@components/organism'
 
-import { LayoutTemplate } from '@templates'
-import { TBook, TList, TPageDataProps } from '@types'
 import { getBookData, getServerSidePageProps, updateList } from '@api'
+import { BOOKMARK_LIST_ID, theme } from '@constants'
 import { useAppSelector, useBreakpoint, useLists } from '@hooks'
 import { getUserData } from '@selectors'
-import { BOOKMARK_LIST_ID, theme } from '@constants'
+import { LayoutTemplate } from '@templates'
+import { TBook, TPageDataProps } from '@types'
 import { filterLists } from '@utils'
 
 export const getServerSideProps = getServerSidePageProps
@@ -26,8 +25,6 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
   const [isLoading, setIsLoading] = useState(true)
   const { uid } = useAppSelector(getUserData) || {}
   const [lists, getLists] = useLists({ uid })
-  const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
-  const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
   const filteredLists = useMemo(() => filterLists(lists), [lists])
   const bookmarks = filteredLists?.find(list => list.id === BOOKMARK_LIST_ID)
   const isBookmarked = !!bookmarks?.listItems?.find(bookmark => bookmark.id === book?.id)
@@ -48,46 +45,20 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
     }
   }
 
-  const handleAddClick = () => {
-    setIsAddToListModalOpened(true)
-  }
-
-  const handleModalClose = () => {
-    setIsAddToListModalOpened(false)
-    setSelectedListIds([])
-  }
-
-  const handleAddToCustomList = () => {
-    if (uid && book) {
-      selectedListIds.forEach(id => {
+  const handleAddClick = (listIds: string[], book: TBook) => {
+    if (uid) {
+      listIds.forEach(id => {
         updateList({
           book,
-          lists,
+          lists: filteredLists,
           isBookmarks: false,
           uid,
           updateLists: () => getLists(),
           listId: id,
         })
       })
-
-      handleModalClose()
     }
   }
-
-  const handleSelectId = useCallback(
-    (listId: string) => {
-      const hasInArray = !!selectedListIds.find(item => item === listId)
-
-      if (hasInArray) {
-        setSelectedListIds(selectedListIds.filter(item => item !== listId))
-
-        return
-      }
-
-      setSelectedListIds([...selectedListIds, listId])
-    },
-    [selectedListIds],
-  )
 
   useEffect(() => {
     if (isReady && bookId && typeof bookId === 'string') {
@@ -108,7 +79,8 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
     <LayoutTemplate headerFooterData={headerFooterData}>
       {isMob && (
         <MobileBookPageLayout
-          {...book}
+          book={book}
+          lists={lists}
           isLoading={isLoading}
           onBookmarkClick={handleAddToBookmarksClick}
           isBookmarked={isBookmarked}
@@ -120,7 +92,8 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
         <PaddingContainer padding={isTablet ? theme.space.lg : 120}>
           <Flexbox justify="center">
             <BookPageLayout
-              {...book}
+              book={book}
+              lists={lists}
               isLoading={isLoading}
               onBookmarkClick={handleAddToBookmarksClick}
               isBookmarked={isBookmarked}
@@ -130,14 +103,6 @@ const BookPage: FC<TPageDataProps> = ({ headerFooterData }) => {
           </Flexbox>
         </PaddingContainer>
       )}
-      <AddToListModal
-        bookId={book?.id}
-        isOpened={isAddToListModalOpened}
-        onClose={handleModalClose}
-        lists={lists}
-        onSaveClick={handleAddToCustomList}
-        onSelectList={id => handleSelectId(id)}
-      />
     </LayoutTemplate>
   )
 }

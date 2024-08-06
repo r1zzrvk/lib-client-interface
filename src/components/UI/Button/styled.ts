@@ -7,10 +7,12 @@ type TButtonProps = {
   animate: boolean
   isGhost?: boolean
   isFluid?: boolean
+  height?: number
+  borderRadius?: number
 }
 
 const Button = styled.button<TButtonProps>`
-  border-radius: ${theme.radiuses.sm}px;
+  border-radius: ${({ borderRadius }) => borderRadius || theme.radiuses.sm}px;
   border: none;
   cursor: pointer;
   width: ${({ size, isFluid }) => (!isFluid && size ? `${SIZES[size]}px` : '100%')};
@@ -20,7 +22,8 @@ const Button = styled.button<TButtonProps>`
   font-family: '${theme.fonts.family}', sans-serif;
   color: ${({ isGhost }) => (isGhost ? theme.colors.main : theme.colors.grey)};
   background-color: ${({ isGhost }) => (isGhost ? 'inherit' : theme.colors.secondary)};
-  padding: ${theme.space.sm}px 0px ${theme.space.sm}px 0px;
+  height: ${({ height }) => height}px;
+  padding: ${({ height }) => (height ? '0px' : `${theme.space.sm}px 0px ${theme.space.sm}px 0px`)};
   text-decoration: ${({ isGhost }) => (isGhost ? 'underline' : 'none')};
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   animation: ${({ animate }) => (animate ? 'click 0.5s ease' : 'none')};

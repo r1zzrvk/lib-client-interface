@@ -19,6 +19,8 @@ type TButton = {
   rightIcon?: TIcon
   iconColor?: string
   iconSize?: number
+  height?: number
+  borderRadius?: number
 }
 
 export const Button: FC<TButton> = ({
@@ -32,6 +34,8 @@ export const Button: FC<TButton> = ({
   rightIcon,
   iconColor = theme.colors.grey,
   iconSize = theme.icon_sizes.xs,
+  height,
+  borderRadius,
 }) => {
   const [animate, setAnimate] = useState(false)
 
@@ -49,6 +53,8 @@ export const Button: FC<TButton> = ({
       isGhost={isGhost}
       isFluid={isFluid}
       disabled={disabled}
+      height={height}
+      borderRadius={borderRadius}
     >
       <Flexbox justify="center" align="center" gap={theme.space.xs2}>
         {children}

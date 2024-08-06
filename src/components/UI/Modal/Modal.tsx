@@ -23,7 +23,8 @@ export const Modal: FC<TModalProps> = ({ children, isOpen, onClose, size = 'lg',
           fontSizeMob={theme.fonts.size.header.sm}
           fontWeightMob={theme.fonts.weight.medium}
           fontHeightMob={theme.fonts.height.header.sm}
-          fontSize={theme.fonts.size.header.md}
+          fontSize={theme.fonts.size.header.sm}
+          fontHeight={theme.fonts.height.header.sm}
         >
           {title}
         </Text>
