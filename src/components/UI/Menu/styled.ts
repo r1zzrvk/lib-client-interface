@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { theme } from '@constants'
 
 type TListProps = {
-  position: 'left' | 'right'
+  positionX: 'left' | 'right'
+  positionY: 'top' | 'bottom'
+  buttonHeight?: number
 }
 
 const PopoverWrapper = styled.menu`
@@ -21,12 +23,13 @@ const List = styled.div<TListProps>`
   margin-top: ${theme.space.xs3}px;
   padding: ${theme.space.xs2}px 0px;
   background-color: ${theme.colors.white};
-  right: ${({ position }) => position === 'right' && '0px'};
-  left: ${({ position }) => position === 'left' && '0px'};
+  right: ${({ positionX }) => positionX === 'right' && '0px'};
+  left: ${({ positionX }) => positionX === 'left' && '0px'};
   width: 250px;
   border-radius: ${theme.radiuses.xs}px;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
   z-index: 100;
+  bottom: ${({ positionY, buttonHeight }) => (positionY === 'bottom' ? 'none' : `${Number(buttonHeight) + 4}px`)};
 `
 
 export const Styled = {

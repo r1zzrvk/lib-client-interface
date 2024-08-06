@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react'
 
 import { ItemListWrapper } from '@components/atoms'
-import { BookCard, ItemList, StatusIllustration } from '@components/molecules'
+import { BookCard, StatusIllustration } from '@components/molecules'
 
 import { updateList } from '@api'
 import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
@@ -12,11 +12,10 @@ import { filterLists } from '@utils'
 
 type TResultsProps = {
   searchData: TSearchBookResponse | null
-  packSize: number
   isRequestError: boolean
 }
 
-export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchData }) => {
+export const Results: FC<TResultsProps> = ({ isRequestError, searchData }) => {
   const { items, totalItems } = searchData || {}
   const { isMob } = useBreakpoint()
   const user = useAppSelector(getUserData)
@@ -47,21 +46,19 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
   return (
     <>
       <ItemListWrapper rowGap={itemsGap}>
-        {items && !isRequestError && (
-          <ItemList
-            renderItem={book => (
-              <BookCard
-                key={book.id}
-                book={book}
-                uid={uid}
-                lists={filteredLists}
-                updateLists={() => getLists()}
-                onAddClick={handleAddToCustomList}
-              />
-            )}
-            items={items.slice(0, packSize)}
-          />
-        )}
+        {items &&
+          !isRequestError &&
+          items.map((book, i) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              uid={uid}
+              lists={filteredLists}
+              isLastIndex={i === items.length - 1}
+              updateLists={() => getLists()}
+              onAddClick={handleAddToCustomList}
+            />
+          ))}
       </ItemListWrapper>
       <StatusIllustration
         title={STARTING_SEARCH.title}

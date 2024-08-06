@@ -37,17 +37,19 @@ const IconWrapper = styled.button<TIconWrapperProps>`
     }
   }
 
-  &:hover {
-    transition: all 0.3s ease-in;
-    background-color: ${theme.colors.secondary};
-  }
-
   &:active {
     animation: none;
   }
 
   &:focus {
     outline: none;
+  }
+
+  @media (min-width: ${theme.breakpoints.sm}px) {
+    &:hover {
+      transition: all 0.3s ease-in;
+      background-color: ${theme.colors.secondary};
+    }
   }
 `
 

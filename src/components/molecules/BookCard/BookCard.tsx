@@ -12,11 +12,12 @@ type TBookCardProps = {
   book: TBook
   lists: TList[]
   updateLists: () => void
+  isLastIndex?: boolean
   uid?: TFirebaseUser['uid']
   onAddClick?: (listIds: string[], book: TBook) => void
 }
 
-export const BookCard: FC<TBookCardProps> = ({ book, lists, uid, updateLists, onAddClick }) => {
+export const BookCard: FC<TBookCardProps> = ({ book, lists, uid, updateLists, onAddClick, isLastIndex }) => {
   const router = useRouter()
   const bookmarks = lists?.find(list => list.id === BOOKMARK_LIST_ID)
   const listsWithBook = lists?.filter(
@@ -58,6 +59,7 @@ export const BookCard: FC<TBookCardProps> = ({ book, lists, uid, updateLists, on
 
   return (
     <Card
+      isLastIndex={isLastIndex}
       book={book}
       uid={uid}
       href={`${EPagePaths.CATALOG}/`}

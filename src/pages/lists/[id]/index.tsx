@@ -3,8 +3,6 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useMemo } from 'react'
 
 import { List } from '@components/organism'
-import { ListPreloader } from '@components/molecules'
-import { Background } from '@components/atoms'
 
 import { getServerSidePageProps } from '@api'
 import { useAppSelector, useLists } from '@hooks'
@@ -12,7 +10,6 @@ import { getUserData } from '@selectors'
 import { LayoutTemplate } from '@templates'
 import { TPageDataProps } from '@types'
 import { filterLists } from '@utils'
-import { theme } from '@constants'
 
 export const getServerSideProps = getServerSidePageProps
 
@@ -39,18 +36,14 @@ const ListPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <Background color={theme.colors.white}>
-        {uid && lists?.length && (
-          <List
-            uid={uid}
-            list={lists?.[0]}
-            updateList={() => getListsData()}
-            allLists={filteredLists}
-            updateAllLists={() => getAllListsData()}
-          />
-        )}
-        {isLoading && <ListPreloader />}
-      </Background>
+      <List
+        uid={uid}
+        isLoading={isLoading}
+        list={lists?.[0]}
+        updateList={() => getListsData()}
+        allLists={filteredLists}
+        updateAllLists={() => getAllListsData()}
+      />
     </LayoutTemplate>
   )
 }

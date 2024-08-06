@@ -151,7 +151,7 @@ export const AccountInfo: FC = () => {
         </Form>
       </Formik>
       <Dialog
-        title="Account recovery"
+        title="Email confirmation"
         subtitle={getEmailConfirmationSubtitle(user.email || '')}
         submitButtonText="Got it"
         onSubmit={close}
