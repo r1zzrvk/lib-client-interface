@@ -29,7 +29,7 @@ export const AccountRecoveryStep: FC<TAccountRecoveryStepProps> = ({ onError, se
     setErrors: (errors: FormikErrors<TAccountRecoveryFormValues>) => void,
   ) => {
     sendPasswordResetEmail(auth, email)
-      .then(() => show)
+      .then(() => show())
       .catch((e: FirebaseError) => {
         if (FirebaseErrorCodesAndMessages[e.code]) {
           setErrors({
