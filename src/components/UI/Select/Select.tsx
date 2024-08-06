@@ -1,7 +1,10 @@
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react'
-import { IconsSelector } from '@components/molecules'
+
+import { Icon } from '@components/molecules'
+
 import { theme } from '@constants'
 import { TOption } from '@types'
+
 import { Input } from '../Input'
 import { Styled } from './styled'
 
@@ -28,11 +31,21 @@ export const Select: FC<TSelectProps> = ({
   const rootEl = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const onClick = (e: Event) => rootEl?.current?.contains(e.target as Node) || setIsOpened(false)
+    const modal = document.getElementById('modal')
+
+    const onClick = (e: Event) => {
+      if (!rootEl?.current?.contains(e.target as Node)) {
+        setIsOpened(false)
+      }
+    }
 
     document.addEventListener('click', onClick)
+    modal?.addEventListener('click', onClick)
 
-    return () => document.removeEventListener('click', onClick)
+    return () => {
+      document.removeEventListener('click', onClick)
+      modal?.removeEventListener('click', onClick)
+    }
   }, [])
 
   const handleSelectValue = ({ target }: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -67,13 +80,7 @@ export const Select: FC<TSelectProps> = ({
             <Styled.Option type="button" value={value} onClick={handleSelectValue} key={value}>
               {label}
               {value === selectedValue && (
-                <IconsSelector
-                  icon="check_solid"
-                  color={theme.colors.grey}
-                  size={theme.icon_sizes.xs}
-                  sidePadding={theme.space.sm}
-                  upDownPadding={theme.space.xs}
-                />
+                <Icon icon="check_solid" color={theme.colors.grey} size={theme.icon_sizes.md} />
               )}
             </Styled.Option>
           ))}

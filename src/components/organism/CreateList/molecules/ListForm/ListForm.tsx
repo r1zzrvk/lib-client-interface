@@ -1,8 +1,11 @@
 import { useFormikContext } from 'formik'
 import { FC } from 'react'
+
 import { Button, Input, Spacer, SwitchToggle } from '@ui-kit'
+
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
+
 import { EListFormFields, TListFormValues } from '../../types'
 import { Styled } from './styled'
 

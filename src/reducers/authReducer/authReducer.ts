@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { EAuthorizationStatus, TFirebaseUser } from '@types'
 import { ESliceName } from 'reducers/types'
+
+import { EAuthorizationStatus, TFirebaseUser } from '@types'
+
 import { TAuthState } from './types'
 
 const initialState: TAuthState = {

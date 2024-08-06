@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { theme } from '@constants'
 
 type TWrapperProps = {
@@ -14,12 +15,14 @@ type TIconProps = {
 
 const Wrapper = styled.div<TWrapperProps>`
   display: flex;
+  align-items: center;
+  box-sizing: border-box;
   background-color: ${({ color }) => color};
   color: ${theme.colors.grey};
   width: ${({ fluid }) => (fluid ? '100%' : '380px')};
   height: 52px;
   border-radius: ${theme.radiuses.sm}px;
-
+  padding: 0px ${theme.space.sm}px;
   outline: ${({ error }) => (error ? `2px solid ${theme.colors.red}` : 'none')};
 `
 
@@ -29,12 +32,11 @@ const Input = styled.input<TWrapperProps>`
   font-size: ${theme.fonts.size.regular.md}px;
   line-height: ${theme.fonts.height.regular.md}px;
   font-weight: ${theme.fonts.weight.medium};
+  padding: 0px ${theme.space.xs}px;
   font-family: '${theme.fonts.family}', sans-serif;
-  border-radius: ${theme.radiuses.sm}px;
   width: ${({ fluid }) => (fluid ? '100%' : '300px')};
   border: none;
   outline: none;
-  padding: ${({ isIcon }) => (isIcon ? '0px' : `0px 0px 0px ${theme.space.sm}px`)};
   text-align: left;
 
   &::placeholder {
@@ -61,11 +63,12 @@ const CustomIcon = styled.div<TIconProps>`
 
 const Dot = styled.div`
   position: absolute;
+  z-index: 10;
   background-color: ${theme.colors.red};
   width: 8px;
   height: 8px;
-  top: 12px;
-  left: 32px;
+  top: 4px;
+  right: 4px;
   border-radius: ${theme.radiuses.round}px;
 `
 

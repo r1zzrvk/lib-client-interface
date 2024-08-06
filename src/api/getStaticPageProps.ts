@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { THeaderFooter } from '@types'
 import { FOOTER_PATH, HEADER_PATH } from '@constants'
 

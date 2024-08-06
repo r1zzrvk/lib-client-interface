@@ -1,9 +1,12 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { IconsSelector } from '@components/molecules'
+
 import { Flexbox } from '@components/atoms'
+import { Icon } from '@components/molecules'
+
 import { mobileMenuItems, theme } from '@constants'
 import { EPagePaths } from '@types'
+
 import { Styled } from './styled'
 import { Text } from '../Text'
 
@@ -27,7 +30,7 @@ export const MobileMenu: FC = () => {
           gap={theme.space.xs3}
           onClick={() => handleNavigateTo(path)}
         >
-          <IconsSelector icon={icon} color={getActivePage(path)} isButton />
+          <Icon icon={icon} color={getActivePage(path)} />
           <Text color={theme.colors.grey}>{title}</Text>
         </Flexbox>
       ))}

@@ -1,47 +1,34 @@
-import { FC, useCallback, useMemo, useState } from 'react'
+import { FC, useMemo } from 'react'
+
 import { ItemListWrapper } from '@components/atoms'
-import { AddToListModal, BookCard, ItemList, StatusIllustration } from '@components/molecules'
-import { TBook, TList, TSearchBookResponse } from '@types'
-import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
-import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
-import { getUserData } from '@selectors'
-import { filterLists } from '@utils'
+import { BookCard, StatusIllustration } from '@components/molecules'
+
 import { updateList } from '@api'
+import { NOTHING_FOUND, SERVER_ERROR, STARTING_SEARCH, theme } from '@constants'
+import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
+import { getUserData } from '@selectors'
+import { TBook, TSearchBookResponse } from '@types'
+import { filterLists } from '@utils'
 
 type TResultsProps = {
   searchData: TSearchBookResponse | null
-  packSize: number
   isRequestError: boolean
 }
 
-export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchData }) => {
+export const Results: FC<TResultsProps> = ({ isRequestError, searchData }) => {
   const { items, totalItems } = searchData || {}
   const { isMob } = useBreakpoint()
   const user = useAppSelector(getUserData)
   const { uid } = user || {}
-  const [selectedBook, setSelectedBook] = useState<TBook | null>(null)
-  const [isAddToListModalOpened, setIsAddToListModalOpened] = useState(false)
-  const [selectedListIds, setSelectedListIds] = useState<TList['id'][]>([])
   const itemsGap = isMob ? theme.space.xs : theme.space.sm
   const [lists, getLists] = useLists({ uid })
   const filteredLists = useMemo(() => filterLists(lists), [lists])
 
-  const handleModalClose = () => {
-    setIsAddToListModalOpened(false)
-    setSelectedBook(null)
-    setSelectedListIds([])
-  }
-
-  const handleAddClick = (book: TBook) => {
-    setSelectedBook(book)
-    setIsAddToListModalOpened(true)
-  }
-
-  const handleAddToCustomList = () => {
-    if (uid && selectedBook) {
-      selectedListIds.forEach(id => {
+  const handleAddToCustomList = (listIds: string[], book: TBook) => {
+    if (uid) {
+      listIds.forEach(id => {
         updateList({
-          book: selectedBook,
+          book,
           lists: filteredLists,
           isBookmarks: false,
           uid,
@@ -49,25 +36,8 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
           listId: id,
         })
       })
-
-      handleModalClose()
     }
   }
-
-  const handleSelectId = useCallback(
-    (listId: string) => {
-      const hasInArray = !!selectedListIds.find(item => item === listId)
-
-      if (hasInArray) {
-        setSelectedListIds(selectedListIds.filter(item => item !== listId))
-
-        return
-      }
-
-      setSelectedListIds([...selectedListIds, listId])
-    },
-    [selectedListIds],
-  )
 
   useDidMount(() => {
     getLists()
@@ -76,21 +46,19 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
   return (
     <>
       <ItemListWrapper rowGap={itemsGap}>
-        {items && !isRequestError && (
-          <ItemList
-            renderItem={book => (
-              <BookCard
-                key={book.id}
-                book={book}
-                uid={uid}
-                lists={filteredLists}
-                updateLists={() => getLists()}
-                onAddClick={handleAddClick}
-              />
-            )}
-            items={items.slice(0, packSize)}
-          />
-        )}
+        {items &&
+          !isRequestError &&
+          items.map((book, i) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              uid={uid}
+              lists={filteredLists}
+              isLastIndex={i === items.length - 1}
+              updateLists={() => getLists()}
+              onAddClick={handleAddToCustomList}
+            />
+          ))}
       </ItemListWrapper>
       <StatusIllustration
         title={STARTING_SEARCH.title}
@@ -112,14 +80,6 @@ export const Results: FC<TResultsProps> = ({ isRequestError, packSize, searchDat
         imgUrl={SERVER_ERROR.imgUrl}
         subtitle={SERVER_ERROR.subtitle}
         isVisible={isRequestError}
-      />
-      <AddToListModal
-        bookId={selectedBook?.id}
-        isOpened={isAddToListModalOpened}
-        onClose={handleModalClose}
-        lists={filteredLists}
-        onSaveClick={handleAddToCustomList}
-        onSelectList={id => handleSelectId(id)}
       />
     </>
   )

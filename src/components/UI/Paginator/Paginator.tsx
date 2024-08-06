@@ -1,12 +1,14 @@
 import { FC, useMemo } from 'react'
-import { getPagesArray } from '@utils'
-import { theme } from '@constants'
+
 import { Flexbox } from '@components/atoms'
-import { IconsSelector } from '@components/molecules'
+
+import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
-import { Styled } from './styled'
+import { getPagesArray } from '@utils'
+
+import { ActionIcon } from '../ActionIcon'
 import { Button } from '../Button'
-import { Spacer } from '../Spacer'
+import { Styled } from './styled'
 
 type TPaginatorProps = {
   totalPages: number
@@ -25,11 +27,12 @@ export const Paginator: FC<TPaginatorProps> = ({
   setPage,
   goToFirstPage,
 }) => {
-  const { isMob } = useBreakpoint()
-  const defaultPages = isMob ? 5 : 10
-  const leftSide = isMob ? 2 : 4
-  const rightSide = isMob ? 2 : 5
-  const middlePage = isMob ? 3 : 5
+  const { isLg, isMd } = useBreakpoint()
+  const isDesktop = isMd || isLg
+  const defaultPages = !isDesktop ? 5 : 10
+  const leftSide = !isDesktop ? 2 : 4
+  const rightSide = !isDesktop ? 2 : 5
+  const middlePage = !isDesktop ? 3 : 5
   const leftPages = currentPage > middlePage ? currentPage - leftSide : 0
   const rightPages = currentPage > middlePage ? currentPage + rightSide : defaultPages
   const pages = useMemo(() => getPagesArray(totalPages), [totalPages])
@@ -37,8 +40,13 @@ export const Paginator: FC<TPaginatorProps> = ({
   return (
     <Flexbox justify="center" align="center" direction="column">
       <Flexbox justify="center" align="center" gap={theme.space.xs2}>
-        <Styled.ArrowButton onClick={prevPage} isInvisible={currentPage === 1} disabled={currentPage === 1} isLeft>
-          <IconsSelector icon="caretLeft_solid" color={theme.colors.grey} />
+        <Styled.ArrowButton isInvisible={currentPage === 1}>
+          <ActionIcon
+            onClick={prevPage}
+            icon="caretLeft_solid"
+            color={theme.colors.grey}
+            disabled={currentPage === 1}
+          />
         </Styled.ArrowButton>
         {pages
           .filter(page => page >= leftPages && page <= rightPages)
@@ -47,20 +55,19 @@ export const Paginator: FC<TPaginatorProps> = ({
               {item}
             </Styled.PageButton>
           ))}
-        <Styled.ArrowButton
-          onClick={nextPage}
-          isInvisible={currentPage === pages.length}
-          disabled={currentPage === pages.length}
-        >
-          <IconsSelector icon="caretRight_solid" color={theme.colors.grey} />
+        <Styled.ArrowButton isInvisible={currentPage === pages.length}>
+          <ActionIcon
+            onClick={nextPage}
+            icon="caretRight_solid"
+            color={theme.colors.grey}
+            disabled={currentPage === pages.length}
+          />
         </Styled.ArrowButton>
       </Flexbox>
-      {currentPage > middlePage && goToFirstPage ? (
+      {currentPage > middlePage && goToFirstPage && (
         <Button isGhost onClick={goToFirstPage}>
           Go to first page
         </Button>
-      ) : (
-        <Spacer size={theme.space.xl2} samespace />
       )}
     </Flexbox>
   )

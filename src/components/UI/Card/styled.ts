@@ -1,23 +1,22 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
+
 import { ResponsiveImage } from '../ResponsiveImage'
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   display: flex;
   width: 100%;
   height: 180px;
   border-radius: ${theme.radiuses.sm}px;
   transition: 0.3s ease-in;
   cursor: pointer;
+  text-decoration: none;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
-
-    :hover {
-      scale: 1.05;
-    }
   }
 `
 
@@ -33,10 +32,10 @@ const ButtonBlock = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: ${theme.space.xs2}px;
+  gap: ${theme.space.sm}px;
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    gap: ${theme.space.xs4}px;
+    gap: ${theme.space.xs}px;
   }
 `
 
@@ -45,7 +44,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  padding-left: ${theme.space.xs}px;
+  padding: 0px 0px ${theme.space.xs}px ${theme.space.xs}px;
 
   @media (min-width: ${theme.breakpoints.tablet}px) {
     padding: ${theme.space.xs}px;
@@ -59,10 +58,23 @@ const Icon = styled.div`
     padding: ${theme.space.sm}px;
   }
 `
+
+const ButtonWrapper = styled.div`
+  padding: 0px ${theme.space.xs2}px;
+`
+
+const EmptyListsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: ${theme.space.md}px ${theme.space.xs2}px;
+`
+
 export const Styled = {
   Wrapper,
   Image,
   ButtonBlock,
   Content,
   Icon,
+  ButtonWrapper,
+  EmptyListsWrapper,
 }

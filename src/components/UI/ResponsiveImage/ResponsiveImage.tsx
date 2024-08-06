@@ -1,5 +1,6 @@
 import NextImage, { ImageProps } from 'next/image'
 import { FC } from 'react'
+
 import { Styled } from './styled'
 
 type TResponsiveImageProps = {

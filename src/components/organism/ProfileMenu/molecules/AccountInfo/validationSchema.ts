@@ -1,4 +1,5 @@
 import { object, string } from 'yup'
+
 import {
   CONFIRMATION_REQUIRED,
   EMAILS_NO_MATCH,
@@ -14,6 +15,7 @@ import {
   PASSWORD_IS_TOO_SHORT,
   PASSWORD_REQUIRED,
 } from '@constants'
+
 import { EAccountInfoFormFields } from './types'
 
 const emailValidationSchema = object().shape({

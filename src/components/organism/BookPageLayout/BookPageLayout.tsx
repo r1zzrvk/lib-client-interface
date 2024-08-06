@@ -1,86 +1,143 @@
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { EDateFormats, TBook, TList } from '@types'
-import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
-import { FC } from 'react'
-import { Flexbox, LabelWithText } from '@components/atoms'
-import { IconsSelector, PageInfoBlock } from '@components/molecules'
-import { formatDate, formatIsoLang, removeHTMLFromString } from '@utils'
-import { useAppSelector, useBreakpoint } from '@hooks'
+/* eslint-disable max-lines-per-function */
 import { useRouter } from 'next/router'
+import { FC, useEffect, useState } from 'react'
+
+import { Flexbox, LabelWithText } from '@components/atoms'
+import { PageInfoBlock } from '@components/molecules'
+import { ActionIcon, Button, Menu, ReadMore, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
+import { useAppSelector, useBreakpoint, useSelectingLists } from '@hooks'
 import { getUserAuth } from '@selectors'
+import { EDateFormats, EPagePaths, TBook, TList } from '@types'
+import { formatDate, formatIsoLang, getImageURL, removeHTMLFromString } from '@utils'
+
 import { Styled } from './styled'
 
 type TBookPageLayoutProps = {
+  book: TBook | null
+  lists: TList[]
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
   listWithBook: TList
-  onAddToListClick: () => void
-} & TBook
+  onAddToListClick: (listIds: string[], book: TBook) => void
+}
 
 export const BookPageLayout: FC<TBookPageLayoutProps> = ({
-  id,
+  book,
+  lists,
   isLoading,
   onBookmarkClick,
   isBookmarked,
-  volumeInfo,
   listWithBook,
   onAddToListClick,
 }) => {
-  const {
-    title,
-    authors,
-    publishedDate,
-    ratingsCount,
-    averageRating,
-    publisher,
-    pageCount,
-    language,
-    categories,
-    description,
-  } = volumeInfo
   const router = useRouter()
   const { isTablet } = useBreakpoint()
   const isAuth = useAppSelector(getUserAuth)
-  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
-  const averageRatingText = ratingsCount ? `${averageRating} (${ratingsCount} reviews)` : averageRating?.toString()
-  const showAboutEdition = publishedDate || publisher || pageCount || language
-  const showAboutWork = categories || averageRating
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
+  const { volumeInfo, id } = book || {}
+  const { menuItems, selectedListIds, onClear, checkAddedLists } = useSelectingLists({ lists, bookId: id || '' })
+  const averageRatingText = volumeInfo?.ratingsCount
+    ? `${volumeInfo?.averageRating} (${volumeInfo?.ratingsCount} reviews)`
+    : volumeInfo?.averageRating?.toString()
+  const showAboutEdition =
+    volumeInfo?.publishedDate || volumeInfo?.publisher || volumeInfo?.pageCount || volumeInfo?.language
+  const showAboutWork = volumeInfo?.categories || volumeInfo?.averageRating
   const imageLayout = isTablet ? 'column' : 'row'
 
   const handleBackClick = () => {
     router.back()
   }
 
+  const handleOpenMenu = () => {
+    setIsMenuOpened(prev => !prev)
+    checkAddedLists()
+  }
+
+  const handleSubmitClick = () => {
+    if (menuItems.length && book) {
+      onAddToListClick?.(selectedListIds, book)
+      onClear()
+      setIsMenuOpened(false)
+
+      return
+    }
+
+    router.push(`${EPagePaths.MY_LISTS}/?createOne=true`)
+  }
+
+  useEffect(() => {
+    if (lists.length) {
+      checkAddedLists()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lists.length])
+
   return (
     <Styled.Wrapper>
       <Flexbox gap={theme.space.sm} direction={imageLayout}>
         {isTablet && (
           <Flexbox justify="space-between">
-            <Styled.IconWrapper onClick={handleBackClick}>
-              <IconsSelector size={theme.icon_sizes.sm} icon="caretLeft_solid" color={theme.colors.white} isButton />
-            </Styled.IconWrapper>
+            <ActionIcon
+              icon="caretLeft_solid"
+              color={theme.colors.grey}
+              backgroundColor={theme.colors.beige}
+              size={theme.icon_sizes.md}
+              padding={theme.space.md}
+              onClick={handleBackClick}
+            />
             {isLoading ? (
               <Skeleton radius={theme.radiuses.round} width={48} height={48} />
             ) : (
               isAuth && (
                 <Flexbox gap={theme.space.sm}>
-                  <Styled.IconWrapper onClick={onAddToListClick}>
-                    <IconsSelector
-                      size={theme.icon_sizes.sm}
+                  <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+                    <ActionIcon
+                      size={theme.icon_sizes.md}
+                      padding={theme.space.md}
                       icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                      color={theme.colors.white}
-                      isButton
+                      color={theme.colors.grey}
+                      backgroundColor={theme.colors.beige}
+                      onClick={handleOpenMenu}
                     />
-                  </Styled.IconWrapper>
-                  <Styled.IconWrapper onClick={onBookmarkClick}>
-                    <IconsSelector
-                      size={theme.icon_sizes.sm}
-                      icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                      color={theme.colors.white}
-                      isButton
-                    />
-                  </Styled.IconWrapper>
+                    {menuItems?.length ? (
+                      menuItems?.map(({ action, icon, title, color, id }) => (
+                        <Menu.MenuItem
+                          key={id}
+                          onClick={() => action()}
+                          title={title}
+                          color={color}
+                          icon={icon}
+                          iconPosition="right"
+                        />
+                      ))
+                    ) : (
+                      <Styled.EmptyListsWrapper>
+                        <Text
+                          color={theme.colors.grey}
+                          fontSizeMob={theme.fonts.size.regular.md}
+                          fontHeightMob={theme.fonts.height.regular.md}
+                        >
+                          No lists found
+                        </Text>
+                      </Styled.EmptyListsWrapper>
+                    )}
+                    <Styled.ButtonWrapper>
+                      <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                        {menuItems?.length ? 'Update' : 'Create a list'}
+                      </Button>
+                    </Styled.ButtonWrapper>
+                  </Menu.Popover>
+                  <ActionIcon
+                    size={theme.icon_sizes.md}
+                    padding={theme.space.md}
+                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                    color={theme.colors.grey}
+                    backgroundColor={theme.colors.beige}
+                    onClick={onBookmarkClick}
+                  />
                 </Flexbox>
               )
             )}
@@ -89,13 +146,13 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
         {isLoading && !isTablet ? (
           <Skeleton radius={theme.radiuses.xs} height={496} width={310} />
         ) : (
-          <ResponsiveImage src={imageLink} height={496} width={310} isLg isMd isSm />
+          <ResponsiveImage src={getImageURL(id || '')} height={496} width={310} isLg isMd isSm />
         )}
         <Flexbox justify="center">
           {isLoading && isTablet ? (
             <Skeleton radius={theme.radiuses.xs} height={360} width={230} />
           ) : (
-            <ResponsiveImage src={imageLink} height={360} width={230} isTablet />
+            <ResponsiveImage src={getImageURL(id || '')} height={360} width={230} isTablet />
           )}
         </Flexbox>
         <Flexbox justify="space-between" direction="column">
@@ -113,7 +170,7 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
                 fontWeight={theme.fonts.weight.semibold}
                 marginBottom={theme.space.xs3}
               >
-                {title}
+                {volumeInfo?.title}
               </Text>
             )}
             {isLoading ? (
@@ -129,7 +186,7 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
                 fontWeight={theme.fonts.weight.regular}
                 marginBottom={theme.space.md}
               >
-                {authors?.join(', ')}
+                {volumeInfo?.authors?.join(', ')}
               </Text>
             )}
             {isLoading ? (
@@ -138,24 +195,34 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
               <>
                 {showAboutEdition && (
                   <PageInfoBlock title="About this edition">
-                    {publishedDate && (
+                    {volumeInfo?.publishedDate && (
                       <LabelWithText
                         label="Publish date:"
-                        text={formatDate(publishedDate, EDateFormats.MMMM_DD_YYYY)}
+                        text={formatDate(volumeInfo?.publishedDate, EDateFormats.MMMM_DD_YYYY)}
                       />
                     )}
-                    {publisher && <LabelWithText label="Publisher:" text={publisher} />}
-                    {pageCount && <LabelWithText label="Page count:" text={pageCount.toString()} />}
-                    {language && <LabelWithText label="Language:" text={formatIsoLang(language)} />}
+                    {volumeInfo?.publisher && <LabelWithText label="Publisher:" text={volumeInfo?.publisher} />}
+                    {volumeInfo?.pageCount && (
+                      <LabelWithText label="Page count:" text={volumeInfo?.pageCount.toString()} />
+                    )}
+                    {volumeInfo?.language && (
+                      <LabelWithText label="Language:" text={formatIsoLang(volumeInfo?.language)} />
+                    )}
                   </PageInfoBlock>
                 )}
                 {showAboutWork && (
                   <>
                     <Spacer size={theme.space.md} />
                     <PageInfoBlock title="About the work">
-                      {categories?.length && <LabelWithText label="Genres:" text={categories.join(', ')} />}
-                      {averageRating && <LabelWithText label="Google rating:" text={averageRatingText} />}
-                      {(categories?.length || averageRating) && <Spacer sizeMob={theme.space.md} />}
+                      {volumeInfo?.categories?.length && (
+                        <LabelWithText label="Genres:" text={volumeInfo?.categories.join(', ')} />
+                      )}
+                      {volumeInfo?.averageRating && (
+                        <LabelWithText label="Google rating:" text={averageRatingText || ''} />
+                      )}
+                      {(volumeInfo?.categories?.length || volumeInfo?.averageRating) && (
+                        <Spacer sizeMob={theme.space.md} />
+                      )}
                     </PageInfoBlock>
                   </>
                 )}
@@ -165,8 +232,8 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
           {isTablet ||
             (isAuth && (
               <Flexbox align="center" gap={theme.space.sm}>
-                <Button onClick={onAddToListClick} size="lg">
-                  <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+                <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+                  <Button onClick={handleOpenMenu} size="lg" rightIcon={listWithBook ? 'check_solid' : 'plus_solid'}>
                     <Text
                       color={theme.colors.grey}
                       fontSize={theme.fonts.size.regular.md}
@@ -175,21 +242,43 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
                     >
                       {listWithBook ? 'In my list' : 'Add to list'}
                     </Text>
-                    <IconsSelector
-                      size={theme.icon_sizes.xs}
-                      icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                      color={theme.colors.grey}
-                    />
-                  </Flexbox>
-                </Button>
-                <Styled.IconWrapper onClick={onBookmarkClick}>
-                  <IconsSelector
-                    size={theme.icon_sizes.sm}
-                    icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                    color={theme.colors.white}
-                    isButton
-                  />
-                </Styled.IconWrapper>
+                  </Button>
+                  {menuItems?.length ? (
+                    menuItems?.map(({ action, icon, title, color, id }) => (
+                      <Menu.MenuItem
+                        key={id}
+                        onClick={() => action()}
+                        title={title}
+                        color={color}
+                        icon={icon}
+                        iconPosition="right"
+                      />
+                    ))
+                  ) : (
+                    <Styled.EmptyListsWrapper>
+                      <Text
+                        color={theme.colors.grey}
+                        fontSizeMob={theme.fonts.size.regular.md}
+                        fontHeightMob={theme.fonts.height.regular.md}
+                      >
+                        No lists found
+                      </Text>
+                    </Styled.EmptyListsWrapper>
+                  )}
+                  <Styled.ButtonWrapper>
+                    <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                      {menuItems?.length ? 'Update' : 'Create a list'}
+                    </Button>
+                  </Styled.ButtonWrapper>
+                </Menu.Popover>
+                <ActionIcon
+                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                  onClick={onBookmarkClick}
+                  color={theme.colors.white}
+                  backgroundColor={theme.colors.main}
+                  size={theme.icon_sizes.md}
+                  padding={theme.space.md}
+                />
               </Flexbox>
             ))}
         </Flexbox>
@@ -200,16 +289,17 @@ export const BookPageLayout: FC<TBookPageLayoutProps> = ({
           <Skeleton radius={theme.radiuses.xs} height={300} />
         </>
       ) : (
-        description && (
+        volumeInfo?.description && (
           <Styled.Description>
-            <Text
-              color={theme.colors.grey}
-              fontSize={theme.fonts.size.regular.md}
-              fontHeight={theme.fonts.height.regular.md}
-              fontWeight={theme.fonts.weight.regular}
-            >
-              {removeHTMLFromString(description, ' ')}
-            </Text>
+            <ReadMore
+              text={removeHTMLFromString(volumeInfo?.description, ' ')}
+              textProps={{
+                color: theme.colors.grey,
+                fontSize: theme.fonts.size.regular.md,
+                fontHeight: theme.fonts.height.regular.md,
+                fontWeight: theme.fonts.weight.regular,
+              }}
+            />
           </Styled.Description>
         )
       )}

@@ -1,6 +1,8 @@
-import { theme } from '@constants'
 import { Skeleton, Spacer } from '@ui-kit'
 import { Flexbox } from '@components/atoms'
+
+import { theme } from '@constants'
+
 import { Styled } from './styled'
 
 export const ProfileSkeleton = () => (

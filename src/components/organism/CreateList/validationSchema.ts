@@ -1,5 +1,7 @@
 import { object, string } from 'yup'
+
 import { FIELD_IS_TOO_LONG, MAX_SYMBOLS } from '@constants'
+
 import { EListFormFields } from './types'
 import { LIST_TITLE_IS_REQUIRED } from './constants'
 

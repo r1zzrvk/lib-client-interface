@@ -1,25 +1,26 @@
-import { deleteList } from '@api'
-import { Flexbox } from '@components/atoms'
-import { ItemList, ListItem, ListsSkeleton } from '@components/molecules'
+import { FC, useMemo, useState } from 'react'
+
+import { ListCard, ListsSkeleton } from '@components/molecules'
 import { CreateList } from '@components/organism'
+import { Spacer, Text } from '@ui-kit'
+
+import { deleteList } from '@api'
 import { BOOKMARK_LIST_ID, theme } from '@constants'
-import { useAppSelector, useBreakpoint, useDidMount, useLists } from '@hooks'
+import { useAppSelector, useDialog, useDidMount, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { TList } from '@types'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { filterLists } from '@utils'
-import { FC, useMemo, useState } from 'react'
+
 import { Styled } from './styled'
 
 export const MyLists: FC = () => {
   const { uid } = useAppSelector(getUserData) || {}
-  const { isMob } = useBreakpoint()
   const [lists, getLists, isLoading] = useLists({ uid })
   const [isModalOpened, setIsModalOpened] = useState(false)
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
+  const { dialog: Dialog, close, show } = useDialog()
   const [deletingListId, setDeletingListId] = useState<string>('')
   const [editingList, setEditingList] = useState<TList | null>(null)
-  const filtedLists = useMemo(() => filterLists(lists), [lists])
+  const filteredLists = useMemo(() => filterLists(lists), [lists])
 
   const handleEditClick = (list: TList) => {
     setEditingList(list)
@@ -27,7 +28,7 @@ export const MyLists: FC = () => {
   }
 
   const handleClickDelete = (id: string) => {
-    setIsDialogOpened(true)
+    show()
     setDeletingListId(id)
   }
 
@@ -37,7 +38,7 @@ export const MyLists: FC = () => {
   }
 
   const handleDialogClose = () => {
-    setIsDialogOpened(false)
+    close()
     setDeletingListId('')
   }
 
@@ -65,20 +66,18 @@ export const MyLists: FC = () => {
       </Text>
       {uid && !isLoading ? (
         <Styled.ListsWrapper>
-          <ItemList
-            items={filtedLists}
-            renderItem={list => (
-              <ListItem
-                {...list}
-                key={list.id}
-                isBookmarks={list.id === BOOKMARK_LIST_ID}
-                onEditClick={handleEditClick}
-                onDeleteClick={handleClickDelete}
-                updateLists={() => getLists()}
-                uid={uid}
-              />
-            )}
-          />
+          {filteredLists.map((list, i) => (
+            <ListCard
+              {...list}
+              key={list.id}
+              isBookmarks={list.id === BOOKMARK_LIST_ID}
+              isLastIndex={i === filteredLists.length - 1}
+              onEditClick={handleEditClick}
+              onDeleteClick={handleClickDelete}
+              updateLists={() => getLists()}
+              uid={uid}
+            />
+          ))}
         </Styled.ListsWrapper>
       ) : (
         <ListsSkeleton />
@@ -93,30 +92,14 @@ export const MyLists: FC = () => {
           list={editingList}
         />
       )}
-      <Modal isOpen={isDialogOpened} onClose={() => setIsDialogOpened(false)} size="sm" title="Are you sure?">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            This action cannot be undone
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={() => handleConfirmDelete()} isFluid={isMob} size="lg">
-              Delete
-            </Button>
-            <Button onClick={() => setIsDialogOpened(false)} isFluid={isMob} size="sm" isGhost>
-              Сancel
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Are you sure?"
+        subtitle="This action cannot be undone"
+        cancelButtonText="Сancel"
+        submitButtonText="Delete"
+        onCancel={close}
+        onSubmit={handleConfirmDelete}
+      />
     </Styled.Wrapper>
   )
 }

@@ -1,1 +1,0 @@
-export { IconsSelector } from './IconsSelector'

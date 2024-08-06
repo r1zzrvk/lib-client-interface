@@ -1,52 +1,77 @@
-import { FC, MouseEvent } from 'react'
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
+import { FC, MouseEvent, useState } from 'react'
+
+import { theme } from '@constants'
 import { TBook, TFirebaseUser } from '@types'
-import { IconsSelector } from '@components/molecules'
-import { sliceItems, textLimiter } from '@utils'
+import { getImageURL, sliceItems, textLimiter } from '@utils'
+
+import { ActionIcon } from '../ActionIcon'
+import { Button } from '../Button'
+import { Menu, TMenuItem } from '../Menu'
 import { Text } from '../Text'
 import { Styled } from './styled'
 
 type TCardProps = {
   book: TBook
+  href: string
+  isLastIndex?: boolean
   uid?: TFirebaseUser['uid']
+  menuItems?: TMenuItem[]
   isBookmarked?: boolean
   isAtLeastOneList?: boolean
-  onCardClick?: (id?: string) => void
-  onAddClick?: () => void
+  onSubmitClick?: () => void
   onBookmarkClick?: () => void
+  onAddClick?: () => void
 }
 
 export const Card: FC<TCardProps> = ({
   uid,
-  onAddClick,
+  onSubmitClick,
   onBookmarkClick,
-  onCardClick,
+  onAddClick,
+  href,
   book,
   isBookmarked,
   isAtLeastOneList,
+  menuItems,
+  isLastIndex,
 }) => {
-  const imageLink = `${BOOKS_IMAGE_PATH}${book.id}${BOOKS_IMAGE_SIZE}`
   const { title, authors } = book.volumeInfo
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
 
-  const handleCardClick = () => {
-    onCardClick?.(book.id)
-  }
-
-  const handleAddToListClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-    e.stopPropagation()
-
+  const handleAddToListClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault()
     onAddClick?.()
+    setIsMenuOpened(prev => !prev)
   }
 
-  const handleClickBookmark = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-    e.stopPropagation()
+  const handleClickBookmark = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault()
 
     onBookmarkClick?.()
   }
 
+  const handleActionClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, action: () => void) => {
+    e.preventDefault()
+    action()
+  }
+
+  const handleSubmitClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault()
+
+    onSubmitClick?.()
+    setIsMenuOpened(false)
+  }
+
   return (
-    <Styled.Wrapper onClick={handleCardClick}>
-      <Styled.Image src={imageLink} alt="book cover" width={120} height={180} objectFit="cover" isEverywhere />
+    <Styled.Wrapper href={`${href}${book.id}`}>
+      <Styled.Image
+        src={getImageURL(book.id)}
+        alt="book cover"
+        width={120}
+        height={180}
+        objectFit="cover"
+        isEverywhere
+      />
       <Styled.Content>
         <div>
           <Text
@@ -76,18 +101,53 @@ export const Card: FC<TCardProps> = ({
         <Styled.ButtonBlock>
           {uid && (
             <>
-              <Styled.Icon onClick={handleAddToListClick}>
-                <IconsSelector
+              <Menu.Popover
+                opened={isMenuOpened}
+                onClose={() => setIsMenuOpened(false)}
+                positionY={isLastIndex ? 'top' : 'bottom'}
+              >
+                <ActionIcon
                   icon={isAtLeastOneList ? 'check_solid' : 'plus_solid'}
+                  size={theme.icon_sizes.md}
+                  padding={theme.space.xs}
                   color={isAtLeastOneList ? theme.colors.main : theme.colors.grey}
+                  onClick={handleAddToListClick}
                 />
-              </Styled.Icon>
-              <Styled.Icon onClick={handleClickBookmark}>
-                <IconsSelector
-                  icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                  color={isBookmarked ? theme.colors.main : theme.colors.grey}
-                />
-              </Styled.Icon>
+                {menuItems?.length ? (
+                  menuItems?.map(({ action, icon, title, color, id }) => (
+                    <Menu.MenuItem
+                      key={id}
+                      onClick={e => handleActionClick(e, action)}
+                      title={title}
+                      color={color}
+                      icon={icon}
+                      iconPosition="right"
+                    />
+                  ))
+                ) : (
+                  <Styled.EmptyListsWrapper>
+                    <Text
+                      color={theme.colors.grey}
+                      fontSizeMob={theme.fonts.size.regular.md}
+                      fontHeightMob={theme.fonts.height.regular.md}
+                    >
+                      No lists found
+                    </Text>
+                  </Styled.EmptyListsWrapper>
+                )}
+                <Styled.ButtonWrapper>
+                  <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                    {menuItems?.length ? 'Update' : 'Create a list'}
+                  </Button>
+                </Styled.ButtonWrapper>
+              </Menu.Popover>
+              <ActionIcon
+                icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+                size={theme.icon_sizes.md}
+                padding={theme.space.xs}
+                color={isBookmarked ? theme.colors.main : theme.colors.grey}
+                onClick={handleClickBookmark}
+              />
             </>
           )}
         </Styled.ButtonBlock>

@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     main: '#B3A3A1',
     secondary: '#FFE0DB',
+    tertiary: '#E1C7C3',
     grey: '#494A4A',
     grey_light: '#777878',
     grey_disabled: '#CCCFCF',
@@ -77,9 +78,9 @@ export const theme = {
     round: 1000,
   },
   icon_sizes: {
-    lg: 40,
-    md: 32,
-    sm: 24,
-    xs: 20,
+    lg: 24,
+    md: 20,
+    sm: 16,
+    xs: 14,
   },
 } as const

@@ -1,6 +1,9 @@
 import { FC } from 'react'
+
 import { Text } from '@ui-kit'
+
 import { theme } from '@constants'
+
 import { Flexbox } from '../Flexbox'
 
 type TLabelWithTextProps = {

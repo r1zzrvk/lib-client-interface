@@ -1,4 +1,5 @@
 import { object, string } from 'yup'
+
 import {
   CONFIRMATION_REQUIRED,
   DISPLAY_NAME_REQUIRED,
@@ -13,6 +14,7 @@ import {
   PASSWORD_IS_TOO_SHORT,
   PASSWORD_REQUIRED,
 } from '@constants'
+
 import { ESignUpFormFields } from './types'
 
 export const validationSchema = object().shape({

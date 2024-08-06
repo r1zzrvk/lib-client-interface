@@ -1,7 +1,10 @@
 import { FC } from 'react'
+
 import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
 import { Skeleton, Spacer } from '@ui-kit'
+
+import { theme } from '@constants'
+
 import { Styled } from './styled'
 
 export const SkeletonCard: FC = () => (

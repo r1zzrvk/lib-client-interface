@@ -1,11 +1,15 @@
 import React, { FC, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import { Input } from '@ui-kit'
+
 import { theme } from '@constants'
 import { EPagePaths } from '@types'
-import { useRouter } from 'next/router'
+import { useBreakpoint } from '@hooks'
 
 export const SearchField: FC = () => {
   const router = useRouter()
+  const { isMob, isTablet } = useBreakpoint()
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -20,10 +24,12 @@ export const SearchField: FC = () => {
       placeholder="Search for books"
       type="text"
       color={theme.colors.beige}
-      fluid
+      fluid={isMob || isTablet}
       onChange={e => setSearchTerm(e.target.value)}
-      hasIcon
       onKeyDown={e => handleKeyDown(e)}
+      onClear={() => setSearchTerm('')}
+      hasIcon
+      isClearable
     />
   )
 }

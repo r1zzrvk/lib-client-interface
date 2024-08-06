@@ -1,75 +1,106 @@
-import { Flexbox } from '@components/atoms'
-import { IconsSelector } from '@components/molecules'
-import { BOOKS_IMAGE_PATH, BOOKS_IMAGE_SIZE, theme } from '@constants'
-import { TBook, TList } from '@types'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
-import { Button, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
-import { useAppSelector } from '@hooks'
+import { FC, useEffect, useState } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { ActionIcon, Button, Menu, ResponsiveImage, Skeleton, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
+import { EPagePaths, TBook, TList } from '@types'
+import { useAppSelector, useSelectingLists } from '@hooks'
 import { getUserAuth } from '@selectors'
+import { getImageURL } from '@utils'
+
 import { Styled } from './styled'
 
 type TBookHeaderProps = {
-  id: TBook['id']
   isLoading: boolean
   onBookmarkClick: () => void
   isBookmarked: boolean
   listWithBook: TList
-  onAddToListClick: () => void
+  onAddToListClick: (listIds: string[], book: TBook) => void
+  book: TBook | null
+  lists?: TList[]
 }
 
 export const BookHeader: FC<TBookHeaderProps> = ({
-  id,
+  book,
   isLoading,
   onBookmarkClick,
   isBookmarked,
   listWithBook,
+  lists = [],
   onAddToListClick,
 }) => {
   const router = useRouter()
   const isAuth = useAppSelector(getUserAuth)
-  const imageLink = `${BOOKS_IMAGE_PATH}${id}${BOOKS_IMAGE_SIZE}`
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
+  const { menuItems, selectedListIds, onClear, checkAddedLists } = useSelectingLists({ lists, bookId: book?.id || '' })
 
   const handleBackClick = () => {
     router.back()
   }
 
+  const handleSubmitClick = () => {
+    if (menuItems.length && book) {
+      onAddToListClick?.(selectedListIds, book)
+      onClear()
+      setIsMenuOpened(false)
+
+      return
+    }
+
+    router.push(`${EPagePaths.MY_LISTS}/?createOne=true`)
+  }
+
+  const handleOpenMenu = () => {
+    setIsMenuOpened(prev => !prev)
+    checkAddedLists()
+  }
+
+  useEffect(() => {
+    if (lists.length) {
+      checkAddedLists()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lists.length])
+
   return (
     <>
       <Flexbox justify="space-between">
-        {/* TODO: вынести в отдельный компонент и использовать везде с иконками */}
-        <Styled.IconWrapper onClick={handleBackClick}>
-          <IconsSelector size={theme.icon_sizes.sm} icon="caretLeft_solid" color={theme.colors.grey} isButton />
-        </Styled.IconWrapper>
-        {isLoading ? (
+        <ActionIcon
+          onClick={handleBackClick}
+          size={theme.icon_sizes.md}
+          padding={theme.space.md}
+          icon="caretLeft_solid"
+          color={theme.colors.grey}
+        />
+        {isLoading || !book?.id ? (
           <Skeleton radius={theme.radiuses.round} width={48} height={48} />
         ) : (
           isAuth && (
-            <Styled.IconWrapper onClick={onBookmarkClick}>
-              <IconsSelector
-                size={theme.icon_sizes.xs}
-                icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
-                color={isBookmarked ? theme.colors.main : theme.colors.grey}
-                isButton
-              />
-            </Styled.IconWrapper>
+            <ActionIcon
+              onClick={onBookmarkClick}
+              size={theme.icon_sizes.md}
+              padding={theme.space.md}
+              icon={isBookmarked ? 'bookmark_solid' : 'bookmark_regular'}
+              color={isBookmarked ? theme.colors.main : theme.colors.grey}
+            />
           )
         )}
       </Flexbox>
       <Spacer size={0} sizeMob={theme.space.sm} />
       <Flexbox justify="center">
-        {isLoading ? (
+        {isLoading || !book?.id ? (
           <Skeleton radius={theme.radiuses.xs} height={360} width={230} />
         ) : (
-          <ResponsiveImage src={imageLink} height={360} width={230} isEverywhere />
+          <ResponsiveImage src={getImageURL(book.id)} height={360} width={230} isEverywhere />
         )}
       </Flexbox>
       <Spacer sizeMob={theme.space.sm} />
       {isAuth && (
         <>
-          {/* TODO: добавить иконку в компонент кнопки с пропом left/right section */}
-          <Button onClick={onAddToListClick} isFluid>
-            <Flexbox justify="center" align="center" gap={theme.space.xs2}>
+          <Menu.Popover opened={isMenuOpened} onClose={() => setIsMenuOpened(false)}>
+            <Button onClick={handleOpenMenu} rightIcon={listWithBook ? 'check_solid' : 'plus_solid'} isFluid>
               <Text
                 color={theme.colors.grey}
                 fontSizeMob={theme.fonts.size.regular.md}
@@ -78,13 +109,35 @@ export const BookHeader: FC<TBookHeaderProps> = ({
               >
                 {listWithBook ? 'In my list' : 'Add to list'}
               </Text>
-              <IconsSelector
-                size={theme.icon_sizes.xs}
-                icon={listWithBook ? 'check_solid' : 'plus_solid'}
-                color={theme.colors.grey}
-              />
-            </Flexbox>
-          </Button>
+            </Button>
+            {menuItems?.length ? (
+              menuItems?.map(({ action, icon, title, color, id }) => (
+                <Menu.MenuItem
+                  key={id}
+                  onClick={() => action()}
+                  title={title}
+                  color={color}
+                  icon={icon}
+                  iconPosition="right"
+                />
+              ))
+            ) : (
+              <Styled.EmptyListsWrapper>
+                <Text
+                  color={theme.colors.grey}
+                  fontSizeMob={theme.fonts.size.regular.md}
+                  fontHeightMob={theme.fonts.height.regular.md}
+                >
+                  No lists found
+                </Text>
+              </Styled.EmptyListsWrapper>
+            )}
+            <Styled.ButtonWrapper>
+              <Button onClick={handleSubmitClick} height={30} borderRadius={8} isFluid>
+                {menuItems?.length ? 'Update' : 'Create a list'}
+              </Button>
+            </Styled.ButtonWrapper>
+          </Menu.Popover>
           <Spacer sizeMob={theme.space.sm} />
         </>
       )}

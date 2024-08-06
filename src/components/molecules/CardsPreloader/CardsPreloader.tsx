@@ -1,5 +1,7 @@
 import { FC } from 'react'
+
 import { getArrayFromNumber } from '@utils'
+
 import { SkeletonCard } from './atoms'
 import { Styled } from './styled'
 

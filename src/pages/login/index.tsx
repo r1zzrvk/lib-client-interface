@@ -1,11 +1,14 @@
+/* eslint-disable import/no-default-export */
 import { FC } from 'react'
+
 import { LoginForm } from '@components/organism'
 import { Spacer } from '@ui-kit'
+import { Background } from '@components/atoms'
+
 import { theme } from '@constants'
 import { LayoutTemplate } from '@templates'
 import { getStaticPageProps } from '@api'
 import { TPageDataProps } from '@types'
-import { Background } from '@components/atoms'
 
 export const getStaticProps = getStaticPageProps
 

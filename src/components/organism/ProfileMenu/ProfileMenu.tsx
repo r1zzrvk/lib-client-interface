@@ -1,10 +1,13 @@
+import { FC, ReactNode, useMemo } from 'react'
+
+import { Spacer, Tabs } from '@ui-kit'
 import { ProfileBanner } from '@components/molecules'
+
 import { theme } from '@constants'
 import { useAppSelector } from '@hooks'
 import { getUserData } from '@selectors'
 import { EProfileTabs, TTab } from '@types'
-import { Spacer, Tabs } from '@ui-kit'
-import { FC, ReactNode, useMemo } from 'react'
+
 import { AccountInfo, MyLists, PersonalInfo } from './molecules'
 import { Styled } from './styled'
 import { filterProfileMenu } from './utils'

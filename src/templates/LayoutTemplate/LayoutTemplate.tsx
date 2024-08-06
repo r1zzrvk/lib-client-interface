@@ -1,9 +1,11 @@
 import { ReactNode, FC } from 'react'
+
 import { Footer, Header, MobileMenu, Spacer } from '@ui-kit'
 import { Flexbox, PaddingContainer } from '@components/atoms'
+import { AuthProvider } from '@components/molecules'
+
 import { theme } from '@constants'
 import { THeaderFooter } from '@types'
-import { AuthProvider } from '@components/molecules'
 
 type TLayoutTemplateProps = {
   children: ReactNode
@@ -17,6 +19,7 @@ export const LayoutTemplate: FC<TLayoutTemplateProps> = ({ children, headerFoote
     <AuthProvider>
       <Flexbox direction="column" height="100%">
         <Header headerData={header} />
+        <Spacer sizeMob={0} sizeTablet={105} size={135} />
         <PaddingContainer padding={theme.space.sm} mobOnly withMaxHeight>
           {children}
         </PaddingContainer>

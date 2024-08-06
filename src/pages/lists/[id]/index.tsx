@@ -1,15 +1,15 @@
+/* eslint-disable import/no-default-export */
+import { useRouter } from 'next/router'
+import { FC, useEffect, useMemo } from 'react'
+
+import { List } from '@components/organism'
+
 import { getServerSidePageProps } from '@api'
 import { useAppSelector, useLists } from '@hooks'
 import { getUserData } from '@selectors'
 import { LayoutTemplate } from '@templates'
 import { TPageDataProps } from '@types'
-import { List } from '@components/organism'
-import { useRouter } from 'next/router'
-import { FC, useEffect, useMemo } from 'react'
-import { ListPreloader } from '@components/molecules'
 import { filterLists } from '@utils'
-import { theme } from '@constants'
-import { Background } from '@components/atoms'
 
 export const getServerSideProps = getServerSidePageProps
 
@@ -36,18 +36,14 @@ const ListPage: FC<TPageDataProps> = ({ headerFooterData }) => {
 
   return (
     <LayoutTemplate headerFooterData={headerFooterData}>
-      <Background color={theme.colors.white}>
-        {uid && lists?.length && (
-          <List
-            uid={uid}
-            list={lists?.[0]}
-            updateList={() => getListsData()}
-            allLists={filteredLists}
-            updateAllLists={() => getAllListsData()}
-          />
-        )}
-        {isLoading && <ListPreloader />}
-      </Background>
+      <List
+        uid={uid}
+        isLoading={isLoading}
+        list={lists?.[0]}
+        updateList={() => getListsData()}
+        allLists={filteredLists}
+        updateAllLists={() => getAllListsData()}
+      />
     </LayoutTemplate>
   )
 }

@@ -1,14 +1,16 @@
 import { FC, ReactNode, useState } from 'react'
+
 import { theme } from '@constants'
+
+import { ActionIcon } from '../ActionIcon'
 import { Styled } from './styled'
 
 type TAccordionProps = {
   children: ReactNode
   title: string
-  color?: string
 }
 
-export const Accordion: FC<TAccordionProps> = ({ title, children, color = theme.colors.white }) => {
+export const Accordion: FC<TAccordionProps> = ({ title, children }) => {
   const [active, setActive] = useState(false)
   const [animation, setAnimation] = useState('Closing')
 
@@ -20,18 +22,18 @@ export const Accordion: FC<TAccordionProps> = ({ title, children, color = theme.
       return
     }
 
-    setTimeout(() => {
-      setActive(false)
-    }, 300)
+    setActive(false)
   }
 
   return (
-    <Styled.Wrapper color={color} active={active}>
-      <Styled.AccordionButton active={active} color={color} onClick={handleClick}>
+    <Styled.Wrapper active={active}>
+      <Styled.AccordionButton active={active} onClick={handleClick}>
         {title}
-        <Styled.AccordionIcon active={active}>{'\u2716'}</Styled.AccordionIcon>
+        <Styled.AccordionIcon active={active}>
+          <ActionIcon icon="caretDown_solid" color={theme.colors.grey} backgroundColor={theme.colors.beige} />
+        </Styled.AccordionIcon>
       </Styled.AccordionButton>
-      <Styled.AccordionItem active={active} animation={animation} color={color}>
+      <Styled.AccordionItem active={active} animation={animation}>
         {children}
       </Styled.AccordionItem>
     </Styled.Wrapper>

@@ -1,9 +1,12 @@
 import { FC, KeyboardEvent, useEffect, useMemo } from 'react'
 import { useFormikContext } from 'formik'
 import { useRouter } from 'next/router'
+
+import { Badge, Input, Paginator, Spacer } from '@ui-kit'
+import { CardsPreloader } from '@components/molecules'
+
 import { useBreakpoint } from '@hooks'
 import { theme } from '@constants'
-import { Badge, Input, Paginator, Spacer } from '@ui-kit'
 import {
   ESearchByOptionsLabels,
   ESearchFormFields,
@@ -13,7 +16,7 @@ import {
   TSearchFormValues,
 } from '@types'
 import { scrollToYAxis, getBadgesFromObject, getHasFilters } from '@utils'
-import { CardsPreloader } from '@components/molecules'
+
 import { Styled } from './styled'
 import { Results } from './molecules'
 
@@ -24,7 +27,6 @@ type TSearchWithResultsProps = {
   nextPage: () => void
   prevPage: () => void
   totalPages: number
-  packSize: number
   isRequestError: boolean
   isLoading: boolean
   searchData: TSearchBookResponse | null
@@ -34,7 +36,6 @@ type TSearchWithResultsProps = {
 export const SearchWithResults: FC<TSearchWithResultsProps> = ({
   onModalOpen,
   nextPage,
-  packSize,
   page,
   prevPage,
   setPage,
@@ -145,20 +146,18 @@ export const SearchWithResults: FC<TSearchWithResultsProps> = ({
           />
         ))}
       </Styled.BadgesContainer>
-      {isLoading ? (
-        <CardsPreloader />
-      ) : (
-        <Results searchData={searchData} isRequestError={isRequestError} packSize={packSize} />
-      )}
-      <Spacer size={theme.space.xl} sizeMob={theme.space.md} />
+      {isLoading ? <CardsPreloader /> : <Results searchData={searchData} isRequestError={isRequestError} />}
       {totalPages > 1 && !isRequestError && !isLoading && (
-        <Paginator
-          totalPages={totalPages}
-          currentPage={page}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          setPage={setPage}
-        />
+        <>
+          <Spacer size={theme.space.xl} sizeMob={theme.space.md} />
+          <Paginator
+            totalPages={totalPages}
+            currentPage={page}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            setPage={setPage}
+          />
+        </>
       )}
     </Styled.SearchWithResults>
   )
