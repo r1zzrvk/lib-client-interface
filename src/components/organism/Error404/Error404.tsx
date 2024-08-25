@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+
 import { Button, ResponsiveImage, Spacer, Text } from '@ui-kit'
 import { Flexbox } from '@components/atoms'
+
 import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
 import { EPagePaths } from '@types'

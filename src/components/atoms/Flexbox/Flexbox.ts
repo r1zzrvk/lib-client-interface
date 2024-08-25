@@ -8,6 +8,32 @@ type TFlexboxProps = {
   width?: number | string
   height?: number | string
   flex?: string
+  justifySelf?:
+    | 'auto'
+    | 'normal'
+    | 'stretch'
+    | 'center'
+    | 'end'
+    | 'start'
+    | 'flex-start'
+    | 'flex-end'
+    | 'self-start'
+    | 'self-end'
+    | 'left'
+    | 'right'
+  alignSelf?:
+    | 'auto'
+    | 'normal'
+    | 'stretch'
+    | 'center'
+    | 'end'
+    | 'start'
+    | 'flex-start'
+    | 'flex-end'
+    | 'self-start'
+    | 'self-end'
+    | 'left'
+    | 'right'
 }
 
 export const Flexbox = styled.div<TFlexboxProps>`
@@ -19,4 +45,6 @@ export const Flexbox = styled.div<TFlexboxProps>`
   height: ${({ height }) => Boolean(height) && (typeof height === 'string' ? height : `${height}px`)};
   width: ${({ width }) => Boolean(width) && (typeof width === 'string' ? width : `${width}px`)};
   flex: ${({ flex }) => flex};
+  justify-self: ${({ justifySelf }) => justifySelf || 'auto'};
+  align-self: ${({ alignSelf }) => alignSelf || 'auto'};
 `

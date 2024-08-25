@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
-// todo: избавиться от логов
 import { DocumentData, collection, doc, getDocs, setDoc, deleteField, updateDoc } from 'firebase/firestore'
+
 import { EDatabaseDocs, TUpdateDocList } from '@types'
+
 import { database } from './firebase'
 
 // Function updates a list by ID. The ID also serves as the key for an object
@@ -15,7 +15,7 @@ export const updateDocList = async ({ uid, list, isBookmarks }: TUpdateDocList) 
   const listsRef = doc(database, uid, EDatabaseDocs.LISTS)
   const listObject = !isBookmarks ? { [list.id]: [list] } : { bookmarks: [list] }
 
-  await setDoc(listsRef, listObject, { merge: true }).catch((e: Error) => console.log(e))
+  await setDoc(listsRef, listObject, { merge: true })
 }
 
 export const fetchDatabaseDocs = async (uid: string): Promise<DocumentData | null> => {

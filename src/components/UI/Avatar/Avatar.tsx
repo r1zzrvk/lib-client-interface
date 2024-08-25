@@ -1,5 +1,7 @@
 import { FC } from 'react'
+
 import { AVATAR_SIZES, theme } from '@constants'
+
 import { Styled } from './styled'
 import { Skeleton } from '../Skeleton'
 
@@ -10,7 +12,7 @@ type TAvatarProps = {
 }
 
 export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
-  <div>
+  <Styled.Wrapper size={AVATAR_SIZES[size]}>
     {src ? (
       <>
         <Styled.Avatar
@@ -36,5 +38,5 @@ export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
     ) : (
       <Skeleton width={AVATAR_SIZES[size]} height={AVATAR_SIZES[size]} radius={theme.radiuses.round} />
     )}
-  </div>
+  </Styled.Wrapper>
 )

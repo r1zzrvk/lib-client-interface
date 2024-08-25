@@ -1,9 +1,12 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
+
 import { Text, Button, Spacer } from '@ui-kit'
+
 import { theme } from '@constants'
 import { EPagePaths } from '@types'
 import { useBreakpoint } from '@hooks'
+
 import { Styled } from './styled'
 
 export const BannerContent: FC = () => {

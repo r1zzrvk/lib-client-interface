@@ -1,6 +1,9 @@
 import { FC } from 'react'
+
 import { Text } from '@ui-kit'
+
 import { theme } from '@constants'
+
 import { ReadmoreButton } from './ReadmoreButton'
 
 type TPromoProps = {
@@ -12,6 +15,7 @@ type TPromoProps = {
   contentFontHeight: number
   onButtonClick: () => void
   buttonText?: string
+  textColor?: string
 }
 
 export const Promo: FC<TPromoProps> = ({
@@ -22,14 +26,17 @@ export const Promo: FC<TPromoProps> = ({
   contentFontSize,
   headerFontHeight,
   contentFontHeight,
+  textColor = theme.colors.white,
   onButtonClick,
 }) => (
   <section>
     <Text
+      color={textColor}
       marginBottom={theme.space.md}
       fontSize={headerFontSize}
       fontHeight={headerFontHeight}
-      fontWeight={theme.fonts.weight.medium}
+      fontWeight={theme.fonts.weight.semibold}
+      fontWeightTablet={theme.fonts.weight.medium}
       fontWeightMob={theme.fonts.weight.medium}
       fontSizeMob={theme.fonts.size.header.sm}
       fontHeightMob={theme.fonts.height.header.sm}
@@ -38,6 +45,7 @@ export const Promo: FC<TPromoProps> = ({
       {header}
     </Text>
     <Text
+      color={textColor}
       marginBottom={theme.space.md}
       fontSize={contentFontSize}
       fontHeight={contentFontHeight}
@@ -47,6 +55,6 @@ export const Promo: FC<TPromoProps> = ({
     >
       {content}
     </Text>
-    <ReadmoreButton buttonText={buttonText} onClick={onButtonClick} />
+    <ReadmoreButton textColor={textColor} buttonText={buttonText} onClick={onButtonClick} />
   </section>
 )

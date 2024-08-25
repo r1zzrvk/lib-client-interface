@@ -1,7 +1,9 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Text } from '@ui-kit'
 import { FC, ReactNode } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Text } from '@ui-kit'
+
+import { theme } from '@constants'
 
 type TInfoBlockProps = {
   title: string

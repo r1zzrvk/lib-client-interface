@@ -1,10 +1,14 @@
-import { auth } from '@api'
-import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
-import { Spacer, Text } from '@ui-kit'
 import { FirebaseError } from 'firebase/app'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { Form, Formik, FormikErrors } from 'formik'
-import { FC, useState } from 'react'
+import { FC } from 'react'
+
+import { Spacer, Text } from '@ui-kit'
+
+import { auth } from '@api'
+import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
+import { useDialog } from '@hooks'
+
 import { StepWrapper } from '../../atoms'
 import { ESteps } from '../../constants'
 import { accountRecoveryFormInitialValues } from './initialValues'
@@ -18,14 +22,14 @@ type TAccountRecoveryStepProps = {
 }
 
 export const AccountRecoveryStep: FC<TAccountRecoveryStepProps> = ({ onError, setStep }) => {
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
+  const { dialog: Dialog, close, show } = useDialog()
 
   const handleSubmit = (
     { email }: TAccountRecoveryFormValues,
     setErrors: (errors: FormikErrors<TAccountRecoveryFormValues>) => void,
   ) => {
     sendPasswordResetEmail(auth, email)
-      .then(() => setIsDialogOpened(true))
+      .then(() => show())
       .catch((e: FirebaseError) => {
         if (FirebaseErrorCodesAndMessages[e.code]) {
           setErrors({
@@ -48,7 +52,7 @@ export const AccountRecoveryStep: FC<TAccountRecoveryStepProps> = ({ onError, se
   }
 
   const handleClose = () => {
-    setIsDialogOpened(false)
+    close()
     setStep(ESteps.Auth)
   }
 
@@ -75,11 +79,7 @@ export const AccountRecoveryStep: FC<TAccountRecoveryStepProps> = ({ onError, se
         validateOnBlur
       >
         <Form>
-          <AccountRecoveryForm
-            onGoBack={() => setStep(ESteps.Auth)}
-            isDialogOpened={isDialogOpened}
-            onDialogClose={handleClose}
-          />
+          <AccountRecoveryForm onGoBack={() => setStep(ESteps.Auth)} Dialog={Dialog} onDialogClose={handleClose} />
         </Form>
       </Formik>
       <Spacer size={theme.space.xs} sizeMob={theme.space.xl} />

@@ -1,9 +1,12 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { useBreakpoint } from '@hooks'
-import { Button, Input, Spacer, Text } from '@ui-kit'
 import { useFormikContext } from 'formik'
 import { FC, useState } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Input, Link, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
+import { useBreakpoint } from '@hooks'
+
 import { EAuthFormFields, TAuthFormValues } from '../../types'
 
 type TAuthFormProps = {
@@ -55,15 +58,9 @@ export const AuthForm: FC<TAuthFormProps> = ({ onSignUp, onSignWithGoogle, onFor
         />
         <Spacer size={theme.space.xs3} samespace />
         <Flexbox justify="end">
-          <Text
-            color={theme.colors.blue}
-            fontSizeMob={theme.fonts.size.regular.md}
-            fontHeightMob={theme.fonts.height.regular.md}
-            onClick={onForgotPassword}
-            asLink
-          >
+          <Link color={theme.colors.blue} hoverColor={theme.colors.grey_light} onClick={onForgotPassword} asButton>
             Forgot password?
-          </Text>
+          </Link>
         </Flexbox>
         <Spacer size={theme.space.md} samespace />
         <Button type="submit" isFluid>
@@ -79,15 +76,9 @@ export const AuthForm: FC<TAuthFormProps> = ({ onSignUp, onSignWithGoogle, onFor
         Don&apos;t have an account?
       </Text>
       <Flexbox justify="start" gap={theme.space.xs3}>
-        <Text
-          color={theme.colors.blue}
-          fontSizeMob={theme.fonts.size.regular.md}
-          fontHeightMob={theme.fonts.height.regular.md}
-          onClick={onSignWithGoogle}
-          asLink
-        >
+        <Link color={theme.colors.blue} hoverColor={theme.colors.grey_light} onClick={onSignWithGoogle} asButton>
           Sign in with Google
-        </Text>
+        </Link>
         <Text
           color={theme.colors.grey}
           fontSizeMob={theme.fonts.size.regular.md}
@@ -95,15 +86,9 @@ export const AuthForm: FC<TAuthFormProps> = ({ onSignUp, onSignWithGoogle, onFor
         >
           or
         </Text>
-        <Text
-          color={theme.colors.blue}
-          fontSizeMob={theme.fonts.size.regular.md}
-          fontHeightMob={theme.fonts.height.regular.md}
-          onClick={onSignUp}
-          asLink
-        >
+        <Link color={theme.colors.blue} hoverColor={theme.colors.grey_light} onClick={onSignUp} asButton>
           Sign up
-        </Text>
+        </Link>
       </Flexbox>
     </>
   )

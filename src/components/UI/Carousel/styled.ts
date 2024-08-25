@@ -1,14 +1,10 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
 
 type TListProps = {
   isAnimate: boolean
   animationType: string
-}
-
-type TButtonProps = {
-  isInvisible: boolean
-  isLeft?: boolean
 }
 
 type TDotProps = {
@@ -20,6 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 50px;
+  z-index: 10;
 `
 
 const List = styled.div<TListProps>`
@@ -28,22 +25,28 @@ const List = styled.div<TListProps>`
   align-items: center;
   gap: 50px;
   transition: transform 0.8s ease-in-out;
-  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} .8s ease-in`};
+  animation: ${({ isAnimate, animationType }) => isAnimate && `${animationType} 0.5s ease`};
+  z-index: 0;
 
   @keyframes ParallaxIn {
     0% {
-      opacity: 0.1;
-      transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0px);
     }
 
     25% {
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateX(200px);
     }
 
     50% {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(0px);
+    }
+
+    75% {
+      opacity: 0;
+      transform: translateX(-200px);
     }
 
     100% {
@@ -54,35 +57,29 @@ const List = styled.div<TListProps>`
 
   @keyframes ParallaxOut {
     0% {
-      opacity: 0.3;
-      transform: translateX(0);
+      opacity: 1;
+      transform: translateX(0px);
     }
 
     25% {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(-200px);
     }
 
     50% {
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateX(0px);
+    }
+
+    75% {
+      opacity: 0;
+      transform: translateX(200px);
     }
 
     100% {
       opacity: 1;
       transform: translateX(0px);
     }
-  }
-`
-
-const Button = styled.button<TButtonProps>`
-  border: none;
-  background-color: inherit;
-  opacity: ${({ isInvisible }) => (isInvisible ? 0 : 1)};
-  transition: 0.4s;
-
-  &:hover {
-    opacity: ${({ isInvisible }) => (isInvisible ? 0 : 0.5)};
   }
 `
 
@@ -105,10 +102,16 @@ const Dot = styled.span<TDotProps>`
     background-color: ${theme.colors.main};
   }
 `
+
+const Mock = styled.div`
+  background-color: inherit;
+  width: ${theme.space.lg}px;
+  height: ${theme.space.lg}px;
+`
 export const Styled = {
   Wrapper,
-  Button,
   Paginator,
   Dot,
   List,
+  Mock,
 }

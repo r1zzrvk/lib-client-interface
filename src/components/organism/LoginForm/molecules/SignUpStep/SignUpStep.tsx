@@ -1,14 +1,17 @@
 import { FC } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { Form, Formik, FormikErrors } from 'formik'
+import { FirebaseError } from 'firebase/app'
+
 import { Avatar, Spacer, Text } from '@ui-kit'
+import { Flexbox } from '@components/atoms'
+
 import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, USER_AVATAR_LINK, theme } from '@constants'
 import { useAppDispatch } from '@hooks'
 import { auth, createBookmarksForNewUsers } from '@api'
 import { setAuthStatus, setUser } from '@reducers'
 import { EAuthorizationStatus } from '@types'
-import { Form, Formik, FormikErrors } from 'formik'
-import { FirebaseError } from 'firebase/app'
-import { Flexbox } from '@components/atoms'
+
 import { StepWrapper } from '../../atoms'
 import { initialValues } from './initialValues'
 import { validationSchema } from './validationSchema'

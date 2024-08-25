@@ -133,7 +133,7 @@ release/v3.2.2
 
 <br>
 
-> `book.volumeInfo.imageLinks` - object contains images in poor quality that shouldn't be used. So I found the solution using another link in the directory `src/constants/api/BOOKS_IMAGE_SIZE` with `book.id`
+> `book.volumeInfo.imageLinks` - object contains images in poor quality that shouldn't be used. So I found the solution using another link in the directory `src/constants/api/BOOKS_IMAGE_PATH` with `book.id`
 
 <br>
 

@@ -1,5 +1,7 @@
 import { FC } from 'react'
+
 import { ResponsiveImage } from '@ui-kit'
+
 import { BannerContent } from './molecules'
 import { Styled } from './styled'
 

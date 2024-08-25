@@ -1,5 +1,6 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
+
+import { theme } from '@constants'
 
 const OutOfContainerWrap = styled.div`
   margin: 0px -${theme.space.sm}px;

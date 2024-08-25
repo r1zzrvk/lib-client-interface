@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import { IconsSelector, ItemList } from '@components/molecules'
+
+import { ItemList } from '@components/molecules'
+
 import { theme } from '@constants'
 import { usePagination } from '@hooks'
 import { getPagesArray } from '@utils'
+
+import { ActionIcon } from '../ActionIcon'
 import { Styled } from './styled'
 
 type TCarouselProps<T> = {
@@ -45,25 +49,34 @@ export function Carousel<T>({ component, items, contentPerPage = 3 }: TCarouselP
 
   return (
     <>
-      <Styled.Wrapper onAnimationEnd={() => setAnimation({ ...animation, isAnimate: false })}>
-        <Styled.Button
-          onClick={() => handleArrowClick(prevPage, false)}
-          isInvisible={page === 1}
-          disabled={page === 1}
-          isLeft
+      <Styled.Wrapper>
+        {page !== 1 ? (
+          <ActionIcon
+            onClick={() => handleArrowClick(prevPage, false)}
+            icon="caretLeft_solid"
+            color={theme.colors.grey}
+            disabled={page === 1}
+          />
+        ) : (
+          <Styled.Mock />
+        )}
+        <Styled.List
+          isAnimate={animation.isAnimate}
+          animationType={animation.animationType}
+          onAnimationEnd={() => setAnimation({ ...animation, isAnimate: false })}
         >
-          <IconsSelector icon="caretLeft_solid" color={theme.colors.grey} />
-        </Styled.Button>
-        <Styled.List isAnimate={animation.isAnimate} animationType={animation.animationType}>
           <ItemList items={items.slice(firstIndex, lastIndex)} renderItem={component} />
         </Styled.List>
-        <Styled.Button
-          onClick={() => handleArrowClick(nextPage, true)}
-          isInvisible={page === pages.length}
-          disabled={page === pages.length}
-        >
-          <IconsSelector icon="caretRight_solid" color={theme.colors.grey} />
-        </Styled.Button>
+        {page !== pages.length ? (
+          <ActionIcon
+            onClick={() => handleArrowClick(nextPage, true)}
+            icon="caretRight_solid"
+            color={theme.colors.grey}
+            disabled={page === pages.length}
+          />
+        ) : (
+          <Styled.Mock />
+        )}
       </Styled.Wrapper>
       <Styled.Paginator>
         <ItemList

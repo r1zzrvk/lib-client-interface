@@ -1,14 +1,19 @@
+/* eslint-disable import/no-default-export */
 import Head from 'next/head'
 import { FC, useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
-import { store } from '@store'
 import { config } from '@fortawesome/fontawesome-svg-core'
+
+import { PagePreloader } from '@ui-kit'
+
+import { store } from '@store'
+
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../styles/main.css'
-import { PagePreloader } from '@ui-kit'
 
 config.autoAddCss = false
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MyApp: FC = ({ Component, pageProps }: any) => {
   const [isLoading, setIsLoading] = useState(true)
 

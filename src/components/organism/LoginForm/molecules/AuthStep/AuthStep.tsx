@@ -1,13 +1,16 @@
 import { FC } from 'react'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { Form, Formik, FormikErrors } from 'formik'
+import { FirebaseError } from 'firebase/app'
+
 import { Spacer, Text } from '@ui-kit'
+
 import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
 import { useAppDispatch } from '@hooks'
 import { auth, createBookmarksForNewUsers, googleProvider } from '@api'
 import { setAuthStatus, setUser } from '@reducers'
 import { EAuthorizationStatus } from '@types'
-import { Form, Formik, FormikErrors } from 'formik'
-import { FirebaseError } from 'firebase/app'
+
 import { StepWrapper } from '../../atoms'
 import { AuthForm } from './molecules'
 import { authFormInitialValues } from './initialValues'

@@ -1,9 +1,3 @@
-import { Flexbox } from '@components/atoms'
-import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
-import { useAppDispatch, useAppSelector, useBreakpoint } from '@hooks'
-import { setUser } from '@reducers'
-import { getUserData } from '@selectors'
-import { Button, Modal, Spacer, Text } from '@ui-kit'
 import { FirebaseError } from 'firebase/app'
 import {
   AuthErrorCodes,
@@ -16,17 +10,23 @@ import {
 } from 'firebase/auth'
 import { Form, Formik, FormikErrors, FormikState } from 'formik'
 import { FC, useState } from 'react'
+
+import { Spacer, Text } from '@ui-kit'
+
+import { FirebaseErrorCodes, FirebaseErrorCodesAndMessages, theme } from '@constants'
+import { useAppDispatch, useAppSelector, useDialog } from '@hooks'
+import { setUser } from '@reducers'
+import { getUserData } from '@selectors'
+
 import { AccountInfoForm } from './molecules'
-import { Styled } from './styled'
 import { EAccountInfoFormFields, TAccountInfoFormValues } from './types'
 import { getAccountInfoInitialValues, getEmailConfirmationSubtitle } from './utils'
 import { getValidationSchema } from './validationSchema'
 
 export const AccountInfo: FC = () => {
-  const { isMob } = useBreakpoint()
   const user = useAppSelector(getUserData)
   const dispatch = useAppDispatch()
-  const [isDialogOpened, setIsDialogOpened] = useState(false)
+  const { dialog: Dialog, close, show } = useDialog()
 
   const [editingFields, setEditingFields] = useState<{
     email: boolean
@@ -118,7 +118,7 @@ export const AccountInfo: FC = () => {
   }
 
   const handleConfirmEmail = () => {
-    sendEmailVerification(user).then(() => setIsDialogOpened(true))
+    sendEmailVerification(user).then(() => show())
   }
 
   return (
@@ -150,27 +150,12 @@ export const AccountInfo: FC = () => {
           />
         </Form>
       </Formik>
-      <Modal isOpen={isDialogOpened} onClose={() => setIsDialogOpened(false)} size="sm" title="Account recovery">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            {getEmailConfirmationSubtitle(user.email || '')}
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={() => setIsDialogOpened(false)} isFluid={isMob} size="lg" type="button">
-              Got it
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Email confirmation"
+        subtitle={getEmailConfirmationSubtitle(user.email || '')}
+        submitButtonText="Got it"
+        onSubmit={close}
+      />
     </>
   )
 }

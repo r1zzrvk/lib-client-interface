@@ -1,17 +1,18 @@
-import { theme } from '@constants'
 import styled from 'styled-components'
 
-const IconWrapper = styled.div`
+import { theme } from '@constants'
+
+const ButtonWrapper = styled.div`
+  padding: 0px ${theme.space.xs2}px;
+`
+
+const EmptyListsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: ${theme.space.xs}px;
-  border-radius: ${theme.radiuses.round}px;
-  background-color: ${theme.colors.white};
-  width: 24px;
-  height: 24px;
+  padding: ${theme.space.md}px ${theme.space.xs2}px;
 `
 
 export const Styled = {
-  IconWrapper,
+  ButtonWrapper,
+  EmptyListsWrapper,
 }

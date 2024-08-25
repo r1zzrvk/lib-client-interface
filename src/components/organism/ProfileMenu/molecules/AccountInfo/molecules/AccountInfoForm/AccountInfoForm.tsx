@@ -1,8 +1,11 @@
-import { theme } from '@constants'
-import { TFirebaseUser } from '@types'
-import { Input, Spacer, Text } from '@ui-kit'
 import { FormikErrors, FormikState, useFormikContext } from 'formik'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
+
+import { Input, Spacer, Text } from '@ui-kit'
+
+import { theme } from '@constants'
+import { TFirebaseUser } from '@types'
+
 import { EAccountInfoFormFields, TAccountInfoFormValues } from '../../types'
 import { ButtonBlock } from '../ButtonBlock'
 import { EmailConfirmation } from '../EmailConfirmation'

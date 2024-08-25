@@ -1,7 +1,10 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { EPagePaths, TSmallCard } from '@types'
+
 import { SmallCard } from '@components/molecules'
+
+import { EPagePaths, TSmallCard } from '@types'
+
 import { Styled } from './styled'
 
 type TCategoriesSliderProps = {

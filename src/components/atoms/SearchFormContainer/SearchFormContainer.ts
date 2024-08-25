@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+
 import { theme } from '@constants'
+
 import { Flexbox } from '../Flexbox'
 
 export const SearchFormContainer = styled(Flexbox)`
@@ -10,6 +12,6 @@ export const SearchFormContainer = styled(Flexbox)`
   }
 
   @media (min-width: ${theme.breakpoints.sm}px) {
-    padding: 0px 100px;
+    padding: 0px 120px;
   }
 `

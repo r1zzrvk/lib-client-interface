@@ -1,4 +1,5 @@
 import { NEW_BOOKMARK_LIST } from '@constants'
+
 import { fetchDatabaseDocs, updateDocList } from './lists'
 
 export const createBookmarksForNewUsers = (uid: string) => {

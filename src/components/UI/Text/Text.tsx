@@ -1,9 +1,10 @@
-import { theme } from '@constants'
-import { useRouter } from 'next/router'
 import { FC, ReactNode } from 'react'
+
+import { theme } from '@constants'
+
 import { Styled } from './styled'
 
-type TTextProps = {
+export type TTextProps = {
   children: ReactNode
   fontSize?: number
   fontWeight?: number
@@ -18,10 +19,7 @@ type TTextProps = {
   marginBottomMob?: number
   color?: string
   paddingRight?: number
-  asLink?: boolean
-  href?: string
   align?: 'center' | 'left'
-  onClick?: () => void
 }
 
 export const Text: FC<TTextProps> = ({
@@ -39,43 +37,24 @@ export const Text: FC<TTextProps> = ({
   marginBottomMob = 0,
   color = theme.colors.white,
   paddingRight = 0,
-  asLink = false,
-  href,
   align,
-  onClick,
-}) => {
-  const router = useRouter()
-
-  const handleClick = () => {
-    if (asLink && href) {
-      router.push(href)
-    }
-
-    onClick?.()
-  }
-
-  // TODO: убрать asLink и создать компонент под ссылку
-
-  return (
-    <Styled.TextWrapper
-      fontSize={fontSize}
-      fontWeight={fontWeight}
-      fontHeight={fontHeight}
-      fontSizeMob={fontSizeMob}
-      fontWeightMob={fontWeightMob}
-      fontHeightMob={fontHeightMob}
-      fontSizeTablet={fontSizeTablet}
-      fontWeightTablet={fontWeightTablet}
-      fontHeightTablet={fontHeightTablet}
-      marginBottom={marginBottom}
-      marginBottomMob={marginBottomMob}
-      color={color}
-      paddingRight={paddingRight}
-      asLink={asLink}
-      onClick={handleClick}
-      align={align}
-    >
-      {children}
-    </Styled.TextWrapper>
-  )
-}
+}) => (
+  <Styled.TextWrapper
+    fontSize={fontSize}
+    fontWeight={fontWeight}
+    fontHeight={fontHeight}
+    fontSizeMob={fontSizeMob}
+    fontWeightMob={fontWeightMob}
+    fontHeightMob={fontHeightMob}
+    fontSizeTablet={fontSizeTablet}
+    fontWeightTablet={fontWeightTablet}
+    fontHeightTablet={fontHeightTablet}
+    marginBottom={marginBottom}
+    marginBottomMob={marginBottomMob}
+    color={color}
+    paddingRight={paddingRight}
+    align={align}
+  >
+    {children}
+  </Styled.TextWrapper>
+)

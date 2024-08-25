@@ -1,11 +1,15 @@
+import React, { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Icon } from '@components/molecules'
+
 import { theme } from '@constants'
 import { TIcon } from '@types'
-import { IconsSelector } from '@components/molecules'
-import React, { FC } from 'react'
-import { Flexbox } from '@components/atoms'
-import { Styled } from './styled'
+
+import { ActionIcon } from '../ActionIcon'
 import { Spacer } from '../Spacer'
 import { Text } from '../Text'
+import { Styled } from './styled'
 
 type TInputProps = {
   type: string
@@ -74,12 +78,7 @@ export const Input: FC<TInputProps> = ({
     <>
       <Styled.Wrapper fluid={fluid} color={color} error={error}>
         {hasIcon && (
-          <IconsSelector
-            icon={icon}
-            color={error ? theme.colors.red : theme.colors.grey}
-            sidePadding={theme.space.sm}
-            upDownPadding={14}
-          />
+          <Icon icon={icon} size={theme.icon_sizes.md} color={error ? theme.colors.red : theme.colors.grey} />
         )}
         <Spacer size={theme.space.xl} samespace />
         <Styled.Input
@@ -97,26 +96,24 @@ export const Input: FC<TInputProps> = ({
           fluid
         />
         {isClearable && value !== '' && (
-          <IconsSelector
+          <ActionIcon
             icon="cross_solid"
             color={theme.colors.grey}
-            size={theme.icon_sizes.xs}
-            sidePadding={hasButton ? theme.space.xs3 : theme.space.sm}
-            upDownPadding={theme.space.sm}
+            backgroundColor={theme.colors.beige}
+            size={theme.icon_sizes.md}
+            padding={theme.space.xs}
             onClick={handleClear}
-            isButton
           />
         )}
         {hasButton && (
           <Styled.CustomIcon isActive={isActive}>
             {hasDot && <Styled.Dot />}
-            <IconsSelector
+            <ActionIcon
               icon={buttonIcon}
               color={theme.colors.grey}
-              size={theme.icon_sizes.xs}
-              sidePadding={theme.space.sm}
-              upDownPadding={16}
-              isButton={hasButton}
+              backgroundColor={theme.colors.beige}
+              size={theme.icon_sizes.md}
+              padding={theme.space.xs}
               onClick={handleClick}
             />
           </Styled.CustomIcon>

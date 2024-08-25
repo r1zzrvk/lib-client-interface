@@ -1,20 +1,22 @@
-import { Flexbox } from '@components/atoms'
-import { theme } from '@constants'
-import { Button, Input, Modal, Spacer, Text } from '@ui-kit'
 import { useFormikContext } from 'formik'
 import { FC } from 'react'
+
+import { Flexbox } from '@components/atoms'
+import { Button, Input, Spacer, TDialogWindowProps, Text } from '@ui-kit'
+
+import { theme } from '@constants'
 import { useBreakpoint } from '@hooks'
-import { EAccountRecoveryFormFields, TAccountRecoveryFormValues } from '../../types'
+
 import { RECOVERY_SUBTITLE, getConfirmationSubtitle } from '../../constants'
-import { Styled } from './styled'
+import { EAccountRecoveryFormFields, TAccountRecoveryFormValues } from '../../types'
 
 type TAccountRecoveryFormProps = {
-  isDialogOpened: boolean
   onDialogClose: () => void
   onGoBack: () => void
+  Dialog: FC<Omit<TDialogWindowProps, 'isOpened' | 'onClose'>>
 }
 
-export const AccountRecoveryForm: FC<TAccountRecoveryFormProps> = ({ onGoBack, onDialogClose, isDialogOpened }) => {
+export const AccountRecoveryForm: FC<TAccountRecoveryFormProps> = ({ onGoBack, onDialogClose, Dialog }) => {
   const { isMob } = useBreakpoint()
   const { values, setFieldValue, errors } = useFormikContext<TAccountRecoveryFormValues>()
   const { email } = values
@@ -52,27 +54,12 @@ export const AccountRecoveryForm: FC<TAccountRecoveryFormProps> = ({ onGoBack, o
           Go back
         </Button>
       </Flexbox>
-      <Modal isOpen={isDialogOpened} onClose={onDialogClose} size="sm" title="Account recovery">
-        <Styled.Dialog>
-          <Text
-            color={theme.colors.main}
-            fontSize={theme.fonts.size.header.sm}
-            fontWeight={theme.fonts.weight.regular}
-            fontHeight={theme.fonts.height.header.sm}
-            fontSizeMob={theme.fonts.size.header.xs}
-            fontHeightMob={theme.fonts.height.header.xs}
-            fontWeightMob={theme.fonts.weight.regular}
-          >
-            {getConfirmationSubtitle(email)}
-          </Text>
-          <Spacer size={theme.space.md} sizeMob={theme.space.md} />
-          <Flexbox justify="end" direction={isMob ? 'column' : 'row-reverse'}>
-            <Button onClick={onDialogClose} isFluid={isMob} size="lg" type="button">
-              Got it
-            </Button>
-          </Flexbox>
-        </Styled.Dialog>
-      </Modal>
+      <Dialog
+        title="Account recovery"
+        subtitle={getConfirmationSubtitle(email)}
+        submitButtonText="Got it"
+        onSubmit={onDialogClose}
+      />
     </>
   )
 }

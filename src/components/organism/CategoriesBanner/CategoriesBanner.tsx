@@ -1,12 +1,15 @@
-import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { Text, Carousel, Spacer } from '@ui-kit'
+import { FC } from 'react'
+
 import { SmallCard } from '@components/molecules'
-import { categoriesCardData, theme } from '@constants'
+import { Carousel, Spacer, Text } from '@ui-kit'
+
 import { EPagePaths, TSmallCard } from '@types'
 import { useBreakpoint } from '@hooks'
-import { Styled } from './styled'
+import { categoriesCardData, theme } from '@constants'
+
 import { CategoriesSlider } from '../CategoriesSlider'
+import { Styled } from './styled'
 
 type TCategoriesBannerProps = {
   header: string

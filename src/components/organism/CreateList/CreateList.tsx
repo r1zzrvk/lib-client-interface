@@ -1,9 +1,12 @@
 import { Form, Formik, FormikState } from 'formik'
 import { FC } from 'react'
+
+import { Modal } from '@ui-kit'
+
 import { TFirebaseUser, TList } from '@types'
 import { updateDocList } from '@api'
 import { generateId } from '@utils'
-import { Modal } from '@ui-kit'
+
 import { listFormInitialValues } from './initialValues'
 import { TListFormValues } from './types'
 import { ListForm } from './molecules'
