@@ -12,7 +12,7 @@ type TAvatarProps = {
 }
 
 export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
-  <div>
+  <Styled.Wrapper>
     {src ? (
       <>
         <Styled.Avatar
@@ -38,5 +38,5 @@ export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
     ) : (
       <Skeleton width={AVATAR_SIZES[size]} height={AVATAR_SIZES[size]} radius={theme.radiuses.round} />
     )}
-  </div>
+  </Styled.Wrapper>
 )

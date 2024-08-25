@@ -30,7 +30,14 @@ export const useSearchBooks = (): TUseSearchBooksReturn => {
         sortingBy,
         searchBy,
       })
-        .then(data => setSearchData(data))
+        .then(data => {
+          if (!data.totalItems) {
+            setSearchData(null)
+            return
+          }
+
+          setSearchData(data)
+        })
         .catch(e => {
           if (e) {
             setIsError(true)
