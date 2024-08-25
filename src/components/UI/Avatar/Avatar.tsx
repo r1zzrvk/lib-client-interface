@@ -12,7 +12,7 @@ type TAvatarProps = {
 }
 
 export const Avatar: FC<TAvatarProps> = ({ src, size = 'sm', hasAction }) => (
-  <Styled.Wrapper>
+  <Styled.Wrapper size={AVATAR_SIZES[size]}>
     {src ? (
       <>
         <Styled.Avatar
