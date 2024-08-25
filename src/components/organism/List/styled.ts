@@ -26,7 +26,7 @@ const InfoBanner = styled.div`
   justify-content: space-between;
   border-radius: ${theme.radiuses.md}px;
   padding: ${theme.space.sm}px;
-  box-shadow: 4px 4px 8px 0px rgba(144, 134, 133, 0.25), -4px -4px 8px 0px rgba(153, 139, 138, 0.25);
+  box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.08);
 
   @media (min-width: ${theme.breakpoints.sm}px) {
     max-width: 700px;
