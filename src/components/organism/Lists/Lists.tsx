@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
-import { ListCard, ListsSkeleton } from '@components/molecules'
-import { Button } from '@ui-kit'
+import { ListCard, ListsSkeleton, StatusIllustration } from '@components/molecules'
 
 import { deleteList } from '@api'
-import { BOOKMARK_LIST_ID } from '@constants'
-import { useAppDispatch, useBreakpoint, useDialog, useDidMount, useLists } from '@hooks'
+import { BOOKMARK_LIST_ID, NOTHING_FOUND } from '@constants'
+import { useAppDispatch, useDialog, useDidMount, useFilterLists, useLists } from '@hooks'
 import { setIsLoading } from '@reducers'
-import { EPagePaths, TFirebaseUser, TList } from '@types'
-import { filterLists } from '@utils'
+import { EPagePaths, TBadge, TFirebaseUser, TList } from '@types'
 
 import { CreateList } from '../CreateList'
+import { defaultBadge } from './constants'
+import { SearchBlock } from './molecules'
 import { Styled } from './styled'
 
 type TListsProps = {
@@ -22,22 +22,25 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const { createOne } = router.query
-  const { isMob } = useBreakpoint()
   const [lists, getLists, isLoading] = useLists({ uid })
-  const [isModalOpened, setIsModalOpened] = useState(false)
+
+  const [isAddListModalOpened, setIsAddListModalOpened] = useState(false)
   const { dialog: Dialog, close, show } = useDialog()
+
   const [deletingListId, setDeletingListId] = useState<string>('')
   const [editingList, setEditingList] = useState<TList | null>(null)
-  const filteredLists = useMemo(() => filterLists(lists), [lists])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedBadge, setSelectedBadge] = useState<TBadge | null>(defaultBadge)
+  const filteredLists = useFilterLists({ lists, searchType: selectedBadge?.value, query: searchTerm })
 
   const handleEditClick = (list: TList) => {
     setEditingList(list)
-    setIsModalOpened(true)
+    setIsAddListModalOpened(true)
   }
 
   const handleModalClose = () => {
     setEditingList(null)
-    setIsModalOpened(false)
+    setIsAddListModalOpened(false)
   }
 
   const handleClickDelete = (id: string) => {
@@ -64,7 +67,7 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
 
   useDidMount(() => {
     if (typeof createOne === 'string' && createOne === 'true') {
-      setIsModalOpened(true)
+      setIsAddListModalOpened(true)
       router.push(EPagePaths.MY_LISTS)
     }
   })
@@ -75,19 +78,23 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
 
   return (
     <div>
-      <Button rightIcon="plus_solid" onClick={() => setIsModalOpened(true)} isFluid={isMob} size="lg">
-        Create list
-      </Button>
+      <SearchBlock
+        searchTerm={searchTerm}
+        selectedBadge={selectedBadge}
+        setSearchTerm={setSearchTerm}
+        setSelectedBadge={setSelectedBadge}
+        onAddClick={() => setIsAddListModalOpened(true)}
+      />
       <CreateList
         uid={uid}
-        isModalOpened={isModalOpened}
+        isModalOpened={isAddListModalOpened}
         onModalClose={handleModalClose}
         updateLists={() => getLists()}
         list={editingList}
       />
       {lists?.length || !isLoading ? (
         <Styled.Wrapper>
-          {filteredLists.map((list, i) => (
+          {filteredLists?.map((list, i) => (
             <ListCard
               {...list}
               key={list.id}
@@ -99,6 +106,13 @@ export const Lists: FC<TListsProps> = ({ uid }) => {
               uid={uid}
             />
           ))}
+          <StatusIllustration
+            title={NOTHING_FOUND.title}
+            altText={NOTHING_FOUND.altText}
+            imgUrl={NOTHING_FOUND.imgUrl}
+            subtitle={NOTHING_FOUND.subtitle}
+            isVisible={!filteredLists?.length && !isLoading}
+          />
         </Styled.Wrapper>
       ) : (
         <ListsSkeleton />
