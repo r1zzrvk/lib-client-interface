@@ -1,4 +1,4 @@
-import { ESearchByOptionsLabels } from '@types'
+import { ESearchByOptionsLabels, ESearchListsLabels } from '@types'
 
 export const SIZES: { [key: string]: number } = {
   sm: 131,
@@ -16,4 +16,10 @@ export const searchTypes: Record<string, string> = {
   [ESearchByOptionsLabels.AUTHOR]: 'inauthor',
   [ESearchByOptionsLabels.TITLE]: 'intitle',
   [ESearchByOptionsLabels.PUBLISHER]: 'inpublisher',
+}
+
+export const listsSearchTypes: Record<string, string> = {
+  [ESearchListsLabels.ALL]: 'ALL',
+  [ESearchListsLabels.PINNED]: 'PINNED',
+  [ESearchListsLabels.UNPINNED]: 'UNPINNED',
 }
