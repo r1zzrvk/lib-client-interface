@@ -82,3 +82,9 @@ export enum EProfileTabs {
   ACCOUNT = 'Account information',
   LISTS = 'My lists',
 }
+
+export enum ESearchListsLabels {
+  ALL = 'All',
+  PINNED = 'Pinned',
+  UNPINNED = 'Unpinned',
+}
