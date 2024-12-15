@@ -1,4 +1,4 @@
-![изображение](https://github.com/r1zzrvk/lib-client-interface/assets/82266287/c9f72e6c-5203-4179-b289-b2eeff3978bf)
+![изображение](https://ibb.co/R0wvHmM)
 
 
 #  Getting started :wave:
