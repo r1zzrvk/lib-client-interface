@@ -30,7 +30,7 @@ export const BannerContent: FC = () => {
         fontWeightMob={theme.fonts.weight.medium}
         fontWeightTablet={theme.fonts.weight.medium}
       >
-        Discover new releases, bestsellers and&nbsp;hidden&nbsp;gems
+        Your next favorite book is just a&nbsp;search&nbsp;away
       </Text>
       <Spacer size={theme.space.md} sizeTablet={theme.space.sm} sizeMob={theme.space.xs} />
       <Text
@@ -39,11 +39,9 @@ export const BannerContent: FC = () => {
         fontSizeMob={theme.fonts.size.regular.md}
         fontHeightMob={theme.fonts.height.regular.md}
       >
-        Find your next read with ease.
+        Find books by title, author, genre, or keyword.
         <br />
-        Search for books by title, author, genre or&nbsp;keyword.
-        <br />
-        Start your journey today and dive into a&nbsp;world&nbsp;of&nbsp;literature.
+        Start exploring today and build your perfect reading list.
       </Text>
       <Spacer size={theme.space.xl} sizeTablet={theme.space.sm} sizeMob={theme.space.sm} />
       {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
