@@ -34,6 +34,7 @@ export const DesktopMenu: FC<TDesktopMenuProps> = ({ footerData, onSignClick }) 
           header={PROMO_FOOTER.header}
           content={PROMO_FOOTER.content}
           buttonText={PROMO_FOOTER.buttonText}
+          headerFontWeight={theme.fonts.weight.semibold}
           headerFontSize={theme.fonts.size.header.xs}
           headerFontHeight={theme.fonts.height.header.xs}
           contentFontSize={theme.fonts.size.regular.md}

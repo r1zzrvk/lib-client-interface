@@ -3,6 +3,7 @@ import { FC, MouseEvent, useState } from 'react'
 import { Icon, TIconProps } from '@components/molecules'
 
 import { theme } from '@constants'
+import { useBreakpoint } from '@hooks'
 
 import { Styled } from './styled'
 
@@ -22,6 +23,7 @@ export const ActionIcon: FC<TActionIconProps> = ({
   disabled,
   onClick,
 }) => {
+  const { isMob } = useBreakpoint()
   const [hover, setHover] = useState(false)
   const [animate, setAnimate] = useState(false)
 
@@ -39,8 +41,8 @@ export const ActionIcon: FC<TActionIconProps> = ({
       backgroundColor={backgroundColor}
       padding={padding}
       size={size + padding}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={isMob ? undefined : () => setHover(true)}
+      onMouseLeave={isMob ? undefined : () => setHover(false)}
       onAnimationEnd={() => setAnimate(false)}
     >
       <Icon icon={icon} color={hover ? theme.colors.grey_light : color} size={size} />

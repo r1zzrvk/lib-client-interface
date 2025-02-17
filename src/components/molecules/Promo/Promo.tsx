@@ -16,6 +16,7 @@ type TPromoProps = {
   onButtonClick: () => void
   buttonText?: string
   textColor?: string
+  headerFontWeight?: number
 }
 
 export const Promo: FC<TPromoProps> = ({
@@ -26,6 +27,7 @@ export const Promo: FC<TPromoProps> = ({
   contentFontSize,
   headerFontHeight,
   contentFontHeight,
+  headerFontWeight = theme.fonts.weight.medium,
   textColor = theme.colors.white,
   onButtonClick,
 }) => (
@@ -35,7 +37,7 @@ export const Promo: FC<TPromoProps> = ({
       marginBottom={theme.space.md}
       fontSize={headerFontSize}
       fontHeight={headerFontHeight}
-      fontWeight={theme.fonts.weight.semibold}
+      fontWeight={headerFontWeight}
       fontWeightTablet={theme.fonts.weight.medium}
       fontWeightMob={theme.fonts.weight.medium}
       fontSizeMob={theme.fonts.size.header.sm}

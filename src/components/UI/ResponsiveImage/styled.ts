@@ -35,6 +35,11 @@ const Image = styled.div<TImageProps>`
   @media (min-width: ${theme.breakpoints.lg}px) {
     display: ${({ isLg }) => (isLg ? 'flex' : 'none')};
   }
+
+  :hover {
+    transition: 0.4s ease;
+    filter: contrast(80%);
+  }
 `
 
 export const Styled = {
